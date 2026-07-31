@@ -164,6 +164,7 @@
       background: var(--acc-bg); border-color: var(--acc-bdr);
       color: var(--acc-ink); font-weight: 600;
     }
+    .hd-plat-logo { height: 14px; width: auto; vertical-align: middle; flex-shrink: 0; display: inline-block; }
     /* Inline flag SVGs — cross-platform, no emoji rendering variance */
     .hd-flag { display: inline-block; vertical-align: middle; border-radius: 2px; flex-shrink: 0; }
 
@@ -1527,11 +1528,11 @@ function flagSVG(code) {
 /* Inline SVG platform logos */
 function platformSVG(name) {
   var p = {
-    'Shopee':     '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:middle;flex-shrink:0"><rect x="1.5" y="5" width="11" height="8" rx="2" fill="#EE4D2D"/><path d="M4.5 5.5A2.5 2.5 0 0 1 9.5 5.5" stroke="#EE4D2D" stroke-width="1.4" stroke-linecap="round"/></svg>',
+    'Shopee':     '<img src="assets/shopee.svg" alt="" class="hd-plat-logo">',
     'TikTok Shop':'<svg width="14" height="14" viewBox="0 0 24 28" fill="#111" style="vertical-align:middle;flex-shrink:0"><path d="M17 0c.3 2.5 1.8 4.6 5 4.8v4c-1.8 0-3.4-.6-4.7-1.6v7.4C17.3 19.3 14.2 23 10 23 5.4 23 1.7 19.3 1.7 14.7S5.4 6.5 10 6.5c.4 0 .8 0 1.2.1v4.1c-.4-.1-.8-.1-1.2-.1-2.5 0-4.6 2-4.6 4.6S7.5 19.6 10 19.6s4.6-2 4.6-4.6V0H17z"/></svg>',
-    'Lazada':     '<svg width="11" height="14" viewBox="0 0 11 14" fill="#F57224" style="vertical-align:middle;flex-shrink:0"><rect x="2" y="1" width="3" height="11" rx="1.5"/><rect x="2" y="9.5" width="7" height="3" rx="1.5"/></svg>',
-    'Amazon':     '<svg width="15" height="12" viewBox="0 0 15 12" fill="none" style="vertical-align:middle;flex-shrink:0"><path d="M1.5 7.5Q7.5 12 13.5 7.5" stroke="#FF9900" stroke-width="2.2" stroke-linecap="round"/><line x1="12" y1="5.8" x2="13.5" y2="7.5" stroke="#FF9900" stroke-width="1.5" stroke-linecap="round"/><line x1="12.5" y1="9.5" x2="13.5" y2="7.5" stroke="#FF9900" stroke-width="1.5" stroke-linecap="round"/></svg>',
-    'Temu':       '<svg width="13" height="14" viewBox="0 0 13 14" fill="#F75F00" style="vertical-align:middle;flex-shrink:0"><rect x="0" y="1" width="13" height="3" rx="1.5"/><rect x="5" y="1" width="3" height="12" rx="1.5"/></svg>'
+    'Lazada':     '<img src="assets/lazada.svg" alt="" class="hd-plat-logo">',
+    'Amazon':     '<img src="assets/amazon.svg" alt="" class="hd-plat-logo">',
+    'Temu':       '<img src="assets/temu.svg"   alt="" class="hd-plat-logo">'
   };
   return p[name] || '';
 }
