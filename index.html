@@ -305,7 +305,7 @@
 
         <!-- Search bar -->
         <div class="hd-bar">
-          <span class="hd-chip hd-chip-market"><svg width="14" height="14" viewBox="0 0 24 28" fill="currentColor" style="vertical-align:middle;flex-shrink:0"><path d="M17 0c.3 2.5 1.8 4.6 5 4.8v4c-1.8 0-3.4-.6-4.7-1.6v7.4C17.3 19.3 14.2 23 10 23 5.4 23 1.7 19.3 1.7 14.7S5.4 6.5 10 6.5c.4 0 .8 0 1.2.1v4.1c-.4-.1-.8-.1-1.2-.1-2.5 0-4.6 2-4.6 4.6S7.5 19.6 10 19.6s4.6-2 4.6-4.6V0H17z"/></svg>&nbsp;TikTok Shop</span>
+          <span class="hd-chip hd-chip-market" id="hd-platform-chip">Shopee</span>
           <span class="hd-chip" id="hd-country-chip"><svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#A51931"/><rect y="2.8" width="20" height="8.4" fill="#F4F5F8"/><rect y="5.6" width="20" height="2.8" fill="#2D2A4A"/></svg>&nbsp;Thailand</span>
           <span class="hd-chip">↕&nbsp;Popularity</span>
           <div class="hd-input-wrap">
@@ -377,12 +377,12 @@
    [WIRE] Replace this object with your API response.
    Required shape:
      {
-       query:       string,
-       marketplace: string,
+       query:   string,
        markets: [{
-         country: string,
-         flag:    string,     // emoji
-         sym:     string,     // currency symbol, e.g. "฿"
+         platform: string,
+         country:  string,
+         flag:     string,   // 2-letter code for flagSVG()
+         sym:      string,   // currency symbol, e.g. "฿"
          metrics: { r30, s30, price, rating },  // all strings
          rows: [{
            rank:   number,   // final ranked order
@@ -398,11 +398,21 @@
 ═══════════════════════════════════════════════════════════════ */
 var DEMO = {
   query: 'water bottle',
-  marketplace: 'TikTok Shop',
   markets: [
     {
-      country: 'Thailand', flag: 'th', sym: '฿',
-      metrics: { r30: '4,816,221', s30: '72,829', price: '65.68', rating: '4.7' },
+      platform: 'Shopee', country: 'Indonesia', flag: 'id', sym: 'Rp',
+      metrics: { r30: '5,064,850,000', s30: '210,945', price: '45,900', rating: '4.8' },
+      rows: [
+        { rank:1, iOrder:2, name:'Botol Minum 1L Stainless Steel Vacuum Flask', store:'RumahTangga.ID', created:'Nov 2, 2024', orig:'129,000', dprice:'49,020', disc:'62.0%', rev:'2,145,000,000', sold:'48,210' },
+        { rank:2, iOrder:1, name:'Tumbler Kaca 480ml Anti Slip Motif Lucu', store:'YMShopID', created:'Dec 8, 2024', orig:'39,000', dprice:'17,550', disc:'55.0%', rev:'684,000,000', sold:'52,300' },
+        { rank:3, iOrder:3, name:'Botol Sport 750ml Anti Bocor BPA Free', store:'ActiveID Store', created:'Oct 20, 2024', orig:'59,000', dprice:'30,680', disc:'48.0%', rev:'410,000,000', sold:'18,400' },
+        { rank:4, iOrder:5, name:'Termos Air Panas 1.5L Premium', store:'HangatID', created:'Nov 6, 2024', orig:'189,000', dprice:'54,810', disc:'71.0%', rev:'96,000,000', sold:'9,120' },
+        { rank:5, iOrder:4, name:'Botol Lipat Silikon 500ml Travel', store:'EcoID Shop', created:'Dec 1, 2024', orig:'49,000', dprice:'29,400', disc:'40.0%', rev:'158,000,000', sold:'12,600' },
+      ]
+    },
+    {
+      platform: 'TikTok Shop', country: 'Thailand', flag: 'th', sym: '฿',
+      metrics: { r30: '4,816,221', s30: '70,480', price: '65.68', rating: '4.7' },
       rows: [
         { rank:1, iOrder:2, name:'1700ML Stainless Steel Tumbler Vacuum Insulated', store:'COOMA', created:'Nov 4, 2024', orig:'286', dprice:'117.83', disc:'58.8%', rev:'1,590,597', sold:'13,514' },
         { rank:2, iOrder:1, name:'Glass Thermal Bottle 480ml Anti-Slip Base', store:'YMShop22', created:'Dec 13, 2024', orig:'39', dprice:'17', disc:'56.4%', rev:'240,000', sold:'14,126' },
@@ -412,25 +422,36 @@ var DEMO = {
       ]
     },
     {
-      country: 'Singapore', flag: 'sg', sym: 'S$',
-      metrics: { r30: '413,344', s30: '23,573', price: '28.90', rating: '4.6' },
+      platform: 'Lazada', country: 'Malaysia', flag: 'my', sym: 'RM',
+      metrics: { r30: '1,165,365', s30: '66,075', price: '24.50', rating: '4.6' },
       rows: [
-        { rank:1, iOrder:2, name:'HYDRA 1L BPA-Free Tritan Sport Bottle', store:'HydraFit SG', created:'Jan 8, 2025', orig:'39.90', dprice:'15.12', disc:'62.1%', rev:'98,430', sold:'5,209' },
-        { rank:2, iOrder:1, name:'Stainless Steel Insulated Flask 500ml', store:'CoolGear SG', created:'Dec 20, 2024', orig:'32', dprice:'15.68', disc:'51.0%', rev:'78,400', sold:'3,200' },
-        { rank:3, iOrder:3, name:'Foldable Silicone Water Bottle 600ml', store:'EcoCarry', created:'Jan 2, 2025', orig:'24', dprice:'13.25', disc:'44.8%', rev:'44,160', sold:'3,450' },
-        { rank:4, iOrder:4, name:'Glass Bottle Bamboo Lid 650ml', store:'PureVida SG', created:'Jan 5, 2025', orig:'29', dprice:'17.72', disc:'38.9%', rev:'35,200', sold:'1,600' },
-        { rank:5, iOrder:5, name:'2.2L Large Motivational Water Bottle Daily', store:'FitFlow Store', created:'Dec 28, 2024', orig:'26.50', dprice:'11.05', disc:'58.3%', rev:'28,875', sold:'1,750' },
+        { rank:1, iOrder:2, name:'1L Vacuum Flask Thermal Water Bottle', store:'LazMall DrinkGear', created:'Nov 12, 2024', orig:'69.90', dprice:'22.37', disc:'68.0%', rev:'412,000', sold:'18,900' },
+        { rank:2, iOrder:1, name:'Sport Bottle 750ml Leak-Proof Tritan', store:'ActiveLife MY', created:'Dec 3, 2024', orig:'34.90', dprice:'16.75', disc:'52.0%', rev:'168,000', sold:'12,400' },
+        { rank:3, iOrder:3, name:'Glass Thermal Mug with Bamboo Lid 380ml', store:'HomeLiving MY', created:'Dec 9, 2024', orig:'39', dprice:'21.45', disc:'45.0%', rev:'98,500', sold:'5,600' },
+        { rank:4, iOrder:5, name:'316 Stainless Double Wall Flask 600ml', store:'PureCup Official', created:'Nov 25, 2024', orig:'52', dprice:'20.80', disc:'60.0%', rev:'74,000', sold:'3,100' },
+        { rank:5, iOrder:4, name:'Collapsible Silicone Bottle 500ml', store:'EcoMY', created:'Dec 6, 2024', orig:'26', dprice:'15.08', disc:'42.0%', rev:'51,200', sold:'4,050' },
       ]
     },
     {
-      country: 'Malaysia', flag: 'my', sym: 'RM',
-      metrics: { r30: '985,512', s30: '72,611', price: '19.90', rating: '4.5' },
+      platform: 'Amazon', country: 'United States', flag: 'us', sym: '$',
+      metrics: { r30: '4,080,300', s30: '189,300', price: '24.99', rating: '4.5' },
       rows: [
-        { rank:1, iOrder:2, name:'Tumbler 1L Vacuum Flask Thermal Bottle', store:'DrinkGear MY', created:'Nov 15, 2024', orig:'59.90', dprice:'16.05', disc:'73.2%', rev:'318,744', sold:'20,046' },
-        { rank:2, iOrder:1, name:'Sport Bottle 750ml Leak-Proof BPA Free', store:'ActiveLife MY', created:'Dec 1, 2024', orig:'29.90', dprice:'14.80', disc:'50.5%', rev:'148,500', sold:'15,000' },
-        { rank:3, iOrder:3, name:'Glass Thermal Mug with Handle 380ml', store:'KitchenPlus MY', created:'Dec 10, 2024', orig:'35', dprice:'19.35', disc:'44.7%', rev:'92,500', sold:'5,000' },
-        { rank:4, iOrder:5, name:'316 Stainless Double Wall Flask 600ml', store:'PureCup MY', created:'Nov 28, 2024', orig:'45', dprice:'18.90', disc:'58.0%', rev:'74,700', sold:'3,000' },
-        { rank:5, iOrder:4, name:'Foldable Collapsible Silicone Bottle 500ml', store:'EcoMY Shop', created:'Dec 5, 2024', orig:'22', dprice:'13.09', disc:'40.5%', rev:'45,220', sold:'3,800' },
+        { rank:1, iOrder:2, name:'Hydro Insulated Stainless Steel Water Bottle 32oz', store:'HydroPeak', created:'Nov 1, 2024', orig:'34.99', dprice:'19.94', disc:'43.0%', rev:'1,284,000', sold:'41,200' },
+        { rank:2, iOrder:1, name:'BPA-Free Tritan Sports Bottle 24oz 2-Pack', store:'ActiveGear', created:'Dec 5, 2024', orig:'19.99', dprice:'12.99', disc:'35.0%', rev:'742,000', sold:'44,600' },
+        { rank:3, iOrder:3, name:'Glass Water Bottle with Silicone Sleeve 20oz', store:'PureVida', created:'Oct 28, 2024', orig:'22.99', dprice:'13.79', disc:'40.0%', rev:'398,000', sold:'18,900' },
+        { rank:4, iOrder:5, name:'Half Gallon Motivational Water Bottle 64oz', store:'FitFlow', created:'Nov 8, 2024', orig:'27.99', dprice:'13.99', disc:'50.0%', rev:'214,000', sold:'9,400' },
+        { rank:5, iOrder:4, name:'Collapsible Silicone Travel Bottle 25oz', store:'EcoCarry', created:'Dec 2, 2024', orig:'15.99', dprice:'9.91', disc:'38.0%', rev:'176,000', sold:'12,100' },
+      ]
+    },
+    {
+      platform: 'Temu', country: 'United States', flag: 'us', sym: '$',
+      metrics: { r30: '1,902,400', s30: '361,950', price: '6.48', rating: '4.3' },
+      rows: [
+        { rank:1, iOrder:2, name:'Stainless Steel Insulated Tumbler 40oz', store:'Temu Choice', created:'Nov 3, 2024', orig:'29.99', dprice:'6.60', disc:'78.0%', rev:'684,000', sold:'98,400' },
+        { rank:2, iOrder:1, name:'Portable Sports Water Bottle 750ml', store:'GoodLife', created:'Dec 4, 2024', orig:'12.99', dprice:'4.55', disc:'65.0%', rev:'312,000', sold:'71,200' },
+        { rank:3, iOrder:3, name:'Cute Glass Bottle with Straw 500ml', store:'HomeEssentials', created:'Oct 25, 2024', orig:'9.99', dprice:'4.20', disc:'58.0%', rev:'148,000', sold:'38,600' },
+        { rank:4, iOrder:5, name:'Large 1 Gallon Water Jug with Time Marker', store:'FitDaily', created:'Nov 7, 2024', orig:'15.99', dprice:'4.80', disc:'70.0%', rev:'96,000', sold:'14,200' },
+        { rank:5, iOrder:4, name:'Foldable Silicone Water Bottle 20oz', store:'TravelMate', created:'Dec 1, 2024', orig:'6.99', dprice:'3.84', disc:'45.1%', rev:'72,000', sold:'18,900' },
       ]
     },
   ]
@@ -457,13 +478,14 @@ function rowHTML(r, sym) {
 ─────────────────────────────────────────────────────────────── */
 (function renderStatic() {
   var m = DEMO.markets[0];
-  document.getElementById('hd-typed').textContent   = DEMO.query;
-  document.getElementById('hd-r30').textContent     = m.sym + m.metrics.r30;
-  document.getElementById('hd-s30').textContent     = m.metrics.s30;
-  document.getElementById('hd-price').textContent   = m.sym + m.metrics.price;
-  document.getElementById('hd-rating').textContent  = m.metrics.rating;
-  document.getElementById('hd-subtitle').textContent =
-    'Showing live ' + DEMO.marketplace + ' results for "' + DEMO.query + '"';
+  document.getElementById('hd-typed').textContent        = DEMO.query;
+  document.getElementById('hd-r30').textContent          = m.sym + m.metrics.r30;
+  document.getElementById('hd-s30').textContent          = m.metrics.s30;
+  document.getElementById('hd-price').textContent        = m.sym + m.metrics.price;
+  document.getElementById('hd-rating').textContent       = m.metrics.rating;
+  document.getElementById('hd-subtitle').textContent     = 'Showing live ' + m.platform + ' results for "' + DEMO.query + '"';
+  document.getElementById('hd-platform-chip').innerHTML  = platformSVG(m.platform) + '&nbsp;' + m.platform;
+  document.getElementById('hd-country-chip').innerHTML   = flagSVG(m.flag) + '&nbsp;' + m.country;
   var sorted = m.rows.slice().sort(function(a, b) { return a.rank - b.rank; });
   document.getElementById('hd-tbody').innerHTML = sorted.map(function(r) {
     return rowHTML(r, m.sym);
@@ -473,11 +495,24 @@ function rowHTML(r, sym) {
 /* Inline SVG flags — avoids emoji rendering variance on Windows/Android */
 function flagSVG(code) {
   var f = {
+    id: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#F4F5F8"/><rect width="20" height="7" fill="#CE1126"/></svg>',
     th: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#A51931"/><rect y="2.8" width="20" height="8.4" fill="#F4F5F8"/><rect y="5.6" width="20" height="2.8" fill="#2D2A4A"/></svg>',
-    sg: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#F4F5F8"/><rect width="20" height="7" fill="#EF3340"/><circle cx="5.5" cy="3.5" r="2.2" fill="#F4F5F8"/><circle cx="7" cy="3.5" r="1.7" fill="#EF3340"/></svg>',
-    my: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#F4F5F8"/><rect y="2" width="20" height="2" fill="#CC0001"/><rect y="6" width="20" height="2" fill="#CC0001"/><rect y="10" width="20" height="2" fill="#CC0001"/><rect width="10" height="7" fill="#010066"/></svg>'
+    my: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#F4F5F8"/><rect y="2" width="20" height="2" fill="#CC0001"/><rect y="6" width="20" height="2" fill="#CC0001"/><rect y="10" width="20" height="2" fill="#CC0001"/><rect width="10" height="7" fill="#010066"/></svg>',
+    us: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#F4F5F8"/><rect y="0" width="20" height="2.15" fill="#B22234"/><rect y="4.3" width="20" height="2.15" fill="#B22234"/><rect y="8.6" width="20" height="2.15" fill="#B22234"/><rect y="11.85" width="20" height="2.15" fill="#B22234"/><rect width="9" height="7.5" fill="#3C3B6E"/></svg>'
   };
   return f[code] || '';
+}
+
+/* Inline SVG platform logos */
+function platformSVG(name) {
+  var p = {
+    'Shopee':     '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:middle;flex-shrink:0"><rect x="1.5" y="5" width="11" height="8" rx="2" fill="#EE4D2D"/><path d="M4.5 5.5A2.5 2.5 0 0 1 9.5 5.5" stroke="#EE4D2D" stroke-width="1.4" stroke-linecap="round"/></svg>',
+    'TikTok Shop':'<svg width="14" height="14" viewBox="0 0 24 28" fill="#111" style="vertical-align:middle;flex-shrink:0"><path d="M17 0c.3 2.5 1.8 4.6 5 4.8v4c-1.8 0-3.4-.6-4.7-1.6v7.4C17.3 19.3 14.2 23 10 23 5.4 23 1.7 19.3 1.7 14.7S5.4 6.5 10 6.5c.4 0 .8 0 1.2.1v4.1c-.4-.1-.8-.1-1.2-.1-2.5 0-4.6 2-4.6 4.6S7.5 19.6 10 19.6s4.6-2 4.6-4.6V0H17z"/></svg>',
+    'Lazada':     '<svg width="11" height="14" viewBox="0 0 11 14" fill="#F57224" style="vertical-align:middle;flex-shrink:0"><rect x="2" y="1" width="3" height="11" rx="1.5"/><rect x="2" y="9.5" width="7" height="3" rx="1.5"/></svg>',
+    'Amazon':     '<svg width="15" height="12" viewBox="0 0 15 12" fill="none" style="vertical-align:middle;flex-shrink:0"><path d="M1.5 7.5Q7.5 12 13.5 7.5" stroke="#FF9900" stroke-width="2.2" stroke-linecap="round"/><line x1="12" y1="5.8" x2="13.5" y2="7.5" stroke="#FF9900" stroke-width="1.5" stroke-linecap="round"/><line x1="12.5" y1="9.5" x2="13.5" y2="7.5" stroke="#FF9900" stroke-width="1.5" stroke-linecap="round"/></svg>',
+    'Temu':       '<svg width="13" height="14" viewBox="0 0 13 14" fill="#F75F00" style="vertical-align:middle;flex-shrink:0"><rect x="0" y="1" width="13" height="3" rx="1.5"/><rect x="5" y="1" width="3" height="12" rx="1.5"/></svg>'
+  };
+  return p[name] || '';
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -489,10 +524,11 @@ function initDemo() {
 
   gsap.registerPlugin(Flip);
 
-  var demo        = document.getElementById('hero-demo');
-  var typed       = document.getElementById('hd-typed');
-  var countryChip = document.getElementById('hd-country-chip');
-  var snapshot    = document.getElementById('hd-snapshot');
+  var demo         = document.getElementById('hero-demo');
+  var typed        = document.getElementById('hd-typed');
+  var platformChip = document.getElementById('hd-platform-chip');
+  var countryChip  = document.getElementById('hd-country-chip');
+  var snapshot     = document.getElementById('hd-snapshot');
   var leaderboard = document.getElementById('hd-leaderboard');
   var tbody       = document.getElementById('hd-tbody');
   var subtitle    = document.getElementById('hd-subtitle');
@@ -578,11 +614,13 @@ function initDemo() {
     /* ── RESET (t = 0) ────────────────────────────────────── */
     tl.add(function() {
       typed.textContent = '';
-      countryChip.innerHTML = flagSVG(m.flag) + '&nbsp;' + m.country;
-      gsap.set(demo,        { opacity: 1 });
-      gsap.set(countryChip, { opacity: 1 });
-      gsap.set(snapshot,    { opacity: 0, y: 10 });
-      gsap.set(leaderboard, { opacity: 0, y: 10 });
+      platformChip.innerHTML = platformSVG(m.platform) + '&nbsp;' + m.platform;
+      countryChip.innerHTML  = flagSVG(m.flag) + '&nbsp;' + m.country;
+      gsap.set(demo,         { opacity: 1 });
+      gsap.set(platformChip, { opacity: 1 });
+      gsap.set(countryChip,  { opacity: 1 });
+      gsap.set(snapshot,     { opacity: 0, y: 10 });
+      gsap.set(leaderboard,  { opacity: 0, y: 10 });
     }, 0);
 
     /* ── BEAT 1: TYPE (0 – 1.10s) ────────────────────────── */
@@ -595,7 +633,7 @@ function initDemo() {
       /* Rows enter in iOrder (sold-volume desc) — NOT rank order */
       var scrambled = m.rows.slice().sort(function(a, b) { return a.iOrder - b.iOrder; });
       tbody.innerHTML = scrambled.map(function(r) { return rowHTML(r, m.sym); }).join('');
-      subtitle.textContent = 'Showing live ' + DEMO.marketplace + ' results for "' + q + '"';
+      subtitle.textContent = 'Showing live ' + m.platform + ' results for "' + q + '"';
     }, 1.1);
 
     tl.to(snapshot,    { opacity: 1, y: 0, duration: 0.38, ease: 'power2.out' }, 1.1);
@@ -624,15 +662,17 @@ function initDemo() {
       });
     }, 3.1);
 
-    /* ── BEAT 5: COUNTRY SWITCH (3.90 – 5.60s) ──────────── */
+    /* ── BEAT 5: PLATFORM + COUNTRY SWITCH (3.90 – 5.60s) ── */
 
-    /* Country chip: fade out → update → fade in */
+    /* Both chips: fade out → update → fade in */
     tl.add(function() {
-      gsap.to(countryChip, { opacity: 0, duration: 0.18, ease: 'power1.in' });
+      gsap.to([platformChip, countryChip], { opacity: 0, duration: 0.18, ease: 'power1.in' });
     }, 3.9);
     tl.add(function() {
-      countryChip.innerHTML = flagSVG(mNext.flag) + '&nbsp;' + mNext.country;
-      gsap.to(countryChip, { opacity: 1, duration: 0.22, ease: 'power2.out' });
+      platformChip.innerHTML = platformSVG(mNext.platform) + '&nbsp;' + mNext.platform;
+      countryChip.innerHTML  = flagSVG(mNext.flag) + '&nbsp;' + mNext.country;
+      subtitle.textContent   = 'Showing live ' + mNext.platform + ' results for "' + q + '"';
+      gsap.to([platformChip, countryChip], { opacity: 1, duration: 0.22, ease: 'power2.out' });
     }, 4.12);
 
     /* Metrics: fade out → swap text → fade in (no count-up; crossfade reads cleaner) */
