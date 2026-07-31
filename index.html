@@ -56,6 +56,16 @@
     }
     .logo { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
     .logo em { font-style: normal; color: var(--accent); }
+    .nav-links {
+      display: flex; align-items: center; gap: 28px;
+    }
+    .nav-links a {
+      font-size: 14px; color: var(--muted);
+      text-decoration: none; transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-ctas { display: flex; align-items: center; gap: 8px; }
+    @media (max-width: 640px) { .nav-links { display: none; } }
 
     /* ── BUTTONS ─────────────────────────────────────────────── */
     .btn {
@@ -67,6 +77,15 @@
     .btn-primary { background: var(--accent); color: #07110F; font-size: 14px; padding: 10px 20px; }
     .btn-primary:hover { background: #1ae8d0; transform: translateY(-1px); }
     .btn-primary:active { transform: translateY(0); }
+    .btn-secondary {
+      background: #fff;
+      border: 1.5px solid var(--accent);
+      color: var(--ink);
+      font-size: 14px;
+      padding: 10px 20px;
+    }
+    .btn-secondary:hover  { background: var(--acc-bg); transform: translateY(-1px); }
+    .btn-secondary:active { transform: translateY(0); }
     .btn-lg { font-size: 16px; padding: 13px 30px; }
 
     /* ── HERO ────────────────────────────────────────────────── */
@@ -99,6 +118,10 @@
       margin-bottom: 32px; line-height: 1.55;
     }
     .no-card { font-size: 12px; color: var(--dim); margin-top: 12px; }
+    .hero-ctas {
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px; flex-wrap: wrap;
+    }
 
     /* ══════════════════════════════════════════════════════════
        HERO DEMO COMPONENT
@@ -273,6 +296,7 @@
       .hero-demo-wrap { margin-top: 40px; }
       .hd-bar  { padding: 10px 12px; }
       .hd-body { padding: 16px 14px 20px; }
+      .hero-ctas { flex-direction: column; }
     }
     /* ══════════════════════════════════════════════════════════
        SECTION 2 — BEFORE / AFTER TRANSFORMATION
@@ -869,7 +893,15 @@
 <nav>
   <div class="container nav-inner">
     <a href="/" class="logo">ecomb<em>lade</em></a>
-    <a href="#pricing" class="btn btn-primary">Start free</a>
+    <nav class="nav-links">
+      <a href="#value">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-ctas">
+      <a href="https://app.ecomblade.com/login" class="btn btn-secondary">Log in</a>
+      <a href="https://app.ecomblade.com/register" class="btn btn-primary">Start free</a>
+    </div>
   </div>
 </nav>
 
@@ -879,7 +911,10 @@
     <div class="hero-tag"><span class="dot"></span>6 Platforms · 7 Countries</div>
     <h1>Spot product opportunities,<br /><em>before everyone else.</em></h1>
     <p class="hero-sub">The ultimate product research platform that expands your view beyond your local market.</p>
-    <a href="#pricing" class="btn btn-primary btn-lg">Start for free</a>
+    <div class="hero-ctas">
+      <a href="https://app.ecomblade.com/register" class="btn btn-primary btn-lg">Start free</a>
+      <a href="https://app.ecomblade.com/login" class="btn btn-secondary btn-lg">Log in</a>
+    </div>
     <p class="no-card">No credit card required</p>
 
     <!-- ═══════════════════════════════════════════════════════
@@ -963,60 +998,12 @@
     <div class="ribbon-inner">
       <span class="ribbon-label">Access global trends on</span>
       <div class="ribbon-logos">
-
-        <!-- Shopee -->
-        <div class="ribbon-logo">
-          <svg width="14" height="16" viewBox="0 0 14 16" fill="#8a9a96" aria-hidden="true">
-            <rect x="1" y="5.5" width="12" height="9.5" rx="2"/>
-            <path d="M4.5 5.5A2.5 2.5 0 0 1 9.5 5.5" stroke="#8a9a96" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-          </svg>
-          <span class="ribbon-logo-name">Shopee</span>
-        </div>
-
-        <!-- TikTok -->
-        <div class="ribbon-logo">
-          <svg width="13" height="16" viewBox="0 0 24 28" fill="#8a9a96" aria-hidden="true">
-            <path d="M17 0c.3 2.5 1.8 4.6 5 4.8v4c-1.8 0-3.4-.6-4.7-1.6v7.4C17.3 19.3 14.2 23 10 23 5.4 23 1.7 19.3 1.7 14.7S5.4 6.5 10 6.5c.4 0 .8 0 1.2.1v4.1c-.4-.1-.8-.1-1.2-.1-2.5 0-4.6 2-4.6 4.6S7.5 19.6 10 19.6s4.6-2 4.6-4.6V0H17z"/>
-          </svg>
-          <span class="ribbon-logo-name">TikTok</span>
-        </div>
-
-        <!-- Lazada -->
-        <div class="ribbon-logo">
-          <svg width="11" height="16" viewBox="0 0 11 14" fill="#8a9a96" aria-hidden="true">
-            <rect x="2" y="0.5" width="3" height="11" rx="1.5"/>
-            <rect x="2" y="9" width="7.5" height="3" rx="1.5"/>
-          </svg>
-          <span class="ribbon-logo-name">Lazada</span>
-        </div>
-
-        <!-- Amazon -->
-        <div class="ribbon-logo">
-          <svg width="20" height="16" viewBox="0 0 20 14" fill="none" aria-hidden="true">
-            <path d="M2 8.5Q10 14 18 8.5" stroke="#8a9a96" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M16 6.8L18 8.5L16 10.4" stroke="#8a9a96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
-          <span class="ribbon-logo-name">Amazon</span>
-        </div>
-
-        <!-- Temu -->
-        <div class="ribbon-logo">
-          <svg width="14" height="16" viewBox="0 0 13 14" fill="#8a9a96" aria-hidden="true">
-            <rect x="0" y="1" width="13" height="3" rx="1.5"/>
-            <rect x="5" y="1" width="3" height="12" rx="1.5"/>
-          </svg>
-          <span class="ribbon-logo-name">Temu</span>
-        </div>
-
-        <!-- Alibaba -->
-        <div class="ribbon-logo">
-          <svg width="14" height="16" viewBox="0 0 14 16" fill="none" aria-hidden="true">
-            <path d="M1.5 14.5L7 2L12.5 14.5" stroke="#8a9a96" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="4" y1="9.5" x2="10" y2="9.5" stroke="#8a9a96" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <span class="ribbon-logo-name">Alibaba</span>
-        </div>
-
+        <span class="ribbon-logo-name">Shopee</span>
+        <span class="ribbon-logo-name">TikTok</span>
+        <span class="ribbon-logo-name">Lazada</span>
+        <span class="ribbon-logo-name">Amazon</span>
+        <span class="ribbon-logo-name">Temu</span>
+        <span class="ribbon-logo-name">Alibaba</span>
       </div>
       <span class="ribbon-tag">· across 7 countries</span>
     </div>
@@ -1217,7 +1204,7 @@
             Data exports not included
           </li>
         </ul>
-        <a href="#" class="pr-btn pr-btn-outline">Start for free</a>
+        <a href="https://app.ecomblade.com/register" class="pr-btn pr-btn-outline">Start free</a>
       </div>
 
       <!-- Pro card ────────────────────────────────────────────── -->
@@ -1254,7 +1241,7 @@
             Data exports included
           </li>
         </ul>
-        <a href="#" class="pr-btn pr-btn-primary">Start for free</a>
+        <a href="https://app.ecomblade.com/register" class="pr-btn pr-btn-primary">Start free</a>
       </div>
 
     </div>
@@ -1333,7 +1320,7 @@
       <div class="end-tag">Free plan · No credit card required</div>
       <h2 class="end-headline">Find your next winner.<br><em>Start today.</em></h2>
       <p class="end-sub">Start free, upgrade when you're ready. No credit card, no setup calls, no lock-in. Live in under 60 seconds.</p>
-      <a href="#" class="end-btn">Start free</a>
+      <a href="https://app.ecomblade.com/register" class="end-btn">Start free</a>
       <div class="end-trust">
         <div class="end-tick">
           <svg class="end-tick-check" width="14" height="11" viewBox="0 0 14 11" fill="none" aria-hidden="true"><path d="M1 5.5L5 9.5L13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
