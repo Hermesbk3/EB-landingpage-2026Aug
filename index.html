@@ -197,11 +197,11 @@
      * Div-based table — NOT <table> — so GSAP Flip can freely
      * animate row positions during the rank re-sort (Beat 4).
      */
-    .hd-table { min-width: 580px; }
+    .hd-table { min-width: 920px; }
 
     .hd-thead {
       display: grid;
-      grid-template-columns: 44px minmax(0, 1fr) 90px 138px 96px;
+      grid-template-columns: 40px minmax(120px,1.3fr) 100px 92px 96px 100px 74px 116px 84px;
       padding: 10px 8px 8px;
       border-bottom: 1px solid var(--bdr);
     }
@@ -216,7 +216,7 @@
 
     .hd-row {
       display: grid;
-      grid-template-columns: 44px minmax(0, 1fr) 90px 138px 96px;
+      grid-template-columns: 40px minmax(120px,1.3fr) 100px 92px 96px 100px 74px 116px 84px;
       align-items: center;
       padding: 10px 8px;
       border-bottom: 1px solid var(--bdr);
@@ -344,6 +344,9 @@
                   <div class="hd-th">Rank</div>
                   <div class="hd-th">Product</div>
                   <div class="hd-th">Store</div>
+                  <div class="hd-th">Created</div>
+                  <div class="hd-th">Original Price</div>
+                  <div class="hd-th">Discount Price</div>
                   <div class="hd-th">Discount</div>
                   <div class="hd-th">30 Day Revenue</div>
                   <div class="hd-th">30 Day Sold</div>
@@ -391,40 +394,38 @@ var DEMO = {
   marketplace: 'TikTok Shop',
   markets: [
     {
-      country: 'Thailand', flag: '🇹🇭', sym: '฿',
-      metrics: { r30: '4,610,594', s30: '76,892', price: '65.68', rating: '4.7' },
+      country: 'Thailand', flag: 'th', sym: '฿',
+      metrics: { r30: '4,816,221', s30: '72,829', price: '65.68', rating: '4.7' },
       rows: [
-        /* iOrder = entry order (by 30D sold desc). Differs from rank
-           so Beat 4's re-sort is visually meaningful.             */
-        { rank:1, iOrder:2, name:'1700ML Stainless Steel Tumbler Vacuum Insulated', store:'COOMA',          disc:'58.8%', rev:'1,590,597', sold:'13,514' },
-        { rank:2, iOrder:1, name:'Glass Thermal Bottle 480ml Anti-Slip Base',       store:'YMShop22',       disc:'56.4%', rev:'240,000',   sold:'14,126' },
-        { rank:3, iOrder:3, name:'2L Plastic Sport Bottle Colour Series',            store:'nite night',     disc:'39.2%', rev:'389,952',   sold:'8,124'  },
-        { rank:4, iOrder:5, name:'316 Stainless Flask Grade Pro 750ml',              store:'IN-HOLLY',       disc:'99.6%', rev:'6,703',     sold:'5,829'  },
-        { rank:5, iOrder:4, name:'1500ML Flip-Lid Tumbler with Carry Strap',         store:'YJM HOMELIVING', disc:'66.1%', rev:'1,094,280', sold:'5,394'  }
+        { rank:1, iOrder:2, name:'1700ML Stainless Steel Tumbler Vacuum Insulated', store:'COOMA', created:'Nov 4, 2024', orig:'286', dprice:'117.83', disc:'58.8%', rev:'1,590,597', sold:'13,514' },
+        { rank:2, iOrder:1, name:'Glass Thermal Bottle 480ml Anti-Slip Base', store:'YMShop22', created:'Dec 13, 2024', orig:'39', dprice:'17', disc:'56.4%', rev:'240,000', sold:'14,126' },
+        { rank:3, iOrder:3, name:'2L Plastic Sport Bottle Colour Series', store:'nite night', created:'Oct 23, 2024', orig:'79', dprice:'48.03', disc:'39.2%', rev:'389,952', sold:'8,124' },
+        { rank:4, iOrder:5, name:'316 Stainless Flask Grade Pro 750ml', store:'IN-HOLLY', created:'Nov 8, 2024', orig:'300', dprice:'1.20', disc:'99.6%', rev:'6,703', sold:'5,829' },
+        { rank:5, iOrder:4, name:'1500ML Flip-Lid Tumbler with Carry Strap', store:'YJM HOMELIVING', created:'Nov 9, 2024', orig:'599', dprice:'203.06', disc:'66.1%', rev:'1,094,280', sold:'5,394' },
       ]
     },
     {
-      country: 'Singapore', flag: '🇸🇬', sym: 'S$',
-      metrics: { r30: '312,540', s30: '11,230', price: '28.90', rating: '4.6' },
+      country: 'Singapore', flag: 'sg', sym: 'S$',
+      metrics: { r30: '413,344', s30: '23,573', price: '28.90', rating: '4.6' },
       rows: [
-        { rank:1, iOrder:2, name:'HYDRA 1L BPA-Free Tritan Sport Bottle',     store:'HydraFit SG',   disc:'62.1%', rev:'98,430', sold:'5,209' },
-        { rank:2, iOrder:1, name:'Stainless Steel Insulated Flask 500ml',      store:'CoolGear SG',   disc:'51.0%', rev:'78,400', sold:'3,200' },
-        { rank:3, iOrder:3, name:'Foldable Silicone Water Bottle 600ml',       store:'EcoCarry',      disc:'44.8%', rev:'44,160', sold:'3,450' },
-        { rank:4, iOrder:4, name:'Glass Bottle Bamboo Lid 650ml',              store:'PureVida SG',   disc:'38.9%', rev:'35,200', sold:'1,600' },
-        { rank:5, iOrder:5, name:'2.2L Large Motivational Water Bottle Daily', store:'FitFlow Store', disc:'58.3%', rev:'28,875', sold:'1,750' }
+        { rank:1, iOrder:2, name:'HYDRA 1L BPA-Free Tritan Sport Bottle', store:'HydraFit SG', created:'Jan 8, 2025', orig:'39.90', dprice:'15.12', disc:'62.1%', rev:'98,430', sold:'5,209' },
+        { rank:2, iOrder:1, name:'Stainless Steel Insulated Flask 500ml', store:'CoolGear SG', created:'Dec 20, 2024', orig:'32', dprice:'15.68', disc:'51.0%', rev:'78,400', sold:'3,200' },
+        { rank:3, iOrder:3, name:'Foldable Silicone Water Bottle 600ml', store:'EcoCarry', created:'Jan 2, 2025', orig:'24', dprice:'13.25', disc:'44.8%', rev:'44,160', sold:'3,450' },
+        { rank:4, iOrder:4, name:'Glass Bottle Bamboo Lid 650ml', store:'PureVida SG', created:'Jan 5, 2025', orig:'29', dprice:'17.72', disc:'38.9%', rev:'35,200', sold:'1,600' },
+        { rank:5, iOrder:5, name:'2.2L Large Motivational Water Bottle Daily', store:'FitFlow Store', created:'Dec 28, 2024', orig:'26.50', dprice:'11.05', disc:'58.3%', rev:'28,875', sold:'1,750' },
       ]
     },
     {
-      country: 'Malaysia', flag: '🇲🇾', sym: 'RM',
-      metrics: { r30: '744,585', s30: '37,540', price: '19.90', rating: '4.5' },
+      country: 'Malaysia', flag: 'my', sym: 'RM',
+      metrics: { r30: '985,512', s30: '72,611', price: '19.90', rating: '4.5' },
       rows: [
-        { rank:1, iOrder:2, name:'Tumbler 1L Vacuum Flask Thermal Bottle',       store:'DrinkGear MY',   disc:'73.2%', rev:'318,744', sold:'20,046' },
-        { rank:2, iOrder:1, name:'Sport Bottle 750ml Leak-Proof BPA Free',       store:'ActiveLife MY',  disc:'50.5%', rev:'148,500', sold:'15,000' },
-        { rank:3, iOrder:3, name:'Glass Thermal Mug with Handle 380ml',          store:'KitchenPlus MY', disc:'44.7%', rev:'92,500',  sold:'5,000'  },
-        { rank:4, iOrder:5, name:'316 Stainless Double Wall Flask 600ml',        store:'PureCup MY',     disc:'58.0%', rev:'74,700',  sold:'3,000'  },
-        { rank:5, iOrder:4, name:'Foldable Collapsible Silicone Bottle 500ml',   store:'EcoMY Shop',     disc:'40.5%', rev:'45,220',  sold:'3,800'  }
+        { rank:1, iOrder:2, name:'Tumbler 1L Vacuum Flask Thermal Bottle', store:'DrinkGear MY', created:'Nov 15, 2024', orig:'59.90', dprice:'16.05', disc:'73.2%', rev:'318,744', sold:'20,046' },
+        { rank:2, iOrder:1, name:'Sport Bottle 750ml Leak-Proof BPA Free', store:'ActiveLife MY', created:'Dec 1, 2024', orig:'29.90', dprice:'14.80', disc:'50.5%', rev:'148,500', sold:'15,000' },
+        { rank:3, iOrder:3, name:'Glass Thermal Mug with Handle 380ml', store:'KitchenPlus MY', created:'Dec 10, 2024', orig:'35', dprice:'19.35', disc:'44.7%', rev:'92,500', sold:'5,000' },
+        { rank:4, iOrder:5, name:'316 Stainless Double Wall Flask 600ml', store:'PureCup MY', created:'Nov 28, 2024', orig:'45', dprice:'18.90', disc:'58.0%', rev:'74,700', sold:'3,000' },
+        { rank:5, iOrder:4, name:'Foldable Collapsible Silicone Bottle 500ml', store:'EcoMY Shop', created:'Dec 5, 2024', orig:'22', dprice:'13.09', disc:'40.5%', rev:'45,220', sold:'3,800' },
       ]
-    }
+    },
   ]
 };
 
@@ -432,7 +433,11 @@ var DEMO = {
 function rowHTML(r, sym) {
   return '<div class="hd-row" data-rank="' + r.rank + '" data-iorder="' + r.iOrder + '">'
     + '<div class="hd-td"><span class="hd-rank' + (r.rank === 1 ? ' gold' : '') + '">' + r.rank + '</span></div>'
-    + '<div class="hd-td"><div class="hd-pname">' + r.name + '</div><div class="hd-pstore">' + r.store + '</div></div>'
+    + '<div class="hd-td"><div class="hd-pname">' + r.name + '</div></div>'
+    + '<div class="hd-td hd-store">' + r.store + '</div>'
+    + '<div class="hd-td hd-created">' + r.created + '</div>'
+    + '<div class="hd-td hd-orig">' + sym + r.orig + '</div>'
+    + '<div class="hd-td hd-dprice">' + sym + r.dprice + '</div>'
     + '<div class="hd-td"><span class="hd-disc">' + r.disc + '</span></div>'
     + '<div class="hd-td hd-rev">' + sym + r.rev + '</div>'
     + '<div class="hd-td hd-sold">' + r.sold + '</div>'
