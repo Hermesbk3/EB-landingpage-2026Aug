@@ -642,6 +642,87 @@
       .pr-grid   { grid-template-columns: 1fr; max-width: 400px; }
       .pr-header { margin-bottom: 36px; }
     }
+
+    /* ── Section 5: FAQ ──────────────────────────────────────── */
+    #faq {
+      padding: 96px 0 80px;
+      background: var(--surf);
+      border-top: 1px solid var(--bdr);
+      border-bottom: 1px solid var(--bdr);
+    }
+    .faq-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .faq-eyebrow {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--acc-ink);
+      margin-bottom: 12px;
+    }
+    .faq-headline {
+      font-size: clamp(24px, 4vw, 38px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    .faq-list {
+      max-width: 680px;
+      margin-inline: auto;
+      background: var(--bg);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+    .faq-item { border-bottom: 1px solid var(--bdr); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-q:hover { background: rgba(7, 17, 15, 0.025); }
+    .faq-q:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 2px; }
+    .faq-chevron {
+      flex-shrink: 0;
+      color: var(--dim);
+      transition: transform 0.22s ease;
+    }
+    .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+    .faq-a {
+      padding: 0 24px 20px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+    details[open] .faq-a { animation: faq-open 0.18s ease; }
+    @keyframes faq-open {
+      from { opacity: 0; transform: translateY(-4px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .faq-chevron { transition: none !important; }
+      details[open] .faq-a { animation: none !important; }
+    }
+    @media (max-width: 600px) {
+      #faq        { padding: 64px 0 56px; }
+      .faq-header { margin-bottom: 36px; }
+      .faq-q      { padding: 18px 18px; font-size: 14px; }
+      .faq-a      { padding: 0 18px 18px; }
+    }
   </style>
 </head>
 <body>
@@ -1037,6 +1118,69 @@
         </ul>
         <a href="#" class="pr-btn pr-btn-primary">Start for free</a>
       </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 5: FAQ ────────────────────────────────────────── -->
+<section id="faq">
+  <div class="container">
+
+    <div class="faq-header">
+      <span class="faq-eyebrow">FAQ</span>
+      <h2 class="faq-headline">Questions, answered.</h2>
+    </div>
+
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Where does your data come from?
+          <svg class="faq-chevron" width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M1 1.5L8 8.5L15 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <p class="faq-a">We aggregate publicly available marketplace data and process it through our own pipeline to surface sales estimates, revenue, pricing, and reviews. The data is continuously updated to reflect current market conditions.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          How is this different from other research tools?
+          <svg class="faq-chevron" width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M1 1.5L8 8.5L15 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <p class="faq-a">Most tools overwhelm you with dozens of features across a single marketplace. Ecomblade pulls data from multiple global marketplaces into one clean view — only the metrics that matter, with zero noise. Less tabs, less guessing, faster decisions.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Do I need to integrate my seller account?
+          <svg class="faq-chevron" width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M1 1.5L8 8.5L15 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <p class="faq-a">No. Ecomblade is product research — you're looking at the market, not your own listings. No account connection required, ever. Sign up with email and you're using the product in under 60 seconds.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Is there a free trial?
+          <svg class="faq-chevron" width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M1 1.5L8 8.5L15 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <p class="faq-a">Ecomblade is free to start — no credit card, no time limit. Use it for as long as you want. When you need full access across all marketplaces, Pro is $19/month.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          How quickly can I get started?
+          <svg class="faq-chevron" width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M1 1.5L8 8.5L15 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <p class="faq-a">Sign up with email and phone. That's it. No onboarding calls, no setup wizard, no waiting for approval. You're researching products within 60 seconds.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Can I cancel anytime?
+          <svg class="faq-chevron" width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M1 1.5L8 8.5L15 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <p class="faq-a">Yes. One click from your dashboard. No retention flows, no calls, no guilt. If you're not getting value, we'd rather you leave easily than stay frustrated.</p>
+      </details>
 
     </div>
   </div>
