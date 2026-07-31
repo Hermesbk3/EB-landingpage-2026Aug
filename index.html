@@ -56,6 +56,7 @@
     }
     .logo { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
     .logo em { font-style: normal; color: var(--accent); }
+    .logo-img { height: 26px; width: auto; display: block; }
     .nav-links {
       display: flex; align-items: center; justify-content: center; gap: 34px;
       flex: 1;
@@ -359,26 +360,14 @@
       .df-node  { animation: none !important; }
     }
     @media (max-width: 600px) {
-      #df-flow {
-        height: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 0 4px;
-      }
-      #df-svg  { display: none; }
+      /* Scale nodes down to fit narrow viewport — SVG lines + pulse unchanged */
       .df-node {
-        position: static; width: 36px; height: 36px; flex-shrink: 0;
-        animation: df-node-pulse 3s ease-in-out infinite;
+        width: 28px;
+        height: 28px;
+        transform: translate(2px, 2px);
       }
-      .df-node-logo { height: 15px; width: auto; max-width: 22px; }
-      #df-flow .df-node:nth-child(2) { animation-delay: 0.00s; }
-      #df-flow .df-node:nth-child(3) { animation-delay: 0.30s; }
-      #df-flow .df-node:nth-child(4) { animation-delay: 0.60s; }
-      #df-flow .df-node:nth-child(5) { animation-delay: 0.90s; }
-      #df-flow .df-node:nth-child(6) { animation-delay: 1.20s; }
-      #df-flow .df-node:nth-child(7) { animation-delay: 1.50s; }
+      .df-node-logo { height: 12px; width: auto; max-width: 18px; }
+      .df-node > svg { width: 13px !important; height: 15px !important; }
     }
 
     /* ══════════════════════════════════════════════════════════
@@ -978,7 +967,7 @@
 <!-- ── NAV ─────────────────────────────────────────────────── -->
 <nav>
   <div class="container nav-inner">
-    <a href="/" class="logo">ecomb<em>lade</em></a>
+    <a href="/" class="logo"><img src="assets/EB-logo-nav.svg" alt="Ecomblade" class="logo-img"></a>
     <div class="nav-links">
       <a href="#value">Features</a>
       <a href="#pricing">Pricing</a>
@@ -1144,7 +1133,7 @@
 <!-- ── SECTION 2: BEFORE → AFTER ─────────────────────────── -->
 <section id="transform">
   <div class="container">
-    <h2 class="tf-headline">Stop guessing. Start with global demand.</h2>
+    <h2 class="tf-headline">Stop guessing. Start seeing more with global data.</h2>
     <p class="tf-sub">Local data shows you what's already winning — and saturated. Ecomblade shows you what's proven elsewhere, before your market catches on.</p>
 
     <div class="tf-diagram">
