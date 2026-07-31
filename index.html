@@ -400,6 +400,98 @@
       .ribbon-logos { gap: 10px 22px; }
       .ribbon-logo-name { font-size: 12px; }
     }
+
+    /* ── Section 3: Value cards ─────────────────────────────── */
+    #value {
+      padding: 96px 0 80px;
+      background: var(--surf);
+      border-top: 1px solid var(--bdr);
+      border-bottom: 1px solid var(--bdr);
+    }
+    .val-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .val-eyebrow {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--acc-ink);
+      margin-bottom: 12px;
+    }
+    .val-headline {
+      font-size: clamp(24px, 4vw, 38px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: var(--ink);
+      max-width: 480px;
+      margin-inline: auto;
+    }
+    .val-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .val-card {
+      background: var(--bg);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(7, 17, 15, 0.05);
+    }
+    .val-img-wrap {
+      aspect-ratio: 16 / 10;
+      background: #eef2f1;
+      border-bottom: 1px solid var(--bdr);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dim);
+    }
+    .val-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .val-img-ph {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+    .val-body {
+      padding: 22px 24px 24px;
+    }
+    .val-title {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .val-desc {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    @media (max-width: 600px) {
+      #value      { padding: 64px 0 56px; }
+      .val-grid   { grid-template-columns: 1fr; }
+      .val-header { margin-bottom: 36px; }
+    }
   </style>
 </head>
 <body>
@@ -617,6 +709,93 @@
             <span class="tf-beat-num">3</span>
             <span class="tf-beat-text">Own the opportunity early</span>
           </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 3: VALUE CARDS ────────────────────────────────── -->
+<section id="value">
+  <div class="container">
+
+    <div class="val-header">
+      <span class="val-eyebrow">What you get</span>
+      <h2 class="val-headline">Everything you need to find your next winner</h2>
+    </div>
+
+    <div class="val-grid">
+
+      <!-- Card 1 ─────────────────────────────────────────────── -->
+      <div class="val-card">
+        <div class="val-img-wrap">
+          <!-- ★ IMAGE 1: paste <img class="val-img" src="YOUR_URL" alt="Research any market"> here, before this comment ★ -->
+          <div class="val-img-ph">
+            <svg width="24" height="18" viewBox="0 0 24 18" fill="none" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="22.5" height="16.5" rx="2.25" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Screenshot
+          </div>
+        </div>
+        <div class="val-body">
+          <p class="val-title">Research any market, from one place</p>
+          <p class="val-desc">Search demand across 6 marketplaces and 7 countries — no juggling tabs.</p>
+        </div>
+      </div>
+
+      <!-- Card 2 ─────────────────────────────────────────────── -->
+      <div class="val-card">
+        <div class="val-img-wrap">
+          <!-- ★ IMAGE 2: paste <img class="val-img" src="YOUR_URL" alt="Filter to the exact opportunity"> here, before this comment ★ -->
+          <div class="val-img-ph">
+            <svg width="24" height="18" viewBox="0 0 24 18" fill="none" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="22.5" height="16.5" rx="2.25" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Screenshot
+          </div>
+        </div>
+        <div class="val-body">
+          <p class="val-title">Filter to the exact opportunity</p>
+          <p class="val-desc">Sort and filter by revenue, sales, price, rating — turn noise into a shortlist.</p>
+        </div>
+      </div>
+
+      <!-- Card 3 ─────────────────────────────────────────────── -->
+      <div class="val-card">
+        <div class="val-img-wrap">
+          <!-- ★ IMAGE 3: paste <img class="val-img" src="YOUR_URL" alt="Export your data"> here, before this comment ★ -->
+          <div class="val-img-ph">
+            <svg width="24" height="18" viewBox="0 0 24 18" fill="none" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="22.5" height="16.5" rx="2.25" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Screenshot
+          </div>
+        </div>
+        <div class="val-body">
+          <p class="val-title">Take the data anywhere</p>
+          <p class="val-desc">Export any result set to work with it your way. The data is yours.</p>
+        </div>
+      </div>
+
+      <!-- Card 4 ─────────────────────────────────────────────── -->
+      <div class="val-card">
+        <div class="val-img-wrap">
+          <!-- ★ IMAGE 4: paste <img class="val-img" src="YOUR_URL" alt="Pipe results into AI"> here, before this comment ★ -->
+          <div class="val-img-ph">
+            <svg width="24" height="18" viewBox="0 0 24 18" fill="none" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="22.5" height="16.5" rx="2.25" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Screenshot
+          </div>
+        </div>
+        <div class="val-body">
+          <p class="val-title">Pipe results into AI</p>
+          <p class="val-desc">Send research straight into ChatGPT or Claude for instant analysis.</p>
         </div>
       </div>
 
