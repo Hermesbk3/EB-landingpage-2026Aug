@@ -371,6 +371,54 @@
       .tf-arrow-line { stroke-dashoffset: 0 !important; transition: none !important; }
       .tf-arrow-chev { opacity: 1 !important; transition: none !important; }
     }
+
+    /* ── Platform ribbon ─────────────────────────────────── */
+    #platform-ribbon {
+      background: var(--surf);
+      border-top: 1px solid var(--bdr);
+      border-bottom: 1px solid var(--bdr);
+      padding: 22px 0;
+    }
+    .ribbon-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 13px;
+    }
+    .ribbon-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+    .ribbon-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 8px 32px;
+    }
+    .ribbon-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ribbon-logo-name {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #8a9a96;
+    }
+    .ribbon-tag {
+      font-size: 11px;
+      color: var(--dim);
+      letter-spacing: 0.04em;
+    }
+    @media (max-width: 600px) {
+      .ribbon-logos { gap: 10px 22px; }
+      .ribbon-logo-name { font-size: 12px; }
+    }
   </style>
 </head>
 <body>
@@ -386,7 +434,7 @@
 <!-- ── HERO ─────────────────────────────────────────────────── -->
 <section id="hero">
   <div class="container">
-    <div class="hero-tag"><span class="dot"></span>Data Access Across 7 Countries</div>
+    <div class="hero-tag"><span class="dot"></span>6 Platforms · 7 Countries</div>
     <h1>Spot product opportunities,<br /><em>before everyone else.</em></h1>
     <p class="hero-sub">The ultimate product research platform that expands your view beyond your local market.</p>
     <a href="#pricing" class="btn btn-primary btn-lg">Start for free</a>
@@ -466,6 +514,72 @@
 
   </div><!-- /container -->
 </section>
+
+<!-- ── PLATFORM RIBBON ───────────────────────────────────────── -->
+<div id="platform-ribbon">
+  <div class="container">
+    <div class="ribbon-inner">
+      <span class="ribbon-label">Access global trends on</span>
+      <div class="ribbon-logos">
+
+        <!-- Shopee -->
+        <div class="ribbon-logo">
+          <svg width="14" height="16" viewBox="0 0 14 16" fill="#8a9a96" aria-hidden="true">
+            <rect x="1" y="5.5" width="12" height="9.5" rx="2"/>
+            <path d="M4.5 5.5A2.5 2.5 0 0 1 9.5 5.5" stroke="#8a9a96" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          </svg>
+          <span class="ribbon-logo-name">Shopee</span>
+        </div>
+
+        <!-- TikTok -->
+        <div class="ribbon-logo">
+          <svg width="13" height="16" viewBox="0 0 24 28" fill="#8a9a96" aria-hidden="true">
+            <path d="M17 0c.3 2.5 1.8 4.6 5 4.8v4c-1.8 0-3.4-.6-4.7-1.6v7.4C17.3 19.3 14.2 23 10 23 5.4 23 1.7 19.3 1.7 14.7S5.4 6.5 10 6.5c.4 0 .8 0 1.2.1v4.1c-.4-.1-.8-.1-1.2-.1-2.5 0-4.6 2-4.6 4.6S7.5 19.6 10 19.6s4.6-2 4.6-4.6V0H17z"/>
+          </svg>
+          <span class="ribbon-logo-name">TikTok</span>
+        </div>
+
+        <!-- Lazada -->
+        <div class="ribbon-logo">
+          <svg width="11" height="16" viewBox="0 0 11 14" fill="#8a9a96" aria-hidden="true">
+            <rect x="2" y="0.5" width="3" height="11" rx="1.5"/>
+            <rect x="2" y="9" width="7.5" height="3" rx="1.5"/>
+          </svg>
+          <span class="ribbon-logo-name">Lazada</span>
+        </div>
+
+        <!-- Amazon -->
+        <div class="ribbon-logo">
+          <svg width="20" height="16" viewBox="0 0 20 14" fill="none" aria-hidden="true">
+            <path d="M2 8.5Q10 14 18 8.5" stroke="#8a9a96" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M16 6.8L18 8.5L16 10.4" stroke="#8a9a96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <span class="ribbon-logo-name">Amazon</span>
+        </div>
+
+        <!-- Temu -->
+        <div class="ribbon-logo">
+          <svg width="14" height="16" viewBox="0 0 13 14" fill="#8a9a96" aria-hidden="true">
+            <rect x="0" y="1" width="13" height="3" rx="1.5"/>
+            <rect x="5" y="1" width="3" height="12" rx="1.5"/>
+          </svg>
+          <span class="ribbon-logo-name">Temu</span>
+        </div>
+
+        <!-- Alibaba -->
+        <div class="ribbon-logo">
+          <svg width="14" height="16" viewBox="0 0 14 16" fill="none" aria-hidden="true">
+            <path d="M1.5 14.5L7 2L12.5 14.5" stroke="#8a9a96" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="4" y1="9.5" x2="10" y2="9.5" stroke="#8a9a96" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="ribbon-logo-name">Alibaba</span>
+        </div>
+
+      </div>
+      <span class="ribbon-tag">· across 7 countries</span>
+    </div>
+  </div>
+</div>
 
 <!-- ── SECTION 2: BEFORE → AFTER ─────────────────────────── -->
 <section id="transform">
