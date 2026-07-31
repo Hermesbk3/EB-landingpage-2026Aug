@@ -599,9 +599,8 @@ function initDemo() {
     7.70–8.15  Fade out → onComplete fires runCycle() with next market
   ──────────────────────────────────────────────────────────── */
   function runCycle() {
-    var m     = DEMO.markets[midx];
-    var mNext = DEMO.markets[(midx + 1) % DEMO.markets.length];
-    var q     = DEMO.query;
+    var m = DEMO.markets[midx];
+    var q = DEMO.query;
 
     var tl = gsap.timeline({
       onComplete: function() {
@@ -662,47 +661,11 @@ function initDemo() {
       });
     }, 3.1);
 
-    /* ── BEAT 5: PLATFORM + COUNTRY SWITCH (3.90 – 5.60s) ── */
+    /* ── HOLD (3.90 – 5.90s) — visitor reads ranked results ─ */
+    tl.to({}, { duration: 2.0 }, 3.9);
 
-    /* Both chips: fade out → update → fade in */
-    tl.add(function() {
-      gsap.to([platformChip, countryChip], { opacity: 0, duration: 0.18, ease: 'power1.in' });
-    }, 3.9);
-    tl.add(function() {
-      platformChip.innerHTML = platformSVG(mNext.platform) + '&nbsp;' + mNext.platform;
-      countryChip.innerHTML  = flagSVG(mNext.flag) + '&nbsp;' + mNext.country;
-      subtitle.textContent   = 'Showing live ' + mNext.platform + ' results for "' + q + '"';
-      gsap.to([platformChip, countryChip], { opacity: 1, duration: 0.22, ease: 'power2.out' });
-    }, 4.12);
-
-    /* Metrics: fade out → swap text → fade in (no count-up; crossfade reads cleaner) */
-    tl.add(function() {
-      gsap.to(mElArr, { opacity: 0, duration: 0.20, stagger: 0.04 });
-    }, 4.15);
-    tl.add(function() {
-      setMetrics(mNext);
-      gsap.to(mElArr, { opacity: 1, duration: 0.26, stagger: 0.04 });
-    }, 4.42);
-
-    /* Rows: fade out → swap content → stagger in */
-    tl.add(function() {
-      gsap.to(tbody.querySelectorAll('.hd-row'), { opacity: 0, duration: 0.20 });
-    }, 4.25);
-    tl.add(function() {
-      /* Next market rows enter already sorted by rank — they're "the answer" */
-      var ranked = mNext.rows.slice().sort(function(a, b) { return a.rank - b.rank; });
-      tbody.innerHTML = ranked.map(function(r) { return rowHTML(r, mNext.sym); }).join('');
-      gsap.from(tbody.querySelectorAll('.hd-row'), {
-        opacity: 0, stagger: 0.06, duration: 0.30, clearProps: 'all'
-      });
-    }, 4.52);
-
-    /* ── HOLD (5.70 – 7.70s) ─────────────────────────────── */
-    tl.to({}, { duration: 2.0 }, 5.7); /* dummy tween extends timeline to 7.7 */
-
-    /* ── FADE OUT (7.70 – 8.15s) ────────────────────────── */
-    tl.to(demo, { opacity: 0, duration: 0.42, ease: 'power1.in' }, 7.7);
-    /* onComplete at ~8.15s → runCycle() */
+    /* ── FADE OUT (5.90 – 6.32s) → onComplete → next market ─ */
+    tl.to(demo, { opacity: 0, duration: 0.42, ease: 'power1.in' }, 5.9);
   }
 
   runCycle();
