@@ -128,7 +128,7 @@
        HERO DEMO COMPONENT
     ══════════════════════════════════════════════════════════ */
     .hero-demo-wrap {
-      margin-top: 56px;
+      margin-top: 8px;
       max-width: 920px;
       margin-inline: auto;
     }
@@ -295,11 +295,79 @@
     }
     @media (max-width: 480px) {
       #hero { padding: 56px 0 60px; }
-      .hero-demo-wrap { margin-top: 40px; }
+      .hero-demo-wrap { margin-top: 12px; }
       .hd-bar  { padding: 10px 12px; }
       .hd-body { padding: 16px 14px 20px; }
       .hero-ctas { flex-direction: column; }
     }
+    /* ── DATA-FLOW VISUAL ─────────────────────────────────────── */
+    #df-flow {
+      position: relative;
+      max-width: 920px;
+      margin-inline: auto;
+      height: 88px;
+      margin-top: 24px;
+      pointer-events: none;
+    }
+    #df-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .df-line {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 1;
+      opacity: 0.28;
+    }
+    .df-pulse {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 2;
+      stroke-dasharray: 0.08 0.92;
+      stroke-dashoffset: 1.08;
+      opacity: 0;
+      animation: df-travel 2.8s ease-in-out infinite;
+    }
+    @keyframes df-travel {
+      0%   { stroke-dashoffset: 1.08; opacity: 0; }
+      8%   { opacity: 0.6; }
+      85%  { opacity: 0.6; }
+      100% { stroke-dashoffset: -0.04; opacity: 0; }
+    }
+    .df-node {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid var(--bdr-med);
+      box-shadow: 0 1px 8px rgba(7, 17, 15, 0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translate(-4px, -4px);
+    }
+    .df-node-logo { height: 22px; width: auto; object-fit: contain; display: block; }
+    .df-ali-mark  { font-size: 11px; font-weight: 800; color: #FF6A00; letter-spacing: -0.03em; font-family: var(--font); }
+    @media (prefers-reduced-motion: reduce) {
+      .df-pulse { animation: none !important; opacity: 0 !important; }
+    }
+    @media (max-width: 600px) {
+      #df-flow {
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 0 4px;
+      }
+      #df-svg  { display: none; }
+      .df-node { position: static; width: 36px; height: 36px; flex-shrink: 0; transform: none; }
+      .df-node-logo { height: 18px; width: auto; }
+    }
+
     /* ══════════════════════════════════════════════════════════
        SECTION 2 — BEFORE / AFTER TRANSFORMATION
     ══════════════════════════════════════════════════════════ */
@@ -921,6 +989,51 @@
       <a href="https://app.ecomblade.com/login" class="btn btn-secondary btn-lg">Log in</a>
     </div>
     <p class="no-card">No credit card required</p>
+
+    <!-- 6-platform data-flow visual: nodes arc above dashboard, lines converge -->
+    <div id="df-flow" aria-hidden="true">
+      <svg id="df-svg" viewBox="0 0 920 88" preserveAspectRatio="none"
+           xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <path id="dp1" pathLength="1" d="M74,64 C74,85 460,85 460,90"/>
+          <path id="dp2" pathLength="1" d="M220,40 C220,80 460,80 460,90"/>
+          <path id="dp3" pathLength="1" d="M370,20 C370,72 460,78 460,90"/>
+          <path id="dp4" pathLength="1" d="M550,20 C550,72 460,78 460,90"/>
+          <path id="dp5" pathLength="1" d="M700,40 C700,80 460,80 460,90"/>
+          <path id="dp6" pathLength="1" d="M846,64 C846,85 460,85 460,90"/>
+        </defs>
+        <use href="#dp1" class="df-line"/>
+        <use href="#dp2" class="df-line"/>
+        <use href="#dp3" class="df-line"/>
+        <use href="#dp4" class="df-line"/>
+        <use href="#dp5" class="df-line"/>
+        <use href="#dp6" class="df-line"/>
+        <use href="#dp1" class="df-pulse" style="animation-delay:0s"/>
+        <use href="#dp2" class="df-pulse" style="animation-delay:0.48s"/>
+        <use href="#dp3" class="df-pulse" style="animation-delay:0.96s"/>
+        <use href="#dp4" class="df-pulse" style="animation-delay:1.44s"/>
+        <use href="#dp5" class="df-pulse" style="animation-delay:1.92s"/>
+        <use href="#dp6" class="df-pulse" style="animation-delay:2.4s"/>
+      </svg>
+      <div class="df-node" style="left:calc(8.04% - 16px);top:48px">
+        <img src="assets/shopee.svg" alt="" class="df-node-logo">
+      </div>
+      <div class="df-node" style="left:calc(23.91% - 16px);top:24px">
+        <svg width="19" height="22" viewBox="0 0 24 28" fill="#111" xmlns="http://www.w3.org/2000/svg"><path d="M17 0c.3 2.5 1.8 4.6 5 4.8v4c-1.8 0-3.4-.6-4.7-1.6v7.4C17.3 19.3 14.2 23 10 23 5.4 23 1.7 19.3 1.7 14.7S5.4 6.5 10 6.5c.4 0 .8 0 1.2.1v4.1c-.4-.1-.8-.1-1.2-.1-2.5 0-4.6 2-4.6 4.6S7.5 19.6 10 19.6s4.6-2 4.6-4.6V0H17z"/></svg>
+      </div>
+      <div class="df-node" style="left:calc(40.22% - 16px);top:4px">
+        <img src="assets/lazada.svg" alt="" class="df-node-logo">
+      </div>
+      <div class="df-node" style="left:calc(59.78% - 16px);top:4px">
+        <img src="assets/amazon.svg" alt="" class="df-node-logo">
+      </div>
+      <div class="df-node" style="left:calc(76.09% - 16px);top:24px">
+        <img src="assets/temu.svg" alt="" class="df-node-logo">
+      </div>
+      <div class="df-node" style="left:calc(91.96% - 16px);top:48px">
+        <span class="df-ali-mark">ali</span>
+      </div>
+    </div>
 
     <!-- ═══════════════════════════════════════════════════════
          HERO DEMO COMPONENT
