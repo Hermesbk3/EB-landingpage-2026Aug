@@ -336,6 +336,10 @@
       85%  { opacity: 0.6; }
       100% { stroke-dashoffset: -0.04; opacity: 0; }
     }
+    @keyframes df-node-pulse {
+      0%, 20%, 100% { transform: scale(1);    box-shadow: 0 1px 8px rgba(7,17,15,0.07); }
+      10%           { transform: scale(1.09); box-shadow: 0 0 0 5px rgba(0,224,198,0.15), 0 1px 8px rgba(7,17,15,0.07); }
+    }
     .df-node {
       position: absolute;
       width: 40px;
@@ -352,6 +356,7 @@
     .df-node-logo { height: 18px; width: auto; max-width: 26px; object-fit: contain; display: block; }
     @media (prefers-reduced-motion: reduce) {
       .df-pulse { animation: none !important; opacity: 0 !important; }
+      .df-node  { animation: none !important; }
     }
     @media (max-width: 600px) {
       #df-flow {
@@ -363,8 +368,17 @@
         padding: 10px 0 4px;
       }
       #df-svg  { display: none; }
-      .df-node { position: static; width: 36px; height: 36px; flex-shrink: 0; transform: none; }
+      .df-node {
+        position: static; width: 36px; height: 36px; flex-shrink: 0;
+        animation: df-node-pulse 3s ease-in-out infinite;
+      }
       .df-node-logo { height: 15px; width: auto; max-width: 22px; }
+      #df-flow .df-node:nth-child(2) { animation-delay: 0.00s; }
+      #df-flow .df-node:nth-child(3) { animation-delay: 0.30s; }
+      #df-flow .df-node:nth-child(4) { animation-delay: 0.60s; }
+      #df-flow .df-node:nth-child(5) { animation-delay: 0.90s; }
+      #df-flow .df-node:nth-child(6) { animation-delay: 1.20s; }
+      #df-flow .df-node:nth-child(7) { animation-delay: 1.50s; }
     }
 
     /* ══════════════════════════════════════════════════════════
