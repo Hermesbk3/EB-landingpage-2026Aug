@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ecomblade — Spot product opportunities, before everyone else.</title>
+  <meta name="description" content="Search real sales volume, revenue, and demand across Shopee, TikTok, Lazada, Amazon, Temu, and Alibaba — in one view." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --accent:      #00E0C6;
+      --accent-dim:  #00b8a5;
+      --bg:          #07110F;
+      --bg-surface:  #0d1c19;
+      --bg-card:     #111f1c;
+      --bg-card-2:   #162521;
+      --border:      rgba(0, 224, 198, 0.12);
+      --border-med:  rgba(0, 224, 198, 0.22);
+      --text:        #e8f0ee;
+      --text-muted:  #7a9990;
+      --text-dim:    #4a6660;
+      --font:        'Inter', system-ui, -apple-system, sans-serif;
+      --radius:      10px;
+      --radius-lg:   16px;
+    }
+
+    /* ── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── LAYOUT ─────────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1080px;
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+    section { padding-block: 80px; }
+
+    /* ── TYPOGRAPHY ─────────────────────────────────────────── */
+    .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    /* ── NAV ────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 17, 15, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .logo span { color: var(--accent); }
+
+    /* ── BUTTONS ────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #071110;
+      padding: 11px 22px;
+    }
+    .btn-primary:hover { background: #1ae8d0; transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-lg {
+      font-size: 16px;
+      padding: 14px 30px;
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      padding: 11px 18px;
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--border-med); color: var(--text); }
+
+    /* ── SECTION 1: HERO ─────────────────────────────────────── */
+    #hero {
+      padding-top: 100px;
+      padding-bottom: 72px;
+      text-align: center;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 224, 198, 0.08);
+      border: 1px solid var(--border-med);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+    .hero-tag .dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    h1 {
+      font-size: clamp(36px, 5.5vw, 62px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: #fff;
+      max-width: 780px;
+      margin-inline: auto;
+      margin-bottom: 20px;
+    }
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-inline: auto;
+      margin-bottom: 36px;
+      line-height: 1.55;
+    }
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .no-card-note {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 14px;
+    }
+
+    /* ── SECTION 2: MARKETPLACE RAIL ─────────────────────────── */
+    #markets {
+      padding-block: 48px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-surface);
+    }
+    .markets-label {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .logo-rail {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(20px, 4vw, 48px);
+      flex-wrap: wrap;
+    }
+    .market-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 100px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      transition: border-color 0.15s;
+    }
+    .market-chip:hover { border-color: var(--border-med); }
+    .market-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    /* ── SECTION 3: LIVE DATA DEMO ────────────────────────────── */
+    #demo {
+      background: var(--bg);
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .section-header h2 {
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.15;
+    }
+    .section-header p {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin-inline: auto;
+    }
+
+    /* Search bar mockup */
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-med);
+      border-radius: var(--radius-lg);
+      padding: 14px 20px;
+      max-width: 680px;
+      margin-inline: auto;
+      margin-bottom: 40px;
+      transition: border-color 0.15s;
+    }
+    .search-bar:focus-within { border-color: var(--accent); }
+    .search-icon { color: var(--text-dim); flex-shrink: 0; }
+    .search-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: var(--font);
+      font-size: 15px;
+      color: var(--text);
+    }
+    .search-input::placeholder { color: var(--text-dim); }
+    .search-meta {
+      font-size: 12px;
+      color: var(--text-dim);
+      white-space: nowrap;
+      padding-left: 12px;
+      border-left: 1px solid var(--border);
+    }
+
+    /* Product cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    /* ProductCard component — data slots clearly labeled */
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color 0.15s, transform 0.15s;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      border-color: var(--border-med);
+      transform: translateY(-2px);
+    }
+    .card-image {
+      /* [WIRE: product.imageUrl] */
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: var(--bg-card-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-image-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-dim);
+      font-size: 12px;
+    }
+    .card-image-placeholder svg { opacity: 0.4; }
+    .card-img-actual {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .card-marketplace-badge {
+      /* [WIRE: product.marketplace] */
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(7, 17, 15, 0.82);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 3px 10px 3px 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .badge-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .card-rank {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 224, 198, 0.12);
+      border: 1px solid rgba(0, 224, 198, 0.3);
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .card-body {
+      padding: 16px;
+    }
+    .card-name {
+      /* [WIRE: product.name] */
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.35;
+      margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .metric {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .metric-label {
+      /* [WIRE: metric key] */
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .metric-value {
+      /* [WIRE: metric value] */
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .metric-value.accent { color: var(--accent); }
+    .metric-sub {
+      font-size: 10px;
+      color: var(--text-dim);
+    }
+
+    .card-footer {
+      padding: 10px 16px 14px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-rating {
+      /* [WIRE: product.rating] */
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .star { color: #f5c542; font-size: 12px; }
+    .card-sellers {
+      /* [WIRE: product.sellerCount] */
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .cards-note {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* ── SECTION 4: SIGNAL VS NOISE ───────────────────────────── */
+    #signal {
+      background: var(--bg-surface);
+    }
+    .contrast-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 800px;
+      margin-inline: auto;
+      margin-top: 40px;
+    }
+    .contrast-col {
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+    .contrast-col.noise {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .contrast-col.signal {
+      background: rgba(0, 224, 198, 0.05);
+      border: 1px solid var(--border-med);
+    }
+    .contrast-heading {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .contrast-col.noise .contrast-heading { color: var(--text-dim); }
+    .contrast-col.signal .contrast-heading { color: var(--accent); }
+    .contrast-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .contrast-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .contrast-col.noise li { color: var(--text-muted); }
+    .contrast-col.signal li { color: var(--text); }
+    .contrast-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .noise .contrast-icon { background: rgba(255,255,255,0.06); color: var(--text-dim); }
+    .signal .contrast-icon { background: rgba(0, 224, 198, 0.12); color: var(--accent); }
+
+    .signal-tagline {
+      text-align: center;
+      margin-top: 36px;
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 440px;
+      margin-inline: auto;
+    }
+    .signal-tagline strong { color: var(--text); }
+
+    /* ── SECTION 5: PROOF ─────────────────────────────────────── */
+    #proof {
+      background: var(--bg);
+    }
+    .proof-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      max-width: 800px;
+      margin-inline: auto;
+      margin-top: 40px;
+    }
+    .proof-stat {
+      background: var(--bg-card);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .proof-stat-value {
+      /* [WIRE: real metric from analytics] */
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #fff;
+      line-height: 1;
+    }
+    .proof-stat-value span { color: var(--accent); }
+    .proof-stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .proof-placeholder-note {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    /* ── SECTION 6: PRICING ───────────────────────────────────── */
+    #pricing {
+      background: var(--bg-surface);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 760px;
+      margin-inline: auto;
+      margin-top: 40px;
+    }
+    .pricing-card {
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .pricing-card.free {
+      background: var(--bg-card);
+      border: 1px solid var(--border-med);
+    }
+    .pricing-card.pro {
+      background: rgba(0, 224, 198, 0.06);
+      border: 1px solid var(--accent);
+      position: relative;
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #071110;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .pricing-tier {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .pricing-price {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #fff;
+      line-height: 1;
+    }
+    .pricing-price sup {
+      font-size: 20px;
+      font-weight: 600;
+      vertical-align: super;
+      line-height: 0;
+    }
+    .pricing-price .period {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0;
+    }
+    .pricing-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .check {
+      color: var(--accent);
+      font-size: 13px;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+    .pricing-card .btn { width: 100%; justify-content: center; }
+
+    /* ── SECTION 7: FAQ ───────────────────────────────────────── */
+    #faq {
+      background: var(--bg);
+    }
+    .faq-list {
+      max-width: 680px;
+      margin-inline: auto;
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%;
+      background: var(--bg-card);
+      border: none;
+      padding: 18px 20px;
+      text-align: left;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transition: background 0.15s;
+    }
+    .faq-q:hover { background: var(--bg-card-2); }
+    .faq-chevron {
+      color: var(--text-dim);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-a {
+      background: var(--bg-card);
+      padding: 0 20px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease, padding 0.25s;
+    }
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding: 4px 20px 18px;
+    }
+
+    /* ── SECTION 8: FINAL CTA ─────────────────────────────────── */
+    #cta-final {
+      background: var(--bg-surface);
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    #cta-final h2 {
+      font-size: clamp(26px, 3.5vw, 42px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    #cta-final h2 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    #cta-final p {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding-block: 28px;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-links a {
+      font-size: 13px;
+      color: var(--text-dim);
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--text-muted); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      section { padding-block: 56px; }
+      .contrast-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .hero-cta-group { flex-direction: column; align-items: stretch; }
+      .hero-cta-group .btn { justify-content: center; }
+      .proof-stats { grid-template-columns: 1fr 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────── -->
+<nav>
+  <div class="container nav-inner">
+    <a href="/" class="logo">ecomb<span>lade</span></a>
+    <a href="#pricing" class="btn btn-primary">Start free</a>
+  </div>
+</nav>
+
+<!-- ── SECTION 1: HERO ──────────────────────────────────────── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      Live data across 6 marketplaces
+    </div>
+    <h1>Spot product opportunities,<br /><em>before everyone else.</em></h1>
+    <p class="hero-sub">
+      Real sales volume, revenue, and demand — across Shopee, TikTok, Lazada, Amazon, Temu, and Alibaba — ranked in one view.
+    </p>
+    <div class="hero-cta-group">
+      <a href="#pricing" class="btn btn-primary btn-lg">Start for free</a>
+      <a href="#demo" class="btn btn-ghost btn-lg">See live data ↓</a>
+    </div>
+    <p class="no-card-note">No credit card required</p>
+  </div>
+</section>
+
+<!-- ── SECTION 2: MARKETPLACE RAIL ──────────────────────────── -->
+<section id="markets">
+  <div class="container">
+    <div class="markets-label">
+      <span class="label">Live &amp; queryable today</span>
+    </div>
+    <div class="logo-rail">
+      <div class="market-chip">
+        <div class="market-icon" style="background:#ee4d2d;">🛒</div>
+        Shopee
+      </div>
+      <div class="market-chip">
+        <div class="market-icon" style="background:#010101;">♪</div>
+        TikTok Shop
+      </div>
+      <div class="market-chip">
+        <div class="market-icon" style="background:#0f146d;">🛍</div>
+        Lazada
+      </div>
+      <div class="market-chip">
+        <div class="market-icon" style="background:#ff9900;">📦</div>
+        Amazon
+      </div>
+      <div class="market-chip">
+        <div class="market-icon" style="background:#ff4141;">🏷</div>
+        Temu
+      </div>
+      <div class="market-chip">
+        <div class="market-icon" style="background:#ff6a00;">🏭</div>
+        Alibaba
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 3: LIVE DATA DEMO ────────────────────────────── -->
+<section id="demo">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Product research</p>
+      <h2>Decision-grade data.<br />Not vanity metrics.</h2>
+      <p>Search a keyword. See real monthly sales and revenue — not guesses.</p>
+    </div>
+
+    <!-- [WIRE: connect to search API — query param → card data] -->
+    <div class="search-bar">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input class="search-input" type="text" placeholder="e.g. portable blender, led strip lights…" readonly />
+      <span class="search-meta">6 markets · daily data</span>
+    </div>
+
+    <!-- ProductCard grid — [WIRE: map over API results array] -->
+    <div class="cards-grid">
+
+      <!-- Card 1: Shopee ─────────────────────────────────────── -->
+      <!-- [WIRE: product = results[0]; marketplace = "shopee"] -->
+      <article class="product-card">
+        <div class="card-image">
+          <!-- [WIRE: <img src={product.imageUrl} alt={product.name} class="card-img-actual" />] -->
+          <div class="card-image-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span>Product image</span>
+          </div>
+          <div class="card-marketplace-badge">
+            <span class="badge-dot" style="background:#ee4d2d;"></span>
+            Shopee
+          </div>
+          <div class="card-rank">#3</div>
+        </div>
+        <div class="card-body">
+          <!-- [WIRE: product.name] -->
+          <div class="card-name">Stainless Steel Insulated Tumbler 750ml Double Wall Vacuum</div>
+          <div class="card-metrics">
+            <div class="metric">
+              <!-- [WIRE: product.monthlySales] -->
+              <span class="metric-label">Monthly Sales</span>
+              <span class="metric-value">12,400</span>
+              <span class="metric-sub">units / mo</span>
+            </div>
+            <div class="metric">
+              <!-- [WIRE: product.monthlyRevenue] -->
+              <span class="metric-label">Revenue</span>
+              <span class="metric-value accent">$118K</span>
+              <span class="metric-sub">/ mo</span>
+            </div>
+            <div class="metric">
+              <!-- [WIRE: product.avgPrice] -->
+              <span class="metric-label">Avg Price</span>
+              <span class="metric-value">$9.52</span>
+            </div>
+            <div class="metric">
+              <!-- [WIRE: product.competitionScore] -->
+              <span class="metric-label">Competition</span>
+              <span class="metric-value" style="color:#f5a623;">Medium</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <!-- [WIRE: product.rating, product.sellerCount] -->
+          <div class="card-rating">
+            <span class="star">★</span> 4.8
+          </div>
+          <span class="card-sellers">234 sellers</span>
+        </div>
+      </article>
+
+      <!-- Card 2: TikTok Shop ─────────────────────────────────── -->
+      <!-- [WIRE: product = results[1]; marketplace = "tiktok"] -->
+      <article class="product-card">
+        <div class="card-image">
+          <div class="card-image-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span>Product image</span>
+          </div>
+          <div class="card-marketplace-badge">
+            <span class="badge-dot" style="background:#69C9D0;"></span>
+            TikTok Shop
+          </div>
+          <div class="card-rank">#1</div>
+        </div>
+        <div class="card-body">
+          <!-- [WIRE: product.name] -->
+          <div class="card-name">Portable Mini Blender USB Rechargeable 380ml Smoothie Cup</div>
+          <div class="card-metrics">
+            <div class="metric">
+              <!-- [WIRE: product.monthlySales] -->
+              <span class="metric-label">Monthly Sales</span>
+              <span class="metric-value">31,200</span>
+              <span class="metric-sub">units / mo</span>
+            </div>
+            <div class="metric">
+              <!-- [WIRE: product.monthlyRevenue] -->
+              <span class="metric-label">Revenue</span>
+              <span class="metric-value accent">$624K</span>
+              <span class="metric-sub">/ mo</span>
+            </div>
+            <div class="metric">
+              <!-- [WIRE: product.avgPrice] -->
+              <span class="metric-label">Avg Price</span>
+              <span class="metric-value">$20.00</span>
+            </div>
+            <div class="metric">
+              <!-- [WIRE: product.competitionScore] -->
+              <span class="metric-label">Competition</span>
+              <span class="metric-value" style="color:#e05252;">High</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <!-- [WIRE: product.rating, product.sellerCount] -->
+          <div class="card-rating">
+            <span class="star">★</span> 4.6
+          </div>
+          <span class="card-sellers">1,840 sellers</span>
+        </div>
+      </article>
+
+      <!-- Card 3: Lazada ──────────────────────────────────────── -->
+      <!-- [WIRE: product = results[2]; marketplace = "lazada"] -->
+      <article class="product-card">
+        <div class="card-image">
+          <div class="card-image-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span>Product image</span>
+          </div>
+          <div class="card-marketplace-badge">
+            <span class="badge-dot" style="background:#0f146d;"></span>
+            Lazada
+          </div>
+          <div class="card-rank">#7</div>
+        </div>
+        <div class="card-body">
+          <!-- [WIRE: product.name] -->
+          <div class="card-name">LED Desk Lamp Touch Dimming with USB Charging Port Eye-Care</div>
+          <div class="card-metrics">
+            <div class="metric">
+              <!-- [WIRE: product.monthlySales] -->
+              <span class="metric-label">Monthly Sales</span>
+              <span class="metric-value">4,700</span>
+              <span class="metric-sub">units / mo</span>
+            </div>
+            <div class="metric">
+              <!-- [WIRE: product.monthlyRevenue] -->
+              <span class="metric-label">Revenue</span>
+              <span class="metric-value accent">$89K</span>
+              <span class="metric-sub">/ mo</span>
+            </div>
+            <div class="metric">
+              <!-- [WIRE: product.avgPrice] -->
+              <span class="metric-label">Avg Price</span>
+              <span class="metric-value">$18.90</span>
+            </div>
+            <div class="metric">
+              <!-- [WIRE: product.competitionScore] -->
+              <span class="metric-label">Competition</span>
+              <span class="metric-value" style="color:#5fba7d;">Low</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <!-- [WIRE: product.rating, product.sellerCount] -->
+          <div class="card-rating">
+            <span class="star">★</span> 4.7
+          </div>
+          <span class="card-sellers">88 sellers</span>
+        </div>
+      </article>
+
+      <!-- Card 4: Amazon ──────────────────────────────────────── -->
+      <!-- [WIRE: product = results[3]; marketplace = "amazon"] -->
+      <article class="product-card">
+        <div class="card-image">
+          <div class="card-image-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span>Product image</span>
+          </div>
+          <div class="card-marketplace-badge">
+            <span class="badge-dot" style="background:#ff9900;"></span>
+            Amazon
+          </div>
+          <div class="card-rank">#12</div>
+        </div>
+        <div class="card-body">
+          <!-- [WIRE: product.name] -->
+          <div class="card-name">Silicone Reusable Food Storage Bags Set of 6 BPA-Free Freezer Safe</div>
+          <div class="card-metrics">
+            <div class="metric">
+              <!-- [WIRE: product.monthlySales] -->
+              <span class="metric-label">Monthly Sales</span>
+              <span class="metric-value">5,600</span>
+              <span class="metric-sub">units / mo</span>
+            </div>
+            <div class="metric">
+              <!-- [WIRE: product.monthlyRevenue] -->
+              <span class="metric-label">Revenue</span>
+              <span class="metric-value accent">$168K</span>
+              <span class="metric-sub">/ mo</span>
+            </div>
+            <div class="metric">
+              <!-- [WIRE: product.avgPrice] -->
+              <span class="metric-label">Avg Price</span>
+              <span class="metric-value">$29.99</span>
+            </div>
+            <div class="metric">
+              <!-- [WIRE: product.competitionScore] -->
+              <span class="metric-label">Competition</span>
+              <span class="metric-value" style="color:#f5a623;">Medium</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <!-- [WIRE: product.rating, product.sellerCount] -->
+          <div class="card-rating">
+            <span class="star">★</span> 4.5
+          </div>
+          <span class="card-sellers">412 sellers</span>
+        </div>
+      </article>
+
+    </div>
+    <p class="cards-note">↑ All figures are placeholder data — internally consistent per marketplace. Wire to your API to show live results.</p>
+  </div>
+</section>
+
+<!-- ── SECTION 4: SIGNAL VS NOISE ───────────────────────────── -->
+<section id="signal">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Why Ecomblade</p>
+      <h2>Other tools show you data.<br />We show you decisions.</h2>
+    </div>
+    <div class="contrast-grid">
+      <div class="contrast-col noise">
+        <div class="contrast-heading">What you get elsewhere</div>
+        <ul class="contrast-list">
+          <li>
+            <div class="contrast-icon">✕</div>
+            Scraped sales estimates with no source transparency
+          </li>
+          <li>
+            <div class="contrast-icon">✕</div>
+            12 charts, none of them actionable
+          </li>
+          <li>
+            <div class="contrast-icon">✕</div>
+            One marketplace. Blind spots everywhere else.
+          </li>
+          <li>
+            <div class="contrast-icon">✕</div>
+            Stale data updated weekly or monthly
+          </li>
+          <li>
+            <div class="contrast-icon">✕</div>
+            No competitive pressure signal — you can't tell if a niche is saturated
+          </li>
+        </ul>
+      </div>
+      <div class="contrast-col signal">
+        <div class="contrast-heading">Ecomblade</div>
+        <ul class="contrast-list">
+          <li>
+            <div class="contrast-icon">✓</div>
+            Verified sales volume and revenue — daily updates
+          </li>
+          <li>
+            <div class="contrast-icon">✓</div>
+            4 metrics that answer: Is this worth my money?
+          </li>
+          <li>
+            <div class="contrast-icon">✓</div>
+            6 live marketplaces — one search, ranked together
+          </li>
+          <li>
+            <div class="contrast-icon">✓</div>
+            Daily data refresh — catch trends before they peak
+          </li>
+          <li>
+            <div class="contrast-icon">✓</div>
+            Competition score per product — know when to enter or skip
+          </li>
+        </ul>
+      </div>
+    </div>
+    <p class="signal-tagline">
+      We cut everything that doesn't answer:<br />
+      <strong>"Should I sell this, or not?"</strong>
+    </p>
+  </div>
+</section>
+
+<!-- ── SECTION 5: PROOF ──────────────────────────────────────── -->
+<section id="proof">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">By the numbers</p>
+      <h2>Real scale.<br />Verified daily.</h2>
+    </div>
+    <!-- [WIRE: replace placeholder values with live metrics from your analytics/backend] -->
+    <div class="proof-stats">
+      <div class="proof-stat">
+        <div class="proof-stat-value"><span>[X]</span>M+</div>
+        <div class="proof-stat-label">Products tracked</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-stat-value"><span>[X]</span>K+</div>
+        <div class="proof-stat-label">Active sellers</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-stat-value"><span>6</span></div>
+        <div class="proof-stat-label">Live marketplaces</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-stat-value">Daily</div>
+        <div class="proof-stat-label">Data refresh</div>
+      </div>
+    </div>
+    <p class="proof-placeholder-note">[Replace bracketed values with real metrics before launch]</p>
+  </div>
+</section>
+
+<!-- ── SECTION 6: PRICING ────────────────────────────────────── -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Pricing</p>
+      <h2>Start free.<br />Scale when you're ready.</h2>
+      <p>No credit card. No time limit on the free tier.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <!-- Free tier -->
+      <div class="pricing-card free">
+        <div>
+          <div class="pricing-tier">Free</div>
+          <div class="pricing-price">$0<span class="period"> / mo</span></div>
+          <div class="pricing-desc">Everything you need to validate your first product idea.</div>
+        </div>
+        <ul class="pricing-features">
+          <!-- [WIRE: match to actual free-tier limits] -->
+          <li><span class="check">✓</span> [X] searches per day</li>
+          <li><span class="check">✓</span> [X] marketplaces included</li>
+          <li><span class="check">✓</span> Sales volume + revenue data</li>
+          <li><span class="check">✓</span> Competition score</li>
+          <li><span class="check">✓</span> No credit card required</li>
+        </ul>
+        <a href="#" class="btn btn-ghost">Get started free</a>
+      </div>
+
+      <!-- Pro tier -->
+      <div class="pricing-card pro">
+        <div class="pricing-badge">Most popular</div>
+        <div>
+          <div class="pricing-tier">Pro</div>
+          <!-- [WIRE: real price] -->
+          <div class="pricing-price"><sup>$</sup>[XX]<span class="period"> / mo</span></div>
+          <div class="pricing-desc">For sellers who run research as a competitive advantage.</div>
+        </div>
+        <ul class="pricing-features">
+          <!-- [WIRE: match to actual pro-tier limits] -->
+          <li><span class="check">✓</span> Unlimited searches</li>
+          <li><span class="check">✓</span> All 6 marketplaces</li>
+          <li><span class="check">✓</span> Daily data, full history</li>
+          <li><span class="check">✓</span> Trend alerts</li>
+          <li><span class="check">✓</span> Export to CSV</li>
+          <li><span class="check">✓</span> Priority support</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Start Pro trial</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 7: FAQ ────────────────────────────────────────── -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">FAQ</p>
+      <h2>Still have questions?</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          How is this different from Jungle Scout or Helium 10?
+          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          Jungle Scout and Helium 10 focus on Amazon only. Ecomblade covers 6 major marketplaces — including Shopee, TikTok Shop, Lazada, and Temu — and ranks opportunities across all of them in one view. If your market is Southeast Asia or you sell cross-platform, those tools leave you blind.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Where does the sales data come from? Is it accurate?
+          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          Our data is pulled directly from each marketplace and updated daily. We surface verified metrics — actual units sold and transaction revenue — not keyword search volume or scraped estimates. We don't show data we can't verify.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Which countries and regions does it cover?
+          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          Coverage varies by marketplace. Shopee, Lazada, and TikTok Shop cover Southeast Asia (PH, MY, SG, TH, ID, VN). Amazon covers US, UK, and key EU markets. Temu and Alibaba cover global supply-side demand. We show you exactly which region each data point is from — no ambiguity.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          What does the free tier actually let me do?
+          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <!-- [WIRE: update with real free-tier limits] -->
+          The free tier gives you [X] searches per day with access to [X] marketplaces. You get full sales volume, revenue, avg price, and competition score on every result. No features are locked behind a paywall to see — limits are on volume only.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          How often is data updated?
+          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          Every marketplace is refreshed daily. If a product spikes overnight, you'll see it by morning. We timestamp every result so you always know how fresh the data is.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Can I cancel anytime?
+          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          Yes. Cancel from your account settings at any time. You keep access until the end of your billing period. No cancellation fees, no questions.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 8: FINAL CTA ──────────────────────────────────── -->
+<section id="cta-final">
+  <div class="container">
+    <h2>The opportunity is there.<br /><em>Find it first.</em></h2>
+    <p>Free to start. No credit card. Results in your first search.</p>
+    <a href="#pricing" class="btn btn-primary btn-lg">Start for free</a>
+    <p class="no-card-note" style="margin-top: 14px;">No credit card required</p>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────────── -->
+<footer>
+  <div class="container footer-inner">
+    <span class="footer-copy">© 2026 Ecomblade. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(el => el.setAttribute('aria-expanded', 'false'));
+      // Open clicked if it was closed
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
