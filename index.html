@@ -299,10 +299,7 @@
     /* ── Cards ─────────────────────────────────────────────── */
     .tf-card {
       width: 100%; border-radius: var(--r-lg); padding: 28px 24px; text-align: left;
-      opacity: 0; transform: translateY(22px);
-      transition: opacity 0.44s ease, transform 0.44s ease;
     }
-    .tf-card.in { opacity: 1; transform: none; }
 
     .tf-card-before { background: #f5f5f5; border: 1px solid #e2e2e2; }
     .tf-card-after  {
@@ -314,9 +311,7 @@
     .tf-label {
       font-size: 10px; font-weight: 700; letter-spacing: 0.10em;
       text-transform: uppercase; margin-bottom: 20px;
-      transform: translateY(8px); transition: transform 0.36s ease 0.04s;
     }
-    .tf-card.in .tf-label { transform: none; }
     .tf-card-before .tf-label { color: #b0b0b0; }
     .tf-card-after  .tf-label { color: var(--acc-ink); }
 
@@ -332,11 +327,7 @@
 
     .tf-beat {
       display: flex; align-items: flex-start; gap: 10px; flex: 1;
-      transform: translateY(12px); transition: transform 0.38s ease;
     }
-    .tf-card.in .tf-beat:nth-child(1) { transform: none; transition-delay: 0.08s; }
-    .tf-card.in .tf-beat:nth-child(2) { transform: none; transition-delay: 0.15s; }
-    .tf-card.in .tf-beat:nth-child(3) { transform: none; transition-delay: 0.22s; }
 
     .tf-beat-num {
       flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
@@ -355,21 +346,11 @@
       padding: 4px 0;
       display: flex; justify-content: center;
     }
-    .tf-arrow-line {
-      stroke-dasharray: 34; stroke-dashoffset: 34;
-      transition: stroke-dashoffset 0.52s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .tf-arrow-line.in { stroke-dashoffset: 0; }
-    .tf-arrow-chev { opacity: 0; transition: opacity 0.24s ease; }
-    .tf-arrow-chev.in { opacity: 1; }
+    .tf-arrow-line { stroke-dasharray: 34; stroke-dashoffset: 0; }
 
     /* ── Reduced motion ─────────────────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
-      .tf-card  { opacity: 1 !important; transform: none !important; transition: none !important; }
-      .tf-label { transform: none !important; transition: none !important; }
-      .tf-beat  { transform: none !important; transition: none !important; }
-      .tf-arrow-line { stroke-dashoffset: 0 !important; transition: none !important; }
-      .tf-arrow-chev { opacity: 1 !important; transition: none !important; }
+      .tf-card, .tf-label, .tf-beat, .tf-arrow-line { transition: none !important; }
     }
 
     /* ── Platform ribbon ─────────────────────────────────── */
