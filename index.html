@@ -723,6 +723,144 @@
       .faq-q      { padding: 18px 18px; font-size: 14px; }
       .faq-a      { padding: 0 18px 18px; }
     }
+
+    /* ── Final CTA + Footer (dark) ───────────────────────────── */
+    /*
+     * Dark-section palette (local — not in :root):
+     *   bg:       #07110F   (ink token repurposed as bg)
+     *   heading:  #ffffff
+     *   body:     #8b9a97   (muted grey on dark)
+     *   accent:   #00E0C6   (--accent, unchanged)
+     */
+    #cta-footer { background: #07110F; }
+
+    /* ── CTA ─────────────────────────────────────────────────── */
+    .end-cta {
+      text-align: center;
+      padding: 96px 0 72px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(0, 224, 198, 0.08) 0%, transparent 55%);
+    }
+    .end-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(0, 224, 198, 0.10);
+      border: 1px solid rgba(0, 224, 198, 0.22);
+      border-radius: 100px;
+      padding: 5px 14px;
+      margin-bottom: 28px;
+    }
+    .end-headline {
+      font-size: clamp(32px, 5.5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #ffffff;
+      margin: 0 auto 18px;
+      max-width: 680px;
+    }
+    .end-headline em { font-style: normal; color: var(--accent); }
+    .end-sub {
+      font-size: clamp(15px, 2vw, 17px);
+      color: #8b9a97;
+      line-height: 1.55;
+      max-width: 480px;
+      margin-inline: auto;
+    }
+    .end-btn {
+      display: inline-flex;
+      align-items: center;
+      background: var(--accent);
+      color: #07110F;
+      font-family: var(--font);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: var(--r);
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      margin-top: 28px;
+      margin-bottom: 22px;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .end-btn:hover  { background: #1ae8d0; transform: translateY(-1px); }
+    .end-btn:active { transform: translateY(0); }
+    .end-trust {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 8px 24px;
+    }
+    .end-tick {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      color: #8b9a97;
+    }
+    .end-tick-check { color: var(--accent); flex-shrink: 0; }
+
+    /* ── Footer ──────────────────────────────────────────────── */
+    .end-footer { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+    .end-footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px 48px;
+      padding: 52px 0 48px;
+    }
+    .end-logo {
+      display: inline-block;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+    .end-logo em { font-style: normal; color: var(--accent); }
+    .end-tagline {
+      font-size: 13px;
+      line-height: 1.65;
+      color: #8b9a97;
+      max-width: 300px;
+    }
+    .end-col-head {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+    .end-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .end-col a {
+      font-size: 14px;
+      color: #8b9a97;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .end-col a:hover { color: #ffffff; }
+    .end-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 20px 0;
+      font-size: 13px;
+      color: #8b9a97;
+    }
+    @media (max-width: 720px) {
+      .end-footer-inner { grid-template-columns: 1fr 1fr; }
+      .end-brand { grid-column: 1 / -1; }
+      .end-tagline { max-width: none; }
+    }
+    @media (max-width: 480px) {
+      .end-cta { padding: 64px 0 52px; }
+      .end-footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .end-brand { grid-column: auto; }
+    }
   </style>
 </head>
 <body>
@@ -1184,6 +1322,85 @@
 
     </div>
   </div>
+</section>
+
+<!-- ── FINAL SECTION: CTA + FOOTER (dark) ────────────────────── -->
+<section id="cta-footer">
+
+  <!-- PART A: Final CTA ────────────────────────────────────────── -->
+  <div class="end-cta">
+    <div class="container">
+      <div class="end-tag">Free plan · No credit card required</div>
+      <h2 class="end-headline">Find your next winner.<br><em>Start today.</em></h2>
+      <p class="end-sub">Start free, upgrade when you're ready. No credit card, no setup calls, no lock-in. Live in under 60 seconds.</p>
+      <a href="#" class="end-btn">Start free</a>
+      <div class="end-trust">
+        <div class="end-tick">
+          <svg class="end-tick-check" width="14" height="11" viewBox="0 0 14 11" fill="none" aria-hidden="true"><path d="M1 5.5L5 9.5L13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Start with a free plan
+        </div>
+        <div class="end-tick">
+          <svg class="end-tick-check" width="14" height="11" viewBox="0 0 14 11" fill="none" aria-hidden="true"><path d="M1 5.5L5 9.5L13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          No credit card required
+        </div>
+        <div class="end-tick">
+          <svg class="end-tick-check" width="14" height="11" viewBox="0 0 14 11" fill="none" aria-hidden="true"><path d="M1 5.5L5 9.5L13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Cancel anytime
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART B: Footer ───────────────────────────────────────────── -->
+  <div class="end-footer">
+    <div class="container">
+      <div class="end-footer-inner">
+
+        <!-- Brand + tagline -->
+        <div class="end-brand">
+          <a href="/" class="end-logo">ecomb<em>lade</em></a>
+          <p class="end-tagline">Global product research for serious sellers. Sales volume, revenue, and demand across 6 marketplaces — in one clean view.</p>
+        </div>
+
+        <!-- Product links -->
+        <div class="end-col">
+          <p class="end-col-head">Product</p>
+          <ul>
+            <li><a href="#value">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#transform">How it works</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Company links -->
+        <div class="end-col">
+          <p class="end-col-head">Company</p>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal links -->
+        <div class="end-col">
+          <p class="end-col-head">Legal</p>
+          <ul>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Privacy</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="end-bottom">
+        © 2026 Ecomblade. All rights reserved.
+      </div>
+
+    </div>
+  </div>
+
 </section>
 
 <script>
