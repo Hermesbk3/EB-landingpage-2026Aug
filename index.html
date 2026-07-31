@@ -138,6 +138,8 @@
       background: var(--acc-bg); border-color: var(--acc-bdr);
       color: var(--acc-ink); font-weight: 600;
     }
+    /* Inline flag SVGs — cross-platform, no emoji rendering variance */
+    .hd-flag { display: inline-block; vertical-align: middle; border-radius: 2px; flex-shrink: 0; }
 
     .hd-input-wrap {
       flex: 1; min-width: 160px;
@@ -296,8 +298,8 @@
 
         <!-- Search bar -->
         <div class="hd-bar">
-          <span class="hd-chip hd-chip-market">♪&nbsp;TikTok Shop</span>
-          <span class="hd-chip" id="hd-country-chip">🇹🇭&nbsp;Thailand</span>
+          <span class="hd-chip hd-chip-market"><svg width="13" height="15" viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>&nbsp;TikTok Shop</span>
+          <span class="hd-chip" id="hd-country-chip"><svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#A51931"/><rect y="2.8" width="20" height="8.4" fill="#F5F5F5"/><rect y="5.6" width="20" height="2.8" fill="#2D2A4A"/></svg>&nbsp;Thailand</span>
           <span class="hd-chip">↕&nbsp;Popularity</span>
           <div class="hd-input-wrap">
             <span id="hd-typed"></span><span class="hd-caret"></span>
@@ -388,7 +390,8 @@ var DEMO = {
   marketplace: 'TikTok Shop',
   markets: [
     {
-      country: 'Thailand', flag: '🇹🇭', sym: '฿',
+      country: 'Thailand', sym: '฿',
+      flag: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#A51931"/><rect y="2.8" width="20" height="8.4" fill="#F5F5F5"/><rect y="5.6" width="20" height="2.8" fill="#2D2A4A"/></svg>',
       metrics: { r30: '4,610,594', s30: '76,892', price: '65.68', rating: '4.7' },
       rows: [
         /* iOrder = entry order (by 30D sold desc). Differs from rank
@@ -401,8 +404,10 @@ var DEMO = {
       ]
     },
     {
-      country: 'Singapore', flag: '🇸🇬', sym: 'S$',
-      metrics: { r30: '312,540', s30: '11,230', price: '28.90', rating: '4.6' },
+      country: 'Singapore', sym: 'S$',
+      flag: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#F5F5F5"/><rect width="20" height="7" fill="#EF3340"/><circle cx="5.5" cy="3.5" r="2.2" fill="#F5F5F5"/><circle cx="7" cy="3.5" r="1.7" fill="#EF3340"/></svg>',
+      /* s30/r30 must exceed sum of 5 visible rows (15,209 sold / S$285,065 rev) — headroom covers remaining 15 products */
+      metrics: { r30: '452,600', s30: '28,400', price: '28.90', rating: '4.6' },
       rows: [
         { rank:1, iOrder:2, name:'HYDRA 1L BPA-Free Tritan Sport Bottle',     store:'HydraFit SG',   disc:'62.1%', rev:'98,430', sold:'5,209' },
         { rank:2, iOrder:1, name:'Stainless Steel Insulated Flask 500ml',      store:'CoolGear SG',   disc:'51.0%', rev:'78,400', sold:'3,200' },
@@ -412,8 +417,10 @@ var DEMO = {
       ]
     },
     {
-      country: 'Malaysia', flag: '🇲🇾', sym: 'RM',
-      metrics: { r30: '744,585', s30: '37,540', price: '19.90', rating: '4.5' },
+      country: 'Malaysia', sym: 'RM',
+      flag: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#F5F5F5"/><rect y="2" width="20" height="2" fill="#CC0001"/><rect y="6" width="20" height="2" fill="#CC0001"/><rect y="10" width="20" height="2" fill="#CC0001"/><rect width="9" height="7" fill="#010066"/></svg>',
+      /* s30/r30 must exceed sum of 5 visible rows (46,846 sold / RM679,664 rev) — headroom covers remaining 15 products */
+      metrics: { r30: '980,500', s30: '82,400', price: '19.90', rating: '4.5' },
       rows: [
         { rank:1, iOrder:2, name:'Tumbler 1L Vacuum Flask Thermal Bottle',       store:'DrinkGear MY',   disc:'73.2%', rev:'318,744', sold:'20,046' },
         { rank:2, iOrder:1, name:'Sport Bottle 750ml Leak-Proof BPA Free',       store:'ActiveLife MY',  disc:'50.5%', rev:'148,500', sold:'15,000' },
