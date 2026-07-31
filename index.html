@@ -199,17 +199,18 @@
      * Div-based table — NOT <table> — so GSAP Flip can freely
      * animate row positions during the rank re-sort (Beat 4).
      */
-    .hd-table { min-width: 986px; }
+    .hd-table { min-width: 1040px; }
 
     .hd-thead {
       display: grid;
-      grid-template-columns: 36px minmax(120px,1fr) 90px 88px 86px 90px 64px 104px 80px;
+      grid-template-columns: 40px minmax(150px,1.3fr) 96px 96px 112px 112px 74px 124px 92px;
+      align-items: start;
       padding: 8px 8px 6px;
       border-bottom: 1px solid var(--bdr);
     }
     .hd-th {
       font-size: 10px; font-weight: 600;
-      letter-spacing: 0.07em; text-transform: uppercase; color: var(--dim);
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--dim);
     }
     .hd-th:nth-child(n+5) { text-align: right; }
 
@@ -218,7 +219,7 @@
 
     .hd-row {
       display: grid;
-      grid-template-columns: 36px minmax(120px,1fr) 90px 88px 86px 90px 64px 104px 80px;
+      grid-template-columns: 40px minmax(150px,1.3fr) 96px 96px 112px 112px 74px 124px 92px;
       align-items: center;
       padding: 8px 8px;
       border-bottom: 1px solid var(--bdr);
