@@ -443,10 +443,24 @@
       display: flex; justify-content: center;
     }
     .tf-arrow-line { stroke-dasharray: 34; stroke-dashoffset: 0; }
+    .tf-shine-rect {
+      transform: translateY(-52px);
+      pointer-events: none;
+    }
+    @keyframes tf-shine-sweep {
+      0%   { transform: translateY(-52px); opacity: 0; }
+      12%  { opacity: 1; }
+      88%  { opacity: 1; }
+      100% { transform: translateY(52px);  opacity: 0; }
+    }
+    .tf-arrow.is-visible .tf-shine-rect {
+      animation: tf-shine-sweep 0.72s ease-out forwards;
+    }
 
     /* ── Reduced motion ─────────────────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
       .tf-card, .tf-label, .tf-beat, .tf-arrow-line { transition: none !important; }
+      .tf-shine-rect { display: none !important; }
     }
 
     /* ── Platform ribbon ─────────────────────────────────── */
@@ -1157,13 +1171,34 @@
 
       <!-- ARROW — line draws down, chevron pops in after -->
       <div class="tf-arrow">
-        <svg width="40" height="52" viewBox="0 0 40 52" fill="none" aria-hidden="true">
+        <svg width="40" height="52" viewBox="0 0 40 52" fill="none" style="overflow:hidden" aria-hidden="true">
+          <defs>
+            <linearGradient id="tf-grad" x1="0" y1="2" x2="0" y2="40" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="#009d8f"/>
+              <stop offset="100%" stop-color="#1ae8d0"/>
+            </linearGradient>
+            <linearGradient id="tf-shine" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stop-color="white" stop-opacity="0"/>
+              <stop offset="42%"  stop-color="white" stop-opacity="0"/>
+              <stop offset="50%"  stop-color="white" stop-opacity="0.75"/>
+              <stop offset="58%"  stop-color="white" stop-opacity="0"/>
+              <stop offset="100%" stop-color="white" stop-opacity="0"/>
+            </linearGradient>
+            <mask id="tf-mask">
+              <line x1="20" y1="2" x2="20" y2="36" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M10 27 L20 40 L30 27" stroke="white" stroke-width="2.7" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </mask>
+          </defs>
           <line x1="20" y1="2" x2="20" y2="36"
-                stroke="#00E0C6" stroke-width="2" stroke-linecap="round"
+                stroke="url(#tf-grad)" stroke-width="2.5" stroke-linecap="round"
                 class="tf-arrow-line"/>
           <path d="M10 27 L20 40 L30 27"
-                stroke="#00E0C6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                stroke="url(#tf-grad)" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"
                 class="tf-arrow-chev"/>
+          <rect x="0" y="-52" width="40" height="104"
+                fill="url(#tf-shine)" mask="url(#tf-mask)"
+                class="tf-shine-rect"/>
         </svg>
       </div>
 
@@ -1808,6 +1843,20 @@ function initDemo() {
 
   runCycle();
 }
+
+/* ── Transform arrow shine — fires once on scroll into view ─ */
+(function() {
+  var arrow = document.querySelector('.tf-arrow');
+  if (!arrow || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var done = false;
+  var tfio = new IntersectionObserver(function(entries) {
+    if (done || !entries[0].isIntersecting) return;
+    done = true;
+    arrow.classList.add('is-visible');
+    tfio.disconnect();
+  }, { threshold: 0.6 });
+  tfio.observe(arrow);
+}());
 
 /* ── Load GSAP after first paint (double-rAF = post-LCP safe) ─ */
 requestAnimationFrame(function() {
