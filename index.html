@@ -4,775 +4,266 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ecomblade — Spot product opportunities, before everyone else.</title>
-  <meta name="description" content="Search real sales volume, revenue, and demand across Shopee, TikTok, Lazada, Amazon, Temu, and Alibaba — in one view." />
+  <meta name="description" content="Search real sales volume, revenue, and demand across Shopee, TikTok, Lazada, Amazon, Temu, and Alibaba — ranked in one view." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
   <style>
-    /* ── TOKENS ─────────────────────────────────────────────── */
+    /* ── TOKENS ──────────────────────────────────────────────── */
     :root {
-      --accent:      #00E0C6;
-      --accent-dim:  #00b8a5;
-      --bg:          #07110F;
-      --bg-surface:  #0d1c19;
-      --bg-card:     #111f1c;
-      --bg-card-2:   #162521;
-      --border:      rgba(0, 224, 198, 0.12);
-      --border-med:  rgba(0, 224, 198, 0.22);
-      --text:        #e8f0ee;
-      --text-muted:  #7a9990;
-      --text-dim:    #4a6660;
-      --font:        'Inter', system-ui, -apple-system, sans-serif;
-      --radius:      10px;
-      --radius-lg:   16px;
+      --accent:   #00E0C6;
+      --acc-bg:   rgba(0, 224, 198, 0.10);
+      --acc-bdr:  rgba(0, 224, 198, 0.28);
+      --acc-ink:  #008f82;
+      --bg:       #ffffff;
+      --surf:     #f5faf9;
+      --bdr:      rgba(7, 17, 15, 0.09);
+      --bdr-med:  rgba(7, 17, 15, 0.15);
+      --ink:      #07110F;
+      --muted:    #5a7570;
+      --dim:      #9bb5b0;
+      --font:     'Inter', system-ui, -apple-system, sans-serif;
+      --r:        10px;
+      --r-lg:     14px;
     }
 
-    /* ── RESET ──────────────────────────────────────────────── */
+    /* ── RESET ───────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
-      color: var(--text);
+      color: var(--ink);
       font-family: var(--font);
       font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
 
-    /* ── LAYOUT ─────────────────────────────────────────────── */
-    .container {
-      width: 100%;
-      max-width: 1080px;
-      margin-inline: auto;
-      padding-inline: 24px;
-    }
-    section { padding-block: 80px; }
+    .container { width: 100%; max-width: 1080px; margin-inline: auto; padding-inline: 24px; }
 
-    /* ── TYPOGRAPHY ─────────────────────────────────────────── */
-    .label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-    .eyebrow {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-    }
-
-    /* ── NAV ────────────────────────────────────────────────── */
+    /* ── NAV ─────────────────────────────────────────────────── */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(7, 17, 15, 0.88);
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--bdr);
     }
     .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
       height: 60px;
     }
-    .logo {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
-    }
-    .logo span { color: var(--accent); }
+    .logo { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+    .logo em { font-style: normal; color: var(--accent); }
 
-    /* ── BUTTONS ────────────────────────────────────────────── */
+    /* ── BUTTONS ─────────────────────────────────────────────── */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--font);
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: var(--radius);
-      cursor: pointer;
-      transition: all 0.15s ease;
-      border: none;
+      display: inline-flex; align-items: center;
+      font-family: var(--font); font-weight: 600;
+      border-radius: var(--r); cursor: pointer; border: none;
+      transition: background 0.15s, transform 0.15s;
     }
-    .btn-primary {
-      background: var(--accent);
-      color: #071110;
-      padding: 11px 22px;
-    }
+    .btn-primary { background: var(--accent); color: #07110F; font-size: 14px; padding: 10px 20px; }
     .btn-primary:hover { background: #1ae8d0; transform: translateY(-1px); }
     .btn-primary:active { transform: translateY(0); }
-    .btn-lg {
-      font-size: 16px;
-      padding: 14px 30px;
-    }
-    .btn-ghost {
-      background: transparent;
-      color: var(--text-muted);
-      padding: 11px 18px;
-      border: 1px solid var(--border);
-    }
-    .btn-ghost:hover { border-color: var(--border-med); color: var(--text); }
+    .btn-lg { font-size: 16px; padding: 13px 30px; }
 
-    /* ── SECTION 1: HERO ─────────────────────────────────────── */
-    #hero {
-      padding-top: 100px;
-      padding-bottom: 72px;
-      text-align: center;
-    }
+    /* ── HERO ────────────────────────────────────────────────── */
+    #hero { padding: 80px 0 80px; text-align: center; }
+
     .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(0, 224, 198, 0.08);
-      border: 1px solid var(--border-med);
-      border-radius: 100px;
-      padding: 5px 14px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--accent);
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--acc-bg); border: 1px solid var(--acc-bdr);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 12px; font-weight: 500; color: var(--acc-ink);
       margin-bottom: 28px;
     }
     .hero-tag .dot {
       width: 6px; height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
+      background: var(--accent); border-radius: 50%;
       animation: pulse 2s infinite;
     }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
     h1 {
-      font-size: clamp(36px, 5.5vw, 62px);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      color: #fff;
-      max-width: 780px;
-      margin-inline: auto;
-      margin-bottom: 20px;
+      font-size: clamp(34px, 5.5vw, 58px);
+      font-weight: 700; line-height: 1.1; letter-spacing: -0.03em;
+      max-width: 760px; margin-inline: auto; margin-bottom: 18px;
     }
-    h1 em {
-      font-style: normal;
-      color: var(--accent);
-    }
+    h1 em { font-style: normal; color: var(--accent); }
+
     .hero-sub {
-      font-size: clamp(16px, 2vw, 19px);
-      color: var(--text-muted);
-      max-width: 520px;
-      margin-inline: auto;
-      margin-bottom: 36px;
-      line-height: 1.55;
+      font-size: clamp(16px, 2vw, 18px); color: var(--muted);
+      max-width: 500px; margin-inline: auto;
+      margin-bottom: 32px; line-height: 1.55;
     }
-    .hero-cta-group {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .no-card-note {
-      font-size: 12px;
-      color: var(--text-dim);
-      margin-top: 14px;
-    }
+    .no-card { font-size: 12px; color: var(--dim); margin-top: 12px; }
 
-    /* ── SECTION 2: MARKETPLACE RAIL ─────────────────────────── */
-    #markets {
-      padding-block: 48px;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--bg-surface);
-    }
-    .markets-label {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-    .logo-rail {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(20px, 4vw, 48px);
-      flex-wrap: wrap;
-    }
-    .market-chip {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      border-radius: 100px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      white-space: nowrap;
-      transition: border-color 0.15s;
-    }
-    .market-chip:hover { border-color: var(--border-med); }
-    .market-icon {
-      width: 20px;
-      height: 20px;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      flex-shrink: 0;
-    }
-
-    /* ── SECTION 3: LIVE DATA DEMO ────────────────────────────── */
-    #demo {
-      background: var(--bg);
-    }
-    .section-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-    .section-header h2 {
-      font-size: clamp(26px, 3.5vw, 40px);
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      color: #fff;
-      margin-bottom: 10px;
-      line-height: 1.15;
-    }
-    .section-header p {
-      font-size: 16px;
-      color: var(--text-muted);
-      max-width: 480px;
+    /* ══════════════════════════════════════════════════════════
+       HERO DEMO COMPONENT
+    ══════════════════════════════════════════════════════════ */
+    .hero-demo-wrap {
+      margin-top: 56px;
+      max-width: 920px;
       margin-inline: auto;
     }
 
-    /* Search bar mockup */
-    .search-bar {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-med);
-      border-radius: var(--radius-lg);
-      padding: 14px 20px;
-      max-width: 680px;
-      margin-inline: auto;
-      margin-bottom: 40px;
-      transition: border-color 0.15s;
-    }
-    .search-bar:focus-within { border-color: var(--accent); }
-    .search-icon { color: var(--text-dim); flex-shrink: 0; }
-    .search-input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      outline: none;
-      font-family: var(--font);
-      font-size: 15px;
-      color: var(--text);
-    }
-    .search-input::placeholder { color: var(--text-dim); }
-    .search-meta {
-      font-size: 12px;
-      color: var(--text-dim);
-      white-space: nowrap;
-      padding-left: 12px;
-      border-left: 1px solid var(--border);
+    #hero-demo {
+      background: #fff;
+      border: 1px solid var(--bdr-med);
+      border-radius: 18px;
+      box-shadow: 0 2px 32px rgba(7, 17, 15, 0.08), 0 0 0 1px rgba(7, 17, 15, 0.03);
+      overflow: hidden;
+      /* Exact height reserved → CLS = 0 when GSAP hydrates */
+      min-height: 484px;
     }
 
-    /* Product cards */
-    .cards-grid {
+    /* ── Search bar ─────────────────────────────────────────── */
+    .hd-bar {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      padding: 12px 18px;
+      background: var(--surf);
+      border-bottom: 1px solid var(--bdr);
+    }
+
+    .hd-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #fff; border: 1px solid var(--bdr);
+      border-radius: 8px; padding: 5px 11px;
+      font-size: 13px; font-weight: 500; color: var(--muted);
+      white-space: nowrap; user-select: none; flex-shrink: 0;
+    }
+    .hd-chip-market {
+      background: var(--acc-bg); border-color: var(--acc-bdr);
+      color: var(--acc-ink); font-weight: 600;
+    }
+
+    .hd-input-wrap {
+      flex: 1; min-width: 160px;
+      display: flex; align-items: center;
+      background: #fff; border: 1px solid var(--accent);
+      border-radius: 8px; padding: 6px 12px;
+      font-size: 14px; color: var(--ink);
+    }
+    #hd-typed { min-width: 0; }
+    .hd-caret {
+      display: inline-block; width: 2px; height: 15px;
+      background: var(--accent); border-radius: 1px;
+      margin-left: 1px; vertical-align: middle; flex-shrink: 0;
+      animation: caret 1s step-end infinite;
+    }
+    @keyframes caret { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    .hd-srch-btn {
+      background: var(--accent); color: #07110F;
+      border: none; border-radius: 8px; padding: 7px 18px;
+      font-size: 13px; font-weight: 600; font-family: var(--font);
+      cursor: default; flex-shrink: 0;
+    }
+
+    /* ── Demo body ──────────────────────────────────────────── */
+    .hd-body { padding: 20px 20px 24px; }
+
+    /* Section label */
+    .hd-stag {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--acc-ink); margin-bottom: 14px;
+    }
+    .hd-stag::before {
+      content: ''; width: 3px; height: 12px;
+      background: var(--accent); border-radius: 2px; flex-shrink: 0;
+    }
+
+    /* ── Snapshot metrics ───────────────────────────────────── */
+    .hd-snapshot { margin-bottom: 24px; }
+    .hd-metrics  { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .hd-metric   { background: var(--surf); border: 1px solid var(--bdr); border-radius: var(--r); padding: 12px 14px; }
+    .hd-mlabel   { font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--dim); margin-bottom: 5px; }
+    .hd-mval     { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); line-height: 1; }
+
+    /* ── Leaderboard ────────────────────────────────────────── */
+    .hd-subtitle {
+      font-size: 13px; color: var(--muted);
+      padding-bottom: 12px; border-bottom: 1px solid var(--bdr);
+    }
+    .hd-table-wrap { overflow-x: auto; }
+
+    /*
+     * Div-based table — NOT <table> — so GSAP Flip can freely
+     * animate row positions during the rank re-sort (Beat 4).
+     */
+    .hd-table { min-width: 580px; }
+
+    .hd-thead {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
+      grid-template-columns: 44px minmax(0, 1fr) 90px 138px 96px;
+      padding: 10px 8px 8px;
+      border-bottom: 1px solid var(--bdr);
     }
+    .hd-th {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase; color: var(--dim);
+    }
+    .hd-th:nth-child(n+3) { text-align: right; }
 
-    /* ProductCard component — data slots clearly labeled */
-    .product-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      transition: border-color 0.15s, transform 0.15s;
-      cursor: pointer;
-    }
-    .product-card:hover {
-      border-color: var(--border-med);
-      transform: translateY(-2px);
-    }
-    .card-image {
-      /* [WIRE: product.imageUrl] */
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      background: var(--bg-card-2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .card-image-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      color: var(--text-dim);
-      font-size: 12px;
-    }
-    .card-image-placeholder svg { opacity: 0.4; }
-    .card-img-actual {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .card-marketplace-badge {
-      /* [WIRE: product.marketplace] */
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background: rgba(7, 17, 15, 0.82);
-      backdrop-filter: blur(6px);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 3px 10px 3px 6px;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .badge-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .card-rank {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(0, 224, 198, 0.12);
-      border: 1px solid rgba(0, 224, 198, 0.3);
-      border-radius: 6px;
-      padding: 2px 8px;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--accent);
-    }
+    /* position:relative so Flip can absolutely-position rows during animation */
+    #hd-tbody { position: relative; }
 
-    .card-body {
-      padding: 16px;
-    }
-    .card-name {
-      /* [WIRE: product.name] */
-      font-size: 14px;
-      font-weight: 600;
-      color: #fff;
-      line-height: 1.35;
-      margin-bottom: 14px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .card-metrics {
+    .hd-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .metric {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .metric-label {
-      /* [WIRE: metric key] */
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-    }
-    .metric-value {
-      /* [WIRE: metric value] */
-      font-size: 15px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -0.02em;
-    }
-    .metric-value.accent { color: var(--accent); }
-    .metric-sub {
-      font-size: 10px;
-      color: var(--text-dim);
-    }
-
-    .card-footer {
-      padding: 10px 16px 14px;
-      border-top: 1px solid var(--border);
-      display: flex;
+      grid-template-columns: 44px minmax(0, 1fr) 90px 138px 96px;
       align-items: center;
-      justify-content: space-between;
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--bdr);
     }
-    .card-rating {
-      /* [WIRE: product.rating] */
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
+    .hd-row:last-child { border-bottom: none; }
+    .hd-td:nth-child(n+3) { text-align: right; }
+
+    .hd-rank {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; border-radius: 7px;
+      background: var(--acc-bg); border: 1px solid var(--acc-bdr);
+      font-size: 11px; font-weight: 700; color: var(--acc-ink);
     }
-    .star { color: #f5c542; font-size: 12px; }
-    .card-sellers {
-      /* [WIRE: product.sellerCount] */
-      font-size: 12px;
-      color: var(--text-muted);
+    .hd-rank.gold {
+      background: rgba(245, 197, 66, 0.10);
+      border-color: rgba(245, 197, 66, 0.35);
+      color: #9a7a0a;
     }
 
-    .cards-note {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 12px;
-      color: var(--text-dim);
+    .hd-pname  { font-size: 13px; font-weight: 500; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 260px; }
+    .hd-pstore { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    .hd-disc {
+      display: inline-block; padding: 2px 7px;
+      background: rgba(239, 68, 68, 0.08); border-radius: 4px;
+      font-size: 11px; font-weight: 600; color: #dc2626;
+    }
+    .hd-rev  { font-size: 13px; font-weight: 600; color: var(--ink); }
+    .hd-sold { font-size: 13px; color: var(--muted); }
+
+    /* ── Prefers-reduced-motion: static final state ─────────── */
+    @media (prefers-reduced-motion: reduce) {
+      #hero-demo, #hd-snapshot, #hd-leaderboard, .hd-row, .hd-mval {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .hd-caret { animation: none; }
     }
 
-    /* ── SECTION 4: SIGNAL VS NOISE ───────────────────────────── */
-    #signal {
-      background: var(--bg-surface);
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      .hd-metrics { grid-template-columns: repeat(2, 1fr); }
+      .hd-pname   { max-width: 140px; }
     }
-    .contrast-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      max-width: 800px;
-      margin-inline: auto;
-      margin-top: 40px;
-    }
-    .contrast-col {
-      border-radius: var(--radius-lg);
-      padding: 28px;
-    }
-    .contrast-col.noise {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
-    }
-    .contrast-col.signal {
-      background: rgba(0, 224, 198, 0.05);
-      border: 1px solid var(--border-med);
-    }
-    .contrast-heading {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    .contrast-col.noise .contrast-heading { color: var(--text-dim); }
-    .contrast-col.signal .contrast-heading { color: var(--accent); }
-    .contrast-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .contrast-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 14px;
-      line-height: 1.4;
-    }
-    .contrast-col.noise li { color: var(--text-muted); }
-    .contrast-col.signal li { color: var(--text); }
-    .contrast-icon {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .noise .contrast-icon { background: rgba(255,255,255,0.06); color: var(--text-dim); }
-    .signal .contrast-icon { background: rgba(0, 224, 198, 0.12); color: var(--accent); }
-
-    .signal-tagline {
-      text-align: center;
-      margin-top: 36px;
-      font-size: 15px;
-      color: var(--text-muted);
-      max-width: 440px;
-      margin-inline: auto;
-    }
-    .signal-tagline strong { color: var(--text); }
-
-    /* ── SECTION 5: PROOF ─────────────────────────────────────── */
-    #proof {
-      background: var(--bg);
-    }
-    .proof-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 2px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      max-width: 800px;
-      margin-inline: auto;
-      margin-top: 40px;
-    }
-    .proof-stat {
-      background: var(--bg-card);
-      padding: 32px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .proof-stat-value {
-      /* [WIRE: real metric from analytics] */
-      font-size: clamp(28px, 3.5vw, 40px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: #fff;
-      line-height: 1;
-    }
-    .proof-stat-value span { color: var(--accent); }
-    .proof-stat-label {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-    .proof-placeholder-note {
-      text-align: center;
-      margin-top: 12px;
-      font-size: 11px;
-      color: var(--text-dim);
-    }
-
-    /* ── SECTION 6: PRICING ───────────────────────────────────── */
-    #pricing {
-      background: var(--bg-surface);
-    }
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      max-width: 760px;
-      margin-inline: auto;
-      margin-top: 40px;
-    }
-    .pricing-card {
-      border-radius: var(--radius-lg);
-      padding: 32px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-    .pricing-card.free {
-      background: var(--bg-card);
-      border: 1px solid var(--border-med);
-    }
-    .pricing-card.pro {
-      background: rgba(0, 224, 198, 0.06);
-      border: 1px solid var(--accent);
-      position: relative;
-    }
-    .pricing-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--accent);
-      color: #071110;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 100px;
-      white-space: nowrap;
-    }
-    .pricing-tier {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-    .pricing-price {
-      font-size: 40px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: #fff;
-      line-height: 1;
-    }
-    .pricing-price sup {
-      font-size: 20px;
-      font-weight: 600;
-      vertical-align: super;
-      line-height: 0;
-    }
-    .pricing-price .period {
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--text-muted);
-      letter-spacing: 0;
-    }
-    .pricing-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-    .pricing-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      flex: 1;
-    }
-    .pricing-features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--text);
-    }
-    .check {
-      color: var(--accent);
-      font-size: 13px;
-      margin-top: 1px;
-      flex-shrink: 0;
-    }
-    .pricing-card .btn { width: 100%; justify-content: center; }
-
-    /* ── SECTION 7: FAQ ───────────────────────────────────────── */
-    #faq {
-      background: var(--bg);
-    }
-    .faq-list {
-      max-width: 680px;
-      margin-inline: auto;
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .faq-item {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-    .faq-q {
-      width: 100%;
-      background: var(--bg-card);
-      border: none;
-      padding: 18px 20px;
-      text-align: left;
-      font-family: var(--font);
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      transition: background 0.15s;
-    }
-    .faq-q:hover { background: var(--bg-card-2); }
-    .faq-chevron {
-      color: var(--text-dim);
-      transition: transform 0.2s;
-      flex-shrink: 0;
-    }
-    .faq-item.open .faq-chevron { transform: rotate(180deg); }
-    .faq-a {
-      background: var(--bg-card);
-      padding: 0 20px;
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.65;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.25s ease, padding 0.25s;
-    }
-    .faq-item.open .faq-a {
-      max-height: 300px;
-      padding: 4px 20px 18px;
-    }
-
-    /* ── SECTION 8: FINAL CTA ─────────────────────────────────── */
-    #cta-final {
-      background: var(--bg-surface);
-      text-align: center;
-      border-top: 1px solid var(--border);
-    }
-    #cta-final h2 {
-      font-size: clamp(26px, 3.5vw, 42px);
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      color: #fff;
-      line-height: 1.15;
-      margin-bottom: 12px;
-    }
-    #cta-final h2 em {
-      font-style: normal;
-      color: var(--accent);
-    }
-    #cta-final p {
-      font-size: 16px;
-      color: var(--text-muted);
-      margin-bottom: 32px;
-    }
-
-    /* ── FOOTER ───────────────────────────────────────────────── */
-    footer {
-      background: var(--bg);
-      border-top: 1px solid var(--border);
-      padding-block: 28px;
-    }
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .footer-copy {
-      font-size: 13px;
-      color: var(--text-dim);
-    }
-    .footer-links {
-      display: flex;
-      gap: 20px;
-    }
-    .footer-links a {
-      font-size: 13px;
-      color: var(--text-dim);
-      transition: color 0.15s;
-    }
-    .footer-links a:hover { color: var(--text-muted); }
-
-    /* ── RESPONSIVE ───────────────────────────────────────────── */
-    @media (max-width: 640px) {
-      section { padding-block: 56px; }
-      .contrast-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      .cards-grid { grid-template-columns: 1fr; }
-      .hero-cta-group { flex-direction: column; align-items: stretch; }
-      .hero-cta-group .btn { justify-content: center; }
-      .proof-stats { grid-template-columns: 1fr 1fr; }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
+    @media (max-width: 480px) {
+      #hero { padding: 56px 0 60px; }
+      .hero-demo-wrap { margin-top: 40px; }
+      .hd-bar  { padding: 10px 12px; }
+      .hd-body { padding: 16px 14px 20px; }
     }
   </style>
 </head>
@@ -781,557 +272,391 @@
 <!-- ── NAV ─────────────────────────────────────────────────── -->
 <nav>
   <div class="container nav-inner">
-    <a href="/" class="logo">ecomb<span>lade</span></a>
+    <a href="/" class="logo">ecomb<em>lade</em></a>
     <a href="#pricing" class="btn btn-primary">Start free</a>
   </div>
 </nav>
 
-<!-- ── SECTION 1: HERO ──────────────────────────────────────── -->
+<!-- ── HERO ─────────────────────────────────────────────────── -->
 <section id="hero">
   <div class="container">
-    <div class="hero-tag">
-      <span class="dot"></span>
-      Live data across 6 marketplaces
-    </div>
+    <div class="hero-tag"><span class="dot"></span>Live data across 6 marketplaces</div>
     <h1>Spot product opportunities,<br /><em>before everyone else.</em></h1>
-    <p class="hero-sub">
-      Real sales volume, revenue, and demand — across Shopee, TikTok, Lazada, Amazon, Temu, and Alibaba — ranked in one view.
-    </p>
-    <div class="hero-cta-group">
-      <a href="#pricing" class="btn btn-primary btn-lg">Start for free</a>
-      <a href="#demo" class="btn btn-ghost btn-lg">See live data ↓</a>
-    </div>
-    <p class="no-card-note">No credit card required</p>
-  </div>
-</section>
-
-<!-- ── SECTION 2: MARKETPLACE RAIL ──────────────────────────── -->
-<section id="markets">
-  <div class="container">
-    <div class="markets-label">
-      <span class="label">Live &amp; queryable today</span>
-    </div>
-    <div class="logo-rail">
-      <div class="market-chip">
-        <div class="market-icon" style="background:#ee4d2d;">🛒</div>
-        Shopee
-      </div>
-      <div class="market-chip">
-        <div class="market-icon" style="background:#010101;">♪</div>
-        TikTok Shop
-      </div>
-      <div class="market-chip">
-        <div class="market-icon" style="background:#0f146d;">🛍</div>
-        Lazada
-      </div>
-      <div class="market-chip">
-        <div class="market-icon" style="background:#ff9900;">📦</div>
-        Amazon
-      </div>
-      <div class="market-chip">
-        <div class="market-icon" style="background:#ff4141;">🏷</div>
-        Temu
-      </div>
-      <div class="market-chip">
-        <div class="market-icon" style="background:#ff6a00;">🏭</div>
-        Alibaba
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── SECTION 3: LIVE DATA DEMO ────────────────────────────── -->
-<section id="demo">
-  <div class="container">
-    <div class="section-header">
-      <p class="eyebrow">Product research</p>
-      <h2>Decision-grade data.<br />Not vanity metrics.</h2>
-      <p>Search a keyword. See real monthly sales and revenue — not guesses.</p>
-    </div>
-
-    <!-- [WIRE: connect to search API — query param → card data] -->
-    <div class="search-bar">
-      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
-      <input class="search-input" type="text" placeholder="e.g. portable blender, led strip lights…" readonly />
-      <span class="search-meta">6 markets · daily data</span>
-    </div>
-
-    <!-- ProductCard grid — [WIRE: map over API results array] -->
-    <div class="cards-grid">
-
-      <!-- Card 1: Shopee ─────────────────────────────────────── -->
-      <!-- [WIRE: product = results[0]; marketplace = "shopee"] -->
-      <article class="product-card">
-        <div class="card-image">
-          <!-- [WIRE: <img src={product.imageUrl} alt={product.name} class="card-img-actual" />] -->
-          <div class="card-image-placeholder">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-            <span>Product image</span>
-          </div>
-          <div class="card-marketplace-badge">
-            <span class="badge-dot" style="background:#ee4d2d;"></span>
-            Shopee
-          </div>
-          <div class="card-rank">#3</div>
-        </div>
-        <div class="card-body">
-          <!-- [WIRE: product.name] -->
-          <div class="card-name">Stainless Steel Insulated Tumbler 750ml Double Wall Vacuum</div>
-          <div class="card-metrics">
-            <div class="metric">
-              <!-- [WIRE: product.monthlySales] -->
-              <span class="metric-label">Monthly Sales</span>
-              <span class="metric-value">12,400</span>
-              <span class="metric-sub">units / mo</span>
-            </div>
-            <div class="metric">
-              <!-- [WIRE: product.monthlyRevenue] -->
-              <span class="metric-label">Revenue</span>
-              <span class="metric-value accent">$118K</span>
-              <span class="metric-sub">/ mo</span>
-            </div>
-            <div class="metric">
-              <!-- [WIRE: product.avgPrice] -->
-              <span class="metric-label">Avg Price</span>
-              <span class="metric-value">$9.52</span>
-            </div>
-            <div class="metric">
-              <!-- [WIRE: product.competitionScore] -->
-              <span class="metric-label">Competition</span>
-              <span class="metric-value" style="color:#f5a623;">Medium</span>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <!-- [WIRE: product.rating, product.sellerCount] -->
-          <div class="card-rating">
-            <span class="star">★</span> 4.8
-          </div>
-          <span class="card-sellers">234 sellers</span>
-        </div>
-      </article>
-
-      <!-- Card 2: TikTok Shop ─────────────────────────────────── -->
-      <!-- [WIRE: product = results[1]; marketplace = "tiktok"] -->
-      <article class="product-card">
-        <div class="card-image">
-          <div class="card-image-placeholder">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-            <span>Product image</span>
-          </div>
-          <div class="card-marketplace-badge">
-            <span class="badge-dot" style="background:#69C9D0;"></span>
-            TikTok Shop
-          </div>
-          <div class="card-rank">#1</div>
-        </div>
-        <div class="card-body">
-          <!-- [WIRE: product.name] -->
-          <div class="card-name">Portable Mini Blender USB Rechargeable 380ml Smoothie Cup</div>
-          <div class="card-metrics">
-            <div class="metric">
-              <!-- [WIRE: product.monthlySales] -->
-              <span class="metric-label">Monthly Sales</span>
-              <span class="metric-value">31,200</span>
-              <span class="metric-sub">units / mo</span>
-            </div>
-            <div class="metric">
-              <!-- [WIRE: product.monthlyRevenue] -->
-              <span class="metric-label">Revenue</span>
-              <span class="metric-value accent">$624K</span>
-              <span class="metric-sub">/ mo</span>
-            </div>
-            <div class="metric">
-              <!-- [WIRE: product.avgPrice] -->
-              <span class="metric-label">Avg Price</span>
-              <span class="metric-value">$20.00</span>
-            </div>
-            <div class="metric">
-              <!-- [WIRE: product.competitionScore] -->
-              <span class="metric-label">Competition</span>
-              <span class="metric-value" style="color:#e05252;">High</span>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <!-- [WIRE: product.rating, product.sellerCount] -->
-          <div class="card-rating">
-            <span class="star">★</span> 4.6
-          </div>
-          <span class="card-sellers">1,840 sellers</span>
-        </div>
-      </article>
-
-      <!-- Card 3: Lazada ──────────────────────────────────────── -->
-      <!-- [WIRE: product = results[2]; marketplace = "lazada"] -->
-      <article class="product-card">
-        <div class="card-image">
-          <div class="card-image-placeholder">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-            <span>Product image</span>
-          </div>
-          <div class="card-marketplace-badge">
-            <span class="badge-dot" style="background:#0f146d;"></span>
-            Lazada
-          </div>
-          <div class="card-rank">#7</div>
-        </div>
-        <div class="card-body">
-          <!-- [WIRE: product.name] -->
-          <div class="card-name">LED Desk Lamp Touch Dimming with USB Charging Port Eye-Care</div>
-          <div class="card-metrics">
-            <div class="metric">
-              <!-- [WIRE: product.monthlySales] -->
-              <span class="metric-label">Monthly Sales</span>
-              <span class="metric-value">4,700</span>
-              <span class="metric-sub">units / mo</span>
-            </div>
-            <div class="metric">
-              <!-- [WIRE: product.monthlyRevenue] -->
-              <span class="metric-label">Revenue</span>
-              <span class="metric-value accent">$89K</span>
-              <span class="metric-sub">/ mo</span>
-            </div>
-            <div class="metric">
-              <!-- [WIRE: product.avgPrice] -->
-              <span class="metric-label">Avg Price</span>
-              <span class="metric-value">$18.90</span>
-            </div>
-            <div class="metric">
-              <!-- [WIRE: product.competitionScore] -->
-              <span class="metric-label">Competition</span>
-              <span class="metric-value" style="color:#5fba7d;">Low</span>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <!-- [WIRE: product.rating, product.sellerCount] -->
-          <div class="card-rating">
-            <span class="star">★</span> 4.7
-          </div>
-          <span class="card-sellers">88 sellers</span>
-        </div>
-      </article>
-
-      <!-- Card 4: Amazon ──────────────────────────────────────── -->
-      <!-- [WIRE: product = results[3]; marketplace = "amazon"] -->
-      <article class="product-card">
-        <div class="card-image">
-          <div class="card-image-placeholder">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-            <span>Product image</span>
-          </div>
-          <div class="card-marketplace-badge">
-            <span class="badge-dot" style="background:#ff9900;"></span>
-            Amazon
-          </div>
-          <div class="card-rank">#12</div>
-        </div>
-        <div class="card-body">
-          <!-- [WIRE: product.name] -->
-          <div class="card-name">Silicone Reusable Food Storage Bags Set of 6 BPA-Free Freezer Safe</div>
-          <div class="card-metrics">
-            <div class="metric">
-              <!-- [WIRE: product.monthlySales] -->
-              <span class="metric-label">Monthly Sales</span>
-              <span class="metric-value">5,600</span>
-              <span class="metric-sub">units / mo</span>
-            </div>
-            <div class="metric">
-              <!-- [WIRE: product.monthlyRevenue] -->
-              <span class="metric-label">Revenue</span>
-              <span class="metric-value accent">$168K</span>
-              <span class="metric-sub">/ mo</span>
-            </div>
-            <div class="metric">
-              <!-- [WIRE: product.avgPrice] -->
-              <span class="metric-label">Avg Price</span>
-              <span class="metric-value">$29.99</span>
-            </div>
-            <div class="metric">
-              <!-- [WIRE: product.competitionScore] -->
-              <span class="metric-label">Competition</span>
-              <span class="metric-value" style="color:#f5a623;">Medium</span>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <!-- [WIRE: product.rating, product.sellerCount] -->
-          <div class="card-rating">
-            <span class="star">★</span> 4.5
-          </div>
-          <span class="card-sellers">412 sellers</span>
-        </div>
-      </article>
-
-    </div>
-    <p class="cards-note">↑ All figures are placeholder data — internally consistent per marketplace. Wire to your API to show live results.</p>
-  </div>
-</section>
-
-<!-- ── SECTION 4: SIGNAL VS NOISE ───────────────────────────── -->
-<section id="signal">
-  <div class="container">
-    <div class="section-header">
-      <p class="eyebrow">Why Ecomblade</p>
-      <h2>Other tools show you data.<br />We show you decisions.</h2>
-    </div>
-    <div class="contrast-grid">
-      <div class="contrast-col noise">
-        <div class="contrast-heading">What you get elsewhere</div>
-        <ul class="contrast-list">
-          <li>
-            <div class="contrast-icon">✕</div>
-            Scraped sales estimates with no source transparency
-          </li>
-          <li>
-            <div class="contrast-icon">✕</div>
-            12 charts, none of them actionable
-          </li>
-          <li>
-            <div class="contrast-icon">✕</div>
-            One marketplace. Blind spots everywhere else.
-          </li>
-          <li>
-            <div class="contrast-icon">✕</div>
-            Stale data updated weekly or monthly
-          </li>
-          <li>
-            <div class="contrast-icon">✕</div>
-            No competitive pressure signal — you can't tell if a niche is saturated
-          </li>
-        </ul>
-      </div>
-      <div class="contrast-col signal">
-        <div class="contrast-heading">Ecomblade</div>
-        <ul class="contrast-list">
-          <li>
-            <div class="contrast-icon">✓</div>
-            Verified sales volume and revenue — daily updates
-          </li>
-          <li>
-            <div class="contrast-icon">✓</div>
-            4 metrics that answer: Is this worth my money?
-          </li>
-          <li>
-            <div class="contrast-icon">✓</div>
-            6 live marketplaces — one search, ranked together
-          </li>
-          <li>
-            <div class="contrast-icon">✓</div>
-            Daily data refresh — catch trends before they peak
-          </li>
-          <li>
-            <div class="contrast-icon">✓</div>
-            Competition score per product — know when to enter or skip
-          </li>
-        </ul>
-      </div>
-    </div>
-    <p class="signal-tagline">
-      We cut everything that doesn't answer:<br />
-      <strong>"Should I sell this, or not?"</strong>
-    </p>
-  </div>
-</section>
-
-<!-- ── SECTION 5: PROOF ──────────────────────────────────────── -->
-<section id="proof">
-  <div class="container">
-    <div class="section-header">
-      <p class="eyebrow">By the numbers</p>
-      <h2>Real scale.<br />Verified daily.</h2>
-    </div>
-    <!-- [WIRE: replace placeholder values with live metrics from your analytics/backend] -->
-    <div class="proof-stats">
-      <div class="proof-stat">
-        <div class="proof-stat-value"><span>[X]</span>M+</div>
-        <div class="proof-stat-label">Products tracked</div>
-      </div>
-      <div class="proof-stat">
-        <div class="proof-stat-value"><span>[X]</span>K+</div>
-        <div class="proof-stat-label">Active sellers</div>
-      </div>
-      <div class="proof-stat">
-        <div class="proof-stat-value"><span>6</span></div>
-        <div class="proof-stat-label">Live marketplaces</div>
-      </div>
-      <div class="proof-stat">
-        <div class="proof-stat-value">Daily</div>
-        <div class="proof-stat-label">Data refresh</div>
-      </div>
-    </div>
-    <p class="proof-placeholder-note">[Replace bracketed values with real metrics before launch]</p>
-  </div>
-</section>
-
-<!-- ── SECTION 6: PRICING ────────────────────────────────────── -->
-<section id="pricing">
-  <div class="container">
-    <div class="section-header">
-      <p class="eyebrow">Pricing</p>
-      <h2>Start free.<br />Scale when you're ready.</h2>
-      <p>No credit card. No time limit on the free tier.</p>
-    </div>
-    <div class="pricing-grid">
-
-      <!-- Free tier -->
-      <div class="pricing-card free">
-        <div>
-          <div class="pricing-tier">Free</div>
-          <div class="pricing-price">$0<span class="period"> / mo</span></div>
-          <div class="pricing-desc">Everything you need to validate your first product idea.</div>
-        </div>
-        <ul class="pricing-features">
-          <!-- [WIRE: match to actual free-tier limits] -->
-          <li><span class="check">✓</span> [X] searches per day</li>
-          <li><span class="check">✓</span> [X] marketplaces included</li>
-          <li><span class="check">✓</span> Sales volume + revenue data</li>
-          <li><span class="check">✓</span> Competition score</li>
-          <li><span class="check">✓</span> No credit card required</li>
-        </ul>
-        <a href="#" class="btn btn-ghost">Get started free</a>
-      </div>
-
-      <!-- Pro tier -->
-      <div class="pricing-card pro">
-        <div class="pricing-badge">Most popular</div>
-        <div>
-          <div class="pricing-tier">Pro</div>
-          <!-- [WIRE: real price] -->
-          <div class="pricing-price"><sup>$</sup>[XX]<span class="period"> / mo</span></div>
-          <div class="pricing-desc">For sellers who run research as a competitive advantage.</div>
-        </div>
-        <ul class="pricing-features">
-          <!-- [WIRE: match to actual pro-tier limits] -->
-          <li><span class="check">✓</span> Unlimited searches</li>
-          <li><span class="check">✓</span> All 6 marketplaces</li>
-          <li><span class="check">✓</span> Daily data, full history</li>
-          <li><span class="check">✓</span> Trend alerts</li>
-          <li><span class="check">✓</span> Export to CSV</li>
-          <li><span class="check">✓</span> Priority support</li>
-        </ul>
-        <a href="#" class="btn btn-primary">Start Pro trial</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ── SECTION 7: FAQ ────────────────────────────────────────── -->
-<section id="faq">
-  <div class="container">
-    <div class="section-header">
-      <p class="eyebrow">FAQ</p>
-      <h2>Still have questions?</h2>
-    </div>
-    <div class="faq-list">
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          How is this different from Jungle Scout or Helium 10?
-          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="faq-a">
-          Jungle Scout and Helium 10 focus on Amazon only. Ecomblade covers 6 major marketplaces — including Shopee, TikTok Shop, Lazada, and Temu — and ranks opportunities across all of them in one view. If your market is Southeast Asia or you sell cross-platform, those tools leave you blind.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          Where does the sales data come from? Is it accurate?
-          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="faq-a">
-          Our data is pulled directly from each marketplace and updated daily. We surface verified metrics — actual units sold and transaction revenue — not keyword search volume or scraped estimates. We don't show data we can't verify.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          Which countries and regions does it cover?
-          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="faq-a">
-          Coverage varies by marketplace. Shopee, Lazada, and TikTok Shop cover Southeast Asia (PH, MY, SG, TH, ID, VN). Amazon covers US, UK, and key EU markets. Temu and Alibaba cover global supply-side demand. We show you exactly which region each data point is from — no ambiguity.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          What does the free tier actually let me do?
-          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="faq-a">
-          <!-- [WIRE: update with real free-tier limits] -->
-          The free tier gives you [X] searches per day with access to [X] marketplaces. You get full sales volume, revenue, avg price, and competition score on every result. No features are locked behind a paywall to see — limits are on volume only.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          How often is data updated?
-          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="faq-a">
-          Every marketplace is refreshed daily. If a product spikes overnight, you'll see it by morning. We timestamp every result so you always know how fresh the data is.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          Can I cancel anytime?
-          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="faq-a">
-          Yes. Cancel from your account settings at any time. You keep access until the end of your billing period. No cancellation fees, no questions.
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ── SECTION 8: FINAL CTA ──────────────────────────────────── -->
-<section id="cta-final">
-  <div class="container">
-    <h2>The opportunity is there.<br /><em>Find it first.</em></h2>
-    <p>Free to start. No credit card. Results in your first search.</p>
+    <p class="hero-sub">Real sales volume, revenue, and demand — across Shopee, TikTok, Lazada, Amazon, Temu, and Alibaba — ranked in one view.</p>
     <a href="#pricing" class="btn btn-primary btn-lg">Start for free</a>
-    <p class="no-card-note" style="margin-top: 14px;">No credit card required</p>
-  </div>
-</section>
+    <p class="no-card">No credit card required</p>
 
-<!-- ── FOOTER ────────────────────────────────────────────────── -->
-<footer>
-  <div class="container footer-inner">
-    <span class="footer-copy">© 2026 Ecomblade. All rights reserved.</span>
-    <div class="footer-links">
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-      <a href="#">Contact</a>
-    </div>
-  </div>
-</footer>
+    <!-- ═══════════════════════════════════════════════════════
+         HERO DEMO COMPONENT
+         Static fallback: Thailand final-ranked state (rendered
+         by renderStatic() below). GSAP resets + animates it.
+    ═══════════════════════════════════════════════════════════ -->
+    <div class="hero-demo-wrap">
+      <div id="hero-demo">
+
+        <!-- Search bar -->
+        <div class="hd-bar">
+          <span class="hd-chip hd-chip-market">♪&nbsp;TikTok Shop</span>
+          <span class="hd-chip" id="hd-country-chip">🇹🇭&nbsp;Thailand</span>
+          <span class="hd-chip">↕&nbsp;Popularity</span>
+          <div class="hd-input-wrap">
+            <span id="hd-typed"></span><span class="hd-caret"></span>
+          </div>
+          <span class="hd-chip">20 products</span>
+          <button class="hd-srch-btn">Search</button>
+        </div>
+
+        <!-- Body -->
+        <div class="hd-body">
+
+          <!-- Snapshot -->
+          <div id="hd-snapshot" class="hd-snapshot">
+            <div class="hd-stag">Snapshot · Research Summary</div>
+            <div class="hd-metrics">
+              <div class="hd-metric">
+                <div class="hd-mlabel">30 Day Revenue</div>
+                <div id="hd-r30"    class="hd-mval"></div>
+              </div>
+              <div class="hd-metric">
+                <div class="hd-mlabel">30 Day Sold</div>
+                <div id="hd-s30"    class="hd-mval"></div>
+              </div>
+              <div class="hd-metric">
+                <div class="hd-mlabel">Avg Price</div>
+                <div id="hd-price"  class="hd-mval"></div>
+              </div>
+              <div class="hd-metric">
+                <div class="hd-mlabel">Avg Rating</div>
+                <div id="hd-rating" class="hd-mval"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Leaderboard -->
+          <div id="hd-leaderboard" class="hd-leaderboard">
+            <div class="hd-stag">Leaderboard · Ranked product opportunities</div>
+            <div id="hd-subtitle" class="hd-subtitle"></div>
+            <div class="hd-table-wrap">
+              <div class="hd-table">
+                <div class="hd-thead">
+                  <div class="hd-th">Rank</div>
+                  <div class="hd-th">Product</div>
+                  <div class="hd-th">Discount</div>
+                  <div class="hd-th">30D Revenue</div>
+                  <div class="hd-th">30D Sold</div>
+                </div>
+                <div id="hd-tbody"></div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /hd-body -->
+      </div><!-- /hero-demo -->
+    </div><!-- /hero-demo-wrap -->
+
+  </div><!-- /container -->
+</section>
 
 <script>
-  // FAQ accordion
-  document.querySelectorAll('.faq-q').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
-      const isOpen = item.classList.contains('open');
-      // Close all
-      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
-      document.querySelectorAll('.faq-q').forEach(el => el.setAttribute('aria-expanded', 'false'));
-      // Open clicked if it was closed
-      if (!isOpen) {
-        item.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
+/* ═══════════════════════════════════════════════════════════════
+   DEMO DATA
+   ─────────────────────────────────────────────────────────────
+   [WIRE] Replace this object with your API response.
+   Required shape:
+     {
+       query:       string,
+       marketplace: string,
+       markets: [{
+         country: string,
+         flag:    string,     // emoji
+         sym:     string,     // currency symbol, e.g. "฿"
+         metrics: { r30, s30, price, rating },  // all strings
+         rows: [{
+           rank:   number,   // final ranked order
+           iOrder: number,   // initial display order (≠ rank → enables Beat 4 re-sort)
+           name:   string,
+           store:  string,
+           disc:   string,   // e.g. "58.8%"
+           rev:    string,   // formatted, e.g. "1,590,597"
+           sold:   string    // formatted
+         }]
+       }]
+     }
+═══════════════════════════════════════════════════════════════ */
+var DEMO = {
+  query: 'water bottle',
+  marketplace: 'TikTok Shop',
+  markets: [
+    {
+      country: 'Thailand', flag: '🇹🇭', sym: '฿',
+      metrics: { r30: '4,610,594', s30: '76,892', price: '65.68', rating: '4.7' },
+      rows: [
+        /* iOrder = entry order (by 30D sold desc). Differs from rank
+           so Beat 4's re-sort is visually meaningful.             */
+        { rank:1, iOrder:2, name:'1700ML Stainless Steel Tumbler Vacuum Insulated', store:'COOMA',          disc:'58.8%', rev:'1,590,597', sold:'13,514' },
+        { rank:2, iOrder:1, name:'Glass Thermal Bottle 480ml Anti-Slip Base',       store:'YMShop22',       disc:'56.4%', rev:'240,000',   sold:'14,126' },
+        { rank:3, iOrder:3, name:'2L Plastic Sport Bottle Colour Series',            store:'nite night',     disc:'39.2%', rev:'389,952',   sold:'8,124'  },
+        { rank:4, iOrder:5, name:'316 Stainless Flask Grade Pro 750ml',              store:'IN-HOLLY',       disc:'99.6%', rev:'6,703',     sold:'5,829'  },
+        { rank:5, iOrder:4, name:'1500ML Flip-Lid Tumbler with Carry Strap',         store:'YJM HOMELIVING', disc:'66.1%', rev:'1,094,280', sold:'5,394'  }
+      ]
+    },
+    {
+      country: 'Singapore', flag: '🇸🇬', sym: 'S$',
+      metrics: { r30: '312,540', s30: '11,230', price: '28.90', rating: '4.6' },
+      rows: [
+        { rank:1, iOrder:2, name:'HYDRA 1L BPA-Free Tritan Sport Bottle',     store:'HydraFit SG',   disc:'62.1%', rev:'98,430', sold:'5,209' },
+        { rank:2, iOrder:1, name:'Stainless Steel Insulated Flask 500ml',      store:'CoolGear SG',   disc:'51.0%', rev:'78,400', sold:'3,200' },
+        { rank:3, iOrder:3, name:'Foldable Silicone Water Bottle 600ml',       store:'EcoCarry',      disc:'44.8%', rev:'44,160', sold:'3,450' },
+        { rank:4, iOrder:4, name:'Glass Bottle Bamboo Lid 650ml',              store:'PureVida SG',   disc:'38.9%', rev:'35,200', sold:'1,600' },
+        { rank:5, iOrder:5, name:'2.2L Large Motivational Water Bottle Daily', store:'FitFlow Store', disc:'58.3%', rev:'28,875', sold:'1,750' }
+      ]
+    },
+    {
+      country: 'Malaysia', flag: '🇲🇾', sym: 'RM',
+      metrics: { r30: '744,585', s30: '37,540', price: '19.90', rating: '4.5' },
+      rows: [
+        { rank:1, iOrder:2, name:'Tumbler 1L Vacuum Flask Thermal Bottle',       store:'DrinkGear MY',   disc:'73.2%', rev:'318,744', sold:'20,046' },
+        { rank:2, iOrder:1, name:'Sport Bottle 750ml Leak-Proof BPA Free',       store:'ActiveLife MY',  disc:'50.5%', rev:'148,500', sold:'15,000' },
+        { rank:3, iOrder:3, name:'Glass Thermal Mug with Handle 380ml',          store:'KitchenPlus MY', disc:'44.7%', rev:'92,500',  sold:'5,000'  },
+        { rank:4, iOrder:5, name:'316 Stainless Double Wall Flask 600ml',        store:'PureCup MY',     disc:'58.0%', rev:'74,700',  sold:'3,000'  },
+        { rank:5, iOrder:4, name:'Foldable Collapsible Silicone Bottle 500ml',   store:'EcoMY Shop',     disc:'40.5%', rev:'45,220',  sold:'3,800'  }
+      ]
+    }
+  ]
+};
+
+/* ── Row HTML template (reused by static render + animation) ── */
+function rowHTML(r, sym) {
+  return '<div class="hd-row" data-rank="' + r.rank + '" data-iorder="' + r.iOrder + '">'
+    + '<div class="hd-td"><span class="hd-rank' + (r.rank === 1 ? ' gold' : '') + '">' + r.rank + '</span></div>'
+    + '<div class="hd-td"><div class="hd-pname">' + r.name + '</div><div class="hd-pstore">' + r.store + '</div></div>'
+    + '<div class="hd-td"><span class="hd-disc">' + r.disc + '</span></div>'
+    + '<div class="hd-td hd-rev">' + sym + r.rev + '</div>'
+    + '<div class="hd-td hd-sold">' + r.sold + '</div>'
+    + '</div>';
+}
+
+/* ── Static render (no GSAP dependency) ───────────────────────
+   Runs immediately; populates the demo with Thailand's final
+   ranked state. This IS the prefers-reduced-motion experience.
+─────────────────────────────────────────────────────────────── */
+(function renderStatic() {
+  var m = DEMO.markets[0];
+  document.getElementById('hd-typed').textContent   = DEMO.query;
+  document.getElementById('hd-r30').textContent     = m.sym + m.metrics.r30;
+  document.getElementById('hd-s30').textContent     = m.metrics.s30;
+  document.getElementById('hd-price').textContent   = m.sym + m.metrics.price;
+  document.getElementById('hd-rating').textContent  = m.metrics.rating;
+  document.getElementById('hd-subtitle').textContent =
+    'Showing live ' + DEMO.marketplace + ' results for "' + DEMO.query + '"';
+  var sorted = m.rows.slice().sort(function(a, b) { return a.rank - b.rank; });
+  document.getElementById('hd-tbody').innerHTML = sorted.map(function(r) {
+    return rowHTML(r, m.sym);
+  }).join('');
+}());
+
+/* ═══════════════════════════════════════════════════════════════
+   GSAP ANIMATION
+═══════════════════════════════════════════════════════════════ */
+function initDemo() {
+  if (!window.gsap || !window.Flip) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  gsap.registerPlugin(Flip);
+
+  var demo        = document.getElementById('hero-demo');
+  var typed       = document.getElementById('hd-typed');
+  var countryChip = document.getElementById('hd-country-chip');
+  var snapshot    = document.getElementById('hd-snapshot');
+  var leaderboard = document.getElementById('hd-leaderboard');
+  var tbody       = document.getElementById('hd-tbody');
+  var subtitle    = document.getElementById('hd-subtitle');
+  var mEls = {
+    r30:    document.getElementById('hd-r30'),
+    s30:    document.getElementById('hd-s30'),
+    price:  document.getElementById('hd-price'),
+    rating: document.getElementById('hd-rating')
+  };
+  var mElArr = [mEls.r30, mEls.s30, mEls.price, mEls.rating];
+
+  var currentTl = null;
+  var midx = 0;
+
+  /* Pause loop when hero is scrolled out of view */
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (!currentTl) return;
+      e.isIntersecting ? currentTl.resume() : currentTl.pause();
+    });
+  }, { threshold: 0.1 });
+  io.observe(demo);
+
+  /* Count a metric element up from 0 */
+  function countUp(el, sym, targetStr, dur) {
+    var n = parseFloat(targetStr.replace(/,/g, ''));
+    var p = { v: 0 };
+    gsap.to(p, {
+      v: n, duration: dur, ease: 'power2.out',
+      onUpdate:  function() { el.textContent = sym + Math.round(p.v).toLocaleString(); },
+      onComplete: function() { el.textContent = sym + targetStr; }
+    });
+  }
+
+  /* Instantly write metric text (used during crossfade) */
+  function setMetrics(m) {
+    mEls.r30.textContent    = m.sym + m.metrics.r30;
+    mEls.s30.textContent    = m.metrics.s30;
+    mEls.price.textContent  = m.sym + m.metrics.price;
+    mEls.rating.textContent = m.metrics.rating;
+  }
+
+  /* Animate metrics counting up (Beat 3) */
+  function animateMetrics(m, dur) {
+    countUp(mEls.r30,   m.sym, m.metrics.r30,   dur);
+    countUp(mEls.s30,   '',    m.metrics.s30,   dur);
+    countUp(mEls.price, m.sym, m.metrics.price, dur);
+    var p2 = { v: 0 };
+    gsap.to(p2, {
+      v: parseFloat(m.metrics.rating), duration: dur, ease: 'power2.out',
+      onUpdate:  function() { mEls.rating.textContent = p2.v.toFixed(1); },
+      onComplete: function() { mEls.rating.textContent = m.metrics.rating; }
+    });
+  }
+
+  /* ── Main cycle ─────────────────────────────────────────────
+     Each call to runCycle() builds one complete GSAP timeline.
+     On complete, advances the market index and calls itself.
+  ─────────────────────────────────────────────────────────────
+   TIMING MAP
+    0.00     Reset all state
+    0.00–1.10  Beat 1: type query char by char (10 chars × 110ms)
+    1.10–2.00  Beat 2: snapshot + rows fade/slide in
+    2.05–3.00  Beat 3: metrics count up
+    3.10–3.70  Beat 4: GSAP Flip re-sort rows to rank order ← money shot
+    3.90–5.60  Beat 5: country chip switches, data crossfades to next market
+    5.70–7.70  Hold on new market data (visitors read the localized numbers)
+    7.70–8.15  Fade out → onComplete fires runCycle() with next market
+  ──────────────────────────────────────────────────────────── */
+  function runCycle() {
+    var m     = DEMO.markets[midx];
+    var mNext = DEMO.markets[(midx + 1) % DEMO.markets.length];
+    var q     = DEMO.query;
+
+    var tl = gsap.timeline({
+      onComplete: function() {
+        midx = (midx + 1) % DEMO.markets.length;
+        runCycle();
       }
     });
+    currentTl = tl;
+
+    /* ── RESET (t = 0) ────────────────────────────────────── */
+    tl.add(function() {
+      typed.textContent = '';
+      countryChip.innerHTML = m.flag + '&nbsp;' + m.country;
+      gsap.set(demo,        { opacity: 1 });
+      gsap.set(countryChip, { opacity: 1 });
+      gsap.set(snapshot,    { opacity: 0, y: 10 });
+      gsap.set(leaderboard, { opacity: 0, y: 10 });
+    }, 0);
+
+    /* ── BEAT 1: TYPE (0 – 1.10s) ────────────────────────── */
+    q.split('').forEach(function(ch, i) {
+      tl.add(function() { typed.textContent += ch; }, i * 0.105);
+    });
+
+    /* ── BEAT 2: RESULTS IN (1.10 – 2.00s) ──────────────── */
+    tl.add(function() {
+      /* Rows enter in iOrder (sold-volume desc) — NOT rank order */
+      var scrambled = m.rows.slice().sort(function(a, b) { return a.iOrder - b.iOrder; });
+      tbody.innerHTML = scrambled.map(function(r) { return rowHTML(r, m.sym); }).join('');
+      subtitle.textContent = 'Showing live ' + DEMO.marketplace + ' results for "' + q + '"';
+    }, 1.1);
+
+    tl.to(snapshot,    { opacity: 1, y: 0, duration: 0.38, ease: 'power2.out' }, 1.1);
+    tl.to(leaderboard, { opacity: 1, y: 0, duration: 0.38, ease: 'power2.out' }, 1.2);
+
+    tl.add(function() {
+      gsap.from(tbody.querySelectorAll('.hd-row'), {
+        opacity: 0, y: 12, stagger: 0.07, duration: 0.35,
+        ease: 'power2.out', clearProps: 'all'
+      });
+    }, 1.35);
+
+    /* ── BEAT 3: COUNT UP (2.05 – 3.00s) ────────────────── */
+    tl.add(function() { animateMetrics(m, 0.85); }, 2.05);
+
+    /* ── BEAT 4: RE-SORT TO RANK (3.10 – 3.70s) ─────────── */
+    tl.add(function() {
+      var rowEls = Array.from(tbody.querySelectorAll('.hd-row'));
+      var state  = Flip.getState(rowEls);
+      rowEls.sort(function(a, b) { return +a.dataset.rank - +b.dataset.rank; });
+      rowEls.forEach(function(r) { tbody.appendChild(r); });
+      Flip.from(state, {
+        duration: 0.52,
+        ease: 'power2.inOut',
+        stagger: { amount: 0.14 }
+      });
+    }, 3.1);
+
+    /* ── BEAT 5: COUNTRY SWITCH (3.90 – 5.60s) ──────────── */
+
+    /* Country chip: fade out → update → fade in */
+    tl.add(function() {
+      gsap.to(countryChip, { opacity: 0, duration: 0.18, ease: 'power1.in' });
+    }, 3.9);
+    tl.add(function() {
+      countryChip.innerHTML = mNext.flag + '&nbsp;' + mNext.country;
+      gsap.to(countryChip, { opacity: 1, duration: 0.22, ease: 'power2.out' });
+    }, 4.12);
+
+    /* Metrics: fade out → swap text → fade in (no count-up; crossfade reads cleaner) */
+    tl.add(function() {
+      gsap.to(mElArr, { opacity: 0, duration: 0.20, stagger: 0.04 });
+    }, 4.15);
+    tl.add(function() {
+      setMetrics(mNext);
+      gsap.to(mElArr, { opacity: 1, duration: 0.26, stagger: 0.04 });
+    }, 4.42);
+
+    /* Rows: fade out → swap content → stagger in */
+    tl.add(function() {
+      gsap.to(tbody.querySelectorAll('.hd-row'), { opacity: 0, duration: 0.20 });
+    }, 4.25);
+    tl.add(function() {
+      /* Next market rows enter already sorted by rank — they're "the answer" */
+      var ranked = mNext.rows.slice().sort(function(a, b) { return a.rank - b.rank; });
+      tbody.innerHTML = ranked.map(function(r) { return rowHTML(r, mNext.sym); }).join('');
+      gsap.from(tbody.querySelectorAll('.hd-row'), {
+        opacity: 0, stagger: 0.06, duration: 0.30, clearProps: 'all'
+      });
+    }, 4.52);
+
+    /* ── HOLD (5.70 – 7.70s) ─────────────────────────────── */
+    tl.to({}, { duration: 2.0 }, 5.7); /* dummy tween extends timeline to 7.7 */
+
+    /* ── FADE OUT (7.70 – 8.15s) ────────────────────────── */
+    tl.to(demo, { opacity: 0, duration: 0.42, ease: 'power1.in' }, 7.7);
+    /* onComplete at ~8.15s → runCycle() */
+  }
+
+  runCycle();
+}
+
+/* ── Load GSAP after first paint (double-rAF = post-LCP safe) ─ */
+requestAnimationFrame(function() {
+  requestAnimationFrame(function() {
+    var s1 = document.createElement('script');
+    s1.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
+    s1.onload = function() {
+      var s2 = document.createElement('script');
+      s2.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js';
+      s2.onload = initDemo;
+      document.head.appendChild(s2);
+    };
+    document.head.appendChild(s1);
   });
+});
 </script>
 
 </body>
