@@ -290,9 +290,33 @@
     }
 
     /* ── Responsive ─────────────────────────────────────────── */
+    .hd-table-wrap {
+      scrollbar-width: thin;
+      scrollbar-color: var(--bdr-med) transparent;
+    }
+    .hd-table-wrap::-webkit-scrollbar { height: 3px; }
+    .hd-table-wrap::-webkit-scrollbar-track { background: transparent; }
+    .hd-table-wrap::-webkit-scrollbar-thumb { background: var(--bdr-med); border-radius: 99px; }
+
     @media (max-width: 680px) {
       .hd-metrics { grid-template-columns: repeat(2, 1fr); }
-      .hd-pname   { max-width: 140px; }
+      /* Narrow product column so Store/Discount/Revenue are visible on load */
+      .hd-table { min-width: 820px; }
+      .hd-thead, .hd-row {
+        grid-template-columns: 40px 110px 88px 88px 100px 100px 68px 112px 80px;
+      }
+      .hd-pname { max-width: 105px; }
+      /* Right-edge fade hints at scrollable content */
+      #hd-leaderboard { position: relative; overflow: clip; }
+      #hd-leaderboard::after {
+        content: '';
+        position: absolute;
+        right: 0; top: 0; bottom: 0;
+        width: 52px;
+        background: linear-gradient(to right, transparent, rgba(255,255,255,0.94));
+        pointer-events: none;
+        z-index: 1;
+      }
     }
     @media (max-width: 480px) {
       #hero { padding: 56px 0 60px; }
