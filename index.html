@@ -913,15 +913,13 @@
       padding: 52px 0 48px;
     }
     .end-logo {
-      display: inline-block;
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
       text-decoration: none;
       margin-bottom: 12px;
     }
-    .end-logo em { font-style: normal; color: var(--accent); }
+    .end-logo-img { height: 28px; width: auto; display: block; }
     .end-tagline {
       font-size: 13px;
       line-height: 1.65;
@@ -967,7 +965,7 @@
 <!-- ── NAV ─────────────────────────────────────────────────── -->
 <nav>
   <div class="container nav-inner">
-    <a href="/" class="logo"><img src="assets/EB-logo-nav.svg" alt="Ecomblade" class="logo-img"></a>
+    <a href="https://ecomblade.com" class="logo"><img src="assets/EB-logo-nav.svg" alt="Ecomblade" class="logo-img"></a>
     <div class="nav-links">
       <a href="#value">Features</a>
       <a href="#pricing">Pricing</a>
@@ -1465,7 +1463,7 @@
 
         <!-- Brand + tagline -->
         <div class="end-brand">
-          <a href="/" class="end-logo">ecomb<em>lade</em></a>
+          <a href="https://ecomblade.com" class="end-logo"><img src="assets/white-EB-logo-nav.svg" alt="Ecomblade" class="end-logo-img"></a>
           <p class="end-tagline">Global product research for serious sellers. Sales volume, revenue, and demand across 6 marketplaces — in one clean view.</p>
         </div>
 
