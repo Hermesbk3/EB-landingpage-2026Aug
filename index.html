@@ -114,7 +114,8 @@
       border: 1px solid var(--bdr-med);
       border-radius: 18px;
       box-shadow: 0 2px 32px rgba(7, 17, 15, 0.08), 0 0 0 1px rgba(7, 17, 15, 0.03);
-      overflow: hidden;
+      /* overflow:hidden removed — it clips the horizontal scroll inside .hd-table-wrap.
+         Top corners are handled by border-radius on .hd-bar instead. */
       /* Exact height reserved → CLS = 0 when GSAP hydrates */
       min-height: 484px;
     }
@@ -125,6 +126,7 @@
       padding: 12px 18px;
       background: var(--surf);
       border-bottom: 1px solid var(--bdr);
+      border-radius: 17px 17px 0 0;
     }
 
     .hd-chip {
@@ -197,32 +199,33 @@
      * Div-based table — NOT <table> — so GSAP Flip can freely
      * animate row positions during the rank re-sort (Beat 4).
      */
-    .hd-table { min-width: 920px; }
+    .hd-table { min-width: 986px; }
 
     .hd-thead {
       display: grid;
-      grid-template-columns: 40px minmax(120px,1.3fr) 100px 92px 96px 100px 74px 116px 84px;
-      padding: 10px 8px 8px;
+      grid-template-columns: 36px minmax(120px,1fr) 90px 88px 86px 90px 64px 104px 80px;
+      padding: 8px 8px 6px;
       border-bottom: 1px solid var(--bdr);
     }
     .hd-th {
       font-size: 10px; font-weight: 600;
       letter-spacing: 0.07em; text-transform: uppercase; color: var(--dim);
     }
-    .hd-th:nth-child(n+3) { text-align: right; }
+    .hd-th:nth-child(n+5) { text-align: right; }
 
     /* position:relative so Flip can absolutely-position rows during animation */
     #hd-tbody { position: relative; }
 
     .hd-row {
       display: grid;
-      grid-template-columns: 40px minmax(120px,1.3fr) 100px 92px 96px 100px 74px 116px 84px;
+      grid-template-columns: 36px minmax(120px,1fr) 90px 88px 86px 90px 64px 104px 80px;
       align-items: center;
-      padding: 10px 8px;
+      padding: 8px 8px;
       border-bottom: 1px solid var(--bdr);
+      font-size: 12.5px;
     }
     .hd-row:last-child { border-bottom: none; }
-    .hd-td:nth-child(n+3) { text-align: right; }
+    .hd-td:nth-child(n+5) { text-align: right; }
 
     .hd-rank {
       display: inline-flex; align-items: center; justify-content: center;
@@ -236,16 +239,19 @@
       color: #9a7a0a;
     }
 
-    .hd-pname  { font-size: 13px; font-weight: 500; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 260px; }
-    .hd-pstore { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .hd-pname   { font-weight: 500; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .hd-store   { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--muted); }
+    .hd-created { white-space: nowrap; color: var(--muted); }
+    .hd-orig    { color: var(--muted); }
+    .hd-dprice  { font-weight: 600; color: var(--ink); }
 
     .hd-disc {
       display: inline-block; padding: 2px 7px;
       background: rgba(239, 68, 68, 0.08); border-radius: 4px;
       font-size: 11px; font-weight: 600; color: #dc2626;
     }
-    .hd-rev  { font-size: 13px; font-weight: 600; color: var(--ink); }
-    .hd-sold { font-size: 13px; color: var(--muted); }
+    .hd-rev  { font-weight: 600; color: var(--ink); }
+    .hd-sold { color: var(--muted); }
 
     /* ── Prefers-reduced-motion: static final state ─────────── */
     @media (prefers-reduced-motion: reduce) {
@@ -299,7 +305,7 @@
         <!-- Search bar -->
         <div class="hd-bar">
           <span class="hd-chip hd-chip-market">♪&nbsp;TikTok Shop</span>
-          <span class="hd-chip" id="hd-country-chip">🇹🇭&nbsp;Thailand</span>
+          <span class="hd-chip" id="hd-country-chip"><svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#A51931"/><rect y="2.8" width="20" height="8.4" fill="#F4F5F8"/><rect y="5.6" width="20" height="2.8" fill="#2D2A4A"/></svg>&nbsp;Thailand</span>
           <span class="hd-chip">↕&nbsp;Popularity</span>
           <div class="hd-input-wrap">
             <span id="hd-typed"></span><span class="hd-caret"></span>
@@ -463,6 +469,16 @@ function rowHTML(r, sym) {
   }).join('');
 }());
 
+/* Inline SVG flags — avoids emoji rendering variance on Windows/Android */
+function flagSVG(code) {
+  var f = {
+    th: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#A51931"/><rect y="2.8" width="20" height="8.4" fill="#F4F5F8"/><rect y="5.6" width="20" height="2.8" fill="#2D2A4A"/></svg>',
+    sg: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#F4F5F8"/><rect width="20" height="7" fill="#EF3340"/><circle cx="5.5" cy="3.5" r="2.2" fill="#F4F5F8"/><circle cx="7" cy="3.5" r="1.7" fill="#EF3340"/></svg>',
+    my: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#F4F5F8"/><rect y="2" width="20" height="2" fill="#CC0001"/><rect y="6" width="20" height="2" fill="#CC0001"/><rect y="10" width="20" height="2" fill="#CC0001"/><rect width="10" height="7" fill="#010066"/></svg>'
+  };
+  return f[code] || '';
+}
+
 /* ═══════════════════════════════════════════════════════════════
    GSAP ANIMATION
 ═══════════════════════════════════════════════════════════════ */
@@ -561,7 +577,7 @@ function initDemo() {
     /* ── RESET (t = 0) ────────────────────────────────────── */
     tl.add(function() {
       typed.textContent = '';
-      countryChip.innerHTML = m.flag + '&nbsp;' + m.country;
+      countryChip.innerHTML = flagSVG(m.flag) + '&nbsp;' + m.country;
       gsap.set(demo,        { opacity: 1 });
       gsap.set(countryChip, { opacity: 1 });
       gsap.set(snapshot,    { opacity: 0, y: 10 });
@@ -614,7 +630,7 @@ function initDemo() {
       gsap.to(countryChip, { opacity: 0, duration: 0.18, ease: 'power1.in' });
     }, 3.9);
     tl.add(function() {
-      countryChip.innerHTML = mNext.flag + '&nbsp;' + mNext.country;
+      countryChip.innerHTML = flagSVG(mNext.flag) + '&nbsp;' + mNext.country;
       gsap.to(countryChip, { opacity: 1, duration: 0.22, ease: 'power2.out' });
     }, 4.12);
 
