@@ -492,6 +492,156 @@
       .val-grid   { grid-template-columns: 1fr; }
       .val-header { margin-bottom: 36px; }
     }
+
+    /* ── Section 4: Pricing ──────────────────────────────────── */
+    #pricing {
+      padding: 96px 0 80px;
+      background: var(--bg);
+    }
+    .pr-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .pr-eyebrow {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--acc-ink);
+      margin-bottom: 12px;
+    }
+    .pr-headline {
+      font-size: clamp(24px, 4vw, 38px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .pr-sub {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .pr-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 720px;
+      margin-inline: auto;
+    }
+    .pr-card {
+      background: var(--bg);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-lg);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+    }
+    .pr-card-pro {
+      border-color: var(--acc-bdr);
+      box-shadow: 0 4px 32px rgba(0, 224, 198, 0.13);
+    }
+    .pr-tag {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--acc-ink);
+      background: var(--acc-bg);
+      border: 1px solid var(--acc-bdr);
+      border-radius: 100px;
+      padding: 3px 10px;
+      margin-bottom: 16px;
+    }
+    .pr-plan {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .pr-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 24px;
+    }
+    .pr-amount {
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .pr-period {
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .pr-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 28px;
+      flex: 1;
+    }
+    .pr-feat {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .pr-feat-yes { color: var(--ink); }
+    .pr-feat-no  { color: var(--muted); }
+    .pr-icon {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pr-icon-yes { background: rgba(0, 224, 198, 0.14); color: #007a6e; }
+    .pr-icon-no  { background: rgba(220, 38, 38, 0.08); color: #b91c1c; }
+    .pr-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 20px;
+      border-radius: var(--r);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .pr-btn-primary {
+      background: var(--accent);
+      color: #07110F;
+      border: none;
+    }
+    .pr-btn-primary:hover  { background: #1ae8d0; transform: translateY(-1px); }
+    .pr-btn-primary:active { transform: translateY(0); }
+    .pr-btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--bdr-med);
+    }
+    .pr-btn-outline:hover  { background: var(--surf); transform: translateY(-1px); }
+    .pr-btn-outline:active { transform: translateY(0); }
+    @media (max-width: 600px) {
+      #pricing   { padding: 64px 0 56px; }
+      .pr-grid   { grid-template-columns: 1fr; max-width: 400px; }
+      .pr-header { margin-bottom: 36px; }
+    }
   </style>
 </head>
 <body>
@@ -797,6 +947,95 @@
           <p class="val-title">Pipe results into AI</p>
           <p class="val-desc">Send research straight into ChatGPT or Claude for instant analysis.</p>
         </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 4: PRICING ────────────────────────────────────── -->
+<section id="pricing">
+  <div class="container">
+
+    <div class="pr-header">
+      <span class="pr-eyebrow">Pricing</span>
+      <h2 class="pr-headline">Start free. Upgrade when you're ready.</h2>
+      <p class="pr-sub">No credit card. No time limit. Use it as long as you want.</p>
+    </div>
+
+    <div class="pr-grid">
+
+      <!-- Free card ───────────────────────────────────────────── -->
+      <div class="pr-card">
+        <p class="pr-plan">Free</p>
+        <div class="pr-price">
+          <span class="pr-amount">$0</span>
+          <span class="pr-period">/forever</span>
+        </div>
+        <ul class="pr-features">
+          <li class="pr-feat pr-feat-yes">
+            <span class="pr-icon pr-icon-yes" aria-hidden="true">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            6 Marketplaces, 7 Countries
+          </li>
+          <li class="pr-feat pr-feat-yes">
+            <span class="pr-icon pr-icon-yes" aria-hidden="true">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Up to 20 product results per search
+          </li>
+          <li class="pr-feat pr-feat-yes">
+            <span class="pr-icon pr-icon-yes" aria-hidden="true">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Limited AI access
+          </li>
+          <li class="pr-feat pr-feat-no">
+            <span class="pr-icon pr-icon-no" aria-hidden="true">
+              <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 1.5L6.5 6.5M6.5 1.5L1.5 6.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </span>
+            Data exports not included
+          </li>
+        </ul>
+        <a href="#" class="pr-btn pr-btn-outline">Start for free</a>
+      </div>
+
+      <!-- Pro card ────────────────────────────────────────────── -->
+      <div class="pr-card pr-card-pro">
+        <span class="pr-tag">Most popular</span>
+        <p class="pr-plan">Pro</p>
+        <div class="pr-price">
+          <span class="pr-amount">$19</span>
+          <span class="pr-period">/month</span>
+        </div>
+        <ul class="pr-features">
+          <li class="pr-feat pr-feat-yes">
+            <span class="pr-icon pr-icon-yes" aria-hidden="true">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            6 Marketplaces, 7 Countries
+          </li>
+          <li class="pr-feat pr-feat-yes">
+            <span class="pr-icon pr-icon-yes" aria-hidden="true">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Full product results
+          </li>
+          <li class="pr-feat pr-feat-yes">
+            <span class="pr-icon pr-icon-yes" aria-hidden="true">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Full AI access
+          </li>
+          <li class="pr-feat pr-feat-yes">
+            <span class="pr-icon pr-icon-yes" aria-hidden="true">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Data exports included
+          </li>
+        </ul>
+        <a href="#" class="pr-btn pr-btn-primary">Start for free</a>
       </div>
 
     </div>
