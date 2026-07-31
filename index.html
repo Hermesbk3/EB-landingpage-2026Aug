@@ -274,6 +274,103 @@
       .hd-bar  { padding: 10px 12px; }
       .hd-body { padding: 16px 14px 20px; }
     }
+    /* ══════════════════════════════════════════════════════════
+       SECTION 2 — BEFORE / AFTER TRANSFORMATION
+    ══════════════════════════════════════════════════════════ */
+    #transform {
+      padding: 96px 0 80px;
+      text-align: center;
+    }
+    .tf-headline {
+      font-size: clamp(24px, 4vw, 38px);
+      font-weight: 700; letter-spacing: -0.025em; line-height: 1.2;
+      max-width: 520px; margin-inline: auto; margin-bottom: 14px;
+      color: var(--ink);
+    }
+    .tf-sub {
+      font-size: clamp(15px, 2vw, 17px); color: var(--muted); line-height: 1.6;
+      max-width: 500px; margin-inline: auto; margin-bottom: 52px;
+    }
+    .tf-diagram {
+      max-width: 640px; margin-inline: auto;
+      display: flex; flex-direction: column; align-items: center;
+    }
+
+    /* ── Cards ─────────────────────────────────────────────── */
+    .tf-card {
+      width: 100%; border-radius: var(--r-lg); padding: 28px 24px; text-align: left;
+      opacity: 0; transform: translateY(22px);
+      transition: opacity 0.44s ease, transform 0.44s ease;
+    }
+    .tf-card.in { opacity: 1; transform: none; }
+
+    .tf-card-before { background: #f5f5f5; border: 1px solid #e2e2e2; }
+    .tf-card-after  {
+      background: #fff; border: 1px solid var(--acc-bdr);
+      box-shadow: 0 4px 30px rgba(0, 224, 198, 0.12);
+    }
+
+    /* ── Label ─────────────────────────────────────────────── */
+    .tf-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.10em;
+      text-transform: uppercase; margin-bottom: 20px;
+      transform: translateY(8px); transition: transform 0.36s ease 0.04s;
+    }
+    .tf-card.in .tf-label { transform: none; }
+    .tf-card-before .tf-label { color: #b0b0b0; }
+    .tf-card-after  .tf-label { color: var(--acc-ink); }
+
+    /* ── Beats ─────────────────────────────────────────────── */
+    .tf-beats { display: flex; flex-direction: column; gap: 16px; }
+
+    @media (min-width: 720px) {
+      .tf-beats { flex-direction: row; gap: 0; align-items: flex-start; }
+      .tf-beat + .tf-beat { padding-left: 20px; margin-left: 20px; }
+      .tf-card-before .tf-beat + .tf-beat { border-left: 1px solid #e2e2e2; }
+      .tf-card-after  .tf-beat + .tf-beat { border-left: 1px solid var(--acc-bdr); }
+    }
+
+    .tf-beat {
+      display: flex; align-items: flex-start; gap: 10px; flex: 1;
+      transform: translateY(12px); transition: transform 0.38s ease;
+    }
+    .tf-card.in .tf-beat:nth-child(1) { transform: none; transition-delay: 0.08s; }
+    .tf-card.in .tf-beat:nth-child(2) { transform: none; transition-delay: 0.15s; }
+    .tf-card.in .tf-beat:nth-child(3) { transform: none; transition-delay: 0.22s; }
+
+    .tf-beat-num {
+      flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; margin-top: 1px;
+    }
+    .tf-card-before .tf-beat-num { background: #e5e5e5; color: #b0b0b0; }
+    .tf-card-after  .tf-beat-num { background: var(--acc-bg); color: var(--acc-ink); }
+
+    .tf-beat-text { font-size: 14px; line-height: 1.5; }
+    .tf-card-before .tf-beat-text { color: #888; }
+    .tf-card-after  .tf-beat-text { color: var(--ink); }
+
+    /* ── Connecting arrow ──────────────────────────────────── */
+    .tf-arrow {
+      padding: 4px 0;
+      display: flex; justify-content: center;
+    }
+    .tf-arrow-line {
+      stroke-dasharray: 34; stroke-dashoffset: 34;
+      transition: stroke-dashoffset 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .tf-arrow-line.in { stroke-dashoffset: 0; }
+    .tf-arrow-chev { opacity: 0; transition: opacity 0.24s ease; }
+    .tf-arrow-chev.in { opacity: 1; }
+
+    /* ── Reduced motion ─────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .tf-card  { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .tf-label { transform: none !important; transition: none !important; }
+      .tf-beat  { transform: none !important; transition: none !important; }
+      .tf-arrow-line { stroke-dashoffset: 0 !important; transition: none !important; }
+      .tf-arrow-chev { opacity: 1 !important; transition: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -291,7 +388,7 @@
   <div class="container">
     <div class="hero-tag"><span class="dot"></span>Data Access Across 7 Countries</div>
     <h1>Spot product opportunities,<br /><em>before everyone else.</em></h1>
-    <p class="hero-sub">Real sales volume, revenue, and demand — across Shopee, TikTok, Lazada, Amazon, Temu, and Alibaba — ranked in one view.</p>
+    <p class="hero-sub">The ultimate product research platform that expands your view beyond your local market.</p>
     <a href="#pricing" class="btn btn-primary btn-lg">Start for free</a>
     <p class="no-card">No credit card required</p>
 
@@ -368,6 +465,68 @@
     </div><!-- /hero-demo-wrap -->
 
   </div><!-- /container -->
+</section>
+
+<!-- ── SECTION 2: BEFORE → AFTER ─────────────────────────── -->
+<section id="transform">
+  <div class="container">
+    <h2 class="tf-headline">Stop guessing. Start with global demand.</h2>
+    <p class="tf-sub">Local data shows you what's already winning — and saturated. Ecomblade shows you what's proven elsewhere, before your market catches on.</p>
+
+    <div class="tf-diagram">
+
+      <!-- BEFORE -->
+      <div class="tf-card tf-card-before" id="tf-before">
+        <div class="tf-label">Before</div>
+        <div class="tf-beats">
+          <div class="tf-beat">
+            <span class="tf-beat-num">1</span>
+            <span class="tf-beat-text">See only what's already winning locally</span>
+          </div>
+          <div class="tf-beat">
+            <span class="tf-beat-num">2</span>
+            <span class="tf-beat-text">Enter saturated markets late</span>
+          </div>
+          <div class="tf-beat">
+            <span class="tf-beat-num">3</span>
+            <span class="tf-beat-text">Compete on price until margins die</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARROW — line draws down, chevron pops in after -->
+      <div class="tf-arrow">
+        <svg width="40" height="52" viewBox="0 0 40 52" fill="none" aria-hidden="true">
+          <line x1="20" y1="2" x2="20" y2="36"
+                stroke="#00E0C6" stroke-width="2" stroke-linecap="round"
+                class="tf-arrow-line"/>
+          <path d="M10 27 L20 40 L30 27"
+                stroke="#00E0C6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                class="tf-arrow-chev"/>
+        </svg>
+      </div>
+
+      <!-- AFTER -->
+      <div class="tf-card tf-card-after" id="tf-after">
+        <div class="tf-label">After</div>
+        <div class="tf-beats">
+          <div class="tf-beat">
+            <span class="tf-beat-num">1</span>
+            <span class="tf-beat-text">See what's proven across global markets</span>
+          </div>
+          <div class="tf-beat">
+            <span class="tf-beat-num">2</span>
+            <span class="tf-beat-text">Move it to your market before competitors catch on</span>
+          </div>
+          <div class="tf-beat">
+            <span class="tf-beat-num">3</span>
+            <span class="tf-beat-text">Own the opportunity early</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <script>
