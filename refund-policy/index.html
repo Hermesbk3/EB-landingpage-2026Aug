@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Refund Policy — Ecomblade</title>
+    <script type="module" src="/src/analytics.js"></script>
+    <meta
+      name="description"
+      content="Refund eligibility, request requirements, and processing details for Ecomblade subscriptions and services."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://ecomblade.com/refund-policy/" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Ecomblade" />
+    <meta property="og:title" content="Refund Policy — Ecomblade" />
+    <meta
+      property="og:description"
+      content="Refund eligibility, request requirements, and processing details for Ecomblade subscriptions and services."
+    />
+    <meta property="og:url" content="https://ecomblade.com/refund-policy/" />
+    <meta
+      property="og:image"
+      content="https://ecomblade.com/assets/og-ecomblade.webp"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="preload"
+      href="/fonts/inter-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <style>
+      @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 300 700;
+        font-display: optional;
+        src: url("/fonts/inter-latin.woff2") format("woff2");
+      }
+      /* ── TOKENS ──────────────────────────────────────────────── */
+      :root {
+        --accent: #00a088;
+        --acc-bg: rgba(0, 160, 136, 0.1);
+        --acc-bdr: rgba(0, 160, 136, 0.28);
+        --acc-ink: #006f66;
+        --bg: #ffffff;
+        --surf: #f5faf9;
+        --bdr: rgba(7, 17, 15, 0.09);
+        --bdr-med: rgba(7, 17, 15, 0.15);
+        --ink: #07110f;
+        --muted: #5a7570;
+        --dim: #58736e;
+        --font: "Inter", system-ui, -apple-system, sans-serif;
+        --r: 10px;
+        --r-lg: 14px;
+      }
+
+      /* ── RESET ───────────────────────────────────────────────── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font);
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1080px;
+        margin-inline: auto;
+        padding-inline: 24px;
+      }
+
+      /* ── NAV ─────────────────────────────────────────────────── */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--bdr);
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 60px;
+      }
+      .logo {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .logo em {
+        font-style: normal;
+        color: var(--accent);
+      }
+      .logo-img {
+        height: 26px;
+        width: auto;
+        display: block;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 34px;
+        flex: 1;
+      }
+      .nav-links a {
+        font-size: 14.5px;
+        font-weight: 500;
+        color: rgba(7, 17, 15, 0.72);
+        text-decoration: none;
+        transition: color 0.15s;
+      }
+      .nav-links a:hover {
+        color: var(--ink);
+      }
+      .nav-ctas {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      @media (max-width: 640px) {
+        .nav-links {
+          display: none;
+        }
+      }
+
+      /* ── BUTTONS ─────────────────────────────────────────────── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        font-family: var(--font);
+        font-weight: 600;
+        border-radius: var(--r);
+        cursor: pointer;
+        border: none;
+        transition:
+          background 0.15s,
+          transform 0.15s;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #07110f;
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+      .btn-primary:hover {
+        background: #007566;
+        transform: translateY(-1px);
+      }
+      .btn-primary:active {
+        transform: translateY(0);
+      }
+      .btn-secondary {
+        background: #fff;
+        border: 1.5px solid var(--accent);
+        color: var(--ink);
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+      .btn-secondary:hover {
+        background: var(--acc-bg);
+        transform: translateY(-1px);
+      }
+      .btn-secondary:active {
+        transform: translateY(0);
+      }
+      .btn-lg {
+        font-size: 16px;
+        padding: 13px 30px;
+      }
+
+      /* ── Generic headline / eyebrow (shared scale with landing page) ── */
+      h1 {
+        font-size: clamp(40px, 6.5vw, 72px);
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -0.035em;
+        max-width: 860px;
+        margin-inline: auto;
+        margin-bottom: 18px;
+      }
+      h1 em {
+        font-style: normal;
+        color: var(--accent);
+      }
+
+      /* ══════════════════════════════════════════════════════════
+       LEGAL PAGE CONTENT
+    ══════════════════════════════════════════════════════════ */
+      #about-hero {
+        padding: 80px 0 56px;
+        text-align: center;
+      }
+      .ab-eyebrow {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--acc-ink);
+        margin-bottom: 16px;
+      }
+      .ab-sub {
+        font-size: clamp(16px, 2vw, 18px);
+        color: var(--ink);
+        font-weight: 500;
+        max-width: 560px;
+        margin-inline: auto;
+        margin-bottom: 20px;
+        line-height: 1.5;
+      }
+      .ab-intro {
+        font-size: 15.5px;
+        color: var(--muted);
+        max-width: 640px;
+        margin-inline: auto;
+        line-height: 1.7;
+      }
+      .ab-meta {
+        font-size: 13px;
+        color: var(--dim);
+        margin-top: 16px;
+      }
+
+      .ab-section {
+        padding: 0 0 96px;
+      }
+      .ab-narrow {
+        max-width: 720px;
+        margin-inline: auto;
+      }
+
+      /* ── Legal sections ──────────────────────────────────────── */
+      .lg-item {
+        padding-top: 32px;
+        margin-top: 32px;
+        border-top: 1px solid var(--bdr);
+      }
+      .lg-item:first-child {
+        padding-top: 0;
+        margin-top: 0;
+        border-top: none;
+      }
+      .lg-h2 {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        line-height: 1.3;
+        color: var(--ink);
+        margin-bottom: 12px;
+      }
+      .lg-body {
+        font-size: 15px;
+        color: var(--muted);
+        line-height: 1.75;
+        margin-bottom: 12px;
+      }
+      .lg-body:last-child {
+        margin-bottom: 0;
+      }
+      .lg-list {
+        list-style: disc;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 15px;
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 12px;
+      }
+      .lg-body a,
+      .lg-list a {
+        color: var(--acc-ink);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .lg-body a:hover,
+      .lg-list a:hover {
+        color: var(--ink);
+      }
+
+      @media (max-width: 600px) {
+        #about-hero {
+          padding: 56px 0 44px;
+        }
+        .ab-section {
+          padding: 0 0 64px;
+        }
+        .lg-item {
+          padding-top: 26px;
+          margin-top: 26px;
+        }
+      }
+
+      /* ── Footer (dark) — shared chrome with landing page ────────── */
+      #cta-footer {
+        background: #07110f;
+      }
+      .end-footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .end-footer-inner {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 40px 48px;
+        padding: 52px 0 48px;
+      }
+      .end-logo {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        text-decoration: none;
+        margin-bottom: 12px;
+      }
+      .end-logo-img {
+        height: 28px;
+        width: auto;
+        display: block;
+      }
+      .end-tagline {
+        font-size: 13px;
+        line-height: 1.65;
+        color: #8b9a97;
+        max-width: 300px;
+      }
+      .end-col-head {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #ffffff;
+        margin-bottom: 14px;
+      }
+      .end-col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .end-col a {
+        font-size: 14px;
+        color: #8b9a97;
+        text-decoration: none;
+        transition: color 0.15s;
+      }
+      .end-col a:hover {
+        color: #ffffff;
+      }
+      .end-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 20px 0;
+        font-size: 13px;
+        color: #8b9a97;
+      }
+      @media (max-width: 720px) {
+        .end-footer-inner {
+          grid-template-columns: 1fr 1fr;
+        }
+        .end-brand {
+          grid-column: 1 / -1;
+        }
+        .end-tagline {
+          max-width: none;
+        }
+      }
+      @media (max-width: 480px) {
+        .end-footer-inner {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .end-brand {
+          grid-column: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1647266143173474&amp;ev=PageView&amp;noscript=1"
+        alt=""
+    /></noscript>
+
+    <!-- ── NAV ─────────────────────────────────────────────────── -->
+    <nav>
+      <div class="container nav-inner">
+        <a href="/" class="logo"
+          ><img
+            src="../assets/EB-logo-nav.png"
+            alt="Ecomblade"
+            class="logo-img"
+            width="104"
+            height="26"
+        /></a>
+        <div class="nav-links">
+          <a href="/#value">Features</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="/#faq">FAQ</a>
+        </div>
+        <div class="nav-ctas">
+          <a href="https://app.ecomblade.com/login" class="btn btn-secondary"
+            >Log in</a
+          >
+          <a href="https://app.ecomblade.com/register" class="btn btn-primary"
+            >Start free</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <!-- ── REFUND POLICY HERO ─────────────────────────────────── -->
+      <section id="about-hero">
+        <div class="container">
+          <span class="ab-eyebrow">Legal</span>
+          <h1>Refund Policy</h1>
+          <p class="ab-sub">Refund terms for Ecomblade subscriptions.</p>
+          <p class="ab-intro">
+            This policy explains when a purchase may qualify for a refund, how
+            to submit a request, and how approved refunds are processed.
+          </p>
+          <p class="ab-meta">Last updated August 4, 2026</p>
+        </div>
+      </section>
+
+      <!-- ── REFUND POLICY BODY ──────────────────────────────────── -->
+      <section class="ab-section">
+        <div class="container ab-narrow">
+          <div class="lg-item">
+            <h2 class="lg-h2">1. Introduction</h2>
+            <p class="lg-body">
+              PT. Bisnis Teknologi Cerdas is committed to providing the best
+              possible service to Ecomblade customers. We understand that there
+              may be situations where you need to request a refund. This policy
+              explains the applicable terms and process.
+            </p>
+          </div>
+
+          <div class="lg-item">
+            <h2 class="lg-h2">2. Monthly subscription refunds</h2>
+            <ul class="lg-list">
+              <li>
+                Refund requests for monthly subscriptions must be submitted
+                within 24 hours of the purchase date.
+              </li>
+              <li>
+                A full refund will only be provided if the service does not
+                function as advertised and the request is made within the
+                specified time frame.
+              </li>
+              <li>After this period, no refund will be provided.</li>
+            </ul>
+          </div>
+
+          <div class="lg-item">
+            <h2 class="lg-h2">3. Annual subscription refunds</h2>
+            <ul class="lg-list">
+              <li>
+                Refund requests for annual subscriptions must be submitted
+                within 24 hours of the purchase date.
+              </li>
+              <li>
+                A full refund will only be provided if the service does not
+                function as advertised and the request is made within the
+                specified time frame.
+              </li>
+              <li>After this period, no refund will be provided.</li>
+            </ul>
+          </div>
+
+          <div class="lg-item">
+            <h2 class="lg-h2">4. How to request a refund</h2>
+            <p class="lg-body">
+              Contact our customer support team through
+              <a href="https://wa.me/628816866088">WhatsApp</a> and include:
+            </p>
+            <ul class="lg-list">
+              <li>Your full name.</li>
+              <li>Your phone number or WhatsApp number.</li>
+              <li>The email address registered to your Ecomblade account.</li>
+              <li>The reason for your refund request.</li>
+            </ul>
+          </div>
+
+          <div class="lg-item">
+            <h2 class="lg-h2">5. Refund processing</h2>
+            <ul class="lg-list">
+              <li>
+                Refund requests will be processed within 30 business days after
+                the request is received.
+              </li>
+              <li>
+                An approved refund will be credited to the original payment
+                method used for the purchase.
+              </li>
+            </ul>
+          </div>
+
+          <div class="lg-item">
+            <h2 class="lg-h2">6. Non-refundable services</h2>
+            <p class="lg-body">
+              Additional services, including implementation fees, training, or
+              extra support, are non-refundable.
+            </p>
+          </div>
+
+          <div class="lg-item">
+            <h2 class="lg-h2">7. Policy changes</h2>
+            <p class="lg-body">
+              We may update this refund policy from time to time. Changes take
+              effect on the date stated in the updated policy.
+            </p>
+          </div>
+
+          <div class="lg-item">
+            <h2 class="lg-h2">8. Contact</h2>
+            <p class="lg-body">
+              Questions about this policy can be sent to
+              <a href="mailto:support@ecomblade.com">support@ecomblade.com</a>
+              or submitted through
+              <a href="https://wa.me/628816866088"
+                >WhatsApp at +62 881-6866-088</a
+              >.
+            </p>
+            <p class="lg-body">
+              PT. Bisnis Teknologi Cerdas<br />Jl. HR. Rasuna Said No. 38<br />Panunggangan
+              Utara, Pinang, Tangerang 15143, Indonesia
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ── FOOTER (dark) ───────────────────────────────────────── -->
+    <footer id="cta-footer">
+      <div class="end-footer">
+        <div class="container">
+          <div class="end-footer-inner">
+            <!-- Brand + tagline -->
+            <div class="end-brand">
+              <a href="/" class="end-logo"
+                ><img
+                  src="../assets/white-EB-logo-nav.svg"
+                  alt="Ecomblade"
+                  class="end-logo-img"
+                  width="112"
+                  height="28"
+              /></a>
+              <p class="end-tagline">
+                Global product research for serious sellers. Sales volume,
+                revenue, and demand across 6 marketplaces — in one clean view.
+              </p>
+            </div>
+
+            <!-- Product links -->
+            <div class="end-col">
+              <p class="end-col-head">Product</p>
+              <ul>
+                <li><a href="/#value">Features</a></li>
+                <li><a href="/#pricing">Pricing</a></li>
+                <li><a href="/#transform">How it works</a></li>
+                <li><a href="/#faq">FAQ</a></li>
+              </ul>
+            </div>
+
+            <!-- Company links -->
+            <div class="end-col">
+              <p class="end-col-head">Company</p>
+              <ul>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div>
+
+            <!-- Legal links -->
+            <div class="end-col">
+              <p class="end-col-head">Legal</p>
+              <ul>
+                <li><a href="/terms-and-conditions/">Terms</a></li>
+                <li><a href="/refund-policy/">Refund Policy</a></li>
+                <li><a href="/privacy/">Privacy</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Bottom bar -->
+          <div class="end-bottom">© 2026 Ecomblade. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

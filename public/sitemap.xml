@@ -21,7 +21,12 @@
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://ecomblade.com/terms/</loc>
+    <loc>https://ecomblade.com/terms-and-conditions/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ecomblade.com/refund-policy/</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.3</priority>
   </url>

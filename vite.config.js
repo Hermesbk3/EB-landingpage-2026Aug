@@ -12,7 +12,8 @@ export default defineConfig({
         about: page('about/index.html'),
         contact: page('contact/index.html'),
         privacy: page('privacy/index.html'),
-        terms: page('terms/index.html'),
+        termsAndConditions: page('terms-and-conditions/index.html'),
+        refundPolicy: page('refund-policy/index.html'),
       },
       output: {
         assetFileNames: 'assets/[name][extname]',

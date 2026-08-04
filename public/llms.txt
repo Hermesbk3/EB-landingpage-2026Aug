@@ -8,7 +8,8 @@ Ecomblade is a global product-research platform for ecommerce sellers. It helps 
 - [About](https://ecomblade.com/about/): The company mission and product principles.
 - [Contact](https://ecomblade.com/contact/): Support, billing, data, and partnership contact options.
 - [Privacy Policy](https://ecomblade.com/privacy/): Information collection, use, and protection practices.
-- [Terms and Conditions](https://ecomblade.com/terms/): Terms governing use of the website and platform.
+- [Terms and Conditions](https://ecomblade.com/terms-and-conditions/): Terms governing use of the website and platform.
+- [Refund Policy](https://ecomblade.com/refund-policy/): Eligibility, request, and processing terms for refunds.
 
 ## Product access
 
