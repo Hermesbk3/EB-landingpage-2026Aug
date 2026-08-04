@@ -9,26 +9,97 @@
       name="description"
       content="Search real sales volume, revenue, and demand across Shopee, TikTok, Lazada, Amazon, Temu, and Alibaba — ranked in one view."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://ecomblade.com/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#07110f" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ecomblade" />
+    <meta
+      property="og:title"
+      content="Ecomblade — Spot product opportunities, before everyone else."
+    />
+    <meta
+      property="og:description"
+      content="Search real sales volume, revenue, and demand across six global marketplaces — ranked in one view."
+    />
+    <meta property="og:url" content="https://ecomblade.com/" />
+    <meta
+      property="og:image"
+      content="https://ecomblade.com/assets/og-ecomblade.webp"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Ecomblade global product research dashboard"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Ecomblade — Spot product opportunities, before everyone else."
+    />
+    <meta
+      name="twitter:description"
+      content="Search real sales volume, revenue, and demand across six global marketplaces — ranked in one view."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ecomblade.com/assets/og-ecomblade.webp"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://ecomblade.com/#organization",
+            "name": "Ecomblade",
+            "url": "https://ecomblade.com/",
+            "logo": "https://ecomblade.com/assets/EB-logo-nav.png",
+            "email": "support@ecomblade.com"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://ecomblade.com/#website",
+            "url": "https://ecomblade.com/",
+            "name": "Ecomblade",
+            "description": "Global marketplace product research for ecommerce sellers.",
+            "publisher": { "@id": "https://ecomblade.com/#organization" },
+            "inLanguage": "en"
+          }
+        ]
+      }
+    </script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/inter-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
     <style>
+      @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 300 700;
+        font-display: optional;
+        src: url("/fonts/inter-latin.woff2") format("woff2");
+      }
+
       /* ── TOKENS ──────────────────────────────────────────────── */
       :root {
-        --accent: #00e0c6;
-        --acc-bg: rgba(0, 224, 198, 0.1);
-        --acc-bdr: rgba(0, 224, 198, 0.28);
-        --acc-ink: #008f82;
+        --accent: #00a088;
+        --acc-bg: rgba(0, 160, 136, 0.1);
+        --acc-bdr: rgba(0, 160, 136, 0.28);
+        --acc-ink: #006f66;
         --bg: #ffffff;
         --surf: #f5faf9;
         --bdr: rgba(7, 17, 15, 0.09);
         --bdr-med: rgba(7, 17, 15, 0.15);
         --ink: #07110f;
         --muted: #5a7570;
-        --dim: #9bb5b0;
+        --dim: #58736e;
         --font: "Inter", system-ui, -apple-system, sans-serif;
         --r: 10px;
         --r-lg: 14px;
@@ -143,7 +214,7 @@
         padding: 10px 20px;
       }
       .btn-primary:hover {
-        background: #1ae8d0;
+        background: #007566;
         transform: translateY(-1px);
       }
       .btn-primary:active {
@@ -215,7 +286,7 @@
       }
       h1 em {
         font-style: normal;
-        color: var(--accent);
+        color: var(--acc-ink);
       }
 
       .hero-sub {
@@ -568,6 +639,9 @@
       }
 
       @media (max-width: 680px) {
+        #hero-demo {
+          min-height: 700px;
+        }
         .hd-metrics {
           grid-template-columns: repeat(2, 1fr);
         }
@@ -677,7 +751,7 @@
         10% {
           transform: scale(1.09);
           box-shadow:
-            0 0 0 5px rgba(0, 224, 198, 0.15),
+            0 0 0 5px rgba(0, 160, 136, 0.15),
             0 1px 8px rgba(7, 17, 15, 0.07);
         }
       }
@@ -785,7 +859,7 @@
       .tf-card-after {
         background: #fff;
         border: 1px solid var(--acc-bdr);
-        box-shadow: 0 4px 30px rgba(0, 224, 198, 0.12);
+        box-shadow: 0 4px 30px rgba(0, 160, 136, 0.12);
       }
 
       /* ── Label ─────────────────────────────────────────────── */
@@ -797,7 +871,7 @@
         margin-bottom: 20px;
       }
       .tf-card-before .tf-label {
-        color: #b0b0b0;
+        color: #626b69;
       }
       .tf-card-after .tf-label {
         color: var(--acc-ink);
@@ -849,7 +923,7 @@
       }
       .tf-card-before .tf-beat-num {
         background: #e5e5e5;
-        color: #b0b0b0;
+        color: #626b69;
       }
       .tf-card-after .tf-beat-num {
         background: var(--acc-bg);
@@ -861,7 +935,7 @@
         line-height: 1.5;
       }
       .tf-card-before .tf-beat-text {
-        color: #888;
+        color: #626b69;
       }
       .tf-card-after .tf-beat-text {
         color: var(--ink);
@@ -1121,7 +1195,7 @@
       .pr-card-pro {
         position: relative;
         border-color: var(--acc-bdr);
-        box-shadow: 0 4px 32px rgba(0, 224, 198, 0.13);
+        box-shadow: 0 4px 32px rgba(0, 160, 136, 0.13);
       }
       .pr-tag {
         position: absolute;
@@ -1197,7 +1271,7 @@
         justify-content: center;
       }
       .pr-icon-yes {
-        background: rgba(0, 224, 198, 0.14);
+        background: rgba(0, 160, 136, 0.14);
         color: #007a6e;
       }
       .pr-icon-no {
@@ -1230,7 +1304,7 @@
         border: none;
       }
       .pr-btn-primary:hover {
-        background: #1ae8d0;
+        background: #007566;
         transform: translateY(-1px);
       }
       .pr-btn-primary:active {
@@ -1388,7 +1462,7 @@
      *   bg:       #07110F   (ink token repurposed as bg)
      *   heading:  #ffffff
      *   body:     #8b9a97   (muted grey on dark)
-     *   accent:   #00E0C6   (--accent, unchanged)
+     *   accent:   #00A088   (--accent)
      */
       #cta-footer {
         background: #07110f;
@@ -1400,7 +1474,7 @@
         padding: 96px 0 72px;
         background: radial-gradient(
           ellipse at 50% 0%,
-          rgba(0, 224, 198, 0.08) 0%,
+          rgba(0, 160, 136, 0.08) 0%,
           transparent 55%
         );
       }
@@ -1411,8 +1485,8 @@
         letter-spacing: 0.13em;
         text-transform: uppercase;
         color: var(--accent);
-        background: rgba(0, 224, 198, 0.1);
-        border: 1px solid rgba(0, 224, 198, 0.22);
+        background: rgba(0, 160, 136, 0.1);
+        border: 1px solid rgba(0, 160, 136, 0.22);
         border-radius: 100px;
         padding: 5px 14px;
         margin-bottom: 28px;
@@ -1457,7 +1531,7 @@
           transform 0.15s;
       }
       .end-btn:hover {
-        background: #1ae8d0;
+        background: #007566;
         transform: translateY(-1px);
       }
       .end-btn:active {
@@ -1565,12 +1639,24 @@
     </style>
   </head>
   <body>
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1647266143173474&amp;ev=PageView&amp;noscript=1" alt="" /></noscript>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1647266143173474&amp;ev=PageView&amp;noscript=1"
+        alt=""
+    /></noscript>
     <!-- ── NAV ─────────────────────────────────────────────────── -->
     <nav>
       <div class="container nav-inner">
         <a href="https://ecomblade.com" class="logo"
-          ><img src="assets/EB-logo-nav.png" alt="Ecomblade" class="logo-img"
+          ><img
+            src="assets/EB-logo-nav.png"
+            alt="Ecomblade"
+            class="logo-img"
+            width="104"
+            height="26"
         /></a>
         <div class="nav-links">
           <a href="#value">Features</a>
@@ -1588,905 +1674,993 @@
       </div>
     </nav>
 
-    <!-- ── HERO ─────────────────────────────────────────────────── -->
-    <section id="hero">
-      <div class="container">
-        <div class="hero-tag">
-          <span class="dot"></span>6 Platforms · 7 Countries
-        </div>
-        <h1>Spot product opportunities,<br /><em>before everyone else.</em></h1>
-        <p class="hero-sub">
-          The ultimate product research platform that reveals product
-          opportunities across the globe.
-        </p>
-        <div class="hero-ctas">
-          <a
-            href="https://app.ecomblade.com/register"
-            class="btn btn-primary btn-lg"
-            >Start free</a
-          >
-          <a
-            href="https://app.ecomblade.com/login"
-            class="btn btn-secondary btn-lg"
-            >Log in</a
-          >
-        </div>
-        <p class="no-card">No credit card required</p>
-
-        <!-- 6-platform data-flow visual: nodes arc above dashboard, lines converge -->
-        <div id="df-flow" aria-hidden="true">
-          <svg
-            id="df-svg"
-            viewBox="0 0 920 88"
-            preserveAspectRatio="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <defs>
-              <path id="dp1" pathLength="1" d="M74,64 C74,85 460,85 460,90" />
-              <path id="dp2" pathLength="1" d="M220,40 C220,80 460,80 460,90" />
-              <path id="dp3" pathLength="1" d="M370,20 C370,72 460,78 460,90" />
-              <path id="dp4" pathLength="1" d="M550,20 C550,72 460,78 460,90" />
-              <path id="dp5" pathLength="1" d="M700,40 C700,80 460,80 460,90" />
-              <path id="dp6" pathLength="1" d="M846,64 C846,85 460,85 460,90" />
-            </defs>
-            <use href="#dp1" class="df-line" />
-            <use href="#dp2" class="df-line" />
-            <use href="#dp3" class="df-line" />
-            <use href="#dp4" class="df-line" />
-            <use href="#dp5" class="df-line" />
-            <use href="#dp6" class="df-line" />
-            <use href="#dp1" class="df-pulse" style="animation-delay: 0s" />
-            <use href="#dp2" class="df-pulse" style="animation-delay: 0.48s" />
-            <use href="#dp3" class="df-pulse" style="animation-delay: 0.96s" />
-            <use href="#dp4" class="df-pulse" style="animation-delay: 1.44s" />
-            <use href="#dp5" class="df-pulse" style="animation-delay: 1.92s" />
-            <use href="#dp6" class="df-pulse" style="animation-delay: 2.4s" />
-          </svg>
-          <div class="df-node" style="left: calc(8.04% - 16px); top: 48px">
-            <img src="assets/shopee.webp" alt="" class="df-node-logo" />
+    <main>
+      <!-- ── HERO ─────────────────────────────────────────────────── -->
+      <section id="hero">
+        <div class="container">
+          <div class="hero-tag">
+            <span class="dot"></span>6 Platforms · 7 Countries
           </div>
-          <div class="df-node" style="left: calc(23.91% - 16px); top: 24px">
-            <svg
-              width="16"
-              height="18"
-              viewBox="0 0 24 28"
-              fill="#111"
-              xmlns="http://www.w3.org/2000/svg"
+          <h1>
+            Spot product opportunities,<br /><em>before everyone else.</em>
+          </h1>
+          <p class="hero-sub">
+            The ultimate product research platform that reveals product
+            opportunities across the globe.
+          </p>
+          <div class="hero-ctas">
+            <a
+              href="https://app.ecomblade.com/register"
+              class="btn btn-primary btn-lg"
+              >Start free</a
             >
-              <path
-                d="M17 0c.3 2.5 1.8 4.6 5 4.8v4c-1.8 0-3.4-.6-4.7-1.6v7.4C17.3 19.3 14.2 23 10 23 5.4 23 1.7 19.3 1.7 14.7S5.4 6.5 10 6.5c.4 0 .8 0 1.2.1v4.1c-.4-.1-.8-.1-1.2-.1-2.5 0-4.6 2-4.6 4.6S7.5 19.6 10 19.6s4.6-2 4.6-4.6V0H17z"
-              />
-            </svg>
+            <a
+              href="https://app.ecomblade.com/login"
+              class="btn btn-secondary btn-lg"
+              >Log in</a
+            >
           </div>
-          <div class="df-node" style="left: calc(40.22% - 16px); top: 4px">
-            <img src="assets/lazada.webp" alt="" class="df-node-logo" />
-          </div>
-          <div class="df-node" style="left: calc(59.78% - 16px); top: 4px">
-            <img src="assets/amazon.webp" alt="" class="df-node-logo" />
-          </div>
-          <div class="df-node" style="left: calc(76.09% - 16px); top: 24px">
-            <img src="assets/temu.webp" alt="" class="df-node-logo" />
-          </div>
-          <div class="df-node" style="left: calc(91.96% - 16px); top: 48px">
-            <img src="assets/alibaba.webp" alt="" class="df-node-logo" />
-          </div>
-        </div>
+          <p class="no-card">No credit card required</p>
 
-        <!-- ═══════════════════════════════════════════════════════
+          <!-- 6-platform data-flow visual: nodes arc above dashboard, lines converge -->
+          <div id="df-flow" aria-hidden="true">
+            <svg
+              id="df-svg"
+              viewBox="0 0 920 88"
+              preserveAspectRatio="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <defs>
+                <path id="dp1" pathLength="1" d="M74,64 C74,85 460,85 460,90" />
+                <path
+                  id="dp2"
+                  pathLength="1"
+                  d="M220,40 C220,80 460,80 460,90"
+                />
+                <path
+                  id="dp3"
+                  pathLength="1"
+                  d="M370,20 C370,72 460,78 460,90"
+                />
+                <path
+                  id="dp4"
+                  pathLength="1"
+                  d="M550,20 C550,72 460,78 460,90"
+                />
+                <path
+                  id="dp5"
+                  pathLength="1"
+                  d="M700,40 C700,80 460,80 460,90"
+                />
+                <path
+                  id="dp6"
+                  pathLength="1"
+                  d="M846,64 C846,85 460,85 460,90"
+                />
+              </defs>
+              <use href="#dp1" class="df-line" />
+              <use href="#dp2" class="df-line" />
+              <use href="#dp3" class="df-line" />
+              <use href="#dp4" class="df-line" />
+              <use href="#dp5" class="df-line" />
+              <use href="#dp6" class="df-line" />
+              <use href="#dp1" class="df-pulse" style="animation-delay: 0s" />
+              <use
+                href="#dp2"
+                class="df-pulse"
+                style="animation-delay: 0.48s"
+              />
+              <use
+                href="#dp3"
+                class="df-pulse"
+                style="animation-delay: 0.96s"
+              />
+              <use
+                href="#dp4"
+                class="df-pulse"
+                style="animation-delay: 1.44s"
+              />
+              <use
+                href="#dp5"
+                class="df-pulse"
+                style="animation-delay: 1.92s"
+              />
+              <use href="#dp6" class="df-pulse" style="animation-delay: 2.4s" />
+            </svg>
+            <div class="df-node" style="left: calc(8.04% - 16px); top: 48px">
+              <img
+                src="assets/shopee.webp"
+                alt=""
+                class="df-node-logo"
+                width="12"
+                height="12"
+              />
+            </div>
+            <div class="df-node" style="left: calc(23.91% - 16px); top: 24px">
+              <svg
+                width="16"
+                height="18"
+                viewBox="0 0 24 28"
+                fill="#111"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17 0c.3 2.5 1.8 4.6 5 4.8v4c-1.8 0-3.4-.6-4.7-1.6v7.4C17.3 19.3 14.2 23 10 23 5.4 23 1.7 19.3 1.7 14.7S5.4 6.5 10 6.5c.4 0 .8 0 1.2.1v4.1c-.4-.1-.8-.1-1.2-.1-2.5 0-4.6 2-4.6 4.6S7.5 19.6 10 19.6s4.6-2 4.6-4.6V0H17z"
+                />
+              </svg>
+            </div>
+            <div class="df-node" style="left: calc(40.22% - 16px); top: 4px">
+              <img
+                src="assets/lazada.webp"
+                alt=""
+                class="df-node-logo"
+                width="12"
+                height="12"
+              />
+            </div>
+            <div class="df-node" style="left: calc(59.78% - 16px); top: 4px">
+              <img
+                src="assets/amazon.webp"
+                alt=""
+                class="df-node-logo"
+                width="12"
+                height="12"
+              />
+            </div>
+            <div class="df-node" style="left: calc(76.09% - 16px); top: 24px">
+              <img
+                src="assets/temu.webp"
+                alt=""
+                class="df-node-logo"
+                width="12"
+                height="12"
+              />
+            </div>
+            <div class="df-node" style="left: calc(91.96% - 16px); top: 48px">
+              <img
+                src="assets/alibaba.webp"
+                alt=""
+                class="df-node-logo"
+                width="12"
+                height="12"
+              />
+            </div>
+          </div>
+
+          <!-- ═══════════════════════════════════════════════════════
          HERO DEMO COMPONENT
          Static fallback: Thailand final-ranked state (rendered
          by renderStatic() below). GSAP resets + animates it.
     ═══════════════════════════════════════════════════════════ -->
-        <div class="hero-demo-wrap">
-          <div id="hero-demo">
-            <!-- Search bar -->
-            <div class="hd-bar">
-              <span class="hd-chip hd-chip-market" id="hd-platform-chip"
-                >Shopee</span
-              >
-              <span class="hd-chip" id="hd-country-chip"
-                ><svg
-                  class="hd-flag"
-                  width="20"
-                  height="14"
-                  viewBox="0 0 20 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+          <div class="hero-demo-wrap">
+            <div id="hero-demo">
+              <!-- Search bar -->
+              <div class="hd-bar">
+                <span class="hd-chip hd-chip-market" id="hd-platform-chip"
+                  >Shopee</span
                 >
-                  <rect width="20" height="14" fill="#A51931" />
-                  <rect y="2.8" width="20" height="8.4" fill="#F4F5F8" />
-                  <rect y="5.6" width="20" height="2.8" fill="#2D2A4A" /></svg
-                >&nbsp;Thailand</span
-              >
-              <span class="hd-chip">↕&nbsp;Popularity</span>
-              <div class="hd-input-wrap">
-                <span id="hd-typed"></span><span class="hd-caret"></span>
-              </div>
-              <span class="hd-chip">20 products</span>
-              <button class="hd-srch-btn">Search</button>
-            </div>
-
-            <!-- Body -->
-            <div class="hd-body">
-              <!-- Snapshot -->
-              <div id="hd-snapshot" class="hd-snapshot">
-                <div class="hd-stag">Snapshot · Research Summary</div>
-                <div class="hd-metrics">
-                  <div class="hd-metric">
-                    <div class="hd-mlabel">30 Day Revenue</div>
-                    <div id="hd-r30" class="hd-mval"></div>
-                  </div>
-                  <div class="hd-metric">
-                    <div class="hd-mlabel">30 Day Sold</div>
-                    <div id="hd-s30" class="hd-mval"></div>
-                  </div>
-                  <div class="hd-metric">
-                    <div class="hd-mlabel">Avg Price</div>
-                    <div id="hd-price" class="hd-mval"></div>
-                  </div>
-                  <div class="hd-metric">
-                    <div class="hd-mlabel">Avg Rating</div>
-                    <div id="hd-rating" class="hd-mval"></div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Leaderboard -->
-              <div id="hd-leaderboard" class="hd-leaderboard">
-                <div class="hd-stag">
-                  Leaderboard · Ranked product opportunities
-                </div>
-                <div id="hd-subtitle" class="hd-subtitle"></div>
-                <div class="hd-table-wrap">
-                  <div class="hd-table">
-                    <div class="hd-thead">
-                      <div class="hd-th">Rank</div>
-                      <div class="hd-th">Product</div>
-                      <div class="hd-th">Store</div>
-                      <div class="hd-th">Created</div>
-                      <div class="hd-th">Original Price</div>
-                      <div class="hd-th">Discount Price</div>
-                      <div class="hd-th">Discount</div>
-                      <div class="hd-th">30 Day Revenue</div>
-                      <div class="hd-th">30 Day Sold</div>
-                    </div>
-                    <div id="hd-tbody"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- /hd-body -->
-          </div>
-          <!-- /hero-demo -->
-        </div>
-        <!-- /hero-demo-wrap -->
-      </div>
-      <!-- /container -->
-    </section>
-
-    <!-- ── PLATFORM RIBBON ───────────────────────────────────────── -->
-    <div id="platform-ribbon">
-      <div class="container">
-        <div class="ribbon-inner">
-          <span class="ribbon-label">Access global trends on</span>
-          <div class="ribbon-logos">
-            <span class="ribbon-logo-name">Shopee</span>
-            <span class="ribbon-logo-name">TikTok</span>
-            <span class="ribbon-logo-name">Lazada</span>
-            <span class="ribbon-logo-name">Amazon</span>
-            <span class="ribbon-logo-name">Temu</span>
-            <span class="ribbon-logo-name">Alibaba</span>
-          </div>
-          <span class="ribbon-tag">· across 7 countries</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── SECTION 2: BEFORE → AFTER ─────────────────────────── -->
-    <section id="transform">
-      <div class="container">
-        <span class="tf-eyebrow">Why Ecomblade</span>
-        <h2 class="tf-headline">
-          Stop guessing. Start seeing more with global data.
-        </h2>
-        <p class="tf-sub">
-          Local data shows you what's already winning — and saturated. Ecomblade
-          shows you what's proven elsewhere, before your market catches on.
-        </p>
-
-        <div class="tf-diagram">
-          <!-- BEFORE -->
-          <div class="tf-card tf-card-before" id="tf-before">
-            <div class="tf-label">Before</div>
-            <div class="tf-beats">
-              <div class="tf-beat">
-                <span class="tf-beat-num">1</span>
-                <span class="tf-beat-text"
-                  >See only what's already winning locally</span
-                >
-              </div>
-              <div class="tf-beat">
-                <span class="tf-beat-num">2</span>
-                <span class="tf-beat-text">Enter saturated markets late</span>
-              </div>
-              <div class="tf-beat">
-                <span class="tf-beat-num">3</span>
-                <span class="tf-beat-text"
-                  >Compete on price until margins die</span
-                >
-              </div>
-            </div>
-          </div>
-
-          <!-- ARROW — line draws down, chevron pops in after -->
-          <div class="tf-arrow">
-            <svg
-              width="40"
-              height="52"
-              viewBox="0 0 40 52"
-              fill="none"
-              style="overflow: hidden"
-              aria-hidden="true"
-            >
-              <defs>
-                <linearGradient
-                  id="tf-grad"
-                  x1="0"
-                  y1="2"
-                  x2="0"
-                  y2="40"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop offset="0%" stop-color="#009d8f" />
-                  <stop offset="100%" stop-color="#1ae8d0" />
-                </linearGradient>
-                <linearGradient id="tf-shine" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="white" stop-opacity="0" />
-                  <stop offset="42%" stop-color="white" stop-opacity="0" />
-                  <stop offset="50%" stop-color="white" stop-opacity="0.75" />
-                  <stop offset="58%" stop-color="white" stop-opacity="0" />
-                  <stop offset="100%" stop-color="white" stop-opacity="0" />
-                </linearGradient>
-                <mask id="tf-mask">
-                  <line
-                    x1="20"
-                    y1="2"
-                    x2="20"
-                    y2="36"
-                    stroke="white"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M10 27 L20 40 L30 27"
-                    stroke="white"
-                    stroke-width="2.7"
+                <span class="hd-chip" id="hd-country-chip"
+                  ><svg
+                    class="hd-flag"
+                    width="20"
+                    height="14"
+                    viewBox="0 0 20 14"
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </mask>
-              </defs>
-              <line
-                x1="20"
-                y1="2"
-                x2="20"
-                y2="36"
-                stroke="url(#tf-grad)"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                class="tf-arrow-line"
-              />
-              <path
-                d="M10 27 L20 40 L30 27"
-                stroke="url(#tf-grad)"
-                stroke-width="2.7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="tf-arrow-chev"
-              />
-              <rect
-                x="0"
-                y="-52"
-                width="40"
-                height="104"
-                fill="url(#tf-shine)"
-                mask="url(#tf-mask)"
-                class="tf-shine-rect"
-              />
-            </svg>
-          </div>
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="20" height="14" fill="#A51931" />
+                    <rect y="2.8" width="20" height="8.4" fill="#F4F5F8" />
+                    <rect y="5.6" width="20" height="2.8" fill="#2D2A4A" /></svg
+                  >&nbsp;Thailand</span
+                >
+                <span class="hd-chip">↕&nbsp;Popularity</span>
+                <div class="hd-input-wrap">
+                  <span id="hd-typed"></span><span class="hd-caret"></span>
+                </div>
+                <span class="hd-chip">20 products</span>
+                <button class="hd-srch-btn">Search</button>
+              </div>
 
-          <!-- AFTER -->
-          <div class="tf-card tf-card-after" id="tf-after">
-            <div class="tf-label">After</div>
-            <div class="tf-beats">
-              <div class="tf-beat">
-                <span class="tf-beat-num">1</span>
-                <span class="tf-beat-text"
-                  >See what's proven across global markets</span
-                >
+              <!-- Body -->
+              <div class="hd-body">
+                <!-- Snapshot -->
+                <div id="hd-snapshot" class="hd-snapshot">
+                  <div class="hd-stag">Snapshot · Research Summary</div>
+                  <div class="hd-metrics">
+                    <div class="hd-metric">
+                      <div class="hd-mlabel">30 Day Revenue</div>
+                      <div id="hd-r30" class="hd-mval"></div>
+                    </div>
+                    <div class="hd-metric">
+                      <div class="hd-mlabel">30 Day Sold</div>
+                      <div id="hd-s30" class="hd-mval"></div>
+                    </div>
+                    <div class="hd-metric">
+                      <div class="hd-mlabel">Avg Price</div>
+                      <div id="hd-price" class="hd-mval"></div>
+                    </div>
+                    <div class="hd-metric">
+                      <div class="hd-mlabel">Avg Rating</div>
+                      <div id="hd-rating" class="hd-mval"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Leaderboard -->
+                <div id="hd-leaderboard" class="hd-leaderboard">
+                  <div class="hd-stag">
+                    Leaderboard · Ranked product opportunities
+                  </div>
+                  <div id="hd-subtitle" class="hd-subtitle"></div>
+                  <div class="hd-table-wrap">
+                    <div class="hd-table">
+                      <div class="hd-thead">
+                        <div class="hd-th">Rank</div>
+                        <div class="hd-th">Product</div>
+                        <div class="hd-th">Store</div>
+                        <div class="hd-th">Created</div>
+                        <div class="hd-th">Original Price</div>
+                        <div class="hd-th">Discount Price</div>
+                        <div class="hd-th">Discount</div>
+                        <div class="hd-th">30 Day Revenue</div>
+                        <div class="hd-th">30 Day Sold</div>
+                      </div>
+                      <div id="hd-tbody"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="tf-beat">
-                <span class="tf-beat-num">2</span>
-                <span class="tf-beat-text"
-                  >Move it to your market before competitors catch on</span
-                >
-              </div>
-              <div class="tf-beat">
-                <span class="tf-beat-num">3</span>
-                <span class="tf-beat-text">Own the opportunity early</span>
-              </div>
+              <!-- /hd-body -->
             </div>
+            <!-- /hero-demo -->
+          </div>
+          <!-- /hero-demo-wrap -->
+        </div>
+        <!-- /container -->
+      </section>
+
+      <!-- ── PLATFORM RIBBON ───────────────────────────────────────── -->
+      <div id="platform-ribbon">
+        <div class="container">
+          <div class="ribbon-inner">
+            <span class="ribbon-label">Access global trends on</span>
+            <div class="ribbon-logos">
+              <span class="ribbon-logo-name">Shopee</span>
+              <span class="ribbon-logo-name">TikTok</span>
+              <span class="ribbon-logo-name">Lazada</span>
+              <span class="ribbon-logo-name">Amazon</span>
+              <span class="ribbon-logo-name">Temu</span>
+              <span class="ribbon-logo-name">Alibaba</span>
+            </div>
+            <span class="ribbon-tag">· across 7 countries</span>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- ── SECTION 3: VALUE CARDS ────────────────────────────────── -->
-    <section id="value">
-      <div class="container">
-        <div class="val-header">
-          <span class="val-eyebrow">What you get</span>
-          <h2 class="val-headline">
-            Everything you need to find your next winner
+      <!-- ── SECTION 2: BEFORE → AFTER ─────────────────────────── -->
+      <section id="transform">
+        <div class="container">
+          <span class="tf-eyebrow">Why Ecomblade</span>
+          <h2 class="tf-headline">
+            Stop guessing. Start seeing more with global data.
           </h2>
-        </div>
-
-        <div class="val-grid">
-          <!-- Card 1 ─────────────────────────────────────────────── -->
-          <div class="val-card">
-            <div class="val-img-wrap">
-              <img
-                class="val-img"
-                src="./assets/c1-marketplace.webp"
-                alt="Research any market"
-              />
-              <!-- ★ IMAGE 1: paste <img class="val-img" src="YOUR_URL" alt="Research any market"> here, before this comment ★ -->
-              <div class="val-img-ph">
-                <svg
-                  width="24"
-                  height="18"
-                  viewBox="0 0 24 18"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <rect
-                    x="0.75"
-                    y="0.75"
-                    width="22.5"
-                    height="16.5"
-                    rx="2.25"
-                    stroke="currentColor"
-                    stroke-width="1.4"
-                  />
-                  <path
-                    d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13"
-                    stroke="currentColor"
-                    stroke-width="1.3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                Screenshot
-              </div>
-            </div>
-            <div class="val-body">
-              <p class="val-title">Research any market, from one place</p>
-              <p class="val-desc">
-                Search demand across 6 marketplaces and 7 countries — no
-                juggling tabs.
-              </p>
-            </div>
-          </div>
-
-          <!-- Card 2 ─────────────────────────────────────────────── -->
-          <div class="val-card">
-            <div class="val-img-wrap">
-              <img
-                class="val-img"
-                src="./assets/c2-filter.webp"
-                alt="Filter to the exact opportunity"
-              />
-              <!-- ★ IMAGE 2: paste <img class="val-img" src="YOUR_URL" alt="Filter to the exact opportunity"> here, before this comment ★ -->
-              <div class="val-img-ph">
-                <svg
-                  width="24"
-                  height="18"
-                  viewBox="0 0 24 18"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <rect
-                    x="0.75"
-                    y="0.75"
-                    width="22.5"
-                    height="16.5"
-                    rx="2.25"
-                    stroke="currentColor"
-                    stroke-width="1.4"
-                  />
-                  <path
-                    d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13"
-                    stroke="currentColor"
-                    stroke-width="1.3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                Screenshot
-              </div>
-            </div>
-            <div class="val-body">
-              <p class="val-title">Filter to the exact opportunity</p>
-              <p class="val-desc">
-                Sort and filter by revenue, sales, price, rating — turn noise
-                into a shortlist.
-              </p>
-            </div>
-          </div>
-
-          <!-- Card 3 ─────────────────────────────────────────────── -->
-          <div class="val-card">
-            <div class="val-img-wrap">
-              <img
-                class="val-img"
-                src="./assets/c3-export.webp"
-                alt="Export your data"
-              />
-              <!-- ★ IMAGE 3: paste <img class="val-img" src="YOUR_URL" alt="Export your data"> here, before this comment ★ -->
-              <div class="val-img-ph">
-                <svg
-                  width="24"
-                  height="18"
-                  viewBox="0 0 24 18"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <rect
-                    x="0.75"
-                    y="0.75"
-                    width="22.5"
-                    height="16.5"
-                    rx="2.25"
-                    stroke="currentColor"
-                    stroke-width="1.4"
-                  />
-                  <path
-                    d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13"
-                    stroke="currentColor"
-                    stroke-width="1.3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                Screenshot
-              </div>
-            </div>
-            <div class="val-body">
-              <p class="val-title">Take the data anywhere</p>
-              <p class="val-desc">
-                Export any result set to work with it your way. The data is
-                yours.
-              </p>
-            </div>
-          </div>
-
-          <!-- Card 4 ─────────────────────────────────────────────── -->
-          <div class="val-card">
-            <div class="val-img-wrap">
-              <img
-                class="val-img"
-                src="./assets/c4-ai.webp"
-                alt="Pipe results into AI"
-              />
-              <!-- ★ IMAGE 4: paste <img class="val-img" src="YOUR_URL" alt="Pipe results into AI"> here, before this comment ★ -->
-              <div class="val-img-ph">
-                <svg
-                  width="24"
-                  height="18"
-                  viewBox="0 0 24 18"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <rect
-                    x="0.75"
-                    y="0.75"
-                    width="22.5"
-                    height="16.5"
-                    rx="2.25"
-                    stroke="currentColor"
-                    stroke-width="1.4"
-                  />
-                  <path
-                    d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13"
-                    stroke="currentColor"
-                    stroke-width="1.3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                Screenshot
-              </div>
-            </div>
-            <div class="val-body">
-              <p class="val-title">Pipe results into AI</p>
-              <p class="val-desc">
-                Send research straight into ChatGPT or Claude for instant
-                analysis.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── SECTION 4: PRICING ────────────────────────────────────── -->
-    <section id="pricing">
-      <div class="container">
-        <div class="pr-header">
-          <span class="pr-eyebrow">Pricing</span>
-          <h2 class="pr-headline">Start free. Upgrade when you're ready.</h2>
-          <p class="pr-sub">
-            No credit card. No time limit. Use it as long as you want.
+          <p class="tf-sub">
+            Local data shows you what's already winning — and saturated.
+            Ecomblade shows you what's proven elsewhere, before your market
+            catches on.
           </p>
-        </div>
 
-        <div class="pr-grid">
-          <!-- Free card ───────────────────────────────────────────── -->
-          <div class="pr-card">
-            <p class="pr-plan">Free</p>
-            <div class="pr-price">
-              <span class="pr-amount">$0</span>
-              <span class="pr-period">/forever</span>
+          <div class="tf-diagram">
+            <!-- BEFORE -->
+            <div class="tf-card tf-card-before" id="tf-before">
+              <div class="tf-label">Before</div>
+              <div class="tf-beats">
+                <div class="tf-beat">
+                  <span class="tf-beat-num">1</span>
+                  <span class="tf-beat-text"
+                    >See only what's already winning locally</span
+                  >
+                </div>
+                <div class="tf-beat">
+                  <span class="tf-beat-num">2</span>
+                  <span class="tf-beat-text">Enter saturated markets late</span>
+                </div>
+                <div class="tf-beat">
+                  <span class="tf-beat-num">3</span>
+                  <span class="tf-beat-text"
+                    >Compete on price until margins die</span
+                  >
+                </div>
+              </div>
             </div>
-            <ul class="pr-features">
-              <li class="pr-feat pr-feat-yes">
-                <span class="pr-icon pr-icon-yes" aria-hidden="true">
-                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                    <path
-                      d="M1 4L3.5 6.5L9 1"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-                6 Marketplaces, 7 Countries
-              </li>
-              <li class="pr-feat pr-feat-warn">
-                <span class="pr-icon pr-icon-warn" aria-hidden="true">
-                  <svg width="2" height="8" viewBox="0 0 2 8" fill="none">
-                    <path
-                      d="M1 0.5V5"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                    />
-                    <circle cx="1" cy="7.3" r="0.9" fill="currentColor" />
-                  </svg>
-                </span>
-                5 searches per day
-              </li>
-              <li class="pr-feat pr-feat-warn">
-                <span class="pr-icon pr-icon-warn" aria-hidden="true">
-                  <svg width="2" height="8" viewBox="0 0 2 8" fill="none">
-                    <path
-                      d="M1 0.5V5"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                    />
-                    <circle cx="1" cy="7.3" r="0.9" fill="currentColor" />
-                  </svg>
-                </span>
-                Up to 20 product results per search
-              </li>
-              <li class="pr-feat pr-feat-warn">
-                <span class="pr-icon pr-icon-warn" aria-hidden="true">
-                  <svg width="2" height="8" viewBox="0 0 2 8" fill="none">
-                    <path
-                      d="M1 0.5V5"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                    />
-                    <circle cx="1" cy="7.3" r="0.9" fill="currentColor" />
-                  </svg>
-                </span>
-                Limited AI access
-              </li>
-              <li class="pr-feat pr-feat-no">
-                <span class="pr-icon pr-icon-no" aria-hidden="true">
-                  <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                    <path
-                      d="M1.5 1.5L6.5 6.5M6.5 1.5L1.5 6.5"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                </span>
-                Data exports not included
-              </li>
-            </ul>
-            <a
-              href="https://app.ecomblade.com/register"
-              class="pr-btn pr-btn-outline"
-              >Start free</a
-            >
-          </div>
 
-          <!-- Pro card ────────────────────────────────────────────── -->
-          <div class="pr-card pr-card-pro">
-            <span class="pr-tag">Most popular</span>
-            <p class="pr-plan">Pro</p>
-            <div class="pr-price">
-              <span class="pr-amount">$19</span>
-              <span class="pr-period">/month</span>
+            <!-- ARROW — line draws down, chevron pops in after -->
+            <div class="tf-arrow">
+              <svg
+                width="40"
+                height="52"
+                viewBox="0 0 40 52"
+                fill="none"
+                style="overflow: hidden"
+                aria-hidden="true"
+              >
+                <defs>
+                  <linearGradient
+                    id="tf-grad"
+                    x1="0"
+                    y1="2"
+                    x2="0"
+                    y2="40"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0%" stop-color="#007566" />
+                    <stop offset="100%" stop-color="#00a088" />
+                  </linearGradient>
+                  <linearGradient id="tf-shine" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="white" stop-opacity="0" />
+                    <stop offset="42%" stop-color="white" stop-opacity="0" />
+                    <stop offset="50%" stop-color="white" stop-opacity="0.75" />
+                    <stop offset="58%" stop-color="white" stop-opacity="0" />
+                    <stop offset="100%" stop-color="white" stop-opacity="0" />
+                  </linearGradient>
+                  <mask id="tf-mask">
+                    <line
+                      x1="20"
+                      y1="2"
+                      x2="20"
+                      y2="36"
+                      stroke="white"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M10 27 L20 40 L30 27"
+                      stroke="white"
+                      stroke-width="2.7"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </mask>
+                </defs>
+                <line
+                  x1="20"
+                  y1="2"
+                  x2="20"
+                  y2="36"
+                  stroke="url(#tf-grad)"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  class="tf-arrow-line"
+                />
+                <path
+                  d="M10 27 L20 40 L30 27"
+                  stroke="url(#tf-grad)"
+                  stroke-width="2.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="tf-arrow-chev"
+                />
+                <rect
+                  x="0"
+                  y="-52"
+                  width="40"
+                  height="104"
+                  fill="url(#tf-shine)"
+                  mask="url(#tf-mask)"
+                  class="tf-shine-rect"
+                />
+              </svg>
             </div>
-            <ul class="pr-features">
-              <li class="pr-feat pr-feat-yes">
-                <span class="pr-icon pr-icon-yes" aria-hidden="true">
-                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                    <path
-                      d="M1 4L3.5 6.5L9 1"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-                6 Marketplaces, 7 Countries
-              </li>
-              <li class="pr-feat pr-feat-yes">
-                <span class="pr-icon pr-icon-yes" aria-hidden="true">
-                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                    <path
-                      d="M1 4L3.5 6.5L9 1"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-                Unlimited searches per day
-              </li>
-              <li class="pr-feat pr-feat-yes">
-                <span class="pr-icon pr-icon-yes" aria-hidden="true">
-                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                    <path
-                      d="M1 4L3.5 6.5L9 1"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-                Full product results
-              </li>
-              <li class="pr-feat pr-feat-yes">
-                <span class="pr-icon pr-icon-yes" aria-hidden="true">
-                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                    <path
-                      d="M1 4L3.5 6.5L9 1"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-                Full AI access
-              </li>
-              <li class="pr-feat pr-feat-yes">
-                <span class="pr-icon pr-icon-yes" aria-hidden="true">
-                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                    <path
-                      d="M1 4L3.5 6.5L9 1"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-                Data exports included
-              </li>
-            </ul>
-            <a
-              href="https://app.ecomblade.com/register"
-              class="pr-btn pr-btn-primary"
-              >Start free</a
-            >
+
+            <!-- AFTER -->
+            <div class="tf-card tf-card-after" id="tf-after">
+              <div class="tf-label">After</div>
+              <div class="tf-beats">
+                <div class="tf-beat">
+                  <span class="tf-beat-num">1</span>
+                  <span class="tf-beat-text"
+                    >See what's proven across global markets</span
+                  >
+                </div>
+                <div class="tf-beat">
+                  <span class="tf-beat-num">2</span>
+                  <span class="tf-beat-text"
+                    >Move it to your market before competitors catch on</span
+                  >
+                </div>
+                <div class="tf-beat">
+                  <span class="tf-beat-num">3</span>
+                  <span class="tf-beat-text">Own the opportunity early</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ── SECTION 5: FAQ ────────────────────────────────────────── -->
-    <section id="faq">
-      <div class="container">
-        <div class="faq-header">
-          <span class="faq-eyebrow">FAQ</span>
-          <h2 class="faq-headline">Questions, answered.</h2>
+      <!-- ── SECTION 3: VALUE CARDS ────────────────────────────────── -->
+      <section id="value">
+        <div class="container">
+          <div class="val-header">
+            <span class="val-eyebrow">What you get</span>
+            <h2 class="val-headline">
+              Everything you need to find your next winner
+            </h2>
+          </div>
+
+          <div class="val-grid">
+            <!-- Card 1 ─────────────────────────────────────────────── -->
+            <div class="val-card">
+              <div class="val-img-wrap">
+                <img
+                  class="val-img"
+                  src="./assets/c1-marketplace.webp"
+                  alt="Research any market"
+                  width="1000"
+                  height="625"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <!-- ★ IMAGE 1: paste <img class="val-img" src="YOUR_URL" alt="Research any market"> here, before this comment ★ -->
+                <div class="val-img-ph">
+                  <svg
+                    width="24"
+                    height="18"
+                    viewBox="0 0 24 18"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <rect
+                      x="0.75"
+                      y="0.75"
+                      width="22.5"
+                      height="16.5"
+                      rx="2.25"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                    />
+                    <path
+                      d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13"
+                      stroke="currentColor"
+                      stroke-width="1.3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  Screenshot
+                </div>
+              </div>
+              <div class="val-body">
+                <p class="val-title">Research any market, from one place</p>
+                <p class="val-desc">
+                  Search demand across 6 marketplaces and 7 countries — no
+                  juggling tabs.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 2 ─────────────────────────────────────────────── -->
+            <div class="val-card">
+              <div class="val-img-wrap">
+                <img
+                  class="val-img"
+                  src="./assets/c2-filter.webp"
+                  alt="Filter to the exact opportunity"
+                  width="1000"
+                  height="625"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <!-- ★ IMAGE 2: paste <img class="val-img" src="YOUR_URL" alt="Filter to the exact opportunity"> here, before this comment ★ -->
+                <div class="val-img-ph">
+                  <svg
+                    width="24"
+                    height="18"
+                    viewBox="0 0 24 18"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <rect
+                      x="0.75"
+                      y="0.75"
+                      width="22.5"
+                      height="16.5"
+                      rx="2.25"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                    />
+                    <path
+                      d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13"
+                      stroke="currentColor"
+                      stroke-width="1.3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  Screenshot
+                </div>
+              </div>
+              <div class="val-body">
+                <p class="val-title">Filter to the exact opportunity</p>
+                <p class="val-desc">
+                  Sort and filter by revenue, sales, price, rating — turn noise
+                  into a shortlist.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 3 ─────────────────────────────────────────────── -->
+            <div class="val-card">
+              <div class="val-img-wrap">
+                <img
+                  class="val-img"
+                  src="./assets/c3-export.webp"
+                  alt="Export your data"
+                  width="1000"
+                  height="625"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <!-- ★ IMAGE 3: paste <img class="val-img" src="YOUR_URL" alt="Export your data"> here, before this comment ★ -->
+                <div class="val-img-ph">
+                  <svg
+                    width="24"
+                    height="18"
+                    viewBox="0 0 24 18"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <rect
+                      x="0.75"
+                      y="0.75"
+                      width="22.5"
+                      height="16.5"
+                      rx="2.25"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                    />
+                    <path
+                      d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13"
+                      stroke="currentColor"
+                      stroke-width="1.3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  Screenshot
+                </div>
+              </div>
+              <div class="val-body">
+                <p class="val-title">Take the data anywhere</p>
+                <p class="val-desc">
+                  Export any result set to work with it your way. The data is
+                  yours.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 4 ─────────────────────────────────────────────── -->
+            <div class="val-card">
+              <div class="val-img-wrap">
+                <img
+                  class="val-img"
+                  src="./assets/c4-ai.webp"
+                  alt="Pipe results into AI"
+                  width="1000"
+                  height="625"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <!-- ★ IMAGE 4: paste <img class="val-img" src="YOUR_URL" alt="Pipe results into AI"> here, before this comment ★ -->
+                <div class="val-img-ph">
+                  <svg
+                    width="24"
+                    height="18"
+                    viewBox="0 0 24 18"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <rect
+                      x="0.75"
+                      y="0.75"
+                      width="22.5"
+                      height="16.5"
+                      rx="2.25"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                    />
+                    <path
+                      d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13"
+                      stroke="currentColor"
+                      stroke-width="1.3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  Screenshot
+                </div>
+              </div>
+              <div class="val-body">
+                <p class="val-title">Pipe results into AI</p>
+                <p class="val-desc">
+                  Send research straight into ChatGPT or Claude for instant
+                  analysis.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div class="faq-list">
-          <details class="faq-item">
-            <summary class="faq-q">
-              Where does your data come from?
-              <svg
-                class="faq-chevron"
-                width="16"
-                height="10"
-                viewBox="0 0 16 10"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M1 1.5L8 8.5L15 1.5"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </summary>
-            <p class="faq-a">
-              We aggregate publicly available marketplace data and process it
-              through our own pipeline to surface sales estimates, revenue,
-              pricing, and reviews. The data is continuously updated to reflect
-              current market conditions.
+      <!-- ── SECTION 4: PRICING ────────────────────────────────────── -->
+      <section id="pricing">
+        <div class="container">
+          <div class="pr-header">
+            <span class="pr-eyebrow">Pricing</span>
+            <h2 class="pr-headline">Start free. Upgrade when you're ready.</h2>
+            <p class="pr-sub">
+              No credit card. No time limit. Use it as long as you want.
             </p>
-          </details>
+          </div>
 
-          <details class="faq-item">
-            <summary class="faq-q">
-              How is this different from other research tools?
-              <svg
-                class="faq-chevron"
-                width="16"
-                height="10"
-                viewBox="0 0 16 10"
-                fill="none"
-                aria-hidden="true"
+          <div class="pr-grid">
+            <!-- Free card ───────────────────────────────────────────── -->
+            <div class="pr-card">
+              <p class="pr-plan">Free</p>
+              <div class="pr-price">
+                <span class="pr-amount">$0</span>
+                <span class="pr-period">/forever</span>
+              </div>
+              <ul class="pr-features">
+                <li class="pr-feat pr-feat-yes">
+                  <span class="pr-icon pr-icon-yes" aria-hidden="true">
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path
+                        d="M1 4L3.5 6.5L9 1"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  6 Marketplaces, 7 Countries
+                </li>
+                <li class="pr-feat pr-feat-warn">
+                  <span class="pr-icon pr-icon-warn" aria-hidden="true">
+                    <svg width="2" height="8" viewBox="0 0 2 8" fill="none">
+                      <path
+                        d="M1 0.5V5"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                      />
+                      <circle cx="1" cy="7.3" r="0.9" fill="currentColor" />
+                    </svg>
+                  </span>
+                  5 searches per day
+                </li>
+                <li class="pr-feat pr-feat-warn">
+                  <span class="pr-icon pr-icon-warn" aria-hidden="true">
+                    <svg width="2" height="8" viewBox="0 0 2 8" fill="none">
+                      <path
+                        d="M1 0.5V5"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                      />
+                      <circle cx="1" cy="7.3" r="0.9" fill="currentColor" />
+                    </svg>
+                  </span>
+                  Up to 20 product results per search
+                </li>
+                <li class="pr-feat pr-feat-warn">
+                  <span class="pr-icon pr-icon-warn" aria-hidden="true">
+                    <svg width="2" height="8" viewBox="0 0 2 8" fill="none">
+                      <path
+                        d="M1 0.5V5"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                      />
+                      <circle cx="1" cy="7.3" r="0.9" fill="currentColor" />
+                    </svg>
+                  </span>
+                  Limited AI access
+                </li>
+                <li class="pr-feat pr-feat-no">
+                  <span class="pr-icon pr-icon-no" aria-hidden="true">
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                      <path
+                        d="M1.5 1.5L6.5 6.5M6.5 1.5L1.5 6.5"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </span>
+                  Data exports not included
+                </li>
+              </ul>
+              <a
+                href="https://app.ecomblade.com/register"
+                class="pr-btn pr-btn-outline"
+                >Start free</a
               >
-                <path
-                  d="M1 1.5L8 8.5L15 1.5"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </summary>
-            <p class="faq-a">
-              Most tools overwhelm you with dozens of features across a single
-              marketplace. Ecomblade pulls data from multiple global
-              marketplaces into one clean view — only the metrics that matter,
-              with zero noise. Less tabs, less guessing, faster decisions.
-            </p>
-          </details>
+            </div>
 
-          <details class="faq-item">
-            <summary class="faq-q">
-              Do I need to integrate my seller account?
-              <svg
-                class="faq-chevron"
-                width="16"
-                height="10"
-                viewBox="0 0 16 10"
-                fill="none"
-                aria-hidden="true"
+            <!-- Pro card ────────────────────────────────────────────── -->
+            <div class="pr-card pr-card-pro">
+              <span class="pr-tag">Most popular</span>
+              <p class="pr-plan">Pro</p>
+              <div class="pr-price">
+                <span class="pr-amount">$19</span>
+                <span class="pr-period">/month</span>
+              </div>
+              <ul class="pr-features">
+                <li class="pr-feat pr-feat-yes">
+                  <span class="pr-icon pr-icon-yes" aria-hidden="true">
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path
+                        d="M1 4L3.5 6.5L9 1"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  6 Marketplaces, 7 Countries
+                </li>
+                <li class="pr-feat pr-feat-yes">
+                  <span class="pr-icon pr-icon-yes" aria-hidden="true">
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path
+                        d="M1 4L3.5 6.5L9 1"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  Unlimited searches per day
+                </li>
+                <li class="pr-feat pr-feat-yes">
+                  <span class="pr-icon pr-icon-yes" aria-hidden="true">
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path
+                        d="M1 4L3.5 6.5L9 1"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  Full product results
+                </li>
+                <li class="pr-feat pr-feat-yes">
+                  <span class="pr-icon pr-icon-yes" aria-hidden="true">
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path
+                        d="M1 4L3.5 6.5L9 1"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  Full AI access
+                </li>
+                <li class="pr-feat pr-feat-yes">
+                  <span class="pr-icon pr-icon-yes" aria-hidden="true">
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path
+                        d="M1 4L3.5 6.5L9 1"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  Data exports included
+                </li>
+              </ul>
+              <a
+                href="https://app.ecomblade.com/register"
+                class="pr-btn pr-btn-primary"
+                >Start free</a
               >
-                <path
-                  d="M1 1.5L8 8.5L15 1.5"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </summary>
-            <p class="faq-a">
-              No. Ecomblade is product research — you're looking at the market,
-              not your own listings. No account connection required, ever. Sign
-              up with email and you're using the product in under 60 seconds.
-            </p>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">
-              Is there a free trial?
-              <svg
-                class="faq-chevron"
-                width="16"
-                height="10"
-                viewBox="0 0 16 10"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M1 1.5L8 8.5L15 1.5"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </summary>
-            <p class="faq-a">
-              Ecomblade is free to start — no credit card, no time limit. Use it
-              for as long as you want. When you need full access across all
-              marketplaces, Pro is $19/month.
-            </p>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">
-              How quickly can I get started?
-              <svg
-                class="faq-chevron"
-                width="16"
-                height="10"
-                viewBox="0 0 16 10"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M1 1.5L8 8.5L15 1.5"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </summary>
-            <p class="faq-a">
-              Sign up with email and phone. That's it. No onboarding calls, no
-              setup wizard, no waiting for approval. You're researching products
-              within 60 seconds.
-            </p>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">
-              Can I cancel anytime?
-              <svg
-                class="faq-chevron"
-                width="16"
-                height="10"
-                viewBox="0 0 16 10"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M1 1.5L8 8.5L15 1.5"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </summary>
-            <p class="faq-a">
-              Yes. One click from your dashboard. No retention flows, no calls,
-              no guilt. If you're not getting value, we'd rather you leave
-              easily than stay frustrated.
-            </p>
-          </details>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- ── SECTION 5: FAQ ────────────────────────────────────────── -->
+      <section id="faq">
+        <div class="container">
+          <div class="faq-header">
+            <span class="faq-eyebrow">FAQ</span>
+            <h2 class="faq-headline">Questions, answered.</h2>
+          </div>
+
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary class="faq-q">
+                Where does your data come from?
+                <svg
+                  class="faq-chevron"
+                  width="16"
+                  height="10"
+                  viewBox="0 0 16 10"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M1 1.5L8 8.5L15 1.5"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </summary>
+              <p class="faq-a">
+                We aggregate publicly available marketplace data and process it
+                through our own pipeline to surface sales estimates, revenue,
+                pricing, and reviews. The data is continuously updated to
+                reflect current market conditions.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-q">
+                How is this different from other research tools?
+                <svg
+                  class="faq-chevron"
+                  width="16"
+                  height="10"
+                  viewBox="0 0 16 10"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M1 1.5L8 8.5L15 1.5"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </summary>
+              <p class="faq-a">
+                Most tools overwhelm you with dozens of features across a single
+                marketplace. Ecomblade pulls data from multiple global
+                marketplaces into one clean view — only the metrics that matter,
+                with zero noise. Less tabs, less guessing, faster decisions.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-q">
+                Do I need to integrate my seller account?
+                <svg
+                  class="faq-chevron"
+                  width="16"
+                  height="10"
+                  viewBox="0 0 16 10"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M1 1.5L8 8.5L15 1.5"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </summary>
+              <p class="faq-a">
+                No. Ecomblade is product research — you're looking at the
+                market, not your own listings. No account connection required,
+                ever. Sign up with email and you're using the product in under
+                60 seconds.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-q">
+                Is there a free trial?
+                <svg
+                  class="faq-chevron"
+                  width="16"
+                  height="10"
+                  viewBox="0 0 16 10"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M1 1.5L8 8.5L15 1.5"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </summary>
+              <p class="faq-a">
+                Ecomblade is free to start — no credit card, no time limit. Use
+                it for as long as you want. When you need full access across all
+                marketplaces, Pro is $19/month.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-q">
+                How quickly can I get started?
+                <svg
+                  class="faq-chevron"
+                  width="16"
+                  height="10"
+                  viewBox="0 0 16 10"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M1 1.5L8 8.5L15 1.5"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </summary>
+              <p class="faq-a">
+                Sign up with email and phone. That's it. No onboarding calls, no
+                setup wizard, no waiting for approval. You're researching
+                products within 60 seconds.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-q">
+                Can I cancel anytime?
+                <svg
+                  class="faq-chevron"
+                  width="16"
+                  height="10"
+                  viewBox="0 0 16 10"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M1 1.5L8 8.5L15 1.5"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </summary>
+              <p class="faq-a">
+                Yes. One click from your dashboard. No retention flows, no
+                calls, no guilt. If you're not getting value, we'd rather you
+                leave easily than stay frustrated.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <!-- ── FINAL SECTION: CTA + FOOTER (dark) ────────────────────── -->
-    <section id="cta-footer">
+    <footer id="cta-footer">
       <!-- PART A: Final CTA ────────────────────────────────────────── -->
       <div class="end-cta">
         <div class="container">
@@ -2574,6 +2748,8 @@
                   src="assets/white-EB-logo-nav.svg"
                   alt="Ecomblade"
                   class="end-logo-img"
+                  width="112"
+                  height="28"
               /></a>
               <p class="end-tagline">
                 Global product research for serious sellers. Sales volume,
@@ -2615,7 +2791,7 @@
           <div class="end-bottom">© 2026 Ecomblade. All rights reserved.</div>
         </div>
       </div>
-    </section>
+    </footer>
 
     <script>
       /* ═══════════════════════════════════════════════════════════════
@@ -3105,12 +3281,15 @@
       /* Inline SVG platform logos */
       function platformSVG(name) {
         var p = {
-          Shopee: '<img src="assets/shopee.svg" alt="" class="hd-plat-logo">',
+          Shopee:
+            '<img src="assets/shopee.svg" alt="" class="hd-plat-logo" width="14" height="14">',
           "TikTok Shop":
             '<svg width="14" height="14" viewBox="0 0 24 28" fill="#111" style="vertical-align:middle;flex-shrink:0"><path d="M17 0c.3 2.5 1.8 4.6 5 4.8v4c-1.8 0-3.4-.6-4.7-1.6v7.4C17.3 19.3 14.2 23 10 23 5.4 23 1.7 19.3 1.7 14.7S5.4 6.5 10 6.5c.4 0 .8 0 1.2.1v4.1c-.4-.1-.8-.1-1.2-.1-2.5 0-4.6 2-4.6 4.6S7.5 19.6 10 19.6s4.6-2 4.6-4.6V0H17z"/></svg>',
-          Lazada: '<img src="assets/lazada.svg" alt="" class="hd-plat-logo">',
-          Amazon: '<img src="assets/amazon.svg" alt="" class="hd-plat-logo">',
-          Temu: '<img src="assets/temu.svg"   alt="" class="hd-plat-logo">',
+          Lazada:
+            '<img src="assets/lazada.svg" alt="" class="hd-plat-logo" width="14" height="14">',
+          Amazon:
+            '<img src="assets/amazon.svg" alt="" class="hd-plat-logo" width="14" height="14">',
+          Temu: '<img src="assets/temu.svg" alt="" class="hd-plat-logo" width="14" height="14">',
         };
         return p[name] || "";
       }
@@ -3336,22 +3515,37 @@
         tfio.observe(arrow);
       })();
 
-      /* ── Load GSAP after first paint (double-rAF = post-LCP safe) ─ */
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
+      /* ── Load decorative animation after interaction or a quiet start ─ */
+      (function scheduleDemoAnimation() {
+        var hasLoaded = false;
+
+        function loadAnimation() {
+          if (hasLoaded) return;
+          hasLoaded = true;
+
           var s1 = document.createElement("script");
           s1.src =
             "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
+          s1.async = true;
           s1.onload = function () {
             var s2 = document.createElement("script");
             s2.src =
               "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js";
+            s2.async = true;
             s2.onload = initDemo;
             document.head.appendChild(s2);
           };
           document.head.appendChild(s1);
+        }
+
+        ["keydown", "pointerdown", "touchstart"].forEach(function (eventName) {
+          window.addEventListener(eventName, loadAnimation, {
+            once: true,
+            passive: true,
+          });
         });
-      });
+        window.setTimeout(loadAnimation, 8000);
+      })();
     </script>
   </body>
 </html>

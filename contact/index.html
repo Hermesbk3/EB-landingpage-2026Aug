@@ -6,23 +6,32 @@
   <title>Contact — Ecomblade</title>
   <script type="module" src="/src/analytics.js"></script>
   <meta name="description" content="Reach the ecomblade team for product support, billing questions, marketplace data questions, and collaboration inquiries." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ecomblade.com/contact/" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Ecomblade" />
+  <meta property="og:title" content="Contact Ecomblade" />
+  <meta property="og:description" content="Contact Ecomblade for product support, billing, marketplace data, and collaboration questions." />
+  <meta property="og:url" content="https://ecomblade.com/contact/" />
+  <meta property="og:image" content="https://ecomblade.com/assets/og-ecomblade.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
   <style>
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 300 700; font-display: optional; src: url('/fonts/inter-latin.woff2') format('woff2'); }
     /* ── TOKENS ──────────────────────────────────────────────── */
     :root {
-      --accent:   #00E0C6;
-      --acc-bg:   rgba(0, 224, 198, 0.10);
-      --acc-bdr:  rgba(0, 224, 198, 0.28);
-      --acc-ink:  #008f82;
+      --accent:   #00a088;
+      --acc-bg:   rgba(0, 160, 136, 0.10);
+      --acc-bdr:  rgba(0, 160, 136, 0.28);
+      --acc-ink:  #006f66;
       --bg:       #ffffff;
       --surf:     #f5faf9;
       --bdr:      rgba(7, 17, 15, 0.09);
       --bdr-med:  rgba(7, 17, 15, 0.15);
       --ink:      #07110F;
       --muted:    #5a7570;
-      --dim:      #9bb5b0;
+      --dim:      #58736e;
       --font:     'Inter', system-ui, -apple-system, sans-serif;
       --r:        10px;
       --r-lg:     14px;
@@ -78,7 +87,7 @@
       transition: background 0.15s, transform 0.15s;
     }
     .btn-primary { background: var(--accent); color: #07110F; font-size: 14px; padding: 10px 20px; }
-    .btn-primary:hover { background: #1ae8d0; transform: translateY(-1px); }
+    .btn-primary:hover { background: #007566; transform: translateY(-1px); }
     .btn-primary:active { transform: translateY(0); }
     .btn-secondary {
       background: #fff;
@@ -261,7 +270,7 @@
 <!-- ── NAV ─────────────────────────────────────────────────── -->
 <nav>
   <div class="container nav-inner">
-    <a href="/" class="logo"><img src="../assets/EB-logo-nav.png" alt="Ecomblade" class="logo-img"></a>
+    <a href="/" class="logo"><img src="../assets/EB-logo-nav.png" alt="Ecomblade" class="logo-img" width="104" height="26"></a>
     <div class="nav-links">
       <a href="/#value">Features</a>
       <a href="/#pricing">Pricing</a>
@@ -273,6 +282,8 @@
     </div>
   </div>
 </nav>
+
+<main>
 
 <!-- ── CONTACT HERO ────────────────────────────────────────── -->
 <section id="about-hero">
@@ -321,15 +332,17 @@
   </div>
 </section>
 
+</main>
+
 <!-- ── FOOTER (dark) ───────────────────────────────────────── -->
-<section id="cta-footer">
+<footer id="cta-footer">
   <div class="end-footer">
     <div class="container">
       <div class="end-footer-inner">
 
         <!-- Brand + tagline -->
         <div class="end-brand">
-          <a href="/" class="end-logo"><img src="../assets/white-EB-logo-nav.svg" alt="Ecomblade" class="end-logo-img"></a>
+          <a href="/" class="end-logo"><img src="../assets/white-EB-logo-nav.svg" alt="Ecomblade" class="end-logo-img" width="112" height="28"></a>
           <p class="end-tagline">Global product research for serious sellers. Sales volume, revenue, and demand across 6 marketplaces — in one clean view.</p>
         </div>
 
@@ -371,7 +384,7 @@
 
     </div>
   </div>
-</section>
+</footer>
 
 </body>
 </html>

@@ -1,0 +1,16 @@
+# Ecomblade
+
+Ecomblade is a global product-research platform for ecommerce sellers. It helps users compare sales volume, revenue, pricing, ratings, and demand across Shopee, TikTok Shop, Lazada, Amazon, Temu, and Alibaba.
+
+## Main pages
+
+- [Homepage](https://ecomblade.com/): Product features, workflow, pricing, and frequently asked questions.
+- [About](https://ecomblade.com/about/): The company mission and product principles.
+- [Contact](https://ecomblade.com/contact/): Support, billing, data, and partnership contact options.
+- [Privacy Policy](https://ecomblade.com/privacy/): Information collection, use, and protection practices.
+- [Terms and Conditions](https://ecomblade.com/terms/): Terms governing use of the website and platform.
+
+## Product access
+
+- [Create an account](https://app.ecomblade.com/register)
+- [Log in](https://app.ecomblade.com/login)

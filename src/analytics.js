@@ -105,10 +105,28 @@ async function loadPostHog() {
   posthog.init(POSTHOG_API_KEY, {
     api_host: 'https://us.i.posthog.com',
     defaults: '2026-05-30',
+    disable_product_tours: true,
+    disable_session_recording: true,
+    disable_surveys: true,
+    disable_web_experiments: true,
   });
 }
 
-loadGoogleAnalytics();
-loadFacebookPixel();
-loadTikTokPixel();
-loadPostHog();
+let hasStarted = false;
+
+function startAnalytics() {
+  if (hasStarted) return;
+  hasStarted = true;
+
+  loadGoogleAnalytics();
+  loadFacebookPixel();
+  loadTikTokPixel();
+  loadPostHog();
+}
+
+const interactionEvents = ['keydown', 'pointerdown', 'scroll', 'touchstart'];
+interactionEvents.forEach((eventName) => {
+  window.addEventListener(eventName, startAnalytics, { once: true, passive: true });
+});
+
+window.setTimeout(startAnalytics, 12_000);
