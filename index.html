@@ -1,1592 +1,2622 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ecomblade — Spot product opportunities, before everyone else.</title>
-  <meta name="description" content="Search real sales volume, revenue, and demand across Shopee, TikTok, Lazada, Amazon, Temu, and Alibaba — ranked in one view." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
-  <style>
-    /* ── TOKENS ──────────────────────────────────────────────── */
-    :root {
-      --accent:   #00E0C6;
-      --acc-bg:   rgba(0, 224, 198, 0.10);
-      --acc-bdr:  rgba(0, 224, 198, 0.28);
-      --acc-ink:  #008f82;
-      --bg:       #ffffff;
-      --surf:     #f5faf9;
-      --bdr:      rgba(7, 17, 15, 0.09);
-      --bdr-med:  rgba(7, 17, 15, 0.15);
-      --ink:      #07110F;
-      --muted:    #5a7570;
-      --dim:      #9bb5b0;
-      --font:     'Inter', system-ui, -apple-system, sans-serif;
-      --r:        10px;
-      --r-lg:     14px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecomblade — Spot product opportunities, before everyone else.</title>
+    <meta
+      name="description"
+      content="Search real sales volume, revenue, and demand across Shopee, TikTok, Lazada, Amazon, Temu, and Alibaba — ranked in one view."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ── TOKENS ──────────────────────────────────────────────── */
+      :root {
+        --accent: #00e0c6;
+        --acc-bg: rgba(0, 224, 198, 0.1);
+        --acc-bdr: rgba(0, 224, 198, 0.28);
+        --acc-ink: #008f82;
+        --bg: #ffffff;
+        --surf: #f5faf9;
+        --bdr: rgba(7, 17, 15, 0.09);
+        --bdr-med: rgba(7, 17, 15, 0.15);
+        --ink: #07110f;
+        --muted: #5a7570;
+        --dim: #9bb5b0;
+        --font: "Inter", system-ui, -apple-system, sans-serif;
+        --r: 10px;
+        --r-lg: 14px;
+      }
 
-    /* ── RESET ───────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--font);
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
+      /* ── RESET ───────────────────────────────────────────────── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font);
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
 
-    .container { width: 100%; max-width: 1080px; margin-inline: auto; padding-inline: 24px; }
+      .container {
+        width: 100%;
+        max-width: 1080px;
+        margin-inline: auto;
+        padding-inline: 24px;
+      }
 
-    /* ── NAV ─────────────────────────────────────────────────── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--bdr);
-    }
-    .nav-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
-    }
-    .logo { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
-    .logo em { font-style: normal; color: var(--accent); }
-    .logo-img { height: 26px; width: auto; display: block; }
-    .nav-links {
-      display: flex; align-items: center; justify-content: center; gap: 34px;
-      flex: 1;
-    }
-    .nav-links a {
-      font-size: 14.5px; font-weight: 500; color: rgba(7, 17, 15, 0.72);
-      text-decoration: none; transition: color 0.15s;
-    }
-    .nav-links a:hover { color: var(--ink); }
-    .nav-ctas { display: flex; align-items: center; gap: 8px; }
-    @media (max-width: 640px) { .nav-links { display: none; } }
+      /* ── NAV ─────────────────────────────────────────────────── */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--bdr);
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 60px;
+      }
+      .logo {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .logo em {
+        font-style: normal;
+        color: var(--accent);
+      }
+      .logo-img {
+        height: 26px;
+        width: auto;
+        display: block;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 34px;
+        flex: 1;
+      }
+      .nav-links a {
+        font-size: 14.5px;
+        font-weight: 500;
+        color: rgba(7, 17, 15, 0.72);
+        text-decoration: none;
+        transition: color 0.15s;
+      }
+      .nav-links a:hover {
+        color: var(--ink);
+      }
+      .nav-ctas {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      @media (max-width: 640px) {
+        .nav-links {
+          display: none;
+        }
+      }
 
-    /* ── BUTTONS ─────────────────────────────────────────────── */
-    .btn {
-      display: inline-flex; align-items: center;
-      font-family: var(--font); font-weight: 600;
-      border-radius: var(--r); cursor: pointer; border: none;
-      transition: background 0.15s, transform 0.15s;
-    }
-    .btn-primary { background: var(--accent); color: #07110F; font-size: 14px; padding: 10px 20px; }
-    .btn-primary:hover { background: #1ae8d0; transform: translateY(-1px); }
-    .btn-primary:active { transform: translateY(0); }
-    .btn-secondary {
-      background: #fff;
-      border: 1.5px solid var(--accent);
-      color: var(--ink);
-      font-size: 14px;
-      padding: 10px 20px;
-    }
-    .btn-secondary:hover  { background: var(--acc-bg); transform: translateY(-1px); }
-    .btn-secondary:active { transform: translateY(0); }
-    .btn-lg { font-size: 16px; padding: 13px 30px; }
+      /* ── BUTTONS ─────────────────────────────────────────────── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        font-family: var(--font);
+        font-weight: 600;
+        border-radius: var(--r);
+        cursor: pointer;
+        border: none;
+        transition:
+          background 0.15s,
+          transform 0.15s;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #07110f;
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+      .btn-primary:hover {
+        background: #1ae8d0;
+        transform: translateY(-1px);
+      }
+      .btn-primary:active {
+        transform: translateY(0);
+      }
+      .btn-secondary {
+        background: #fff;
+        border: 1.5px solid var(--accent);
+        color: var(--ink);
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+      .btn-secondary:hover {
+        background: var(--acc-bg);
+        transform: translateY(-1px);
+      }
+      .btn-secondary:active {
+        transform: translateY(0);
+      }
+      .btn-lg {
+        font-size: 16px;
+        padding: 13px 30px;
+      }
 
-    /* ── HERO ────────────────────────────────────────────────── */
-    #hero { padding: 80px 0 80px; text-align: center; }
+      /* ── HERO ────────────────────────────────────────────────── */
+      #hero {
+        padding: 80px 0 80px;
+        text-align: center;
+      }
 
-    .hero-tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--acc-bg); border: 1px solid var(--acc-bdr);
-      border-radius: 100px; padding: 5px 14px;
-      font-size: 12px; font-weight: 500; color: var(--acc-ink);
-      margin-bottom: 28px;
-    }
-    .hero-tag .dot {
-      width: 6px; height: 6px;
-      background: var(--accent); border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--acc-bg);
+        border: 1px solid var(--acc-bdr);
+        border-radius: 100px;
+        padding: 5px 14px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--acc-ink);
+        margin-bottom: 28px;
+      }
+      .hero-tag .dot {
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
 
-    h1 {
-      font-size: clamp(40px, 6.5vw, 72px);
-      font-weight: 700; line-height: 1.05; letter-spacing: -0.035em;
-      max-width: 860px; margin-inline: auto; margin-bottom: 18px;
-    }
-    h1 em { font-style: normal; color: var(--accent); }
+      h1 {
+        font-size: clamp(40px, 6.5vw, 72px);
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -0.035em;
+        max-width: 860px;
+        margin-inline: auto;
+        margin-bottom: 18px;
+      }
+      h1 em {
+        font-style: normal;
+        color: var(--accent);
+      }
 
-    .hero-sub {
-      font-size: clamp(16px, 2vw, 18px); color: var(--muted);
-      max-width: 500px; margin-inline: auto;
-      margin-bottom: 32px; line-height: 1.55;
-    }
-    .no-card { font-size: 12px; color: var(--dim); margin-top: 12px; }
-    .hero-ctas {
-      display: flex; align-items: center; justify-content: center;
-      gap: 12px;
-    }
+      .hero-sub {
+        font-size: clamp(16px, 2vw, 18px);
+        color: var(--muted);
+        max-width: 500px;
+        margin-inline: auto;
+        margin-bottom: 32px;
+        line-height: 1.55;
+      }
+      .no-card {
+        font-size: 12px;
+        color: var(--dim);
+        margin-top: 12px;
+      }
+      .hero-ctas {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+      }
 
-    /* ══════════════════════════════════════════════════════════
+      /* ══════════════════════════════════════════════════════════
        HERO DEMO COMPONENT
     ══════════════════════════════════════════════════════════ */
-    .hero-demo-wrap {
-      margin-top: 8px;
-      max-width: 920px;
-      margin-inline: auto;
-    }
+      .hero-demo-wrap {
+        margin-top: 8px;
+        max-width: 920px;
+        margin-inline: auto;
+      }
 
-    #hero-demo {
-      background: #fff;
-      border: 1px solid var(--bdr-med);
-      border-radius: 18px;
-      box-shadow: 0 2px 32px rgba(7, 17, 15, 0.08), 0 0 0 1px rgba(7, 17, 15, 0.03);
-      /* overflow:hidden removed — it clips the horizontal scroll inside .hd-table-wrap.
+      #hero-demo {
+        background: #fff;
+        border: 1px solid var(--bdr-med);
+        border-radius: 18px;
+        box-shadow:
+          0 2px 32px rgba(7, 17, 15, 0.08),
+          0 0 0 1px rgba(7, 17, 15, 0.03);
+        /* overflow:hidden removed — it clips the horizontal scroll inside .hd-table-wrap.
          Top corners are handled by border-radius on .hd-bar instead. */
-      /* Exact height reserved → CLS = 0 when GSAP hydrates */
-      min-height: 484px;
-    }
+        /* Exact height reserved → CLS = 0 when GSAP hydrates */
+        min-height: 484px;
+      }
 
-    /* ── Search bar ─────────────────────────────────────────── */
-    .hd-bar {
-      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-      padding: 12px 18px;
-      background: var(--surf);
-      border-bottom: 1px solid var(--bdr);
-      border-radius: 17px 17px 0 0;
-    }
+      /* ── Search bar ─────────────────────────────────────────── */
+      .hd-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        padding: 12px 18px;
+        background: var(--surf);
+        border-bottom: 1px solid var(--bdr);
+        border-radius: 17px 17px 0 0;
+      }
 
-    .hd-chip {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: #fff; border: 1px solid var(--bdr);
-      border-radius: 8px; padding: 5px 11px;
-      font-size: 13px; font-weight: 500; color: var(--muted);
-      white-space: nowrap; user-select: none; flex-shrink: 0;
-    }
-    .hd-chip-market {
-      background: var(--acc-bg); border-color: var(--acc-bdr);
-      color: var(--acc-ink); font-weight: 600;
-    }
-    .hd-plat-logo { height: 14px; width: auto; vertical-align: middle; flex-shrink: 0; display: inline-block; }
-    /* Inline flag SVGs — cross-platform, no emoji rendering variance */
-    .hd-flag { display: inline-block; vertical-align: middle; border-radius: 2px; flex-shrink: 0; }
+      .hd-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #fff;
+        border: 1px solid var(--bdr);
+        border-radius: 8px;
+        padding: 5px 11px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--muted);
+        white-space: nowrap;
+        user-select: none;
+        flex-shrink: 0;
+      }
+      .hd-chip-market {
+        background: var(--acc-bg);
+        border-color: var(--acc-bdr);
+        color: var(--acc-ink);
+        font-weight: 600;
+      }
+      .hd-plat-logo {
+        height: 14px;
+        width: auto;
+        vertical-align: middle;
+        flex-shrink: 0;
+        display: inline-block;
+      }
+      /* Inline flag SVGs — cross-platform, no emoji rendering variance */
+      .hd-flag {
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
 
-    .hd-input-wrap {
-      flex: 1; min-width: 160px;
-      display: flex; align-items: center;
-      background: #fff; border: 1px solid var(--accent);
-      border-radius: 8px; padding: 6px 12px;
-      font-size: 14px; color: var(--ink);
-    }
-    #hd-typed { min-width: 0; }
-    .hd-caret {
-      display: inline-block; width: 2px; height: 15px;
-      background: var(--accent); border-radius: 1px;
-      margin-left: 1px; vertical-align: middle; flex-shrink: 0;
-      animation: caret 1s step-end infinite;
-    }
-    @keyframes caret { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+      .hd-input-wrap {
+        flex: 1;
+        min-width: 160px;
+        display: flex;
+        align-items: center;
+        background: #fff;
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        padding: 6px 12px;
+        font-size: 14px;
+        color: var(--ink);
+      }
+      #hd-typed {
+        min-width: 0;
+      }
+      .hd-caret {
+        display: inline-block;
+        width: 2px;
+        height: 15px;
+        background: var(--accent);
+        border-radius: 1px;
+        margin-left: 1px;
+        vertical-align: middle;
+        flex-shrink: 0;
+        animation: caret 1s step-end infinite;
+      }
+      @keyframes caret {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
 
-    .hd-srch-btn {
-      background: var(--accent); color: #07110F;
-      border: none; border-radius: 8px; padding: 7px 18px;
-      font-size: 13px; font-weight: 600; font-family: var(--font);
-      cursor: default; flex-shrink: 0;
-    }
+      .hd-srch-btn {
+        background: var(--accent);
+        color: #07110f;
+        border: none;
+        border-radius: 8px;
+        padding: 7px 18px;
+        font-size: 13px;
+        font-weight: 600;
+        font-family: var(--font);
+        cursor: default;
+        flex-shrink: 0;
+      }
 
-    /* ── Demo body ──────────────────────────────────────────── */
-    .hd-body { padding: 20px 20px 24px; }
+      /* ── Demo body ──────────────────────────────────────────── */
+      .hd-body {
+        padding: 20px 20px 24px;
+      }
 
-    /* Section label */
-    .hd-stag {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--acc-ink); margin-bottom: 14px;
-    }
-    .hd-stag::before {
-      content: ''; width: 3px; height: 12px;
-      background: var(--accent); border-radius: 2px; flex-shrink: 0;
-    }
+      /* Section label */
+      .hd-stag {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--acc-ink);
+        margin-bottom: 14px;
+      }
+      .hd-stag::before {
+        content: "";
+        width: 3px;
+        height: 12px;
+        background: var(--accent);
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
 
-    /* ── Snapshot metrics ───────────────────────────────────── */
-    .hd-snapshot { margin-bottom: 24px; }
-    .hd-metrics  { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    .hd-metric   { background: var(--surf); border: 1px solid var(--bdr); border-radius: var(--r); padding: 12px 14px; }
-    .hd-mlabel   { font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--dim); margin-bottom: 5px; }
-    .hd-mval     { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); line-height: 1; }
+      /* ── Snapshot metrics ───────────────────────────────────── */
+      .hd-snapshot {
+        margin-bottom: 24px;
+      }
+      .hd-metrics {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+      .hd-metric {
+        background: var(--surf);
+        border: 1px solid var(--bdr);
+        border-radius: var(--r);
+        padding: 12px 14px;
+      }
+      .hd-mlabel {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--dim);
+        margin-bottom: 5px;
+      }
+      .hd-mval {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        line-height: 1;
+      }
 
-    /* ── Leaderboard ────────────────────────────────────────── */
-    .hd-subtitle {
-      font-size: 13px; color: var(--muted);
-      padding-bottom: 12px; border-bottom: 1px solid var(--bdr);
-    }
-    .hd-table-wrap { overflow-x: auto; }
+      /* ── Leaderboard ────────────────────────────────────────── */
+      .hd-subtitle {
+        font-size: 13px;
+        color: var(--muted);
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--bdr);
+      }
+      .hd-table-wrap {
+        overflow-x: auto;
+      }
 
-    /*
+      /*
      * Div-based table — NOT <table> — so GSAP Flip can freely
      * animate row positions during the rank re-sort (Beat 4).
      */
-    .hd-table { min-width: 1040px; }
-
-    .hd-thead {
-      display: grid;
-      grid-template-columns: 40px minmax(150px,1.3fr) 96px 96px 112px 112px 74px 124px 92px;
-      align-items: start;
-      padding: 8px 8px 6px;
-      border-bottom: 1px solid var(--bdr);
-    }
-    .hd-th {
-      font-size: 10px; font-weight: 600;
-      letter-spacing: 0.06em; text-transform: uppercase; color: var(--dim);
-    }
-    .hd-th:nth-child(n+5) { text-align: right; }
-
-    /* position:relative so Flip can absolutely-position rows during animation */
-    #hd-tbody { position: relative; }
-
-    .hd-row {
-      display: grid;
-      grid-template-columns: 40px minmax(150px,1.3fr) 96px 96px 112px 112px 74px 124px 92px;
-      align-items: center;
-      padding: 8px 8px;
-      border-bottom: 1px solid var(--bdr);
-      font-size: 12.5px;
-    }
-    .hd-row:last-child { border-bottom: none; }
-    .hd-td:nth-child(n+5) { text-align: right; }
-
-    .hd-rank {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 24px; height: 24px; border-radius: 7px;
-      background: var(--acc-bg); border: 1px solid var(--acc-bdr);
-      font-size: 11px; font-weight: 700; color: var(--acc-ink);
-    }
-    .hd-rank.gold {
-      background: rgba(245, 197, 66, 0.10);
-      border-color: rgba(245, 197, 66, 0.35);
-      color: #9a7a0a;
-    }
-
-    .hd-pname   { font-weight: 500; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .hd-store   { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--muted); }
-    .hd-created { white-space: nowrap; color: var(--muted); }
-    .hd-orig    { color: var(--muted); }
-    .hd-dprice  { font-weight: 600; color: var(--ink); }
-
-    .hd-disc {
-      display: inline-block; padding: 2px 7px;
-      background: rgba(239, 68, 68, 0.08); border-radius: 4px;
-      font-size: 11px; font-weight: 600; color: #dc2626;
-    }
-    .hd-rev  { font-weight: 600; color: var(--ink); }
-    .hd-sold { color: var(--muted); }
-
-    /* ── Prefers-reduced-motion: static final state ─────────── */
-    @media (prefers-reduced-motion: reduce) {
-      #hero-demo, #hd-snapshot, #hd-leaderboard, .hd-row, .hd-mval {
-        opacity: 1 !important;
-        transform: none !important;
+      .hd-table {
+        min-width: 1040px;
       }
-      .hd-caret { animation: none; }
-    }
 
-    /* ── Responsive ─────────────────────────────────────────── */
-    .hd-table-wrap {
-      scrollbar-width: thin;
-      scrollbar-color: var(--bdr-med) transparent;
-    }
-    .hd-table-wrap::-webkit-scrollbar { height: 3px; }
-    .hd-table-wrap::-webkit-scrollbar-track { background: transparent; }
-    .hd-table-wrap::-webkit-scrollbar-thumb { background: var(--bdr-med); border-radius: 99px; }
-
-    @media (max-width: 680px) {
-      .hd-metrics { grid-template-columns: repeat(2, 1fr); }
-      /* Narrow product column so Store/Discount/Revenue are visible on load */
-      .hd-table { min-width: 820px; }
-      .hd-thead, .hd-row {
-        grid-template-columns: 40px 110px 88px 88px 100px 100px 68px 112px 80px;
+      .hd-thead {
+        display: grid;
+        grid-template-columns:
+          40px minmax(150px, 1.3fr)
+          96px 96px 112px 112px 74px 124px 92px;
+        align-items: start;
+        padding: 8px 8px 6px;
+        border-bottom: 1px solid var(--bdr);
       }
-      .hd-pname { max-width: 105px; }
-      /* Right-edge fade hints at scrollable content */
-      #hd-leaderboard { position: relative; overflow: clip; }
-      #hd-leaderboard::after {
-        content: '';
-        position: absolute;
-        right: 0; top: 0; bottom: 0;
-        width: 52px;
-        background: linear-gradient(to right, transparent, rgba(255,255,255,0.94));
+      .hd-th {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+      .hd-th:nth-child(n + 5) {
+        text-align: right;
+      }
+
+      /* position:relative so Flip can absolutely-position rows during animation */
+      #hd-tbody {
+        position: relative;
+      }
+
+      .hd-row {
+        display: grid;
+        grid-template-columns:
+          40px minmax(150px, 1.3fr)
+          96px 96px 112px 112px 74px 124px 92px;
+        align-items: center;
+        padding: 8px 8px;
+        border-bottom: 1px solid var(--bdr);
+        font-size: 12.5px;
+      }
+      .hd-row:last-child {
+        border-bottom: none;
+      }
+      .hd-td:nth-child(n + 5) {
+        text-align: right;
+      }
+
+      .hd-rank {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 7px;
+        background: var(--acc-bg);
+        border: 1px solid var(--acc-bdr);
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--acc-ink);
+      }
+      .hd-rank.gold {
+        background: rgba(245, 197, 66, 0.1);
+        border-color: rgba(245, 197, 66, 0.35);
+        color: #9a7a0a;
+      }
+
+      .hd-pname {
+        font-weight: 500;
+        color: var(--ink);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .hd-store {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: var(--muted);
+      }
+      .hd-created {
+        white-space: nowrap;
+        color: var(--muted);
+      }
+      .hd-orig {
+        color: var(--muted);
+      }
+      .hd-dprice {
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .hd-disc {
+        display: inline-block;
+        padding: 2px 7px;
+        background: rgba(239, 68, 68, 0.08);
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        color: #dc2626;
+      }
+      .hd-rev {
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .hd-sold {
+        color: var(--muted);
+      }
+
+      /* ── Prefers-reduced-motion: static final state ─────────── */
+      @media (prefers-reduced-motion: reduce) {
+        #hero-demo,
+        #hd-snapshot,
+        #hd-leaderboard,
+        .hd-row,
+        .hd-mval {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+        .hd-caret {
+          animation: none;
+        }
+      }
+
+      /* ── Responsive ─────────────────────────────────────────── */
+      .hd-table-wrap {
+        scrollbar-width: thin;
+        scrollbar-color: var(--bdr-med) transparent;
+      }
+      .hd-table-wrap::-webkit-scrollbar {
+        height: 3px;
+      }
+      .hd-table-wrap::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .hd-table-wrap::-webkit-scrollbar-thumb {
+        background: var(--bdr-med);
+        border-radius: 99px;
+      }
+
+      @media (max-width: 680px) {
+        .hd-metrics {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        /* Narrow product column so Store/Discount/Revenue are visible on load */
+        .hd-table {
+          min-width: 820px;
+        }
+        .hd-thead,
+        .hd-row {
+          grid-template-columns: 40px 110px 88px 88px 100px 100px 68px 112px 80px;
+        }
+        .hd-pname {
+          max-width: 105px;
+        }
+        /* Right-edge fade hints at scrollable content */
+        #hd-leaderboard {
+          position: relative;
+          overflow: clip;
+        }
+        #hd-leaderboard::after {
+          content: "";
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          width: 52px;
+          background: linear-gradient(
+            to right,
+            transparent,
+            rgba(255, 255, 255, 0.94)
+          );
+          pointer-events: none;
+          z-index: 1;
+        }
+      }
+      @media (max-width: 480px) {
+        #hero {
+          padding: 56px 0 60px;
+        }
+        .hero-demo-wrap {
+          margin-top: 12px;
+        }
+        .hd-bar {
+          padding: 10px 12px;
+        }
+        .hd-body {
+          padding: 16px 14px 20px;
+        }
+        .hero-ctas .btn-lg {
+          font-size: 14px;
+          padding: 11px 22px;
+        }
+      }
+      /* ── DATA-FLOW VISUAL ─────────────────────────────────────── */
+      #df-flow {
+        position: relative;
+        max-width: 920px;
+        margin-inline: auto;
+        height: 88px;
+        margin-top: 24px;
         pointer-events: none;
-        z-index: 1;
       }
-    }
-    @media (max-width: 480px) {
-      #hero { padding: 56px 0 60px; }
-      .hero-demo-wrap { margin-top: 12px; }
-      .hd-bar  { padding: 10px 12px; }
-      .hd-body { padding: 16px 14px 20px; }
-      .hero-ctas .btn-lg { font-size: 14px; padding: 11px 22px; }
-    }
-    /* ── DATA-FLOW VISUAL ─────────────────────────────────────── */
-    #df-flow {
-      position: relative;
-      max-width: 920px;
-      margin-inline: auto;
-      height: 88px;
-      margin-top: 24px;
-      pointer-events: none;
-    }
-    #df-svg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-    }
-    .df-line {
-      fill: none;
-      stroke: var(--accent);
-      stroke-width: 1;
-      opacity: 0.28;
-    }
-    .df-pulse {
-      fill: none;
-      stroke: var(--accent);
-      stroke-width: 2;
-      stroke-dasharray: 0.08 0.92;
-      stroke-dashoffset: 1.08;
-      opacity: 0;
-      animation: df-travel 2.8s ease-in-out infinite;
-    }
-    @keyframes df-travel {
-      0%   { stroke-dashoffset: 1.08; opacity: 0; }
-      8%   { opacity: 0.6; }
-      85%  { opacity: 0.6; }
-      100% { stroke-dashoffset: -0.04; opacity: 0; }
-    }
-    @keyframes df-node-pulse {
-      0%, 20%, 100% { transform: scale(1);    box-shadow: 0 1px 8px rgba(7,17,15,0.07); }
-      10%           { transform: scale(1.09); box-shadow: 0 0 0 5px rgba(0,224,198,0.15), 0 1px 8px rgba(7,17,15,0.07); }
-    }
-    .df-node {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #fff;
-      border: 1px solid var(--bdr-med);
-      box-shadow: 0 1px 8px rgba(7, 17, 15, 0.07);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transform: translate(-4px, -4px);
-    }
-    .df-node-logo { height: 18px; width: auto; max-width: 26px; object-fit: contain; display: block; }
-    @media (prefers-reduced-motion: reduce) {
-      .df-pulse { animation: none !important; opacity: 0 !important; }
-      .df-node  { animation: none !important; }
-    }
-    @media (max-width: 600px) {
-      /* Scale nodes down to fit narrow viewport — SVG lines + pulse unchanged */
+      #df-svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .df-line {
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 1;
+        opacity: 0.28;
+      }
+      .df-pulse {
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 2;
+        stroke-dasharray: 0.08 0.92;
+        stroke-dashoffset: 1.08;
+        opacity: 0;
+        animation: df-travel 2.8s ease-in-out infinite;
+      }
+      @keyframes df-travel {
+        0% {
+          stroke-dashoffset: 1.08;
+          opacity: 0;
+        }
+        8% {
+          opacity: 0.6;
+        }
+        85% {
+          opacity: 0.6;
+        }
+        100% {
+          stroke-dashoffset: -0.04;
+          opacity: 0;
+        }
+      }
+      @keyframes df-node-pulse {
+        0%,
+        20%,
+        100% {
+          transform: scale(1);
+          box-shadow: 0 1px 8px rgba(7, 17, 15, 0.07);
+        }
+        10% {
+          transform: scale(1.09);
+          box-shadow:
+            0 0 0 5px rgba(0, 224, 198, 0.15),
+            0 1px 8px rgba(7, 17, 15, 0.07);
+        }
+      }
       .df-node {
-        width: 28px;
-        height: 28px;
-        transform: translate(2px, 2px);
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid var(--bdr-med);
+        box-shadow: 0 1px 8px rgba(7, 17, 15, 0.07);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translate(-4px, -4px);
       }
-      .df-node-logo { height: 12px; width: auto; max-width: 18px; }
-      .df-node > svg { width: 13px !important; height: 15px !important; }
-    }
+      .df-node-logo {
+        height: 18px;
+        width: auto;
+        max-width: 26px;
+        object-fit: contain;
+        display: block;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .df-pulse {
+          animation: none !important;
+          opacity: 0 !important;
+        }
+        .df-node {
+          animation: none !important;
+        }
+      }
+      @media (max-width: 600px) {
+        /* Scale nodes down to fit narrow viewport — SVG lines + pulse unchanged */
+        .df-node {
+          width: 28px;
+          height: 28px;
+          transform: translate(2px, 2px);
+        }
+        .df-node-logo {
+          height: 12px;
+          width: auto;
+          max-width: 18px;
+        }
+        .df-node > svg {
+          width: 13px !important;
+          height: 15px !important;
+        }
+      }
 
-    /* ══════════════════════════════════════════════════════════
+      /* ══════════════════════════════════════════════════════════
        SECTION 2 — BEFORE / AFTER TRANSFORMATION
     ══════════════════════════════════════════════════════════ */
-    #transform {
-      padding: 96px 0 80px;
-      text-align: center;
-    }
-    .tf-eyebrow {
-      display: block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--acc-ink);
-      margin-bottom: 12px;
-    }
-    .tf-headline {
-      font-size: clamp(30px, 5vw, 54px);
-      font-weight: 700; letter-spacing: -0.03em; line-height: 1.2;
-      max-width: 520px; margin-inline: auto; margin-bottom: 14px;
-      color: var(--ink);
-    }
-    .tf-sub {
-      font-size: clamp(15px, 2vw, 17px); color: var(--muted); line-height: 1.6;
-      max-width: 500px; margin-inline: auto; margin-bottom: 52px;
-    }
-    .tf-diagram {
-      max-width: 640px; margin-inline: auto;
-      display: flex; flex-direction: column; align-items: center;
-    }
+      #transform {
+        padding: 96px 0 80px;
+        text-align: center;
+      }
+      .tf-eyebrow {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--acc-ink);
+        margin-bottom: 12px;
+      }
+      .tf-headline {
+        font-size: clamp(30px, 5vw, 54px);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
+        max-width: 520px;
+        margin-inline: auto;
+        margin-bottom: 14px;
+        color: var(--ink);
+      }
+      .tf-sub {
+        font-size: clamp(15px, 2vw, 17px);
+        color: var(--muted);
+        line-height: 1.6;
+        max-width: 500px;
+        margin-inline: auto;
+        margin-bottom: 52px;
+      }
+      .tf-diagram {
+        max-width: 640px;
+        margin-inline: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-    /* ── Cards ─────────────────────────────────────────────── */
-    .tf-card {
-      width: 100%; border-radius: var(--r-lg); padding: 28px 24px; text-align: left;
-    }
+      /* ── Cards ─────────────────────────────────────────────── */
+      .tf-card {
+        width: 100%;
+        border-radius: var(--r-lg);
+        padding: 28px 24px;
+        text-align: left;
+      }
 
-    .tf-card-before { background: #f5f5f5; border: 1px solid #e2e2e2; }
-    .tf-card-after  {
-      background: #fff; border: 1px solid var(--acc-bdr);
-      box-shadow: 0 4px 30px rgba(0, 224, 198, 0.12);
-    }
+      .tf-card-before {
+        background: #f5f5f5;
+        border: 1px solid #e2e2e2;
+      }
+      .tf-card-after {
+        background: #fff;
+        border: 1px solid var(--acc-bdr);
+        box-shadow: 0 4px 30px rgba(0, 224, 198, 0.12);
+      }
 
-    /* ── Label ─────────────────────────────────────────────── */
-    .tf-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.10em;
-      text-transform: uppercase; margin-bottom: 20px;
-    }
-    .tf-card-before .tf-label { color: #b0b0b0; }
-    .tf-card-after  .tf-label { color: var(--acc-ink); }
+      /* ── Label ─────────────────────────────────────────────── */
+      .tf-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+      .tf-card-before .tf-label {
+        color: #b0b0b0;
+      }
+      .tf-card-after .tf-label {
+        color: var(--acc-ink);
+      }
 
-    /* ── Beats ─────────────────────────────────────────────── */
-    .tf-beats { display: flex; flex-direction: column; gap: 16px; }
+      /* ── Beats ─────────────────────────────────────────────── */
+      .tf-beats {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
 
-    @media (min-width: 720px) {
-      .tf-beats { flex-direction: row; gap: 0; align-items: flex-start; }
-      .tf-beat + .tf-beat { padding-left: 20px; margin-left: 20px; }
-      .tf-card-before .tf-beat + .tf-beat { border-left: 1px solid #e2e2e2; }
-      .tf-card-after  .tf-beat + .tf-beat { border-left: 1px solid var(--acc-bdr); }
-    }
+      @media (min-width: 720px) {
+        .tf-beats {
+          flex-direction: row;
+          gap: 0;
+          align-items: flex-start;
+        }
+        .tf-beat + .tf-beat {
+          padding-left: 20px;
+          margin-left: 20px;
+        }
+        .tf-card-before .tf-beat + .tf-beat {
+          border-left: 1px solid #e2e2e2;
+        }
+        .tf-card-after .tf-beat + .tf-beat {
+          border-left: 1px solid var(--acc-bdr);
+        }
+      }
 
-    .tf-beat {
-      display: flex; align-items: flex-start; gap: 10px; flex: 1;
-    }
+      .tf-beat {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        flex: 1;
+      }
 
-    .tf-beat-num {
-      flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 700; margin-top: 1px;
-    }
-    .tf-card-before .tf-beat-num { background: #e5e5e5; color: #b0b0b0; }
-    .tf-card-after  .tf-beat-num { background: var(--acc-bg); color: var(--acc-ink); }
+      .tf-beat-num {
+        flex-shrink: 0;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 700;
+        margin-top: 1px;
+      }
+      .tf-card-before .tf-beat-num {
+        background: #e5e5e5;
+        color: #b0b0b0;
+      }
+      .tf-card-after .tf-beat-num {
+        background: var(--acc-bg);
+        color: var(--acc-ink);
+      }
 
-    .tf-beat-text { font-size: 14px; line-height: 1.5; }
-    .tf-card-before .tf-beat-text { color: #888; }
-    .tf-card-after  .tf-beat-text { color: var(--ink); }
+      .tf-beat-text {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .tf-card-before .tf-beat-text {
+        color: #888;
+      }
+      .tf-card-after .tf-beat-text {
+        color: var(--ink);
+      }
 
-    /* ── Connecting arrow ──────────────────────────────────── */
-    .tf-arrow {
-      padding: 4px 0;
-      display: flex; justify-content: center;
-    }
-    .tf-arrow-line { stroke-dasharray: 34; stroke-dashoffset: 0; }
-    .tf-shine-rect {
-      transform: translateY(-52px);
-      pointer-events: none;
-    }
-    @keyframes tf-shine-sweep {
-      /* sweep: 0–28% (~840ms of 3s) */
-      0%   { transform: translateY(-52px); opacity: 0; }
-      5%   { transform: translateY(-42px); opacity: 0.85; }
-      22%  { transform: translateY( 42px); opacity: 0.85; }
-      28%  { transform: translateY( 52px); opacity: 0; }
-      /* pause: 28–100% (~2.16s) — invisible, holds bottom position */
-      100% { transform: translateY( 52px); opacity: 0; }
-    }
-    .tf-arrow.is-visible .tf-shine-rect {
-      animation: tf-shine-sweep 1s linear infinite;
-    }
+      /* ── Connecting arrow ──────────────────────────────────── */
+      .tf-arrow {
+        padding: 4px 0;
+        display: flex;
+        justify-content: center;
+      }
+      .tf-arrow-line {
+        stroke-dasharray: 34;
+        stroke-dashoffset: 0;
+      }
+      .tf-shine-rect {
+        transform: translateY(-52px);
+        pointer-events: none;
+      }
+      @keyframes tf-shine-sweep {
+        /* sweep: 0–28% (~840ms of 3s) */
+        0% {
+          transform: translateY(-52px);
+          opacity: 0;
+        }
+        5% {
+          transform: translateY(-42px);
+          opacity: 0.85;
+        }
+        22% {
+          transform: translateY(42px);
+          opacity: 0.85;
+        }
+        28% {
+          transform: translateY(52px);
+          opacity: 0;
+        }
+        /* pause: 28–100% (~2.16s) — invisible, holds bottom position */
+        100% {
+          transform: translateY(52px);
+          opacity: 0;
+        }
+      }
+      .tf-arrow.is-visible .tf-shine-rect {
+        animation: tf-shine-sweep 1s linear infinite;
+      }
 
-    /* ── Reduced motion ─────────────────────────────────────── */
-    @media (prefers-reduced-motion: reduce) {
-      .tf-card, .tf-label, .tf-beat, .tf-arrow-line { transition: none !important; }
-      .tf-shine-rect { display: none !important; }
-    }
+      /* ── Reduced motion ─────────────────────────────────────── */
+      @media (prefers-reduced-motion: reduce) {
+        .tf-card,
+        .tf-label,
+        .tf-beat,
+        .tf-arrow-line {
+          transition: none !important;
+        }
+        .tf-shine-rect {
+          display: none !important;
+        }
+      }
 
-    /* ── Platform ribbon ─────────────────────────────────── */
-    #platform-ribbon {
-      background: var(--surf);
-      border-top: 1px solid var(--bdr);
-      border-bottom: 1px solid var(--bdr);
-      padding: 22px 0;
-    }
-    .ribbon-inner {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 13px;
-    }
-    .ribbon-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--dim);
-    }
-    .ribbon-logos {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 8px 40px;
-    }
-    .ribbon-logo {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .ribbon-logo-name {
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      color: var(--muted);
-    }
-    .ribbon-tag {
-      font-size: 12px;
-      color: var(--dim);
-      letter-spacing: 0.04em;
-    }
-    @media (max-width: 600px) {
-      .ribbon-logos { gap: 10px 24px; }
-      .ribbon-logo-name { font-size: 16px; }
-    }
+      /* ── Platform ribbon ─────────────────────────────────── */
+      #platform-ribbon {
+        background: var(--surf);
+        border-top: 1px solid var(--bdr);
+        border-bottom: 1px solid var(--bdr);
+        padding: 22px 0;
+      }
+      .ribbon-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 13px;
+      }
+      .ribbon-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+      .ribbon-logos {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 8px 40px;
+      }
+      .ribbon-logo {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .ribbon-logo-name {
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--muted);
+      }
+      .ribbon-tag {
+        font-size: 12px;
+        color: var(--dim);
+        letter-spacing: 0.04em;
+      }
+      @media (max-width: 600px) {
+        .ribbon-logos {
+          gap: 10px 24px;
+        }
+        .ribbon-logo-name {
+          font-size: 16px;
+        }
+      }
 
-    /* ── Section 3: Value cards ─────────────────────────────── */
-    #value {
-      padding: 96px 0 80px;
-      background: var(--surf);
-      border-top: 1px solid var(--bdr);
-      border-bottom: 1px solid var(--bdr);
-    }
-    .val-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-    .val-eyebrow {
-      display: block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--acc-ink);
-      margin-bottom: 12px;
-    }
-    .val-headline {
-      font-size: clamp(30px, 5vw, 54px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      color: var(--ink);
-      max-width: 480px;
-      margin-inline: auto;
-    }
-    .val-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-    .val-card {
-      background: var(--bg);
-      border: 1px solid var(--bdr);
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      box-shadow: 0 1px 6px rgba(7, 17, 15, 0.05);
-    }
-    .val-img-wrap {
-      aspect-ratio: 16 / 10;
-      background: #eef2f1;
-      border-bottom: 1px solid var(--bdr);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--dim);
-    }
-    .val-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .val-img-ph {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--dim);
-    }
-    .val-body {
-      padding: 22px 24px 24px;
-    }
-    .val-title {
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      line-height: 1.3;
-      color: var(--ink);
-      margin-bottom: 6px;
-    }
-    .val-desc {
-      font-size: 14px;
-      line-height: 1.55;
-      color: var(--muted);
-    }
-    @media (max-width: 600px) {
-      #value      { padding: 64px 0 56px; }
-      .val-grid   { grid-template-columns: 1fr; }
-      .val-header { margin-bottom: 36px; }
-    }
+      /* ── Section 3: Value cards ─────────────────────────────── */
+      #value {
+        padding: 96px 0 80px;
+        background: var(--surf);
+        border-top: 1px solid var(--bdr);
+        border-bottom: 1px solid var(--bdr);
+      }
+      .val-header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+      .val-eyebrow {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--acc-ink);
+        margin-bottom: 12px;
+      }
+      .val-headline {
+        font-size: clamp(30px, 5vw, 54px);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
+        color: var(--ink);
+        max-width: 480px;
+        margin-inline: auto;
+      }
+      .val-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      .val-card {
+        background: var(--bg);
+        border: 1px solid var(--bdr);
+        border-radius: var(--r-lg);
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(7, 17, 15, 0.05);
+      }
+      .val-img-wrap {
+        aspect-ratio: 16 / 10;
+        background: #eef2f1;
+        border-bottom: 1px solid var(--bdr);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dim);
+      }
+      .val-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .val-img-ph {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+      .val-body {
+        padding: 22px 24px 24px;
+      }
+      .val-title {
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        line-height: 1.3;
+        color: var(--ink);
+        margin-bottom: 6px;
+      }
+      .val-desc {
+        font-size: 14px;
+        line-height: 1.55;
+        color: var(--muted);
+      }
+      @media (max-width: 600px) {
+        #value {
+          padding: 64px 0 56px;
+        }
+        .val-grid {
+          grid-template-columns: 1fr;
+        }
+        .val-header {
+          margin-bottom: 36px;
+        }
+      }
 
-    /* ── Section 4: Pricing ──────────────────────────────────── */
-    #pricing {
-      padding: 96px 0 80px;
-      background: var(--bg);
-    }
-    .pr-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-    .pr-eyebrow {
-      display: block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--acc-ink);
-      margin-bottom: 12px;
-    }
-    .pr-headline {
-      font-size: clamp(30px, 5vw, 54px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      color: var(--ink);
-      margin-bottom: 10px;
-    }
-    .pr-sub {
-      font-size: 15px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-    .pr-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      max-width: 720px;
-      margin-inline: auto;
-    }
-    .pr-card {
-      background: var(--bg);
-      border: 1px solid var(--bdr);
-      border-radius: var(--r-lg);
-      padding: 32px 28px;
-      display: flex;
-      flex-direction: column;
-    }
-    .pr-card-pro {
-      position: relative;
-      border-color: var(--acc-bdr);
-      box-shadow: 0 4px 32px rgba(0, 224, 198, 0.13);
-    }
-    .pr-tag {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      white-space: nowrap;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: var(--acc-ink);
-      background: var(--acc-bg);
-      border: 1px solid var(--acc-bdr);
-      border-radius: 100px;
-      padding: 3px 10px;
-    }
-    .pr-plan {
-      font-size: 19px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      margin-bottom: 8px;
-    }
-    .pr-price {
-      display: flex;
-      align-items: baseline;
-      gap: 4px;
-      margin-bottom: 24px;
-    }
-    .pr-amount {
-      font-size: 44px;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      color: var(--ink);
-      line-height: 1;
-    }
-    .pr-period {
-      font-size: 14px;
-      color: var(--muted);
-    }
-    .pr-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 11px;
-      margin-bottom: 28px;
-      flex: 1;
-    }
-    .pr-feat {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      line-height: 1.4;
-    }
-    .pr-feat-yes { color: var(--ink); }
-    .pr-feat-no  { color: var(--muted); }
-    .pr-feat-warn { color: var(--ink); }
-    .pr-icon {
-      flex-shrink: 0;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .pr-icon-yes { background: rgba(0, 224, 198, 0.14); color: #007a6e; }
-    .pr-icon-no  { background: rgba(220, 38, 38, 0.08); color: #b91c1c; }
-    .pr-icon-warn { background: rgba(217, 119, 6, 0.14); color: #d97706; }
-    .pr-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      font-family: var(--font);
-      font-size: 14px;
-      font-weight: 600;
-      padding: 12px 20px;
-      border-radius: var(--r);
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.15s, transform 0.15s;
-    }
-    .pr-btn-primary {
-      background: var(--accent);
-      color: #07110F;
-      border: none;
-    }
-    .pr-btn-primary:hover  { background: #1ae8d0; transform: translateY(-1px); }
-    .pr-btn-primary:active { transform: translateY(0); }
-    .pr-btn-outline {
-      background: transparent;
-      color: var(--ink);
-      border: 1.5px solid var(--bdr-med);
-    }
-    .pr-btn-outline:hover  { background: var(--surf); transform: translateY(-1px); }
-    .pr-btn-outline:active { transform: translateY(0); }
-    @media (max-width: 600px) {
-      #pricing   { padding: 64px 0 56px; }
-      .pr-grid   { grid-template-columns: 1fr; max-width: 400px; }
-      .pr-header { margin-bottom: 36px; }
-    }
+      /* ── Section 4: Pricing ──────────────────────────────────── */
+      #pricing {
+        padding: 96px 0 80px;
+        background: var(--bg);
+      }
+      .pr-header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+      .pr-eyebrow {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--acc-ink);
+        margin-bottom: 12px;
+      }
+      .pr-headline {
+        font-size: clamp(30px, 5vw, 54px);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
+        color: var(--ink);
+        margin-bottom: 10px;
+      }
+      .pr-sub {
+        font-size: 15px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+      .pr-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        max-width: 720px;
+        margin-inline: auto;
+      }
+      .pr-card {
+        background: var(--bg);
+        border: 1px solid var(--bdr);
+        border-radius: var(--r-lg);
+        padding: 32px 28px;
+        display: flex;
+        flex-direction: column;
+      }
+      .pr-card-pro {
+        position: relative;
+        border-color: var(--acc-bdr);
+        box-shadow: 0 4px 32px rgba(0, 224, 198, 0.13);
+      }
+      .pr-tag {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--acc-ink);
+        background: var(--acc-bg);
+        border: 1px solid var(--acc-bdr);
+        border-radius: 100px;
+        padding: 3px 10px;
+      }
+      .pr-plan {
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        margin-bottom: 8px;
+      }
+      .pr-price {
+        display: flex;
+        align-items: baseline;
+        gap: 4px;
+        margin-bottom: 24px;
+      }
+      .pr-amount {
+        font-size: 44px;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        color: var(--ink);
+        line-height: 1;
+      }
+      .pr-period {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .pr-features {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+        margin-bottom: 28px;
+        flex: 1;
+      }
+      .pr-feat {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+      .pr-feat-yes {
+        color: var(--ink);
+      }
+      .pr-feat-no {
+        color: var(--muted);
+      }
+      .pr-feat-warn {
+        color: var(--ink);
+      }
+      .pr-icon {
+        flex-shrink: 0;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .pr-icon-yes {
+        background: rgba(0, 224, 198, 0.14);
+        color: #007a6e;
+      }
+      .pr-icon-no {
+        background: rgba(220, 38, 38, 0.08);
+        color: #b91c1c;
+      }
+      .pr-icon-warn {
+        background: rgba(217, 119, 6, 0.14);
+        color: #d97706;
+      }
+      .pr-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        font-family: var(--font);
+        font-size: 14px;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: var(--r);
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          background 0.15s,
+          transform 0.15s;
+      }
+      .pr-btn-primary {
+        background: var(--accent);
+        color: #07110f;
+        border: none;
+      }
+      .pr-btn-primary:hover {
+        background: #1ae8d0;
+        transform: translateY(-1px);
+      }
+      .pr-btn-primary:active {
+        transform: translateY(0);
+      }
+      .pr-btn-outline {
+        background: transparent;
+        color: var(--ink);
+        border: 1.5px solid var(--bdr-med);
+      }
+      .pr-btn-outline:hover {
+        background: var(--surf);
+        transform: translateY(-1px);
+      }
+      .pr-btn-outline:active {
+        transform: translateY(0);
+      }
+      @media (max-width: 600px) {
+        #pricing {
+          padding: 64px 0 56px;
+        }
+        .pr-grid {
+          grid-template-columns: 1fr;
+          max-width: 400px;
+        }
+        .pr-header {
+          margin-bottom: 36px;
+        }
+      }
 
-    /* ── Section 5: FAQ ──────────────────────────────────────── */
-    #faq {
-      padding: 96px 0 80px;
-      background: var(--surf);
-      border-top: 1px solid var(--bdr);
-      border-bottom: 1px solid var(--bdr);
-    }
-    .faq-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-    .faq-eyebrow {
-      display: block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--acc-ink);
-      margin-bottom: 12px;
-    }
-    .faq-headline {
-      font-size: clamp(30px, 5vw, 54px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      color: var(--ink);
-    }
-    .faq-list {
-      max-width: 680px;
-      margin-inline: auto;
-      background: var(--bg);
-      border: 1px solid var(--bdr);
-      border-radius: var(--r-lg);
-      overflow: hidden;
-    }
-    .faq-item { border-bottom: 1px solid var(--bdr); }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-q {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 20px 24px;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--ink);
-      cursor: pointer;
-      list-style: none;
-      user-select: none;
-    }
-    .faq-q::-webkit-details-marker { display: none; }
-    @media (hover: hover) { .faq-q:hover { background: rgba(7, 17, 15, 0.025); } }
-    .faq-item[open] .faq-q { background: transparent; }
-    .faq-q:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 2px; }
-    .faq-chevron {
-      flex-shrink: 0;
-      color: var(--dim);
-      transition: transform 0.22s ease;
-    }
-    .faq-item[open] .faq-chevron { transform: rotate(180deg); }
-    .faq-a {
-      padding: 0 24px 20px;
-      font-size: 14px;
-      line-height: 1.65;
-      color: var(--muted);
-    }
-    details[open] .faq-a { animation: faq-open 0.18s ease; }
-    @keyframes faq-open {
-      from { opacity: 0; transform: translateY(-4px); }
-      to   { opacity: 1; transform: none; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .faq-chevron { transition: none !important; }
-      details[open] .faq-a { animation: none !important; }
-    }
-    @media (max-width: 600px) {
-      #faq        { padding: 64px 0 56px; }
-      .faq-header { margin-bottom: 36px; }
-      .faq-q      { padding: 18px 18px; font-size: 14px; }
-      .faq-a      { padding: 0 18px 18px; }
-    }
+      /* ── Section 5: FAQ ──────────────────────────────────────── */
+      #faq {
+        padding: 96px 0 80px;
+        background: var(--surf);
+        border-top: 1px solid var(--bdr);
+        border-bottom: 1px solid var(--bdr);
+      }
+      .faq-header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+      .faq-eyebrow {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--acc-ink);
+        margin-bottom: 12px;
+      }
+      .faq-headline {
+        font-size: clamp(30px, 5vw, 54px);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
+        color: var(--ink);
+      }
+      .faq-list {
+        max-width: 680px;
+        margin-inline: auto;
+        background: var(--bg);
+        border: 1px solid var(--bdr);
+        border-radius: var(--r-lg);
+        overflow: hidden;
+      }
+      .faq-item {
+        border-bottom: 1px solid var(--bdr);
+      }
+      .faq-item:last-child {
+        border-bottom: none;
+      }
+      .faq-q {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 20px 24px;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--ink);
+        cursor: pointer;
+        list-style: none;
+        user-select: none;
+      }
+      .faq-q::-webkit-details-marker {
+        display: none;
+      }
+      @media (hover: hover) {
+        .faq-q:hover {
+          background: rgba(7, 17, 15, 0.025);
+        }
+      }
+      .faq-item[open] .faq-q {
+        background: transparent;
+      }
+      .faq-q:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: -2px;
+        border-radius: 2px;
+      }
+      .faq-chevron {
+        flex-shrink: 0;
+        color: var(--dim);
+        transition: transform 0.22s ease;
+      }
+      .faq-item[open] .faq-chevron {
+        transform: rotate(180deg);
+      }
+      .faq-a {
+        padding: 0 24px 20px;
+        font-size: 14px;
+        line-height: 1.65;
+        color: var(--muted);
+      }
+      details[open] .faq-a {
+        animation: faq-open 0.18s ease;
+      }
+      @keyframes faq-open {
+        from {
+          opacity: 0;
+          transform: translateY(-4px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .faq-chevron {
+          transition: none !important;
+        }
+        details[open] .faq-a {
+          animation: none !important;
+        }
+      }
+      @media (max-width: 600px) {
+        #faq {
+          padding: 64px 0 56px;
+        }
+        .faq-header {
+          margin-bottom: 36px;
+        }
+        .faq-q {
+          padding: 18px 18px;
+          font-size: 14px;
+        }
+        .faq-a {
+          padding: 0 18px 18px;
+        }
+      }
 
-    /* ── Final CTA + Footer (dark) ───────────────────────────── */
-    /*
+      /* ── Final CTA + Footer (dark) ───────────────────────────── */
+      /*
      * Dark-section palette (local — not in :root):
      *   bg:       #07110F   (ink token repurposed as bg)
      *   heading:  #ffffff
      *   body:     #8b9a97   (muted grey on dark)
      *   accent:   #00E0C6   (--accent, unchanged)
      */
-    #cta-footer { background: #07110F; }
+      #cta-footer {
+        background: #07110f;
+      }
 
-    /* ── CTA ─────────────────────────────────────────────────── */
-    .end-cta {
-      text-align: center;
-      padding: 96px 0 72px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(0, 224, 198, 0.08) 0%, transparent 55%);
-    }
-    .end-tag {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: rgba(0, 224, 198, 0.10);
-      border: 1px solid rgba(0, 224, 198, 0.22);
-      border-radius: 100px;
-      padding: 5px 14px;
-      margin-bottom: 28px;
-    }
-    .end-headline {
-      font-size: clamp(32px, 5.5vw, 56px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      color: #ffffff;
-      margin: 0 auto 18px;
-      max-width: 680px;
-    }
-    .end-headline em { font-style: normal; color: var(--accent); }
-    .end-sub {
-      font-size: clamp(15px, 2vw, 17px);
-      color: #8b9a97;
-      line-height: 1.55;
-      max-width: 480px;
-      margin-inline: auto;
-    }
-    .end-btn {
-      display: inline-flex;
-      align-items: center;
-      background: var(--accent);
-      color: #07110F;
-      font-family: var(--font);
-      font-size: 16px;
-      font-weight: 600;
-      padding: 14px 32px;
-      border-radius: var(--r);
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      margin-top: 28px;
-      margin-bottom: 22px;
-      transition: background 0.15s, transform 0.15s;
-    }
-    .end-btn:hover  { background: #1ae8d0; transform: translateY(-1px); }
-    .end-btn:active { transform: translateY(0); }
-    .end-trust {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 8px 24px;
-    }
-    .end-tick {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 13px;
-      color: #8b9a97;
-    }
-    .end-tick-check { color: var(--accent); flex-shrink: 0; }
+      /* ── CTA ─────────────────────────────────────────────────── */
+      .end-cta {
+        text-align: center;
+        padding: 96px 0 72px;
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(0, 224, 198, 0.08) 0%,
+          transparent 55%
+        );
+      }
+      .end-tag {
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: rgba(0, 224, 198, 0.1);
+        border: 1px solid rgba(0, 224, 198, 0.22);
+        border-radius: 100px;
+        padding: 5px 14px;
+        margin-bottom: 28px;
+      }
+      .end-headline {
+        font-size: clamp(32px, 5.5vw, 56px);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        color: #ffffff;
+        margin: 0 auto 18px;
+        max-width: 680px;
+      }
+      .end-headline em {
+        font-style: normal;
+        color: var(--accent);
+      }
+      .end-sub {
+        font-size: clamp(15px, 2vw, 17px);
+        color: #8b9a97;
+        line-height: 1.55;
+        max-width: 480px;
+        margin-inline: auto;
+      }
+      .end-btn {
+        display: inline-flex;
+        align-items: center;
+        background: var(--accent);
+        color: #07110f;
+        font-family: var(--font);
+        font-size: 16px;
+        font-weight: 600;
+        padding: 14px 32px;
+        border-radius: var(--r);
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        margin-top: 28px;
+        margin-bottom: 22px;
+        transition:
+          background 0.15s,
+          transform 0.15s;
+      }
+      .end-btn:hover {
+        background: #1ae8d0;
+        transform: translateY(-1px);
+      }
+      .end-btn:active {
+        transform: translateY(0);
+      }
+      .end-trust {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 8px 24px;
+      }
+      .end-tick {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 13px;
+        color: #8b9a97;
+      }
+      .end-tick-check {
+        color: var(--accent);
+        flex-shrink: 0;
+      }
 
-    /* ── Footer ──────────────────────────────────────────────── */
-    .end-footer { border-top: 1px solid rgba(255, 255, 255, 0.08); }
-    .end-footer-inner {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px 48px;
-      padding: 52px 0 48px;
-    }
-    .end-logo {
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      text-decoration: none;
-      margin-bottom: 12px;
-    }
-    .end-logo-img { height: 28px; width: auto; display: block; }
-    .end-tagline {
-      font-size: 13px;
-      line-height: 1.65;
-      color: #8b9a97;
-      max-width: 300px;
-    }
-    .end-col-head {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: #ffffff;
-      margin-bottom: 14px;
-    }
-    .end-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .end-col a {
-      font-size: 14px;
-      color: #8b9a97;
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-    .end-col a:hover { color: #ffffff; }
-    .end-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 20px 0;
-      font-size: 13px;
-      color: #8b9a97;
-    }
-    @media (max-width: 720px) {
-      .end-footer-inner { grid-template-columns: 1fr 1fr; }
-      .end-brand { grid-column: 1 / -1; }
-      .end-tagline { max-width: none; }
-    }
-    @media (max-width: 480px) {
-      .end-cta { padding: 64px 0 52px; }
-      .end-footer-inner { grid-template-columns: 1fr; gap: 32px; }
-      .end-brand { grid-column: auto; }
-    }
-  </style>
-</head>
-<body>
+      /* ── Footer ──────────────────────────────────────────────── */
+      .end-footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .end-footer-inner {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 40px 48px;
+        padding: 52px 0 48px;
+      }
+      .end-logo {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        text-decoration: none;
+        margin-bottom: 12px;
+      }
+      .end-logo-img {
+        height: 28px;
+        width: auto;
+        display: block;
+      }
+      .end-tagline {
+        font-size: 13px;
+        line-height: 1.65;
+        color: #8b9a97;
+        max-width: 300px;
+      }
+      .end-col-head {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #ffffff;
+        margin-bottom: 14px;
+      }
+      .end-col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .end-col a {
+        font-size: 14px;
+        color: #8b9a97;
+        text-decoration: none;
+        transition: color 0.15s;
+      }
+      .end-col a:hover {
+        color: #ffffff;
+      }
+      .end-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 20px 0;
+        font-size: 13px;
+        color: #8b9a97;
+      }
+      @media (max-width: 720px) {
+        .end-footer-inner {
+          grid-template-columns: 1fr 1fr;
+        }
+        .end-brand {
+          grid-column: 1 / -1;
+        }
+        .end-tagline {
+          max-width: none;
+        }
+      }
+      @media (max-width: 480px) {
+        .end-cta {
+          padding: 64px 0 52px;
+        }
+        .end-footer-inner {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .end-brand {
+          grid-column: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── NAV ─────────────────────────────────────────────────── -->
+    <nav>
+      <div class="container nav-inner">
+        <a href="https://ecomblade.com" class="logo"
+          ><img src="assets/EB-logo-nav.png" alt="Ecomblade" class="logo-img"
+        /></a>
+        <div class="nav-links">
+          <a href="#value">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="nav-ctas">
+          <a href="https://app.ecomblade.com/login" class="btn btn-secondary"
+            >Log in</a
+          >
+          <a href="https://app.ecomblade.com/register" class="btn btn-primary"
+            >Start free</a
+          >
+        </div>
+      </div>
+    </nav>
 
-<!-- ── NAV ─────────────────────────────────────────────────── -->
-<nav>
-  <div class="container nav-inner">
-    <a href="https://ecomblade.com" class="logo"><img src="assets/EB-logo-nav.png" alt="Ecomblade" class="logo-img"></a>
-    <div class="nav-links">
-      <a href="#value">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-    </div>
-    <div class="nav-ctas">
-      <a href="https://app.ecomblade.com/login" class="btn btn-secondary">Log in</a>
-      <a href="https://app.ecomblade.com/register" class="btn btn-primary">Start free</a>
-    </div>
-  </div>
-</nav>
+    <!-- ── HERO ─────────────────────────────────────────────────── -->
+    <section id="hero">
+      <div class="container">
+        <div class="hero-tag">
+          <span class="dot"></span>6 Platforms · 7 Countries
+        </div>
+        <h1>Spot product opportunities,<br /><em>before everyone else.</em></h1>
+        <p class="hero-sub">
+          The ultimate product research platform that reveals product
+          opportunities across the globe.
+        </p>
+        <div class="hero-ctas">
+          <a
+            href="https://app.ecomblade.com/register"
+            class="btn btn-primary btn-lg"
+            >Start free</a
+          >
+          <a
+            href="https://app.ecomblade.com/login"
+            class="btn btn-secondary btn-lg"
+            >Log in</a
+          >
+        </div>
+        <p class="no-card">No credit card required</p>
 
-<!-- ── HERO ─────────────────────────────────────────────────── -->
-<section id="hero">
-  <div class="container">
-    <div class="hero-tag"><span class="dot"></span>6 Platforms · 7 Countries</div>
-    <h1>Spot product opportunities,<br /><em>before everyone else.</em></h1>
-    <p class="hero-sub">The ultimate product research platform that reveals product opportunities across the globe.</p>
-    <div class="hero-ctas">
-      <a href="https://app.ecomblade.com/register" class="btn btn-primary btn-lg">Start free</a>
-      <a href="https://app.ecomblade.com/login" class="btn btn-secondary btn-lg">Log in</a>
-    </div>
-    <p class="no-card">No credit card required</p>
+        <!-- 6-platform data-flow visual: nodes arc above dashboard, lines converge -->
+        <div id="df-flow" aria-hidden="true">
+          <svg
+            id="df-svg"
+            viewBox="0 0 920 88"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <defs>
+              <path id="dp1" pathLength="1" d="M74,64 C74,85 460,85 460,90" />
+              <path id="dp2" pathLength="1" d="M220,40 C220,80 460,80 460,90" />
+              <path id="dp3" pathLength="1" d="M370,20 C370,72 460,78 460,90" />
+              <path id="dp4" pathLength="1" d="M550,20 C550,72 460,78 460,90" />
+              <path id="dp5" pathLength="1" d="M700,40 C700,80 460,80 460,90" />
+              <path id="dp6" pathLength="1" d="M846,64 C846,85 460,85 460,90" />
+            </defs>
+            <use href="#dp1" class="df-line" />
+            <use href="#dp2" class="df-line" />
+            <use href="#dp3" class="df-line" />
+            <use href="#dp4" class="df-line" />
+            <use href="#dp5" class="df-line" />
+            <use href="#dp6" class="df-line" />
+            <use href="#dp1" class="df-pulse" style="animation-delay: 0s" />
+            <use href="#dp2" class="df-pulse" style="animation-delay: 0.48s" />
+            <use href="#dp3" class="df-pulse" style="animation-delay: 0.96s" />
+            <use href="#dp4" class="df-pulse" style="animation-delay: 1.44s" />
+            <use href="#dp5" class="df-pulse" style="animation-delay: 1.92s" />
+            <use href="#dp6" class="df-pulse" style="animation-delay: 2.4s" />
+          </svg>
+          <div class="df-node" style="left: calc(8.04% - 16px); top: 48px">
+            <img src="assets/shopee.webp" alt="" class="df-node-logo" />
+          </div>
+          <div class="df-node" style="left: calc(23.91% - 16px); top: 24px">
+            <svg
+              width="16"
+              height="18"
+              viewBox="0 0 24 28"
+              fill="#111"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17 0c.3 2.5 1.8 4.6 5 4.8v4c-1.8 0-3.4-.6-4.7-1.6v7.4C17.3 19.3 14.2 23 10 23 5.4 23 1.7 19.3 1.7 14.7S5.4 6.5 10 6.5c.4 0 .8 0 1.2.1v4.1c-.4-.1-.8-.1-1.2-.1-2.5 0-4.6 2-4.6 4.6S7.5 19.6 10 19.6s4.6-2 4.6-4.6V0H17z"
+              />
+            </svg>
+          </div>
+          <div class="df-node" style="left: calc(40.22% - 16px); top: 4px">
+            <img src="assets/lazada.webp" alt="" class="df-node-logo" />
+          </div>
+          <div class="df-node" style="left: calc(59.78% - 16px); top: 4px">
+            <img src="assets/amazon.webp" alt="" class="df-node-logo" />
+          </div>
+          <div class="df-node" style="left: calc(76.09% - 16px); top: 24px">
+            <img src="assets/temu.webp" alt="" class="df-node-logo" />
+          </div>
+          <div class="df-node" style="left: calc(91.96% - 16px); top: 48px">
+            <img src="assets/alibaba.webp" alt="" class="df-node-logo" />
+          </div>
+        </div>
 
-    <!-- 6-platform data-flow visual: nodes arc above dashboard, lines converge -->
-    <div id="df-flow" aria-hidden="true">
-      <svg id="df-svg" viewBox="0 0 920 88" preserveAspectRatio="none"
-           xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <path id="dp1" pathLength="1" d="M74,64 C74,85 460,85 460,90"/>
-          <path id="dp2" pathLength="1" d="M220,40 C220,80 460,80 460,90"/>
-          <path id="dp3" pathLength="1" d="M370,20 C370,72 460,78 460,90"/>
-          <path id="dp4" pathLength="1" d="M550,20 C550,72 460,78 460,90"/>
-          <path id="dp5" pathLength="1" d="M700,40 C700,80 460,80 460,90"/>
-          <path id="dp6" pathLength="1" d="M846,64 C846,85 460,85 460,90"/>
-        </defs>
-        <use href="#dp1" class="df-line"/>
-        <use href="#dp2" class="df-line"/>
-        <use href="#dp3" class="df-line"/>
-        <use href="#dp4" class="df-line"/>
-        <use href="#dp5" class="df-line"/>
-        <use href="#dp6" class="df-line"/>
-        <use href="#dp1" class="df-pulse" style="animation-delay:0s"/>
-        <use href="#dp2" class="df-pulse" style="animation-delay:0.48s"/>
-        <use href="#dp3" class="df-pulse" style="animation-delay:0.96s"/>
-        <use href="#dp4" class="df-pulse" style="animation-delay:1.44s"/>
-        <use href="#dp5" class="df-pulse" style="animation-delay:1.92s"/>
-        <use href="#dp6" class="df-pulse" style="animation-delay:2.4s"/>
-      </svg>
-      <div class="df-node" style="left:calc(8.04% - 16px);top:48px">
-        <img src="assets/shopee.webp" alt="" class="df-node-logo">
-      </div>
-      <div class="df-node" style="left:calc(23.91% - 16px);top:24px">
-        <svg width="16" height="18" viewBox="0 0 24 28" fill="#111" xmlns="http://www.w3.org/2000/svg"><path d="M17 0c.3 2.5 1.8 4.6 5 4.8v4c-1.8 0-3.4-.6-4.7-1.6v7.4C17.3 19.3 14.2 23 10 23 5.4 23 1.7 19.3 1.7 14.7S5.4 6.5 10 6.5c.4 0 .8 0 1.2.1v4.1c-.4-.1-.8-.1-1.2-.1-2.5 0-4.6 2-4.6 4.6S7.5 19.6 10 19.6s4.6-2 4.6-4.6V0H17z"/></svg>
-      </div>
-      <div class="df-node" style="left:calc(40.22% - 16px);top:4px">
-        <img src="assets/lazada.webp" alt="" class="df-node-logo">
-      </div>
-      <div class="df-node" style="left:calc(59.78% - 16px);top:4px">
-        <img src="assets/amazon.webp" alt="" class="df-node-logo">
-      </div>
-      <div class="df-node" style="left:calc(76.09% - 16px);top:24px">
-        <img src="assets/temu.webp" alt="" class="df-node-logo">
-      </div>
-      <div class="df-node" style="left:calc(91.96% - 16px);top:48px">
-        <img src="assets/alibaba.webp" alt="" class="df-node-logo">
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════════════════
+        <!-- ═══════════════════════════════════════════════════════
          HERO DEMO COMPONENT
          Static fallback: Thailand final-ranked state (rendered
          by renderStatic() below). GSAP resets + animates it.
     ═══════════════════════════════════════════════════════════ -->
-    <div class="hero-demo-wrap">
-      <div id="hero-demo">
-
-        <!-- Search bar -->
-        <div class="hd-bar">
-          <span class="hd-chip hd-chip-market" id="hd-platform-chip">Shopee</span>
-          <span class="hd-chip" id="hd-country-chip"><svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#A51931"/><rect y="2.8" width="20" height="8.4" fill="#F4F5F8"/><rect y="5.6" width="20" height="2.8" fill="#2D2A4A"/></svg>&nbsp;Thailand</span>
-          <span class="hd-chip">↕&nbsp;Popularity</span>
-          <div class="hd-input-wrap">
-            <span id="hd-typed"></span><span class="hd-caret"></span>
-          </div>
-          <span class="hd-chip">20 products</span>
-          <button class="hd-srch-btn">Search</button>
-        </div>
-
-        <!-- Body -->
-        <div class="hd-body">
-
-          <!-- Snapshot -->
-          <div id="hd-snapshot" class="hd-snapshot">
-            <div class="hd-stag">Snapshot · Research Summary</div>
-            <div class="hd-metrics">
-              <div class="hd-metric">
-                <div class="hd-mlabel">30 Day Revenue</div>
-                <div id="hd-r30"    class="hd-mval"></div>
+        <div class="hero-demo-wrap">
+          <div id="hero-demo">
+            <!-- Search bar -->
+            <div class="hd-bar">
+              <span class="hd-chip hd-chip-market" id="hd-platform-chip"
+                >Shopee</span
+              >
+              <span class="hd-chip" id="hd-country-chip"
+                ><svg
+                  class="hd-flag"
+                  width="20"
+                  height="14"
+                  viewBox="0 0 20 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect width="20" height="14" fill="#A51931" />
+                  <rect y="2.8" width="20" height="8.4" fill="#F4F5F8" />
+                  <rect y="5.6" width="20" height="2.8" fill="#2D2A4A" /></svg
+                >&nbsp;Thailand</span
+              >
+              <span class="hd-chip">↕&nbsp;Popularity</span>
+              <div class="hd-input-wrap">
+                <span id="hd-typed"></span><span class="hd-caret"></span>
               </div>
-              <div class="hd-metric">
-                <div class="hd-mlabel">30 Day Sold</div>
-                <div id="hd-s30"    class="hd-mval"></div>
-              </div>
-              <div class="hd-metric">
-                <div class="hd-mlabel">Avg Price</div>
-                <div id="hd-price"  class="hd-mval"></div>
-              </div>
-              <div class="hd-metric">
-                <div class="hd-mlabel">Avg Rating</div>
-                <div id="hd-rating" class="hd-mval"></div>
-              </div>
+              <span class="hd-chip">20 products</span>
+              <button class="hd-srch-btn">Search</button>
             </div>
-          </div>
 
-          <!-- Leaderboard -->
-          <div id="hd-leaderboard" class="hd-leaderboard">
-            <div class="hd-stag">Leaderboard · Ranked product opportunities</div>
-            <div id="hd-subtitle" class="hd-subtitle"></div>
-            <div class="hd-table-wrap">
-              <div class="hd-table">
-                <div class="hd-thead">
-                  <div class="hd-th">Rank</div>
-                  <div class="hd-th">Product</div>
-                  <div class="hd-th">Store</div>
-                  <div class="hd-th">Created</div>
-                  <div class="hd-th">Original Price</div>
-                  <div class="hd-th">Discount Price</div>
-                  <div class="hd-th">Discount</div>
-                  <div class="hd-th">30 Day Revenue</div>
-                  <div class="hd-th">30 Day Sold</div>
+            <!-- Body -->
+            <div class="hd-body">
+              <!-- Snapshot -->
+              <div id="hd-snapshot" class="hd-snapshot">
+                <div class="hd-stag">Snapshot · Research Summary</div>
+                <div class="hd-metrics">
+                  <div class="hd-metric">
+                    <div class="hd-mlabel">30 Day Revenue</div>
+                    <div id="hd-r30" class="hd-mval"></div>
+                  </div>
+                  <div class="hd-metric">
+                    <div class="hd-mlabel">30 Day Sold</div>
+                    <div id="hd-s30" class="hd-mval"></div>
+                  </div>
+                  <div class="hd-metric">
+                    <div class="hd-mlabel">Avg Price</div>
+                    <div id="hd-price" class="hd-mval"></div>
+                  </div>
+                  <div class="hd-metric">
+                    <div class="hd-mlabel">Avg Rating</div>
+                    <div id="hd-rating" class="hd-mval"></div>
+                  </div>
                 </div>
-                <div id="hd-tbody"></div>
+              </div>
+
+              <!-- Leaderboard -->
+              <div id="hd-leaderboard" class="hd-leaderboard">
+                <div class="hd-stag">
+                  Leaderboard · Ranked product opportunities
+                </div>
+                <div id="hd-subtitle" class="hd-subtitle"></div>
+                <div class="hd-table-wrap">
+                  <div class="hd-table">
+                    <div class="hd-thead">
+                      <div class="hd-th">Rank</div>
+                      <div class="hd-th">Product</div>
+                      <div class="hd-th">Store</div>
+                      <div class="hd-th">Created</div>
+                      <div class="hd-th">Original Price</div>
+                      <div class="hd-th">Discount Price</div>
+                      <div class="hd-th">Discount</div>
+                      <div class="hd-th">30 Day Revenue</div>
+                      <div class="hd-th">30 Day Sold</div>
+                    </div>
+                    <div id="hd-tbody"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /hd-body -->
+          </div>
+          <!-- /hero-demo -->
+        </div>
+        <!-- /hero-demo-wrap -->
+      </div>
+      <!-- /container -->
+    </section>
+
+    <!-- ── PLATFORM RIBBON ───────────────────────────────────────── -->
+    <div id="platform-ribbon">
+      <div class="container">
+        <div class="ribbon-inner">
+          <span class="ribbon-label">Access global trends on</span>
+          <div class="ribbon-logos">
+            <span class="ribbon-logo-name">Shopee</span>
+            <span class="ribbon-logo-name">TikTok</span>
+            <span class="ribbon-logo-name">Lazada</span>
+            <span class="ribbon-logo-name">Amazon</span>
+            <span class="ribbon-logo-name">Temu</span>
+            <span class="ribbon-logo-name">Alibaba</span>
+          </div>
+          <span class="ribbon-tag">· across 7 countries</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 2: BEFORE → AFTER ─────────────────────────── -->
+    <section id="transform">
+      <div class="container">
+        <span class="tf-eyebrow">Why Ecomblade</span>
+        <h2 class="tf-headline">
+          Stop guessing. Start seeing more with global data.
+        </h2>
+        <p class="tf-sub">
+          Local data shows you what's already winning — and saturated. Ecomblade
+          shows you what's proven elsewhere, before your market catches on.
+        </p>
+
+        <div class="tf-diagram">
+          <!-- BEFORE -->
+          <div class="tf-card tf-card-before" id="tf-before">
+            <div class="tf-label">Before</div>
+            <div class="tf-beats">
+              <div class="tf-beat">
+                <span class="tf-beat-num">1</span>
+                <span class="tf-beat-text"
+                  >See only what's already winning locally</span
+                >
+              </div>
+              <div class="tf-beat">
+                <span class="tf-beat-num">2</span>
+                <span class="tf-beat-text">Enter saturated markets late</span>
+              </div>
+              <div class="tf-beat">
+                <span class="tf-beat-num">3</span>
+                <span class="tf-beat-text"
+                  >Compete on price until margins die</span
+                >
               </div>
             </div>
           </div>
 
-        </div><!-- /hd-body -->
-      </div><!-- /hero-demo -->
-    </div><!-- /hero-demo-wrap -->
-
-  </div><!-- /container -->
-</section>
-
-<!-- ── PLATFORM RIBBON ───────────────────────────────────────── -->
-<div id="platform-ribbon">
-  <div class="container">
-    <div class="ribbon-inner">
-      <span class="ribbon-label">Access global trends on</span>
-      <div class="ribbon-logos">
-        <span class="ribbon-logo-name">Shopee</span>
-        <span class="ribbon-logo-name">TikTok</span>
-        <span class="ribbon-logo-name">Lazada</span>
-        <span class="ribbon-logo-name">Amazon</span>
-        <span class="ribbon-logo-name">Temu</span>
-        <span class="ribbon-logo-name">Alibaba</span>
-      </div>
-      <span class="ribbon-tag">· across 7 countries</span>
-    </div>
-  </div>
-</div>
-
-<!-- ── SECTION 2: BEFORE → AFTER ─────────────────────────── -->
-<section id="transform">
-  <div class="container">
-    <span class="tf-eyebrow">Why Ecomblade</span>
-    <h2 class="tf-headline">Stop guessing. Start seeing more with global data.</h2>
-    <p class="tf-sub">Local data shows you what's already winning — and saturated. Ecomblade shows you what's proven elsewhere, before your market catches on.</p>
-
-    <div class="tf-diagram">
-
-      <!-- BEFORE -->
-      <div class="tf-card tf-card-before" id="tf-before">
-        <div class="tf-label">Before</div>
-        <div class="tf-beats">
-          <div class="tf-beat">
-            <span class="tf-beat-num">1</span>
-            <span class="tf-beat-text">See only what's already winning locally</span>
-          </div>
-          <div class="tf-beat">
-            <span class="tf-beat-num">2</span>
-            <span class="tf-beat-text">Enter saturated markets late</span>
-          </div>
-          <div class="tf-beat">
-            <span class="tf-beat-num">3</span>
-            <span class="tf-beat-text">Compete on price until margins die</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- ARROW — line draws down, chevron pops in after -->
-      <div class="tf-arrow">
-        <svg width="40" height="52" viewBox="0 0 40 52" fill="none" style="overflow:hidden" aria-hidden="true">
-          <defs>
-            <linearGradient id="tf-grad" x1="0" y1="2" x2="0" y2="40" gradientUnits="userSpaceOnUse">
-              <stop offset="0%"   stop-color="#009d8f"/>
-              <stop offset="100%" stop-color="#1ae8d0"/>
-            </linearGradient>
-            <linearGradient id="tf-shine" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%"   stop-color="white" stop-opacity="0"/>
-              <stop offset="42%"  stop-color="white" stop-opacity="0"/>
-              <stop offset="50%"  stop-color="white" stop-opacity="0.75"/>
-              <stop offset="58%"  stop-color="white" stop-opacity="0"/>
-              <stop offset="100%" stop-color="white" stop-opacity="0"/>
-            </linearGradient>
-            <mask id="tf-mask">
-              <line x1="20" y1="2" x2="20" y2="36" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-              <path d="M10 27 L20 40 L30 27" stroke="white" stroke-width="2.7" fill="none"
-                    stroke-linecap="round" stroke-linejoin="round"/>
-            </mask>
-          </defs>
-          <line x1="20" y1="2" x2="20" y2="36"
-                stroke="url(#tf-grad)" stroke-width="2.5" stroke-linecap="round"
-                class="tf-arrow-line"/>
-          <path d="M10 27 L20 40 L30 27"
-                stroke="url(#tf-grad)" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"
-                class="tf-arrow-chev"/>
-          <rect x="0" y="-52" width="40" height="104"
-                fill="url(#tf-shine)" mask="url(#tf-mask)"
-                class="tf-shine-rect"/>
-        </svg>
-      </div>
-
-      <!-- AFTER -->
-      <div class="tf-card tf-card-after" id="tf-after">
-        <div class="tf-label">After</div>
-        <div class="tf-beats">
-          <div class="tf-beat">
-            <span class="tf-beat-num">1</span>
-            <span class="tf-beat-text">See what's proven across global markets</span>
-          </div>
-          <div class="tf-beat">
-            <span class="tf-beat-num">2</span>
-            <span class="tf-beat-text">Move it to your market before competitors catch on</span>
-          </div>
-          <div class="tf-beat">
-            <span class="tf-beat-num">3</span>
-            <span class="tf-beat-text">Own the opportunity early</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ── SECTION 3: VALUE CARDS ────────────────────────────────── -->
-<section id="value">
-  <div class="container">
-
-    <div class="val-header">
-      <span class="val-eyebrow">What you get</span>
-      <h2 class="val-headline">Everything you need to find your next winner</h2>
-    </div>
-
-    <div class="val-grid">
-
-      <!-- Card 1 ─────────────────────────────────────────────── -->
-      <div class="val-card">
-        <div class="val-img-wrap">
-          <!-- ★ IMAGE 1: paste <img class="val-img" src="YOUR_URL" alt="Research any market"> here, before this comment ★ -->
-          <div class="val-img-ph">
-            <svg width="24" height="18" viewBox="0 0 24 18" fill="none" aria-hidden="true">
-              <rect x="0.75" y="0.75" width="22.5" height="16.5" rx="2.25" stroke="currentColor" stroke-width="1.4"/>
-              <path d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- ARROW — line draws down, chevron pops in after -->
+          <div class="tf-arrow">
+            <svg
+              width="40"
+              height="52"
+              viewBox="0 0 40 52"
+              fill="none"
+              style="overflow: hidden"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient
+                  id="tf-grad"
+                  x1="0"
+                  y1="2"
+                  x2="0"
+                  y2="40"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop offset="0%" stop-color="#009d8f" />
+                  <stop offset="100%" stop-color="#1ae8d0" />
+                </linearGradient>
+                <linearGradient id="tf-shine" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="white" stop-opacity="0" />
+                  <stop offset="42%" stop-color="white" stop-opacity="0" />
+                  <stop offset="50%" stop-color="white" stop-opacity="0.75" />
+                  <stop offset="58%" stop-color="white" stop-opacity="0" />
+                  <stop offset="100%" stop-color="white" stop-opacity="0" />
+                </linearGradient>
+                <mask id="tf-mask">
+                  <line
+                    x1="20"
+                    y1="2"
+                    x2="20"
+                    y2="36"
+                    stroke="white"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M10 27 L20 40 L30 27"
+                    stroke="white"
+                    stroke-width="2.7"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </mask>
+              </defs>
+              <line
+                x1="20"
+                y1="2"
+                x2="20"
+                y2="36"
+                stroke="url(#tf-grad)"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                class="tf-arrow-line"
+              />
+              <path
+                d="M10 27 L20 40 L30 27"
+                stroke="url(#tf-grad)"
+                stroke-width="2.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="tf-arrow-chev"
+              />
+              <rect
+                x="0"
+                y="-52"
+                width="40"
+                height="104"
+                fill="url(#tf-shine)"
+                mask="url(#tf-mask)"
+                class="tf-shine-rect"
+              />
             </svg>
-            Screenshot
+          </div>
+
+          <!-- AFTER -->
+          <div class="tf-card tf-card-after" id="tf-after">
+            <div class="tf-label">After</div>
+            <div class="tf-beats">
+              <div class="tf-beat">
+                <span class="tf-beat-num">1</span>
+                <span class="tf-beat-text"
+                  >See what's proven across global markets</span
+                >
+              </div>
+              <div class="tf-beat">
+                <span class="tf-beat-num">2</span>
+                <span class="tf-beat-text"
+                  >Move it to your market before competitors catch on</span
+                >
+              </div>
+              <div class="tf-beat">
+                <span class="tf-beat-num">3</span>
+                <span class="tf-beat-text">Own the opportunity early</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="val-body">
-          <p class="val-title">Research any market, from one place</p>
-          <p class="val-desc">Search demand across 6 marketplaces and 7 countries — no juggling tabs.</p>
-        </div>
       </div>
+    </section>
 
-      <!-- Card 2 ─────────────────────────────────────────────── -->
-      <div class="val-card">
-        <div class="val-img-wrap">
-          <!-- ★ IMAGE 2: paste <img class="val-img" src="YOUR_URL" alt="Filter to the exact opportunity"> here, before this comment ★ -->
-          <div class="val-img-ph">
-            <svg width="24" height="18" viewBox="0 0 24 18" fill="none" aria-hidden="true">
-              <rect x="0.75" y="0.75" width="22.5" height="16.5" rx="2.25" stroke="currentColor" stroke-width="1.4"/>
-              <path d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Screenshot
+    <!-- ── SECTION 3: VALUE CARDS ────────────────────────────────── -->
+    <section id="value">
+      <div class="container">
+        <div class="val-header">
+          <span class="val-eyebrow">What you get</span>
+          <h2 class="val-headline">
+            Everything you need to find your next winner
+          </h2>
+        </div>
+
+        <div class="val-grid">
+          <!-- Card 1 ─────────────────────────────────────────────── -->
+          <div class="val-card">
+            <div class="val-img-wrap">
+              <img
+                class="val-img"
+                src="./assets/c1-marketplace.webp"
+                alt="Research any market"
+              />
+              <!-- ★ IMAGE 1: paste <img class="val-img" src="YOUR_URL" alt="Research any market"> here, before this comment ★ -->
+              <div class="val-img-ph">
+                <svg
+                  width="24"
+                  height="18"
+                  viewBox="0 0 24 18"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="0.75"
+                    y="0.75"
+                    width="22.5"
+                    height="16.5"
+                    rx="2.25"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                Screenshot
+              </div>
+            </div>
+            <div class="val-body">
+              <p class="val-title">Research any market, from one place</p>
+              <p class="val-desc">
+                Search demand across 6 marketplaces and 7 countries — no
+                juggling tabs.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2 ─────────────────────────────────────────────── -->
+          <div class="val-card">
+            <div class="val-img-wrap">
+              <img
+                class="val-img"
+                src="./assets/c2-filter.webp"
+                alt="Filter to the exact opportunity"
+              />
+              <!-- ★ IMAGE 2: paste <img class="val-img" src="YOUR_URL" alt="Filter to the exact opportunity"> here, before this comment ★ -->
+              <div class="val-img-ph">
+                <svg
+                  width="24"
+                  height="18"
+                  viewBox="0 0 24 18"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="0.75"
+                    y="0.75"
+                    width="22.5"
+                    height="16.5"
+                    rx="2.25"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                Screenshot
+              </div>
+            </div>
+            <div class="val-body">
+              <p class="val-title">Filter to the exact opportunity</p>
+              <p class="val-desc">
+                Sort and filter by revenue, sales, price, rating — turn noise
+                into a shortlist.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 3 ─────────────────────────────────────────────── -->
+          <div class="val-card">
+            <div class="val-img-wrap">
+              <img
+                class="val-img"
+                src="./assets/c3-export.webp"
+                alt="Export your data"
+              />
+              <!-- ★ IMAGE 3: paste <img class="val-img" src="YOUR_URL" alt="Export your data"> here, before this comment ★ -->
+              <div class="val-img-ph">
+                <svg
+                  width="24"
+                  height="18"
+                  viewBox="0 0 24 18"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="0.75"
+                    y="0.75"
+                    width="22.5"
+                    height="16.5"
+                    rx="2.25"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                Screenshot
+              </div>
+            </div>
+            <div class="val-body">
+              <p class="val-title">Take the data anywhere</p>
+              <p class="val-desc">
+                Export any result set to work with it your way. The data is
+                yours.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 4 ─────────────────────────────────────────────── -->
+          <div class="val-card">
+            <div class="val-img-wrap">
+              <img
+                class="val-img"
+                src="./assets/c4-ai.webp"
+                alt="Pipe results into AI"
+              />
+              <!-- ★ IMAGE 4: paste <img class="val-img" src="YOUR_URL" alt="Pipe results into AI"> here, before this comment ★ -->
+              <div class="val-img-ph">
+                <svg
+                  width="24"
+                  height="18"
+                  viewBox="0 0 24 18"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="0.75"
+                    y="0.75"
+                    width="22.5"
+                    height="16.5"
+                    rx="2.25"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                Screenshot
+              </div>
+            </div>
+            <div class="val-body">
+              <p class="val-title">Pipe results into AI</p>
+              <p class="val-desc">
+                Send research straight into ChatGPT or Claude for instant
+                analysis.
+              </p>
+            </div>
           </div>
         </div>
-        <div class="val-body">
-          <p class="val-title">Filter to the exact opportunity</p>
-          <p class="val-desc">Sort and filter by revenue, sales, price, rating — turn noise into a shortlist.</p>
-        </div>
       </div>
+    </section>
 
-      <!-- Card 3 ─────────────────────────────────────────────── -->
-      <div class="val-card">
-        <div class="val-img-wrap">
-          <img class="val-img" src="./assets/c3-export.webp" alt="Export your data">
-          <!-- ★ IMAGE 3: paste <img class="val-img" src="YOUR_URL" alt="Export your data"> here, before this comment ★ -->
-          <div class="val-img-ph">
-            <svg width="24" height="18" viewBox="0 0 24 18" fill="none" aria-hidden="true">
-              <rect x="0.75" y="0.75" width="22.5" height="16.5" rx="2.25" stroke="currentColor" stroke-width="1.4"/>
-              <path d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Screenshot
+    <!-- ── SECTION 4: PRICING ────────────────────────────────────── -->
+    <section id="pricing">
+      <div class="container">
+        <div class="pr-header">
+          <span class="pr-eyebrow">Pricing</span>
+          <h2 class="pr-headline">Start free. Upgrade when you're ready.</h2>
+          <p class="pr-sub">
+            No credit card. No time limit. Use it as long as you want.
+          </p>
+        </div>
+
+        <div class="pr-grid">
+          <!-- Free card ───────────────────────────────────────────── -->
+          <div class="pr-card">
+            <p class="pr-plan">Free</p>
+            <div class="pr-price">
+              <span class="pr-amount">$0</span>
+              <span class="pr-period">/forever</span>
+            </div>
+            <ul class="pr-features">
+              <li class="pr-feat pr-feat-yes">
+                <span class="pr-icon pr-icon-yes" aria-hidden="true">
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                    <path
+                      d="M1 4L3.5 6.5L9 1"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                6 Marketplaces, 7 Countries
+              </li>
+              <li class="pr-feat pr-feat-warn">
+                <span class="pr-icon pr-icon-warn" aria-hidden="true">
+                  <svg width="2" height="8" viewBox="0 0 2 8" fill="none">
+                    <path
+                      d="M1 0.5V5"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                    />
+                    <circle cx="1" cy="7.3" r="0.9" fill="currentColor" />
+                  </svg>
+                </span>
+                5 searches per day
+              </li>
+              <li class="pr-feat pr-feat-warn">
+                <span class="pr-icon pr-icon-warn" aria-hidden="true">
+                  <svg width="2" height="8" viewBox="0 0 2 8" fill="none">
+                    <path
+                      d="M1 0.5V5"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                    />
+                    <circle cx="1" cy="7.3" r="0.9" fill="currentColor" />
+                  </svg>
+                </span>
+                Up to 20 product results per search
+              </li>
+              <li class="pr-feat pr-feat-warn">
+                <span class="pr-icon pr-icon-warn" aria-hidden="true">
+                  <svg width="2" height="8" viewBox="0 0 2 8" fill="none">
+                    <path
+                      d="M1 0.5V5"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                    />
+                    <circle cx="1" cy="7.3" r="0.9" fill="currentColor" />
+                  </svg>
+                </span>
+                Limited AI access
+              </li>
+              <li class="pr-feat pr-feat-no">
+                <span class="pr-icon pr-icon-no" aria-hidden="true">
+                  <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                    <path
+                      d="M1.5 1.5L6.5 6.5M6.5 1.5L1.5 6.5"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </span>
+                Data exports not included
+              </li>
+            </ul>
+            <a
+              href="https://app.ecomblade.com/register"
+              class="pr-btn pr-btn-outline"
+              >Start free</a
+            >
+          </div>
+
+          <!-- Pro card ────────────────────────────────────────────── -->
+          <div class="pr-card pr-card-pro">
+            <span class="pr-tag">Most popular</span>
+            <p class="pr-plan">Pro</p>
+            <div class="pr-price">
+              <span class="pr-amount">$19</span>
+              <span class="pr-period">/month</span>
+            </div>
+            <ul class="pr-features">
+              <li class="pr-feat pr-feat-yes">
+                <span class="pr-icon pr-icon-yes" aria-hidden="true">
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                    <path
+                      d="M1 4L3.5 6.5L9 1"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                6 Marketplaces, 7 Countries
+              </li>
+              <li class="pr-feat pr-feat-yes">
+                <span class="pr-icon pr-icon-yes" aria-hidden="true">
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                    <path
+                      d="M1 4L3.5 6.5L9 1"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                Unlimited searches per day
+              </li>
+              <li class="pr-feat pr-feat-yes">
+                <span class="pr-icon pr-icon-yes" aria-hidden="true">
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                    <path
+                      d="M1 4L3.5 6.5L9 1"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                Full product results
+              </li>
+              <li class="pr-feat pr-feat-yes">
+                <span class="pr-icon pr-icon-yes" aria-hidden="true">
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                    <path
+                      d="M1 4L3.5 6.5L9 1"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                Full AI access
+              </li>
+              <li class="pr-feat pr-feat-yes">
+                <span class="pr-icon pr-icon-yes" aria-hidden="true">
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                    <path
+                      d="M1 4L3.5 6.5L9 1"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                Data exports included
+              </li>
+            </ul>
+            <a
+              href="https://app.ecomblade.com/register"
+              class="pr-btn pr-btn-primary"
+              >Start free</a
+            >
           </div>
         </div>
-        <div class="val-body">
-          <p class="val-title">Take the data anywhere</p>
-          <p class="val-desc">Export any result set to work with it your way. The data is yours.</p>
+      </div>
+    </section>
+
+    <!-- ── SECTION 5: FAQ ────────────────────────────────────────── -->
+    <section id="faq">
+      <div class="container">
+        <div class="faq-header">
+          <span class="faq-eyebrow">FAQ</span>
+          <h2 class="faq-headline">Questions, answered.</h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary class="faq-q">
+              Where does your data come from?
+              <svg
+                class="faq-chevron"
+                width="16"
+                height="10"
+                viewBox="0 0 16 10"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 1.5L8 8.5L15 1.5"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </summary>
+            <p class="faq-a">
+              We aggregate publicly available marketplace data and process it
+              through our own pipeline to surface sales estimates, revenue,
+              pricing, and reviews. The data is continuously updated to reflect
+              current market conditions.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">
+              How is this different from other research tools?
+              <svg
+                class="faq-chevron"
+                width="16"
+                height="10"
+                viewBox="0 0 16 10"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 1.5L8 8.5L15 1.5"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </summary>
+            <p class="faq-a">
+              Most tools overwhelm you with dozens of features across a single
+              marketplace. Ecomblade pulls data from multiple global
+              marketplaces into one clean view — only the metrics that matter,
+              with zero noise. Less tabs, less guessing, faster decisions.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">
+              Do I need to integrate my seller account?
+              <svg
+                class="faq-chevron"
+                width="16"
+                height="10"
+                viewBox="0 0 16 10"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 1.5L8 8.5L15 1.5"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </summary>
+            <p class="faq-a">
+              No. Ecomblade is product research — you're looking at the market,
+              not your own listings. No account connection required, ever. Sign
+              up with email and you're using the product in under 60 seconds.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">
+              Is there a free trial?
+              <svg
+                class="faq-chevron"
+                width="16"
+                height="10"
+                viewBox="0 0 16 10"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 1.5L8 8.5L15 1.5"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </summary>
+            <p class="faq-a">
+              Ecomblade is free to start — no credit card, no time limit. Use it
+              for as long as you want. When you need full access across all
+              marketplaces, Pro is $19/month.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">
+              How quickly can I get started?
+              <svg
+                class="faq-chevron"
+                width="16"
+                height="10"
+                viewBox="0 0 16 10"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 1.5L8 8.5L15 1.5"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </summary>
+            <p class="faq-a">
+              Sign up with email and phone. That's it. No onboarding calls, no
+              setup wizard, no waiting for approval. You're researching products
+              within 60 seconds.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">
+              Can I cancel anytime?
+              <svg
+                class="faq-chevron"
+                width="16"
+                height="10"
+                viewBox="0 0 16 10"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 1.5L8 8.5L15 1.5"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </summary>
+            <p class="faq-a">
+              Yes. One click from your dashboard. No retention flows, no calls,
+              no guilt. If you're not getting value, we'd rather you leave
+              easily than stay frustrated.
+            </p>
+          </details>
         </div>
       </div>
+    </section>
 
-      <!-- Card 4 ─────────────────────────────────────────────── -->
-      <div class="val-card">
-        <div class="val-img-wrap">
-          <img class="val-img" src="./assets/c4-ai.webp" alt="Pipe results into AI">
-          <!-- ★ IMAGE 4: paste <img class="val-img" src="YOUR_URL" alt="Pipe results into AI"> here, before this comment ★ -->
-          <div class="val-img-ph">
-            <svg width="24" height="18" viewBox="0 0 24 18" fill="none" aria-hidden="true">
-              <rect x="0.75" y="0.75" width="22.5" height="16.5" rx="2.25" stroke="currentColor" stroke-width="1.4"/>
-              <path d="M4 13L9 7L13.5 11.5L16.5 8.5L20 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Screenshot
+    <!-- ── FINAL SECTION: CTA + FOOTER (dark) ────────────────────── -->
+    <section id="cta-footer">
+      <!-- PART A: Final CTA ────────────────────────────────────────── -->
+      <div class="end-cta">
+        <div class="container">
+          <div class="end-tag">Free plan · No credit card required</div>
+          <h2 class="end-headline">
+            Find your next winner.<br /><em>Start today.</em>
+          </h2>
+          <p class="end-sub">
+            Start free, upgrade when you're ready. No credit card, no setup
+            calls, no lock-in. Live in under 60 seconds.
+          </p>
+          <a href="https://app.ecomblade.com/register" class="end-btn"
+            >Start free</a
+          >
+          <div class="end-trust">
+            <div class="end-tick">
+              <svg
+                class="end-tick-check"
+                width="14"
+                height="11"
+                viewBox="0 0 14 11"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 5.5L5 9.5L13 1.5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Start with a free plan
+            </div>
+            <div class="end-tick">
+              <svg
+                class="end-tick-check"
+                width="14"
+                height="11"
+                viewBox="0 0 14 11"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 5.5L5 9.5L13 1.5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              No credit card required
+            </div>
+            <div class="end-tick">
+              <svg
+                class="end-tick-check"
+                width="14"
+                height="11"
+                viewBox="0 0 14 11"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 5.5L5 9.5L13 1.5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Cancel anytime
+            </div>
           </div>
         </div>
-        <div class="val-body">
-          <p class="val-title">Pipe results into AI</p>
-          <p class="val-desc">Send research straight into ChatGPT or Claude for instant analysis.</p>
-        </div>
       </div>
 
-    </div>
-  </div>
-</section>
+      <!-- PART B: Footer ───────────────────────────────────────────── -->
+      <div class="end-footer">
+        <div class="container">
+          <div class="end-footer-inner">
+            <!-- Brand + tagline -->
+            <div class="end-brand">
+              <a href="https://ecomblade.com" class="end-logo"
+                ><img
+                  src="assets/white-EB-logo-nav.svg"
+                  alt="Ecomblade"
+                  class="end-logo-img"
+              /></a>
+              <p class="end-tagline">
+                Global product research for serious sellers. Sales volume,
+                revenue, and demand across 6 marketplaces — in one clean view.
+              </p>
+            </div>
 
-<!-- ── SECTION 4: PRICING ────────────────────────────────────── -->
-<section id="pricing">
-  <div class="container">
+            <!-- Product links -->
+            <div class="end-col">
+              <p class="end-col-head">Product</p>
+              <ul>
+                <li><a href="#value">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#transform">How it works</a></li>
+                <li><a href="#faq">FAQ</a></li>
+              </ul>
+            </div>
 
-    <div class="pr-header">
-      <span class="pr-eyebrow">Pricing</span>
-      <h2 class="pr-headline">Start free. Upgrade when you're ready.</h2>
-      <p class="pr-sub">No credit card. No time limit. Use it as long as you want.</p>
-    </div>
+            <!-- Company links -->
+            <div class="end-col">
+              <p class="end-col-head">Company</p>
+              <ul>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div>
 
-    <div class="pr-grid">
+            <!-- Legal links -->
+            <div class="end-col">
+              <p class="end-col-head">Legal</p>
+              <ul>
+                <li><a href="/terms/">Terms</a></li>
+                <li><a href="/privacy/">Privacy</a></li>
+              </ul>
+            </div>
+          </div>
 
-      <!-- Free card ───────────────────────────────────────────── -->
-      <div class="pr-card">
-        <p class="pr-plan">Free</p>
-        <div class="pr-price">
-          <span class="pr-amount">$0</span>
-          <span class="pr-period">/forever</span>
-        </div>
-        <ul class="pr-features">
-          <li class="pr-feat pr-feat-yes">
-            <span class="pr-icon pr-icon-yes" aria-hidden="true">
-              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            6 Marketplaces, 7 Countries
-          </li>
-          <li class="pr-feat pr-feat-warn">
-            <span class="pr-icon pr-icon-warn" aria-hidden="true">
-              <svg width="2" height="8" viewBox="0 0 2 8" fill="none"><path d="M1 0.5V5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="1" cy="7.3" r="0.9" fill="currentColor"/></svg>
-            </span>
-            Up to 20 product results per search
-          </li>
-          <li class="pr-feat pr-feat-warn">
-            <span class="pr-icon pr-icon-warn" aria-hidden="true">
-              <svg width="2" height="8" viewBox="0 0 2 8" fill="none"><path d="M1 0.5V5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="1" cy="7.3" r="0.9" fill="currentColor"/></svg>
-            </span>
-            Limited AI access
-          </li>
-          <li class="pr-feat pr-feat-no">
-            <span class="pr-icon pr-icon-no" aria-hidden="true">
-              <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 1.5L6.5 6.5M6.5 1.5L1.5 6.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-            </span>
-            Data exports not included
-          </li>
-        </ul>
-        <a href="https://app.ecomblade.com/register" class="pr-btn pr-btn-outline">Start free</a>
-      </div>
-
-      <!-- Pro card ────────────────────────────────────────────── -->
-      <div class="pr-card pr-card-pro">
-        <span class="pr-tag">Most popular</span>
-        <p class="pr-plan">Pro</p>
-        <div class="pr-price">
-          <span class="pr-amount">$19</span>
-          <span class="pr-period">/month</span>
-        </div>
-        <ul class="pr-features">
-          <li class="pr-feat pr-feat-yes">
-            <span class="pr-icon pr-icon-yes" aria-hidden="true">
-              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            6 Marketplaces, 7 Countries
-          </li>
-          <li class="pr-feat pr-feat-yes">
-            <span class="pr-icon pr-icon-yes" aria-hidden="true">
-              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            Full product results
-          </li>
-          <li class="pr-feat pr-feat-yes">
-            <span class="pr-icon pr-icon-yes" aria-hidden="true">
-              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            Full AI access
-          </li>
-          <li class="pr-feat pr-feat-yes">
-            <span class="pr-icon pr-icon-yes" aria-hidden="true">
-              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            Data exports included
-          </li>
-        </ul>
-        <a href="https://app.ecomblade.com/register" class="pr-btn pr-btn-primary">Start free</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ── SECTION 5: FAQ ────────────────────────────────────────── -->
-<section id="faq">
-  <div class="container">
-
-    <div class="faq-header">
-      <span class="faq-eyebrow">FAQ</span>
-      <h2 class="faq-headline">Questions, answered.</h2>
-    </div>
-
-    <div class="faq-list">
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          Where does your data come from?
-          <svg class="faq-chevron" width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M1 1.5L8 8.5L15 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <p class="faq-a">We aggregate publicly available marketplace data and process it through our own pipeline to surface sales estimates, revenue, pricing, and reviews. The data is continuously updated to reflect current market conditions.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          How is this different from other research tools?
-          <svg class="faq-chevron" width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M1 1.5L8 8.5L15 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <p class="faq-a">Most tools overwhelm you with dozens of features across a single marketplace. Ecomblade pulls data from multiple global marketplaces into one clean view — only the metrics that matter, with zero noise. Less tabs, less guessing, faster decisions.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          Do I need to integrate my seller account?
-          <svg class="faq-chevron" width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M1 1.5L8 8.5L15 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <p class="faq-a">No. Ecomblade is product research — you're looking at the market, not your own listings. No account connection required, ever. Sign up with email and you're using the product in under 60 seconds.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          Is there a free trial?
-          <svg class="faq-chevron" width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M1 1.5L8 8.5L15 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <p class="faq-a">Ecomblade is free to start — no credit card, no time limit. Use it for as long as you want. When you need full access across all marketplaces, Pro is $19/month.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          How quickly can I get started?
-          <svg class="faq-chevron" width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M1 1.5L8 8.5L15 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <p class="faq-a">Sign up with email and phone. That's it. No onboarding calls, no setup wizard, no waiting for approval. You're researching products within 60 seconds.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          Can I cancel anytime?
-          <svg class="faq-chevron" width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M1 1.5L8 8.5L15 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <p class="faq-a">Yes. One click from your dashboard. No retention flows, no calls, no guilt. If you're not getting value, we'd rather you leave easily than stay frustrated.</p>
-      </details>
-
-    </div>
-  </div>
-</section>
-
-<!-- ── FINAL SECTION: CTA + FOOTER (dark) ────────────────────── -->
-<section id="cta-footer">
-
-  <!-- PART A: Final CTA ────────────────────────────────────────── -->
-  <div class="end-cta">
-    <div class="container">
-      <div class="end-tag">Free plan · No credit card required</div>
-      <h2 class="end-headline">Find your next winner.<br><em>Start today.</em></h2>
-      <p class="end-sub">Start free, upgrade when you're ready. No credit card, no setup calls, no lock-in. Live in under 60 seconds.</p>
-      <a href="https://app.ecomblade.com/register" class="end-btn">Start free</a>
-      <div class="end-trust">
-        <div class="end-tick">
-          <svg class="end-tick-check" width="14" height="11" viewBox="0 0 14 11" fill="none" aria-hidden="true"><path d="M1 5.5L5 9.5L13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Start with a free plan
-        </div>
-        <div class="end-tick">
-          <svg class="end-tick-check" width="14" height="11" viewBox="0 0 14 11" fill="none" aria-hidden="true"><path d="M1 5.5L5 9.5L13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          No credit card required
-        </div>
-        <div class="end-tick">
-          <svg class="end-tick-check" width="14" height="11" viewBox="0 0 14 11" fill="none" aria-hidden="true"><path d="M1 5.5L5 9.5L13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Cancel anytime
+          <!-- Bottom bar -->
+          <div class="end-bottom">© 2026 Ecomblade. All rights reserved.</div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- PART B: Footer ───────────────────────────────────────────── -->
-  <div class="end-footer">
-    <div class="container">
-      <div class="end-footer-inner">
-
-        <!-- Brand + tagline -->
-        <div class="end-brand">
-          <a href="https://ecomblade.com" class="end-logo"><img src="assets/white-EB-logo-nav.svg" alt="Ecomblade" class="end-logo-img"></a>
-          <p class="end-tagline">Global product research for serious sellers. Sales volume, revenue, and demand across 6 marketplaces — in one clean view.</p>
-        </div>
-
-        <!-- Product links -->
-        <div class="end-col">
-          <p class="end-col-head">Product</p>
-          <ul>
-            <li><a href="#value">Features</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#transform">How it works</a></li>
-            <li><a href="#faq">FAQ</a></li>
-          </ul>
-        </div>
-
-        <!-- Company links -->
-        <div class="end-col">
-          <p class="end-col-head">Company</p>
-          <ul>
-            <li><a href="/about/">About</a></li>
-            <li><a href="/contact/">Contact</a></li>
-          </ul>
-        </div>
-
-        <!-- Legal links -->
-        <div class="end-col">
-          <p class="end-col-head">Legal</p>
-          <ul>
-            <li><a href="/terms/">Terms</a></li>
-            <li><a href="/privacy/">Privacy</a></li>
-          </ul>
-        </div>
-
-      </div>
-
-      <!-- Bottom bar -->
-      <div class="end-bottom">
-        © 2026 Ecomblade. All rights reserved.
-      </div>
-
-    </div>
-  </div>
-
-</section>
-
-<script>
-/* ═══════════════════════════════════════════════════════════════
+    <script>
+      /* ═══════════════════════════════════════════════════════════════
    DEMO DATA
    ─────────────────────────────────────────────────────────────
    [WIRE] Replace this object with your API response.
@@ -1611,195 +2641,564 @@
        }]
      }
 ═══════════════════════════════════════════════════════════════ */
-var DEMO = {
-  query: 'water bottle',
-  markets: [
-    {
-      platform: 'Shopee', country: 'Indonesia', flag: 'id', sym: 'Rp',
-      metrics: { r30: '5,064,850,000', s30: '210,945', price: '45,900', rating: '4.8' },
-      rows: [
-        { rank:1, iOrder:2, name:'Botol Minum 1L Stainless Steel Vacuum Flask', store:'RumahTangga.ID', created:'Nov 2, 2024', orig:'129,000', dprice:'49,020', disc:'62.0%', rev:'2,145,000,000', sold:'48,210' },
-        { rank:2, iOrder:1, name:'Tumbler Kaca 480ml Anti Slip Motif Lucu', store:'YMShopID', created:'Dec 8, 2024', orig:'39,000', dprice:'17,550', disc:'55.0%', rev:'684,000,000', sold:'52,300' },
-        { rank:3, iOrder:3, name:'Botol Sport 750ml Anti Bocor BPA Free', store:'ActiveID Store', created:'Oct 20, 2024', orig:'59,000', dprice:'30,680', disc:'48.0%', rev:'410,000,000', sold:'18,400' },
-        { rank:4, iOrder:5, name:'Termos Air Panas 1.5L Premium', store:'HangatID', created:'Nov 6, 2024', orig:'189,000', dprice:'54,810', disc:'71.0%', rev:'96,000,000', sold:'9,120' },
-        { rank:5, iOrder:4, name:'Botol Lipat Silikon 500ml Travel', store:'EcoID Shop', created:'Dec 1, 2024', orig:'49,000', dprice:'29,400', disc:'40.0%', rev:'158,000,000', sold:'12,600' },
-      ]
-    },
-    {
-      platform: 'TikTok Shop', country: 'Thailand', flag: 'th', sym: '฿',
-      metrics: { r30: '4,816,221', s30: '70,480', price: '65.68', rating: '4.7' },
-      rows: [
-        { rank:1, iOrder:2, name:'1700ML Stainless Steel Tumbler Vacuum Insulated', store:'COOMA', created:'Nov 4, 2024', orig:'286', dprice:'117.83', disc:'58.8%', rev:'1,590,597', sold:'13,514' },
-        { rank:2, iOrder:1, name:'Glass Thermal Bottle 480ml Anti-Slip Base', store:'YMShop22', created:'Dec 13, 2024', orig:'39', dprice:'17', disc:'56.4%', rev:'240,000', sold:'14,126' },
-        { rank:3, iOrder:3, name:'2L Plastic Sport Bottle Colour Series', store:'nite night', created:'Oct 23, 2024', orig:'79', dprice:'48.03', disc:'39.2%', rev:'389,952', sold:'8,124' },
-        { rank:4, iOrder:5, name:'316 Stainless Flask Grade Pro 750ml', store:'IN-HOLLY', created:'Nov 8, 2024', orig:'300', dprice:'1.20', disc:'99.6%', rev:'6,703', sold:'5,829' },
-        { rank:5, iOrder:4, name:'1500ML Flip-Lid Tumbler with Carry Strap', store:'YJM HOMELIVING', created:'Nov 9, 2024', orig:'599', dprice:'203.06', disc:'66.1%', rev:'1,094,280', sold:'5,394' },
-      ]
-    },
-    {
-      platform: 'Lazada', country: 'Malaysia', flag: 'my', sym: 'RM',
-      metrics: { r30: '1,165,365', s30: '66,075', price: '24.50', rating: '4.6' },
-      rows: [
-        { rank:1, iOrder:2, name:'1L Vacuum Flask Thermal Water Bottle', store:'LazMall DrinkGear', created:'Nov 12, 2024', orig:'69.90', dprice:'22.37', disc:'68.0%', rev:'412,000', sold:'18,900' },
-        { rank:2, iOrder:1, name:'Sport Bottle 750ml Leak-Proof Tritan', store:'ActiveLife MY', created:'Dec 3, 2024', orig:'34.90', dprice:'16.75', disc:'52.0%', rev:'168,000', sold:'12,400' },
-        { rank:3, iOrder:3, name:'Glass Thermal Mug with Bamboo Lid 380ml', store:'HomeLiving MY', created:'Dec 9, 2024', orig:'39', dprice:'21.45', disc:'45.0%', rev:'98,500', sold:'5,600' },
-        { rank:4, iOrder:5, name:'316 Stainless Double Wall Flask 600ml', store:'PureCup Official', created:'Nov 25, 2024', orig:'52', dprice:'20.80', disc:'60.0%', rev:'74,000', sold:'3,100' },
-        { rank:5, iOrder:4, name:'Collapsible Silicone Bottle 500ml', store:'EcoMY', created:'Dec 6, 2024', orig:'26', dprice:'15.08', disc:'42.0%', rev:'51,200', sold:'4,050' },
-      ]
-    },
-    {
-      platform: 'Amazon', country: 'United States', flag: 'us', sym: '$',
-      metrics: { r30: '4,080,300', s30: '189,300', price: '24.99', rating: '4.5' },
-      rows: [
-        { rank:1, iOrder:2, name:'Hydro Insulated Stainless Steel Water Bottle 32oz', store:'HydroPeak', created:'Nov 1, 2024', orig:'34.99', dprice:'19.94', disc:'43.0%', rev:'1,284,000', sold:'41,200' },
-        { rank:2, iOrder:1, name:'BPA-Free Tritan Sports Bottle 24oz 2-Pack', store:'ActiveGear', created:'Dec 5, 2024', orig:'19.99', dprice:'12.99', disc:'35.0%', rev:'742,000', sold:'44,600' },
-        { rank:3, iOrder:3, name:'Glass Water Bottle with Silicone Sleeve 20oz', store:'PureVida', created:'Oct 28, 2024', orig:'22.99', dprice:'13.79', disc:'40.0%', rev:'398,000', sold:'18,900' },
-        { rank:4, iOrder:5, name:'Half Gallon Motivational Water Bottle 64oz', store:'FitFlow', created:'Nov 8, 2024', orig:'27.99', dprice:'13.99', disc:'50.0%', rev:'214,000', sold:'9,400' },
-        { rank:5, iOrder:4, name:'Collapsible Silicone Travel Bottle 25oz', store:'EcoCarry', created:'Dec 2, 2024', orig:'15.99', dprice:'9.91', disc:'38.0%', rev:'176,000', sold:'12,100' },
-      ]
-    },
-    {
-      platform: 'Temu', country: 'United States', flag: 'us', sym: '$',
-      metrics: { r30: '1,902,400', s30: '361,950', price: '6.48', rating: '4.3' },
-      rows: [
-        { rank:1, iOrder:2, name:'Stainless Steel Insulated Tumbler 40oz', store:'Temu Choice', created:'Nov 3, 2024', orig:'29.99', dprice:'6.60', disc:'78.0%', rev:'684,000', sold:'98,400' },
-        { rank:2, iOrder:1, name:'Portable Sports Water Bottle 750ml', store:'GoodLife', created:'Dec 4, 2024', orig:'12.99', dprice:'4.55', disc:'65.0%', rev:'312,000', sold:'71,200' },
-        { rank:3, iOrder:3, name:'Cute Glass Bottle with Straw 500ml', store:'HomeEssentials', created:'Oct 25, 2024', orig:'9.99', dprice:'4.20', disc:'58.0%', rev:'148,000', sold:'38,600' },
-        { rank:4, iOrder:5, name:'Large 1 Gallon Water Jug with Time Marker', store:'FitDaily', created:'Nov 7, 2024', orig:'15.99', dprice:'4.80', disc:'70.0%', rev:'96,000', sold:'14,200' },
-        { rank:5, iOrder:4, name:'Foldable Silicone Water Bottle 20oz', store:'TravelMate', created:'Dec 1, 2024', orig:'6.99', dprice:'3.84', disc:'45.1%', rev:'72,000', sold:'18,900' },
-      ]
-    },
-  ]
-};
+      var DEMO = {
+        query: "water bottle",
+        markets: [
+          {
+            platform: "Shopee",
+            country: "Indonesia",
+            flag: "id",
+            sym: "Rp",
+            metrics: {
+              r30: "5,064,850,000",
+              s30: "210,945",
+              price: "45,900",
+              rating: "4.8",
+            },
+            rows: [
+              {
+                rank: 1,
+                iOrder: 2,
+                name: "Botol Minum 1L Stainless Steel Vacuum Flask",
+                store: "RumahTangga.ID",
+                created: "Nov 2, 2024",
+                orig: "129,000",
+                dprice: "49,020",
+                disc: "62.0%",
+                rev: "2,145,000,000",
+                sold: "48,210",
+              },
+              {
+                rank: 2,
+                iOrder: 1,
+                name: "Tumbler Kaca 480ml Anti Slip Motif Lucu",
+                store: "YMShopID",
+                created: "Dec 8, 2024",
+                orig: "39,000",
+                dprice: "17,550",
+                disc: "55.0%",
+                rev: "684,000,000",
+                sold: "52,300",
+              },
+              {
+                rank: 3,
+                iOrder: 3,
+                name: "Botol Sport 750ml Anti Bocor BPA Free",
+                store: "ActiveID Store",
+                created: "Oct 20, 2024",
+                orig: "59,000",
+                dprice: "30,680",
+                disc: "48.0%",
+                rev: "410,000,000",
+                sold: "18,400",
+              },
+              {
+                rank: 4,
+                iOrder: 5,
+                name: "Termos Air Panas 1.5L Premium",
+                store: "HangatID",
+                created: "Nov 6, 2024",
+                orig: "189,000",
+                dprice: "54,810",
+                disc: "71.0%",
+                rev: "96,000,000",
+                sold: "9,120",
+              },
+              {
+                rank: 5,
+                iOrder: 4,
+                name: "Botol Lipat Silikon 500ml Travel",
+                store: "EcoID Shop",
+                created: "Dec 1, 2024",
+                orig: "49,000",
+                dprice: "29,400",
+                disc: "40.0%",
+                rev: "158,000,000",
+                sold: "12,600",
+              },
+            ],
+          },
+          {
+            platform: "TikTok Shop",
+            country: "Thailand",
+            flag: "th",
+            sym: "฿",
+            metrics: {
+              r30: "4,816,221",
+              s30: "70,480",
+              price: "65.68",
+              rating: "4.7",
+            },
+            rows: [
+              {
+                rank: 1,
+                iOrder: 2,
+                name: "1700ML Stainless Steel Tumbler Vacuum Insulated",
+                store: "COOMA",
+                created: "Nov 4, 2024",
+                orig: "286",
+                dprice: "117.83",
+                disc: "58.8%",
+                rev: "1,590,597",
+                sold: "13,514",
+              },
+              {
+                rank: 2,
+                iOrder: 1,
+                name: "Glass Thermal Bottle 480ml Anti-Slip Base",
+                store: "YMShop22",
+                created: "Dec 13, 2024",
+                orig: "39",
+                dprice: "17",
+                disc: "56.4%",
+                rev: "240,000",
+                sold: "14,126",
+              },
+              {
+                rank: 3,
+                iOrder: 3,
+                name: "2L Plastic Sport Bottle Colour Series",
+                store: "nite night",
+                created: "Oct 23, 2024",
+                orig: "79",
+                dprice: "48.03",
+                disc: "39.2%",
+                rev: "389,952",
+                sold: "8,124",
+              },
+              {
+                rank: 4,
+                iOrder: 5,
+                name: "316 Stainless Flask Grade Pro 750ml",
+                store: "IN-HOLLY",
+                created: "Nov 8, 2024",
+                orig: "300",
+                dprice: "1.20",
+                disc: "99.6%",
+                rev: "6,703",
+                sold: "5,829",
+              },
+              {
+                rank: 5,
+                iOrder: 4,
+                name: "1500ML Flip-Lid Tumbler with Carry Strap",
+                store: "YJM HOMELIVING",
+                created: "Nov 9, 2024",
+                orig: "599",
+                dprice: "203.06",
+                disc: "66.1%",
+                rev: "1,094,280",
+                sold: "5,394",
+              },
+            ],
+          },
+          {
+            platform: "Lazada",
+            country: "Malaysia",
+            flag: "my",
+            sym: "RM",
+            metrics: {
+              r30: "1,165,365",
+              s30: "66,075",
+              price: "24.50",
+              rating: "4.6",
+            },
+            rows: [
+              {
+                rank: 1,
+                iOrder: 2,
+                name: "1L Vacuum Flask Thermal Water Bottle",
+                store: "LazMall DrinkGear",
+                created: "Nov 12, 2024",
+                orig: "69.90",
+                dprice: "22.37",
+                disc: "68.0%",
+                rev: "412,000",
+                sold: "18,900",
+              },
+              {
+                rank: 2,
+                iOrder: 1,
+                name: "Sport Bottle 750ml Leak-Proof Tritan",
+                store: "ActiveLife MY",
+                created: "Dec 3, 2024",
+                orig: "34.90",
+                dprice: "16.75",
+                disc: "52.0%",
+                rev: "168,000",
+                sold: "12,400",
+              },
+              {
+                rank: 3,
+                iOrder: 3,
+                name: "Glass Thermal Mug with Bamboo Lid 380ml",
+                store: "HomeLiving MY",
+                created: "Dec 9, 2024",
+                orig: "39",
+                dprice: "21.45",
+                disc: "45.0%",
+                rev: "98,500",
+                sold: "5,600",
+              },
+              {
+                rank: 4,
+                iOrder: 5,
+                name: "316 Stainless Double Wall Flask 600ml",
+                store: "PureCup Official",
+                created: "Nov 25, 2024",
+                orig: "52",
+                dprice: "20.80",
+                disc: "60.0%",
+                rev: "74,000",
+                sold: "3,100",
+              },
+              {
+                rank: 5,
+                iOrder: 4,
+                name: "Collapsible Silicone Bottle 500ml",
+                store: "EcoMY",
+                created: "Dec 6, 2024",
+                orig: "26",
+                dprice: "15.08",
+                disc: "42.0%",
+                rev: "51,200",
+                sold: "4,050",
+              },
+            ],
+          },
+          {
+            platform: "Amazon",
+            country: "United States",
+            flag: "us",
+            sym: "$",
+            metrics: {
+              r30: "4,080,300",
+              s30: "189,300",
+              price: "24.99",
+              rating: "4.5",
+            },
+            rows: [
+              {
+                rank: 1,
+                iOrder: 2,
+                name: "Hydro Insulated Stainless Steel Water Bottle 32oz",
+                store: "HydroPeak",
+                created: "Nov 1, 2024",
+                orig: "34.99",
+                dprice: "19.94",
+                disc: "43.0%",
+                rev: "1,284,000",
+                sold: "41,200",
+              },
+              {
+                rank: 2,
+                iOrder: 1,
+                name: "BPA-Free Tritan Sports Bottle 24oz 2-Pack",
+                store: "ActiveGear",
+                created: "Dec 5, 2024",
+                orig: "19.99",
+                dprice: "12.99",
+                disc: "35.0%",
+                rev: "742,000",
+                sold: "44,600",
+              },
+              {
+                rank: 3,
+                iOrder: 3,
+                name: "Glass Water Bottle with Silicone Sleeve 20oz",
+                store: "PureVida",
+                created: "Oct 28, 2024",
+                orig: "22.99",
+                dprice: "13.79",
+                disc: "40.0%",
+                rev: "398,000",
+                sold: "18,900",
+              },
+              {
+                rank: 4,
+                iOrder: 5,
+                name: "Half Gallon Motivational Water Bottle 64oz",
+                store: "FitFlow",
+                created: "Nov 8, 2024",
+                orig: "27.99",
+                dprice: "13.99",
+                disc: "50.0%",
+                rev: "214,000",
+                sold: "9,400",
+              },
+              {
+                rank: 5,
+                iOrder: 4,
+                name: "Collapsible Silicone Travel Bottle 25oz",
+                store: "EcoCarry",
+                created: "Dec 2, 2024",
+                orig: "15.99",
+                dprice: "9.91",
+                disc: "38.0%",
+                rev: "176,000",
+                sold: "12,100",
+              },
+            ],
+          },
+          {
+            platform: "Temu",
+            country: "United States",
+            flag: "us",
+            sym: "$",
+            metrics: {
+              r30: "1,902,400",
+              s30: "361,950",
+              price: "6.48",
+              rating: "4.3",
+            },
+            rows: [
+              {
+                rank: 1,
+                iOrder: 2,
+                name: "Stainless Steel Insulated Tumbler 40oz",
+                store: "Temu Choice",
+                created: "Nov 3, 2024",
+                orig: "29.99",
+                dprice: "6.60",
+                disc: "78.0%",
+                rev: "684,000",
+                sold: "98,400",
+              },
+              {
+                rank: 2,
+                iOrder: 1,
+                name: "Portable Sports Water Bottle 750ml",
+                store: "GoodLife",
+                created: "Dec 4, 2024",
+                orig: "12.99",
+                dprice: "4.55",
+                disc: "65.0%",
+                rev: "312,000",
+                sold: "71,200",
+              },
+              {
+                rank: 3,
+                iOrder: 3,
+                name: "Cute Glass Bottle with Straw 500ml",
+                store: "HomeEssentials",
+                created: "Oct 25, 2024",
+                orig: "9.99",
+                dprice: "4.20",
+                disc: "58.0%",
+                rev: "148,000",
+                sold: "38,600",
+              },
+              {
+                rank: 4,
+                iOrder: 5,
+                name: "Large 1 Gallon Water Jug with Time Marker",
+                store: "FitDaily",
+                created: "Nov 7, 2024",
+                orig: "15.99",
+                dprice: "4.80",
+                disc: "70.0%",
+                rev: "96,000",
+                sold: "14,200",
+              },
+              {
+                rank: 5,
+                iOrder: 4,
+                name: "Foldable Silicone Water Bottle 20oz",
+                store: "TravelMate",
+                created: "Dec 1, 2024",
+                orig: "6.99",
+                dprice: "3.84",
+                disc: "45.1%",
+                rev: "72,000",
+                sold: "18,900",
+              },
+            ],
+          },
+        ],
+      };
 
-/* ── Row HTML template (reused by static render + animation) ── */
-function rowHTML(r, sym) {
-  return '<div class="hd-row" data-rank="' + r.rank + '" data-iorder="' + r.iOrder + '">'
-    + '<div class="hd-td"><span class="hd-rank' + (r.rank === 1 ? ' gold' : '') + '">' + r.rank + '</span></div>'
-    + '<div class="hd-td"><div class="hd-pname">' + r.name + '</div></div>'
-    + '<div class="hd-td hd-store">' + r.store + '</div>'
-    + '<div class="hd-td hd-created">' + r.created + '</div>'
-    + '<div class="hd-td hd-orig">' + sym + r.orig + '</div>'
-    + '<div class="hd-td hd-dprice">' + sym + r.dprice + '</div>'
-    + '<div class="hd-td"><span class="hd-disc">' + r.disc + '</span></div>'
-    + '<div class="hd-td hd-rev">' + sym + r.rev + '</div>'
-    + '<div class="hd-td hd-sold">' + r.sold + '</div>'
-    + '</div>';
-}
+      /* ── Row HTML template (reused by static render + animation) ── */
+      function rowHTML(r, sym) {
+        return (
+          '<div class="hd-row" data-rank="' +
+          r.rank +
+          '" data-iorder="' +
+          r.iOrder +
+          '">' +
+          '<div class="hd-td"><span class="hd-rank' +
+          (r.rank === 1 ? " gold" : "") +
+          '">' +
+          r.rank +
+          "</span></div>" +
+          '<div class="hd-td"><div class="hd-pname">' +
+          r.name +
+          "</div></div>" +
+          '<div class="hd-td hd-store">' +
+          r.store +
+          "</div>" +
+          '<div class="hd-td hd-created">' +
+          r.created +
+          "</div>" +
+          '<div class="hd-td hd-orig">' +
+          sym +
+          r.orig +
+          "</div>" +
+          '<div class="hd-td hd-dprice">' +
+          sym +
+          r.dprice +
+          "</div>" +
+          '<div class="hd-td"><span class="hd-disc">' +
+          r.disc +
+          "</span></div>" +
+          '<div class="hd-td hd-rev">' +
+          sym +
+          r.rev +
+          "</div>" +
+          '<div class="hd-td hd-sold">' +
+          r.sold +
+          "</div>" +
+          "</div>"
+        );
+      }
 
-/* ── Static render (no GSAP dependency) ───────────────────────
+      /* ── Static render (no GSAP dependency) ───────────────────────
    Runs immediately; populates the demo with Thailand's final
    ranked state. This IS the prefers-reduced-motion experience.
 ─────────────────────────────────────────────────────────────── */
-(function renderStatic() {
-  var m = DEMO.markets[0];
-  document.getElementById('hd-typed').textContent        = DEMO.query;
-  document.getElementById('hd-r30').textContent          = m.sym + m.metrics.r30;
-  document.getElementById('hd-s30').textContent          = m.metrics.s30;
-  document.getElementById('hd-price').textContent        = m.sym + m.metrics.price;
-  document.getElementById('hd-rating').textContent       = m.metrics.rating;
-  document.getElementById('hd-subtitle').textContent     = 'Showing live ' + m.platform + ' results for "' + DEMO.query + '"';
-  document.getElementById('hd-platform-chip').innerHTML  = platformSVG(m.platform) + '&nbsp;' + m.platform;
-  document.getElementById('hd-country-chip').innerHTML   = flagSVG(m.flag) + '&nbsp;' + m.country;
-  var sorted = m.rows.slice().sort(function(a, b) { return a.rank - b.rank; });
-  document.getElementById('hd-tbody').innerHTML = sorted.map(function(r) {
-    return rowHTML(r, m.sym);
-  }).join('');
-}());
+      (function renderStatic() {
+        var m = DEMO.markets[0];
+        document.getElementById("hd-typed").textContent = DEMO.query;
+        document.getElementById("hd-r30").textContent = m.sym + m.metrics.r30;
+        document.getElementById("hd-s30").textContent = m.metrics.s30;
+        document.getElementById("hd-price").textContent =
+          m.sym + m.metrics.price;
+        document.getElementById("hd-rating").textContent = m.metrics.rating;
+        document.getElementById("hd-subtitle").textContent =
+          "Showing live " + m.platform + ' results for "' + DEMO.query + '"';
+        document.getElementById("hd-platform-chip").innerHTML =
+          platformSVG(m.platform) + "&nbsp;" + m.platform;
+        document.getElementById("hd-country-chip").innerHTML =
+          flagSVG(m.flag) + "&nbsp;" + m.country;
+        var sorted = m.rows.slice().sort(function (a, b) {
+          return a.rank - b.rank;
+        });
+        document.getElementById("hd-tbody").innerHTML = sorted
+          .map(function (r) {
+            return rowHTML(r, m.sym);
+          })
+          .join("");
+      })();
 
-/* Inline SVG flags — avoids emoji rendering variance on Windows/Android */
-function flagSVG(code) {
-  var f = {
-    id: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#F4F5F8"/><rect width="20" height="7" fill="#CE1126"/></svg>',
-    th: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#A51931"/><rect y="2.8" width="20" height="8.4" fill="#F4F5F8"/><rect y="5.6" width="20" height="2.8" fill="#2D2A4A"/></svg>',
-    my: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#F4F5F8"/><rect y="2" width="20" height="2" fill="#CC0001"/><rect y="6" width="20" height="2" fill="#CC0001"/><rect y="10" width="20" height="2" fill="#CC0001"/><rect width="10" height="7" fill="#010066"/></svg>',
-    us: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#F4F5F8"/><rect y="0" width="20" height="2.15" fill="#B22234"/><rect y="4.3" width="20" height="2.15" fill="#B22234"/><rect y="8.6" width="20" height="2.15" fill="#B22234"/><rect y="11.85" width="20" height="2.15" fill="#B22234"/><rect width="9" height="7.5" fill="#3C3B6E"/></svg>'
-  };
-  return f[code] || '';
-}
+      /* Inline SVG flags — avoids emoji rendering variance on Windows/Android */
+      function flagSVG(code) {
+        var f = {
+          id: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#F4F5F8"/><rect width="20" height="7" fill="#CE1126"/></svg>',
+          th: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#A51931"/><rect y="2.8" width="20" height="8.4" fill="#F4F5F8"/><rect y="5.6" width="20" height="2.8" fill="#2D2A4A"/></svg>',
+          my: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#F4F5F8"/><rect y="2" width="20" height="2" fill="#CC0001"/><rect y="6" width="20" height="2" fill="#CC0001"/><rect y="10" width="20" height="2" fill="#CC0001"/><rect width="10" height="7" fill="#010066"/></svg>',
+          us: '<svg class="hd-flag" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#F4F5F8"/><rect y="0" width="20" height="2.15" fill="#B22234"/><rect y="4.3" width="20" height="2.15" fill="#B22234"/><rect y="8.6" width="20" height="2.15" fill="#B22234"/><rect y="11.85" width="20" height="2.15" fill="#B22234"/><rect width="9" height="7.5" fill="#3C3B6E"/></svg>',
+        };
+        return f[code] || "";
+      }
 
-/* Inline SVG platform logos */
-function platformSVG(name) {
-  var p = {
-    'Shopee':     '<img src="assets/shopee.svg" alt="" class="hd-plat-logo">',
-    'TikTok Shop':'<svg width="14" height="14" viewBox="0 0 24 28" fill="#111" style="vertical-align:middle;flex-shrink:0"><path d="M17 0c.3 2.5 1.8 4.6 5 4.8v4c-1.8 0-3.4-.6-4.7-1.6v7.4C17.3 19.3 14.2 23 10 23 5.4 23 1.7 19.3 1.7 14.7S5.4 6.5 10 6.5c.4 0 .8 0 1.2.1v4.1c-.4-.1-.8-.1-1.2-.1-2.5 0-4.6 2-4.6 4.6S7.5 19.6 10 19.6s4.6-2 4.6-4.6V0H17z"/></svg>',
-    'Lazada':     '<img src="assets/lazada.svg" alt="" class="hd-plat-logo">',
-    'Amazon':     '<img src="assets/amazon.svg" alt="" class="hd-plat-logo">',
-    'Temu':       '<img src="assets/temu.svg"   alt="" class="hd-plat-logo">'
-  };
-  return p[name] || '';
-}
+      /* Inline SVG platform logos */
+      function platformSVG(name) {
+        var p = {
+          Shopee: '<img src="assets/shopee.svg" alt="" class="hd-plat-logo">',
+          "TikTok Shop":
+            '<svg width="14" height="14" viewBox="0 0 24 28" fill="#111" style="vertical-align:middle;flex-shrink:0"><path d="M17 0c.3 2.5 1.8 4.6 5 4.8v4c-1.8 0-3.4-.6-4.7-1.6v7.4C17.3 19.3 14.2 23 10 23 5.4 23 1.7 19.3 1.7 14.7S5.4 6.5 10 6.5c.4 0 .8 0 1.2.1v4.1c-.4-.1-.8-.1-1.2-.1-2.5 0-4.6 2-4.6 4.6S7.5 19.6 10 19.6s4.6-2 4.6-4.6V0H17z"/></svg>',
+          Lazada: '<img src="assets/lazada.svg" alt="" class="hd-plat-logo">',
+          Amazon: '<img src="assets/amazon.svg" alt="" class="hd-plat-logo">',
+          Temu: '<img src="assets/temu.svg"   alt="" class="hd-plat-logo">',
+        };
+        return p[name] || "";
+      }
 
-/* ═══════════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════════
    GSAP ANIMATION
 ═══════════════════════════════════════════════════════════════ */
-function initDemo() {
-  if (!window.gsap || !window.Flip) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      function initDemo() {
+        if (!window.gsap || !window.Flip) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+          return;
 
-  gsap.registerPlugin(Flip);
+        gsap.registerPlugin(Flip);
 
-  var demo         = document.getElementById('hero-demo');
-  var typed        = document.getElementById('hd-typed');
-  var platformChip = document.getElementById('hd-platform-chip');
-  var countryChip  = document.getElementById('hd-country-chip');
-  var snapshot     = document.getElementById('hd-snapshot');
-  var leaderboard = document.getElementById('hd-leaderboard');
-  var tbody       = document.getElementById('hd-tbody');
-  var subtitle    = document.getElementById('hd-subtitle');
-  var mEls = {
-    r30:    document.getElementById('hd-r30'),
-    s30:    document.getElementById('hd-s30'),
-    price:  document.getElementById('hd-price'),
-    rating: document.getElementById('hd-rating')
-  };
-  var mElArr = [mEls.r30, mEls.s30, mEls.price, mEls.rating];
+        var demo = document.getElementById("hero-demo");
+        var typed = document.getElementById("hd-typed");
+        var platformChip = document.getElementById("hd-platform-chip");
+        var countryChip = document.getElementById("hd-country-chip");
+        var snapshot = document.getElementById("hd-snapshot");
+        var leaderboard = document.getElementById("hd-leaderboard");
+        var tbody = document.getElementById("hd-tbody");
+        var subtitle = document.getElementById("hd-subtitle");
+        var mEls = {
+          r30: document.getElementById("hd-r30"),
+          s30: document.getElementById("hd-s30"),
+          price: document.getElementById("hd-price"),
+          rating: document.getElementById("hd-rating"),
+        };
+        var mElArr = [mEls.r30, mEls.s30, mEls.price, mEls.rating];
 
-  var currentTl = null;
-  var midx = 0;
+        var currentTl = null;
+        var midx = 0;
 
-  /* Pause loop when hero is scrolled out of view */
-  var io = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (!currentTl) return;
-      e.isIntersecting ? currentTl.resume() : currentTl.pause();
-    });
-  }, { threshold: 0.1 });
-  io.observe(demo);
+        /* Pause loop when hero is scrolled out of view */
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (!currentTl) return;
+              e.isIntersecting ? currentTl.resume() : currentTl.pause();
+            });
+          },
+          { threshold: 0.1 },
+        );
+        io.observe(demo);
 
-  /* Count a metric element up from 0 */
-  function countUp(el, sym, targetStr, dur) {
-    var n = parseFloat(targetStr.replace(/,/g, ''));
-    var p = { v: 0 };
-    gsap.to(p, {
-      v: n, duration: dur, ease: 'power2.out',
-      onUpdate:  function() { el.textContent = sym + Math.round(p.v).toLocaleString(); },
-      onComplete: function() { el.textContent = sym + targetStr; }
-    });
-  }
+        /* Count a metric element up from 0 */
+        function countUp(el, sym, targetStr, dur) {
+          var n = parseFloat(targetStr.replace(/,/g, ""));
+          var p = { v: 0 };
+          gsap.to(p, {
+            v: n,
+            duration: dur,
+            ease: "power2.out",
+            onUpdate: function () {
+              el.textContent = sym + Math.round(p.v).toLocaleString();
+            },
+            onComplete: function () {
+              el.textContent = sym + targetStr;
+            },
+          });
+        }
 
-  /* Instantly write metric text (used during crossfade) */
-  function setMetrics(m) {
-    mEls.r30.textContent    = m.sym + m.metrics.r30;
-    mEls.s30.textContent    = m.metrics.s30;
-    mEls.price.textContent  = m.sym + m.metrics.price;
-    mEls.rating.textContent = m.metrics.rating;
-  }
+        /* Instantly write metric text (used during crossfade) */
+        function setMetrics(m) {
+          mEls.r30.textContent = m.sym + m.metrics.r30;
+          mEls.s30.textContent = m.metrics.s30;
+          mEls.price.textContent = m.sym + m.metrics.price;
+          mEls.rating.textContent = m.metrics.rating;
+        }
 
-  /* Animate metrics counting up (Beat 3) */
-  function animateMetrics(m, dur) {
-    countUp(mEls.r30,   m.sym, m.metrics.r30,   dur);
-    countUp(mEls.s30,   '',    m.metrics.s30,   dur);
-    countUp(mEls.price, m.sym, m.metrics.price, dur);
-    var p2 = { v: 0 };
-    gsap.to(p2, {
-      v: parseFloat(m.metrics.rating), duration: dur, ease: 'power2.out',
-      onUpdate:  function() { mEls.rating.textContent = p2.v.toFixed(1); },
-      onComplete: function() { mEls.rating.textContent = m.metrics.rating; }
-    });
-  }
+        /* Animate metrics counting up (Beat 3) */
+        function animateMetrics(m, dur) {
+          countUp(mEls.r30, m.sym, m.metrics.r30, dur);
+          countUp(mEls.s30, "", m.metrics.s30, dur);
+          countUp(mEls.price, m.sym, m.metrics.price, dur);
+          var p2 = { v: 0 };
+          gsap.to(p2, {
+            v: parseFloat(m.metrics.rating),
+            duration: dur,
+            ease: "power2.out",
+            onUpdate: function () {
+              mEls.rating.textContent = p2.v.toFixed(1);
+            },
+            onComplete: function () {
+              mEls.rating.textContent = m.metrics.rating;
+            },
+          });
+        }
 
-  /* ── Main cycle ─────────────────────────────────────────────
+        /* ── Main cycle ─────────────────────────────────────────────
      Each call to runCycle() builds one complete GSAP timeline.
      On complete, advances the market index and calls itself.
   ─────────────────────────────────────────────────────────────
@@ -1813,108 +3212,144 @@ function initDemo() {
     5.70–7.70  Hold on new market data (visitors read the localized numbers)
     7.70–8.15  Fade out → onComplete fires runCycle() with next market
   ──────────────────────────────────────────────────────────── */
-  function runCycle() {
-    var m = DEMO.markets[midx];
-    var q = DEMO.query;
+        function runCycle() {
+          var m = DEMO.markets[midx];
+          var q = DEMO.query;
 
-    var tl = gsap.timeline({
-      onComplete: function() {
-        midx = (midx + 1) % DEMO.markets.length;
+          var tl = gsap.timeline({
+            onComplete: function () {
+              midx = (midx + 1) % DEMO.markets.length;
+              runCycle();
+            },
+          });
+          currentTl = tl;
+
+          /* ── RESET (t = 0) ────────────────────────────────────── */
+          tl.add(function () {
+            typed.textContent = "";
+            platformChip.innerHTML =
+              platformSVG(m.platform) + "&nbsp;" + m.platform;
+            countryChip.innerHTML = flagSVG(m.flag) + "&nbsp;" + m.country;
+            gsap.set(demo, { opacity: 1 });
+            gsap.set(platformChip, { opacity: 1 });
+            gsap.set(countryChip, { opacity: 1 });
+            gsap.set(snapshot, { opacity: 0, y: 10 });
+            gsap.set(leaderboard, { opacity: 0, y: 10 });
+          }, 0);
+
+          /* ── BEAT 1: TYPE (0 – 1.10s) ────────────────────────── */
+          q.split("").forEach(function (ch, i) {
+            tl.add(function () {
+              typed.textContent += ch;
+            }, i * 0.105);
+          });
+
+          /* ── BEAT 2: RESULTS IN (1.10 – 2.00s) ──────────────── */
+          tl.add(function () {
+            /* Rows enter in iOrder (sold-volume desc) — NOT rank order */
+            var scrambled = m.rows.slice().sort(function (a, b) {
+              return a.iOrder - b.iOrder;
+            });
+            tbody.innerHTML = scrambled
+              .map(function (r) {
+                return rowHTML(r, m.sym);
+              })
+              .join("");
+            subtitle.textContent =
+              "Showing live " + m.platform + ' results for "' + q + '"';
+          }, 1.1);
+
+          tl.to(
+            snapshot,
+            { opacity: 1, y: 0, duration: 0.38, ease: "power2.out" },
+            1.1,
+          );
+          tl.to(
+            leaderboard,
+            { opacity: 1, y: 0, duration: 0.38, ease: "power2.out" },
+            1.2,
+          );
+
+          tl.add(function () {
+            gsap.from(tbody.querySelectorAll(".hd-row"), {
+              opacity: 0,
+              y: 12,
+              stagger: 0.07,
+              duration: 0.35,
+              ease: "power2.out",
+              clearProps: "all",
+            });
+          }, 1.35);
+
+          /* ── BEAT 3: COUNT UP (2.05 – 3.00s) ────────────────── */
+          tl.add(function () {
+            animateMetrics(m, 0.85);
+          }, 2.05);
+
+          /* ── BEAT 4: RE-SORT TO RANK (3.10 – 3.70s) ─────────── */
+          tl.add(function () {
+            var rowEls = Array.from(tbody.querySelectorAll(".hd-row"));
+            var state = Flip.getState(rowEls);
+            rowEls.sort(function (a, b) {
+              return +a.dataset.rank - +b.dataset.rank;
+            });
+            rowEls.forEach(function (r) {
+              tbody.appendChild(r);
+            });
+            Flip.from(state, {
+              duration: 0.52,
+              ease: "power2.inOut",
+              stagger: { amount: 0.14 },
+            });
+          }, 3.1);
+
+          /* ── HOLD (3.90 – 5.90s) — visitor reads ranked results ─ */
+          tl.to({}, { duration: 2.0 }, 3.9);
+
+          /* ── FADE OUT (5.90 – 6.32s) → onComplete → next market ─ */
+          tl.to(demo, { opacity: 0, duration: 0.42, ease: "power1.in" }, 5.9);
+        }
+
         runCycle();
       }
-    });
-    currentTl = tl;
 
-    /* ── RESET (t = 0) ────────────────────────────────────── */
-    tl.add(function() {
-      typed.textContent = '';
-      platformChip.innerHTML = platformSVG(m.platform) + '&nbsp;' + m.platform;
-      countryChip.innerHTML  = flagSVG(m.flag) + '&nbsp;' + m.country;
-      gsap.set(demo,         { opacity: 1 });
-      gsap.set(platformChip, { opacity: 1 });
-      gsap.set(countryChip,  { opacity: 1 });
-      gsap.set(snapshot,     { opacity: 0, y: 10 });
-      gsap.set(leaderboard,  { opacity: 0, y: 10 });
-    }, 0);
+      /* ── Transform arrow shine — fires once on scroll into view ─ */
+      (function () {
+        var arrow = document.querySelector(".tf-arrow");
+        if (
+          !arrow ||
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        )
+          return;
+        var done = false;
+        var tfio = new IntersectionObserver(
+          function (entries) {
+            if (done || !entries[0].isIntersecting) return;
+            done = true;
+            arrow.classList.add("is-visible");
+            tfio.disconnect();
+          },
+          { threshold: 0.6 },
+        );
+        tfio.observe(arrow);
+      })();
 
-    /* ── BEAT 1: TYPE (0 – 1.10s) ────────────────────────── */
-    q.split('').forEach(function(ch, i) {
-      tl.add(function() { typed.textContent += ch; }, i * 0.105);
-    });
-
-    /* ── BEAT 2: RESULTS IN (1.10 – 2.00s) ──────────────── */
-    tl.add(function() {
-      /* Rows enter in iOrder (sold-volume desc) — NOT rank order */
-      var scrambled = m.rows.slice().sort(function(a, b) { return a.iOrder - b.iOrder; });
-      tbody.innerHTML = scrambled.map(function(r) { return rowHTML(r, m.sym); }).join('');
-      subtitle.textContent = 'Showing live ' + m.platform + ' results for "' + q + '"';
-    }, 1.1);
-
-    tl.to(snapshot,    { opacity: 1, y: 0, duration: 0.38, ease: 'power2.out' }, 1.1);
-    tl.to(leaderboard, { opacity: 1, y: 0, duration: 0.38, ease: 'power2.out' }, 1.2);
-
-    tl.add(function() {
-      gsap.from(tbody.querySelectorAll('.hd-row'), {
-        opacity: 0, y: 12, stagger: 0.07, duration: 0.35,
-        ease: 'power2.out', clearProps: 'all'
+      /* ── Load GSAP after first paint (double-rAF = post-LCP safe) ─ */
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          var s1 = document.createElement("script");
+          s1.src =
+            "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
+          s1.onload = function () {
+            var s2 = document.createElement("script");
+            s2.src =
+              "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js";
+            s2.onload = initDemo;
+            document.head.appendChild(s2);
+          };
+          document.head.appendChild(s1);
+        });
       });
-    }, 1.35);
-
-    /* ── BEAT 3: COUNT UP (2.05 – 3.00s) ────────────────── */
-    tl.add(function() { animateMetrics(m, 0.85); }, 2.05);
-
-    /* ── BEAT 4: RE-SORT TO RANK (3.10 – 3.70s) ─────────── */
-    tl.add(function() {
-      var rowEls = Array.from(tbody.querySelectorAll('.hd-row'));
-      var state  = Flip.getState(rowEls);
-      rowEls.sort(function(a, b) { return +a.dataset.rank - +b.dataset.rank; });
-      rowEls.forEach(function(r) { tbody.appendChild(r); });
-      Flip.from(state, {
-        duration: 0.52,
-        ease: 'power2.inOut',
-        stagger: { amount: 0.14 }
-      });
-    }, 3.1);
-
-    /* ── HOLD (3.90 – 5.90s) — visitor reads ranked results ─ */
-    tl.to({}, { duration: 2.0 }, 3.9);
-
-    /* ── FADE OUT (5.90 – 6.32s) → onComplete → next market ─ */
-    tl.to(demo, { opacity: 0, duration: 0.42, ease: 'power1.in' }, 5.9);
-  }
-
-  runCycle();
-}
-
-/* ── Transform arrow shine — fires once on scroll into view ─ */
-(function() {
-  var arrow = document.querySelector('.tf-arrow');
-  if (!arrow || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var done = false;
-  var tfio = new IntersectionObserver(function(entries) {
-    if (done || !entries[0].isIntersecting) return;
-    done = true;
-    arrow.classList.add('is-visible');
-    tfio.disconnect();
-  }, { threshold: 0.6 });
-  tfio.observe(arrow);
-}());
-
-/* ── Load GSAP after first paint (double-rAF = post-LCP safe) ─ */
-requestAnimationFrame(function() {
-  requestAnimationFrame(function() {
-    var s1 = document.createElement('script');
-    s1.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
-    s1.onload = function() {
-      var s2 = document.createElement('script');
-      s2.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js';
-      s2.onload = initDemo;
-      document.head.appendChild(s2);
-    };
-    document.head.appendChild(s1);
-  });
-});
-</script>
-
-</body>
+    </script>
+  </body>
 </html>
