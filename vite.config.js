@@ -8,12 +8,12 @@ const page = (pathname) => fileURLToPath(new URL(pathname, import.meta.url));
 const homePage = page('index.html');
 
 const LOCALES = [
-  { route: 'ph', language: 'fil-PH', name: 'Filipino' },
-  { route: 'th', language: 'th-TH', name: 'ไทย' },
-  { route: 'vn', language: 'vi-VN', name: 'Tiếng Việt' },
-  { route: 'my', language: 'ms-MY', name: 'Bahasa Melayu' },
-  { route: 'cn', language: 'zh-CN', name: '简体中文' },
-  { route: 'id', language: 'id-ID', name: 'Bahasa Indonesia' },
+  { route: 'ph', language: 'fil-PH', appLanguage: 'ph', name: 'Filipino' },
+  { route: 'th', language: 'th-TH', appLanguage: 'th', name: 'ไทย' },
+  { route: 'vn', language: 'vi-VN', appLanguage: 'vi', name: 'Tiếng Việt' },
+  { route: 'my', language: 'ms-MY', appLanguage: 'ms', name: 'Bahasa Melayu' },
+  { route: 'cn', language: 'zh-CN', appLanguage: 'cn', name: '简体中文' },
+  { route: 'id', language: 'id-ID', appLanguage: 'id', name: 'Bahasa Indonesia' },
 ];
 
 const LANGUAGE_SUGGESTION_PATTERN =
@@ -125,6 +125,16 @@ function localizeHomePage(englishHtml, locale) {
       `$1"${localizedUrl}"`,
     )
     .replace('"inLanguage": "en"', `"inLanguage": "${locale.language}"`);
+
+  html = html
+    .replaceAll(
+      'https://app.ecomblade.com/login?language=en',
+      `https://app.ecomblade.com/login?language=${locale.appLanguage}`,
+    )
+    .replaceAll(
+      'https://app.ecomblade.com/register?language=en',
+      `https://app.ecomblade.com/register?language=${locale.appLanguage}`,
+    );
 
   LANGUAGE_OPTIONS.forEach((option) => {
     const href = option.route ? `/${option.route}/` : '/';

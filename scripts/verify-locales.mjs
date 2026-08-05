@@ -6,13 +6,13 @@ import { LANDING_TRANSLATIONS } from '#landing-translations';
 
 const root = resolve(import.meta.dirname, '..');
 const locales = [
-  { route: '', language: 'en', name: 'English', canonical: 'https://ecomblade.com/' },
-  { route: 'ph', language: 'fil-PH', name: 'Filipino', canonical: 'https://ecomblade.com/ph/' },
-  { route: 'th', language: 'th-TH', name: 'ไทย', canonical: 'https://ecomblade.com/th/' },
-  { route: 'vn', language: 'vi-VN', name: 'Tiếng Việt', canonical: 'https://ecomblade.com/vn/' },
-  { route: 'my', language: 'ms-MY', name: 'Bahasa Melayu', canonical: 'https://ecomblade.com/my/' },
-  { route: 'cn', language: 'zh-CN', name: '简体中文', canonical: 'https://ecomblade.com/cn/' },
-  { route: 'id', language: 'id-ID', name: 'Bahasa Indonesia', canonical: 'https://ecomblade.com/id/' },
+  { route: '', language: 'en', appLanguage: 'en', name: 'English', canonical: 'https://ecomblade.com/' },
+  { route: 'ph', language: 'fil-PH', appLanguage: 'ph', name: 'Filipino', canonical: 'https://ecomblade.com/ph/' },
+  { route: 'th', language: 'th-TH', appLanguage: 'th', name: 'ไทย', canonical: 'https://ecomblade.com/th/' },
+  { route: 'vn', language: 'vi-VN', appLanguage: 'vi', name: 'Tiếng Việt', canonical: 'https://ecomblade.com/vn/' },
+  { route: 'my', language: 'ms-MY', appLanguage: 'ms', name: 'Bahasa Melayu', canonical: 'https://ecomblade.com/my/' },
+  { route: 'cn', language: 'zh-CN', appLanguage: 'cn', name: '简体中文', canonical: 'https://ecomblade.com/cn/' },
+  { route: 'id', language: 'id-ID', appLanguage: 'id', name: 'Bahasa Indonesia', canonical: 'https://ecomblade.com/id/' },
 ];
 
 locales.forEach((locale) => {
@@ -33,6 +33,15 @@ locales.forEach((locale) => {
   );
   assert.ok(html.includes('/assets/EB-logo-nav.png'));
   assert.ok(!html.includes('__ECOMBLADE_'));
+  const appLanguageLinks = [
+    ...html.matchAll(
+      /href="https:\/\/app\.ecomblade\.com\/(?:login|register)\?language=([^"]+)"/g,
+    ),
+  ];
+  assert.ok(appLanguageLinks.length > 0);
+  appLanguageLinks.forEach((match) => {
+    assert.equal(match[1], locale.appLanguage);
+  });
 
   const localeKey = locale.route || 'en';
   assert.ok(html.includes(`<title>${LANDING_TRANSLATIONS.title[localeKey]}</title>`));
