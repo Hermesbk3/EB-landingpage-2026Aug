@@ -106,7 +106,6 @@ async function loadPostHog() {
     api_host: "https://us.i.posthog.com",
     defaults: "2026-05-30",
     disable_product_tours: true,
-    disable_session_recording: true,
     disable_surveys: true,
     disable_web_experiments: true,
   });
