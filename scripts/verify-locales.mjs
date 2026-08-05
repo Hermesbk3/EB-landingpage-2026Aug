@@ -36,9 +36,10 @@ locales.forEach((locale) => {
 
   const localeKey = locale.route || 'en';
   assert.ok(html.includes(`<title>${LANDING_TRANSLATIONS.title[localeKey]}</title>`));
-  assert.ok(
-    html.includes(
-      `<span class="language-current" data-language-current>${locale.name}</span>`,
+  assert.match(
+    html,
+    new RegExp(
+      `data-language-current\\s*>\\s*${locale.name}\\s*<\\/span\\s*>`,
     ),
   );
 
@@ -75,7 +76,13 @@ const suggestionBlock = englishHtml.match(
 );
 assert.ok(suggestionBlock);
 
-function runLanguageSuggestion({ languages, savedState, blockedStorage = false }) {
+function runLanguageSuggestion({
+  languages,
+  savedSuggestionState,
+  savedPreference,
+  blockedStorage = false,
+  timeZone = 'UTC',
+}) {
   const listeners = {};
   const elements = {
     'language-suggestion': { hidden: true },
@@ -92,21 +99,33 @@ function runLanguageSuggestion({ languages, savedState, blockedStorage = false }
       },
     },
   };
-  let storedValue = savedState ? JSON.stringify(savedState) : null;
+  const storedValues = new Map();
+  if (savedSuggestionState) {
+    storedValues.set(
+      'ecomblade-language-suggestion:v1',
+      JSON.stringify(savedSuggestionState),
+    );
+  }
+  if (savedPreference) {
+    storedValues.set(
+      'ecomblade-language-preference:v1',
+      JSON.stringify(savedPreference),
+    );
+  }
   let assignedRoute = null;
 
   const localStorage = {
-    getItem() {
+    getItem(key) {
       if (blockedStorage) throw new Error('Storage blocked');
-      return storedValue;
+      return storedValues.get(key) ?? null;
     },
-    setItem(_key, value) {
+    setItem(key, value) {
       if (blockedStorage) throw new Error('Storage blocked');
-      storedValue = value;
+      storedValues.set(key, value);
     },
-    removeItem() {
+    removeItem(key) {
       if (blockedStorage) throw new Error('Storage blocked');
-      storedValue = null;
+      storedValues.delete(key);
     },
   };
   const window = {
@@ -116,13 +135,18 @@ function runLanguageSuggestion({ languages, savedState, blockedStorage = false }
         assignedRoute = route;
       },
     },
-    requestIdleCallback(callback) {
+    setTimeout(callback) {
       callback();
     },
   };
 
   runInNewContext(suggestionBlock[1], {
     Date,
+    Intl: {
+      DateTimeFormat: () => ({
+        resolvedOptions: () => ({ timeZone }),
+      }),
+    },
     JSON,
     document: { getElementById: (id) => elements[id] },
     navigator: { language: languages[0], languages },
@@ -133,7 +157,7 @@ function runLanguageSuggestion({ languages, savedState, blockedStorage = false }
     elements,
     listeners,
     getAssignedRoute: () => assignedRoute,
-    getStoredValue: () => storedValue,
+    getStoredValue: (key) => storedValues.get(key) ?? null,
   };
 }
 
@@ -142,32 +166,193 @@ assert.equal(thaiSuggestion.elements['language-suggestion'].hidden, false);
 assert.equal(thaiSuggestion.elements['language-suggestion-accept'].textContent, 'View in ไทย');
 thaiSuggestion.listeners['accept:click']();
 assert.equal(thaiSuggestion.getAssignedRoute(), '/th/');
-assert.equal(JSON.parse(thaiSuggestion.getStoredValue()).action, 'accepted');
+assert.equal(
+  JSON.parse(
+    thaiSuggestion.getStoredValue('ecomblade-language-preference:v1'),
+  ).action,
+  'selected',
+);
+assert.equal(
+  thaiSuggestion.getStoredValue('ecomblade-language-suggestion:v1'),
+  null,
+);
 
 const dismissedSuggestion = runLanguageSuggestion({ languages: ['vi-VN'] });
 dismissedSuggestion.listeners['dismiss:click']();
 assert.equal(dismissedSuggestion.elements['language-suggestion'].hidden, true);
-assert.equal(JSON.parse(dismissedSuggestion.getStoredValue()).action, 'dismissed');
+assert.equal(
+  JSON.parse(
+    dismissedSuggestion.getStoredValue('ecomblade-language-suggestion:v1'),
+  ).action,
+  'dismissed',
+);
+assert.equal(
+  dismissedSuggestion.getStoredValue('ecomblade-language-preference:v1'),
+  null,
+);
 
-const englishSuggestion = runLanguageSuggestion({ languages: ['en-US', 'id-ID'] });
+const secondaryIndonesianSuggestion = runLanguageSuggestion({
+  languages: ['en-US', 'id-ID'],
+});
+assert.equal(
+  secondaryIndonesianSuggestion.elements['language-suggestion'].hidden,
+  false,
+);
+assert.equal(
+  secondaryIndonesianSuggestion.elements['language-suggestion-accept'].textContent,
+  'View in Bahasa Indonesia',
+);
+
+const englishSuggestion = runLanguageSuggestion({ languages: ['en-US', 'en'] });
 assert.equal(englishSuggestion.elements['language-suggestion'].hidden, true);
+
+const indonesianTimeZoneSuggestion = runLanguageSuggestion({
+  languages: ['en-US', 'en'],
+  timeZone: 'Asia/Jakarta',
+});
+assert.equal(
+  indonesianTimeZoneSuggestion.elements['language-suggestion'].hidden,
+  false,
+);
+assert.equal(
+  indonesianTimeZoneSuggestion.elements['language-suggestion-accept'].textContent,
+  'View in Bahasa Indonesia',
+);
 
 const savedSuggestion = runLanguageSuggestion({
   languages: ['id-ID'],
-  savedState: { action: 'dismissed', savedAt: Date.now() },
+  savedSuggestionState: { action: 'dismissed', savedAt: Date.now() },
 });
 assert.equal(savedSuggestion.elements['language-suggestion'].hidden, true);
 
 const expiredSuggestion = runLanguageSuggestion({
   languages: ['id-ID'],
-  savedState: { action: 'dismissed', savedAt: Date.now() - 366 * 24 * 60 * 60 * 1000 },
+  savedSuggestionState: {
+    action: 'dismissed',
+    savedAt: Date.now() - 366 * 24 * 60 * 60 * 1000,
+  },
 });
 assert.equal(expiredSuggestion.elements['language-suggestion'].hidden, false);
+
+const legacyAcceptedSuggestion = runLanguageSuggestion({
+  languages: ['en-US'],
+  savedSuggestionState: {
+    action: 'accepted',
+    route: '/vn/',
+    savedAt: Date.now(),
+  },
+});
+assert.equal(
+  legacyAcceptedSuggestion.elements['language-suggestion'].hidden,
+  false,
+);
+assert.equal(
+  legacyAcceptedSuggestion.elements['language-suggestion-accept'].textContent,
+  'View in Tiếng Việt',
+);
+assert.equal(
+  legacyAcceptedSuggestion.getStoredValue(
+    'ecomblade-language-suggestion:v1',
+  ),
+  null,
+);
+assert.equal(
+  JSON.parse(
+    legacyAcceptedSuggestion.getStoredValue(
+      'ecomblade-language-preference:v1',
+    ),
+  ).route,
+  '/vn/',
+);
+
+const englishPreference = runLanguageSuggestion({
+  languages: ['id-ID'],
+  savedPreference: { action: 'selected', route: '/', savedAt: Date.now() },
+});
+assert.equal(englishPreference.elements['language-suggestion'].hidden, true);
+
+const indonesianPreference = runLanguageSuggestion({
+  languages: ['en-US'],
+  savedPreference: {
+    action: 'selected',
+    route: '/id/',
+    savedAt: Date.now(),
+  },
+});
+assert.equal(indonesianPreference.elements['language-suggestion'].hidden, false);
+assert.equal(
+  indonesianPreference.elements['language-suggestion-copy'].textContent,
+  "Previously you've chosen Bahasa Indonesia.",
+);
+assert.equal(
+  indonesianPreference.elements['language-suggestion-accept'].textContent,
+  'View in Bahasa Indonesia',
+);
 
 const blockedStorageSuggestion = runLanguageSuggestion({
   languages: ['fil-PH'],
   blockedStorage: true,
 });
 assert.equal(blockedStorageSuggestion.elements['language-suggestion'].hidden, false);
+
+const languageMenuScript = englishHtml.match(
+  /<script>\s*(\(function closeLanguageMenuOnOutsidePointer\(\)[\s\S]*?)<\/script>/,
+);
+assert.ok(languageMenuScript);
+
+let pointerHandler = null;
+let linkClickHandler = null;
+let menuWasClosed = false;
+let storedMenuPreference = null;
+const insideTarget = {};
+const menu = {
+  contains(target) {
+    return target === insideTarget;
+  },
+  removeAttribute(attribute) {
+    assert.equal(attribute, 'open');
+    menuWasClosed = true;
+  },
+};
+const languageOption = {
+  href: 'https://ecomblade.com/id/',
+  addEventListener(event, handler) {
+    assert.equal(event, 'click');
+    linkClickHandler = handler;
+  },
+};
+const menuDocument = {
+  addEventListener(event, handler) {
+    assert.equal(event, 'pointerdown');
+    pointerHandler = handler;
+  },
+  querySelectorAll(selector) {
+    if (selector === '.language-options a') return [languageOption];
+    assert.equal(selector, '.language-menu[open]');
+    return [menu];
+  },
+};
+runInNewContext(languageMenuScript[1], {
+  Date,
+  JSON,
+  URL,
+  document: menuDocument,
+  window: {
+    localStorage: {
+      setItem(key, value) {
+        assert.equal(key, 'ecomblade-language-preference:v1');
+        storedMenuPreference = value;
+      },
+    },
+  },
+});
+assert.ok(pointerHandler);
+assert.ok(linkClickHandler);
+pointerHandler({ target: insideTarget });
+assert.equal(menuWasClosed, false);
+pointerHandler({ target: {} });
+assert.equal(menuWasClosed, true);
+linkClickHandler();
+assert.equal(JSON.parse(storedMenuPreference).route, '/id/');
 
 console.log('Verified 7 static locale pages, sitemap entries, and language suggestions.');

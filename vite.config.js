@@ -105,8 +105,8 @@ function localizeHomePage(englishHtml, locale) {
       `<meta property="og:url" content="${localizedUrl}" />`,
     )
     .replace(
-      'data-language-current>English</span>',
-      `data-language-current>${locale.name}</span>`,
+      /(data-language-current\s*>\s*)English(\s*<\/span\s*>)/,
+      `$1${locale.name}$2`,
     )
     .replace(
       ' hreflang="en" lang="en" aria-current="page"',

@@ -12,41 +12,13 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://ecomblade.com/" />
     <link rel="alternate" hreflang="en" href="https://ecomblade.com/" />
-    <link
-      rel="alternate"
-      hreflang="fil-PH"
-      href="https://ecomblade.com/ph/"
-    />
-    <link
-      rel="alternate"
-      hreflang="th-TH"
-      href="https://ecomblade.com/th/"
-    />
-    <link
-      rel="alternate"
-      hreflang="vi-VN"
-      href="https://ecomblade.com/vn/"
-    />
-    <link
-      rel="alternate"
-      hreflang="ms-MY"
-      href="https://ecomblade.com/my/"
-    />
-    <link
-      rel="alternate"
-      hreflang="zh-CN"
-      href="https://ecomblade.com/cn/"
-    />
-    <link
-      rel="alternate"
-      hreflang="id-ID"
-      href="https://ecomblade.com/id/"
-    />
-    <link
-      rel="alternate"
-      hreflang="x-default"
-      href="https://ecomblade.com/"
-    />
+    <link rel="alternate" hreflang="fil-PH" href="https://ecomblade.com/ph/" />
+    <link rel="alternate" hreflang="th-TH" href="https://ecomblade.com/th/" />
+    <link rel="alternate" hreflang="vi-VN" href="https://ecomblade.com/vn/" />
+    <link rel="alternate" hreflang="ms-MY" href="https://ecomblade.com/my/" />
+    <link rel="alternate" hreflang="zh-CN" href="https://ecomblade.com/cn/" />
+    <link rel="alternate" hreflang="id-ID" href="https://ecomblade.com/id/" />
+    <link rel="alternate" hreflang="x-default" href="https://ecomblade.com/" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <meta name="theme-color" content="#07110f" />
     <meta property="og:type" content="website" />
@@ -299,8 +271,9 @@
         bottom: max(20px, env(safe-area-inset-bottom));
         z-index: 150;
         display: flex;
-        align-items: center;
-        gap: 16px;
+        flex-direction: column;
+        align-items: start;
+        gap: 8px;
         width: min(430px, calc(100vw - 40px));
         min-height: 76px;
         padding: 14px 16px;
@@ -353,7 +326,7 @@
           right: 16px;
           bottom: max(16px, env(safe-area-inset-bottom));
           width: auto;
-          align-items: stretch;
+          align-items: start;
           flex-direction: column;
           gap: 10px;
         }
@@ -1835,10 +1808,14 @@
           <details class="language-menu">
             <summary aria-label="Select language">
               <span aria-hidden="true">🌐</span>
-              <span class="language-current" data-language-current>English</span>
+              <span class="language-current" data-language-current
+                >English</span
+              >
             </summary>
             <div class="language-options">
-              <a href="/" hreflang="en" lang="en" aria-current="page">English</a>
+              <a href="/" hreflang="en" lang="en" aria-current="page"
+                >English</a
+              >
               <a href="/ph/" hreflang="fil-PH" lang="fil">Filipino</a>
               <a href="/th/" hreflang="th-TH" lang="th">ไทย</a>
               <a href="/vn/" hreflang="vi-VN" lang="vi">Tiếng Việt</a>
@@ -2984,7 +2961,11 @@
       aria-label="Language suggestion"
       hidden
     >
-      <p id="language-suggestion-copy" class="language-suggestion-copy"></p>
+      <p
+        id="language-suggestion-copy"
+        class="language-suggestion-copy"
+        aria-live="polite"
+      ></p>
       <div class="language-suggestion-actions">
         <button
           id="language-suggestion-dismiss"
@@ -3003,6 +2984,7 @@
     <script>
       (function suggestLanguage() {
         var storageKey = "ecomblade-language-suggestion:v1";
+        var preferenceKey = "ecomblade-language-preference:v1";
         var storageLifetime = 365 * 24 * 60 * 60 * 1000;
         var localeByLanguage = {
           fil: {
@@ -3041,13 +3023,37 @@
             message: "Halaman ini tersedia dalam Bahasa Indonesia.",
           },
         };
+        var localeByTimeZone = {
+          "Asia/Manila": localeByLanguage.fil,
+          "Asia/Bangkok": localeByLanguage.th,
+          "Asia/Ho_Chi_Minh": localeByLanguage.vi,
+          "Asia/Saigon": localeByLanguage.vi,
+          "Asia/Kuala_Lumpur": localeByLanguage.ms,
+          "Asia/Kuching": localeByLanguage.ms,
+          "Asia/Shanghai": localeByLanguage.zh,
+          "Asia/Chongqing": localeByLanguage.zh,
+          "Asia/Harbin": localeByLanguage.zh,
+          "Asia/Urumqi": localeByLanguage.zh,
+          "Asia/Jakarta": localeByLanguage.id,
+          "Asia/Pontianak": localeByLanguage.id,
+          "Asia/Makassar": localeByLanguage.id,
+          "Asia/Jayapura": localeByLanguage.id,
+        };
+        var localeByRoute = {
+          "/ph/": localeByLanguage.fil,
+          "/th/": localeByLanguage.th,
+          "/vn/": localeByLanguage.vi,
+          "/my/": localeByLanguage.ms,
+          "/cn/": localeByLanguage.zh,
+          "/id/": localeByLanguage.id,
+        };
 
-        function readSavedState() {
+        function readSavedState(key) {
           try {
-            var saved = JSON.parse(window.localStorage.getItem(storageKey));
+            var saved = JSON.parse(window.localStorage.getItem(key));
             if (!saved || typeof saved.savedAt !== "number") return null;
             if (Date.now() - saved.savedAt > storageLifetime) {
-              window.localStorage.removeItem(storageKey);
+              window.localStorage.removeItem(key);
               return null;
             }
             return saved;
@@ -3056,14 +3062,26 @@
           }
         }
 
-        function saveState(action, route) {
+        function saveState(key, action, route) {
           try {
             window.localStorage.setItem(
-              storageKey,
-              JSON.stringify({ action: action, route: route, savedAt: Date.now() }),
+              key,
+              JSON.stringify({
+                action: action,
+                route: route,
+                savedAt: Date.now(),
+              }),
             );
           } catch (_error) {
             // The suggestion remains usable when storage is blocked.
+          }
+        }
+
+        function removeState(key) {
+          try {
+            window.localStorage.removeItem(key);
+          } catch (_error) {
+            // Storage is optional; navigation and dismissal still work.
           }
         }
 
@@ -3075,15 +3093,36 @@
             if (normalized === "en-ph") return localeByLanguage.fil;
             var locale = localeByLanguage[language];
             if (locale) return locale;
-            if (language === "en") return null;
           }
-          return null;
+
+          try {
+            var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            return localeByTimeZone[timeZone] || null;
+          } catch (_error) {
+            return null;
+          }
         }
 
         function showSuggestion() {
-          if (readSavedState()) return;
+          var suggestionState = readSavedState(storageKey);
+          if (suggestionState && suggestionState.action === "dismissed") return;
 
-          var locale = findSuggestedLocale();
+          var preference = readSavedState(preferenceKey);
+          if (
+            !preference &&
+            suggestionState &&
+            suggestionState.action === "accepted"
+          ) {
+            preference = suggestionState;
+            saveState(preferenceKey, "selected", preference.route);
+            removeState(storageKey);
+          }
+
+          if (preference && preference.route === "/") return;
+
+          var locale =
+            (preference && localeByRoute[preference.route]) ||
+            findSuggestedLocale();
           if (!locale) return;
 
           var suggestion = document.getElementById("language-suggestion");
@@ -3092,27 +3131,59 @@
           var dismiss = document.getElementById("language-suggestion-dismiss");
           if (!suggestion || !copy || !accept || !dismiss) return;
 
-          copy.textContent = locale.message;
+          copy.textContent = preference
+            ? "Previously you've chosen " + locale.name + "."
+            : locale.message;
           accept.textContent = "View in " + locale.name;
           accept.addEventListener("click", function () {
-            saveState("accepted", locale.route);
+            saveState(preferenceKey, "selected", locale.route);
+            removeState(storageKey);
             window.location.assign(locale.route);
           });
           dismiss.addEventListener("click", function () {
-            saveState("dismissed", locale.route);
+            saveState(storageKey, "dismissed", locale.route);
             suggestion.hidden = true;
           });
           suggestion.hidden = false;
         }
 
-        if ("requestIdleCallback" in window) {
-          window.requestIdleCallback(showSuggestion, { timeout: 2000 });
-        } else {
-          window.setTimeout(showSuggestion, 2000);
-        }
+        window.setTimeout(showSuggestion, 1800);
       })();
     </script>
     <!-- language-suggestion:end -->
+
+    <script>
+      (function closeLanguageMenuOnOutsidePointer() {
+        var preferenceKey = "ecomblade-language-preference:v1";
+
+        document
+          .querySelectorAll(".language-options a")
+          .forEach(function (link) {
+            link.addEventListener("click", function () {
+              try {
+                window.localStorage.setItem(
+                  preferenceKey,
+                  JSON.stringify({
+                    action: "selected",
+                    route: new URL(link.href).pathname,
+                    savedAt: Date.now(),
+                  }),
+                );
+              } catch (_error) {
+                // Preference persistence must never prevent navigation.
+              }
+            });
+          });
+
+        document.addEventListener("pointerdown", function (event) {
+          document
+            .querySelectorAll(".language-menu[open]")
+            .forEach(function (menu) {
+              if (!menu.contains(event.target)) menu.removeAttribute("open");
+            });
+        });
+      })();
+    </script>
 
     <script>
       /* ═══════════════════════════════════════════════════════════════
