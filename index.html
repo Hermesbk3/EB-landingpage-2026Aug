@@ -11,6 +11,42 @@
     />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://ecomblade.com/" />
+    <link rel="alternate" hreflang="en" href="https://ecomblade.com/" />
+    <link
+      rel="alternate"
+      hreflang="fil-PH"
+      href="https://ecomblade.com/ph/"
+    />
+    <link
+      rel="alternate"
+      hreflang="th-TH"
+      href="https://ecomblade.com/th/"
+    />
+    <link
+      rel="alternate"
+      hreflang="vi-VN"
+      href="https://ecomblade.com/vn/"
+    />
+    <link
+      rel="alternate"
+      hreflang="ms-MY"
+      href="https://ecomblade.com/my/"
+    />
+    <link
+      rel="alternate"
+      hreflang="zh-CN"
+      href="https://ecomblade.com/cn/"
+    />
+    <link
+      rel="alternate"
+      hreflang="id-ID"
+      href="https://ecomblade.com/id/"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://ecomblade.com/"
+    />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <meta name="theme-color" content="#07110f" />
     <meta property="og:type" content="website" />
@@ -192,9 +228,137 @@
         align-items: center;
         gap: 8px;
       }
+      .language-menu {
+        position: relative;
+      }
+      .language-menu summary {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 40px;
+        padding: 8px 10px;
+        border: 1px solid var(--bdr-med);
+        border-radius: var(--r);
+        background: #fff;
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        list-style: none;
+      }
+      .language-menu summary::-webkit-details-marker {
+        display: none;
+      }
+      .language-menu summary:focus-visible,
+      .language-options a:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      .language-options {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        z-index: 120;
+        display: grid;
+        width: 190px;
+        padding: 6px;
+        border: 1px solid var(--bdr-med);
+        border-radius: var(--r);
+        background: #fff;
+        box-shadow: 0 12px 34px rgba(7, 17, 15, 0.14);
+      }
+      .language-options a {
+        padding: 8px 10px;
+        border-radius: 7px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .language-options a:hover,
+      .language-options a[aria-current="page"] {
+        background: var(--surf);
+        color: var(--ink);
+      }
       @media (max-width: 640px) {
         .nav-links {
           display: none;
+        }
+        .language-current {
+          display: none;
+        }
+      }
+      @media (max-width: 480px) {
+        .nav-ctas > .btn-secondary {
+          display: none;
+        }
+      }
+
+      /* ── LANGUAGE SUGGESTION ─────────────────────────────────── */
+      .language-suggestion {
+        position: fixed;
+        right: max(20px, env(safe-area-inset-right));
+        bottom: max(20px, env(safe-area-inset-bottom));
+        z-index: 150;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        width: min(430px, calc(100vw - 40px));
+        min-height: 76px;
+        padding: 14px 16px;
+        border: 1px solid var(--bdr-med);
+        border-radius: var(--r-lg);
+        background: #fff;
+        box-shadow: 0 14px 44px rgba(7, 17, 15, 0.18);
+      }
+      .language-suggestion[hidden] {
+        display: none;
+      }
+      .language-suggestion-copy {
+        flex: 1;
+        font-size: 14px;
+        line-height: 1.4;
+        color: var(--ink);
+      }
+      .language-suggestion-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      .language-suggestion button {
+        min-height: 38px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-family: var(--font);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .language-suggestion-accept {
+        border: 0;
+        background: var(--accent);
+        color: #07110f;
+      }
+      .language-suggestion-dismiss {
+        border: 1px solid var(--bdr-med);
+        background: #fff;
+        color: var(--muted);
+      }
+      .language-suggestion button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      @media (max-width: 520px) {
+        .language-suggestion {
+          left: 16px;
+          right: 16px;
+          bottom: max(16px, env(safe-area-inset-bottom));
+          width: auto;
+          align-items: stretch;
+          flex-direction: column;
+          gap: 10px;
+        }
+        .language-suggestion-actions {
+          justify-content: flex-end;
         }
       }
 
@@ -1656,7 +1820,7 @@
       <div class="container nav-inner">
         <a href="https://ecomblade.com" class="logo"
           ><img
-            src="assets/EB-logo-nav.png"
+            src="/assets/EB-logo-nav.png"
             alt="Ecomblade"
             class="logo-img"
             width="104"
@@ -1668,6 +1832,21 @@
           <a href="#faq">FAQ</a>
         </div>
         <div class="nav-ctas">
+          <details class="language-menu">
+            <summary aria-label="Select language">
+              <span aria-hidden="true">🌐</span>
+              <span class="language-current" data-language-current>English</span>
+            </summary>
+            <div class="language-options">
+              <a href="/" hreflang="en" lang="en" aria-current="page">English</a>
+              <a href="/ph/" hreflang="fil-PH" lang="fil">Filipino</a>
+              <a href="/th/" hreflang="th-TH" lang="th">ไทย</a>
+              <a href="/vn/" hreflang="vi-VN" lang="vi">Tiếng Việt</a>
+              <a href="/my/" hreflang="ms-MY" lang="ms">Bahasa Melayu</a>
+              <a href="/cn/" hreflang="zh-CN" lang="zh-CN">简体中文</a>
+              <a href="/id/" hreflang="id-ID" lang="id">Bahasa Indonesia</a>
+            </div>
+          </details>
           <a href="https://app.ecomblade.com/login" class="btn btn-secondary"
             >Log in</a
           >
@@ -1774,7 +1953,7 @@
             </svg>
             <div class="df-node" style="left: calc(8.04% - 16px); top: 48px">
               <img
-                src="assets/shopee.webp"
+                src="/assets/shopee.webp"
                 alt=""
                 class="df-node-logo"
                 width="12"
@@ -1796,7 +1975,7 @@
             </div>
             <div class="df-node" style="left: calc(40.22% - 16px); top: 4px">
               <img
-                src="assets/lazada.webp"
+                src="/assets/lazada.webp"
                 alt=""
                 class="df-node-logo"
                 width="12"
@@ -1805,7 +1984,7 @@
             </div>
             <div class="df-node" style="left: calc(59.78% - 16px); top: 4px">
               <img
-                src="assets/amazon.webp"
+                src="/assets/amazon.webp"
                 alt=""
                 class="df-node-logo"
                 width="12"
@@ -1814,7 +1993,7 @@
             </div>
             <div class="df-node" style="left: calc(76.09% - 16px); top: 24px">
               <img
-                src="assets/temu.webp"
+                src="/assets/temu.webp"
                 alt=""
                 class="df-node-logo"
                 width="12"
@@ -1823,7 +2002,7 @@
             </div>
             <div class="df-node" style="left: calc(91.96% - 16px); top: 48px">
               <img
-                src="assets/alibaba.webp"
+                src="/assets/alibaba.webp"
                 alt=""
                 class="df-node-logo"
                 width="12"
@@ -2100,7 +2279,7 @@
               <div class="val-img-wrap">
                 <img
                   class="val-img"
-                  src="./assets/c1-marketplace.webp"
+                  src="/assets/c1-marketplace.webp"
                   alt="Research any market"
                   width="1000"
                   height="625"
@@ -2150,7 +2329,7 @@
               <div class="val-img-wrap">
                 <img
                   class="val-img"
-                  src="./assets/c2-filter.webp"
+                  src="/assets/c2-filter.webp"
                   alt="Filter to the exact opportunity"
                   width="1000"
                   height="625"
@@ -2200,7 +2379,7 @@
               <div class="val-img-wrap">
                 <img
                   class="val-img"
-                  src="./assets/c3-export.webp"
+                  src="/assets/c3-export.webp"
                   alt="Export your data"
                   width="1000"
                   height="625"
@@ -2250,7 +2429,7 @@
               <div class="val-img-wrap">
                 <img
                   class="val-img"
-                  src="./assets/c4-ai.webp"
+                  src="/assets/c4-ai.webp"
                   alt="Pipe results into AI"
                   width="1000"
                   height="625"
@@ -2749,7 +2928,7 @@
             <div class="end-brand">
               <a href="https://ecomblade.com" class="end-logo"
                 ><img
-                  src="assets/white-EB-logo-nav.svg"
+                  src="/assets/white-EB-logo-nav.svg"
                   alt="Ecomblade"
                   class="end-logo-img"
                   width="112"
@@ -2798,6 +2977,143 @@
       </div>
     </footer>
 
+    <!-- language-suggestion:start -->
+    <aside
+      id="language-suggestion"
+      class="language-suggestion"
+      aria-label="Language suggestion"
+      hidden
+    >
+      <p id="language-suggestion-copy" class="language-suggestion-copy"></p>
+      <div class="language-suggestion-actions">
+        <button
+          id="language-suggestion-dismiss"
+          class="language-suggestion-dismiss"
+          type="button"
+        >
+          Not now
+        </button>
+        <button
+          id="language-suggestion-accept"
+          class="language-suggestion-accept"
+          type="button"
+        ></button>
+      </div>
+    </aside>
+    <script>
+      (function suggestLanguage() {
+        var storageKey = "ecomblade-language-suggestion:v1";
+        var storageLifetime = 365 * 24 * 60 * 60 * 1000;
+        var localeByLanguage = {
+          fil: {
+            route: "/ph/",
+            name: "Filipino",
+            message: "Available din ang page na ito sa Filipino.",
+          },
+          tl: {
+            route: "/ph/",
+            name: "Filipino",
+            message: "Available din ang page na ito sa Filipino.",
+          },
+          th: {
+            route: "/th/",
+            name: "ไทย",
+            message: "หน้านี้มีให้บริการเป็นภาษาไทย",
+          },
+          vi: {
+            route: "/vn/",
+            name: "Tiếng Việt",
+            message: "Trang này có phiên bản tiếng Việt.",
+          },
+          ms: {
+            route: "/my/",
+            name: "Bahasa Melayu",
+            message: "Halaman ini tersedia dalam Bahasa Melayu.",
+          },
+          zh: {
+            route: "/cn/",
+            name: "简体中文",
+            message: "此页面提供简体中文版本。",
+          },
+          id: {
+            route: "/id/",
+            name: "Bahasa Indonesia",
+            message: "Halaman ini tersedia dalam Bahasa Indonesia.",
+          },
+        };
+
+        function readSavedState() {
+          try {
+            var saved = JSON.parse(window.localStorage.getItem(storageKey));
+            if (!saved || typeof saved.savedAt !== "number") return null;
+            if (Date.now() - saved.savedAt > storageLifetime) {
+              window.localStorage.removeItem(storageKey);
+              return null;
+            }
+            return saved;
+          } catch (_error) {
+            return null;
+          }
+        }
+
+        function saveState(action, route) {
+          try {
+            window.localStorage.setItem(
+              storageKey,
+              JSON.stringify({ action: action, route: route, savedAt: Date.now() }),
+            );
+          } catch (_error) {
+            // The suggestion remains usable when storage is blocked.
+          }
+        }
+
+        function findSuggestedLocale() {
+          var languages = navigator.languages || [navigator.language || "en"];
+          for (var index = 0; index < languages.length; index += 1) {
+            var normalized = languages[index].toLowerCase();
+            var language = normalized.split("-")[0];
+            if (normalized === "en-ph") return localeByLanguage.fil;
+            var locale = localeByLanguage[language];
+            if (locale) return locale;
+            if (language === "en") return null;
+          }
+          return null;
+        }
+
+        function showSuggestion() {
+          if (readSavedState()) return;
+
+          var locale = findSuggestedLocale();
+          if (!locale) return;
+
+          var suggestion = document.getElementById("language-suggestion");
+          var copy = document.getElementById("language-suggestion-copy");
+          var accept = document.getElementById("language-suggestion-accept");
+          var dismiss = document.getElementById("language-suggestion-dismiss");
+          if (!suggestion || !copy || !accept || !dismiss) return;
+
+          copy.textContent = locale.message;
+          accept.textContent = "View in " + locale.name;
+          accept.addEventListener("click", function () {
+            saveState("accepted", locale.route);
+            window.location.assign(locale.route);
+          });
+          dismiss.addEventListener("click", function () {
+            saveState("dismissed", locale.route);
+            suggestion.hidden = true;
+          });
+          suggestion.hidden = false;
+        }
+
+        if ("requestIdleCallback" in window) {
+          window.requestIdleCallback(showSuggestion, { timeout: 2000 });
+        } else {
+          window.setTimeout(showSuggestion, 2000);
+        }
+      })();
+    </script>
+    <!-- language-suggestion:end -->
+
     <script>
       /* ═══════════════════════════════════════════════════════════════
    DEMO DATA
@@ -2824,6 +3140,11 @@
        }]
      }
 ═══════════════════════════════════════════════════════════════ */
+      var DEMO_LABELS = {
+        showingLive: "Showing live",
+        resultsFor: "results for",
+      };
+
       var DEMO = {
         query: "water bottle",
         markets: [
@@ -3257,7 +3578,14 @@
           m.sym + m.metrics.price;
         document.getElementById("hd-rating").textContent = m.metrics.rating;
         document.getElementById("hd-subtitle").textContent =
-          "Showing live " + m.platform + ' results for "' + DEMO.query + '"';
+          DEMO_LABELS.showingLive +
+          " " +
+          m.platform +
+          " " +
+          DEMO_LABELS.resultsFor +
+          ' "' +
+          DEMO.query +
+          '"';
         document.getElementById("hd-platform-chip").innerHTML =
           platformSVG(m.platform) + "&nbsp;" + m.platform;
         document.getElementById("hd-country-chip").innerHTML =
@@ -3287,14 +3615,14 @@
       function platformSVG(name) {
         var p = {
           Shopee:
-            '<img src="assets/shopee.svg" alt="" class="hd-plat-logo" width="14" height="14">',
+            '<img src="/assets/shopee.svg" alt="" class="hd-plat-logo" width="14" height="14">',
           "TikTok Shop":
             '<svg width="14" height="14" viewBox="0 0 24 28" fill="#111" style="vertical-align:middle;flex-shrink:0"><path d="M17 0c.3 2.5 1.8 4.6 5 4.8v4c-1.8 0-3.4-.6-4.7-1.6v7.4C17.3 19.3 14.2 23 10 23 5.4 23 1.7 19.3 1.7 14.7S5.4 6.5 10 6.5c.4 0 .8 0 1.2.1v4.1c-.4-.1-.8-.1-1.2-.1-2.5 0-4.6 2-4.6 4.6S7.5 19.6 10 19.6s4.6-2 4.6-4.6V0H17z"/></svg>',
           Lazada:
-            '<img src="assets/lazada.svg" alt="" class="hd-plat-logo" width="14" height="14">',
+            '<img src="/assets/lazada.svg" alt="" class="hd-plat-logo" width="14" height="14">',
           Amazon:
-            '<img src="assets/amazon.svg" alt="" class="hd-plat-logo" width="14" height="14">',
-          Temu: '<img src="assets/temu.svg" alt="" class="hd-plat-logo" width="14" height="14">',
+            '<img src="/assets/amazon.svg" alt="" class="hd-plat-logo" width="14" height="14">',
+          Temu: '<img src="/assets/temu.svg" alt="" class="hd-plat-logo" width="14" height="14">',
         };
         return p[name] || "";
       }
@@ -3442,7 +3770,14 @@
               })
               .join("");
             subtitle.textContent =
-              "Showing live " + m.platform + ' results for "' + q + '"';
+              DEMO_LABELS.showingLive +
+              " " +
+              m.platform +
+              " " +
+              DEMO_LABELS.resultsFor +
+              ' "' +
+              q +
+              '"';
           }, 1.1);
 
           tl.to(

@@ -1,7 +1,7 @@
-const FACEBOOK_PIXEL_ID = '1647266143173474';
-const GOOGLE_ANALYTICS_ID = 'G-D3V9KWW4E5';
-const POSTHOG_API_KEY = 'phc_yiBBMJPczJbKvPR7KWj7sT294Rh3Rj5GpzbVZ3efHcBw';
-const TIKTOK_PIXEL_ID = 'D88L833C77UEB8QVUR50';
+const FACEBOOK_PIXEL_ID = "1647266143173474";
+const GOOGLE_ANALYTICS_ID = "G-D3V9KWW4E5";
+const POSTHOG_API_KEY = "phc_yiBBMJPczJbKvPR7KWj7sT294Rh3Rj5GpzbVZ3efHcBw";
+const TIKTOK_PIXEL_ID = "D88L833C77UEB8QVUR50";
 
 function loadGoogleAnalytics() {
   window.dataLayer = window.dataLayer || [];
@@ -9,10 +9,10 @@ function loadGoogleAnalytics() {
     window.dataLayer.push(arguments);
   };
 
-  window.gtag('js', new Date());
-  window.gtag('config', GOOGLE_ANALYTICS_ID);
+  window.gtag("js", new Date());
+  window.gtag("config", GOOGLE_ANALYTICS_ID);
 
-  const script = document.createElement('script');
+  const script = document.createElement("script");
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`;
   document.head.appendChild(script);
@@ -33,36 +33,36 @@ function loadFacebookPixel() {
     window.fbq = fbq;
     fbq.push = fbq;
     fbq.loaded = true;
-    fbq.version = '2.0';
+    fbq.version = "2.0";
     fbq.queue = [];
 
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.async = true;
-    script.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    script.src = "https://connect.facebook.net/en_US/fbevents.js";
     document.head.appendChild(script);
   }
 
-  window.fbq('init', FACEBOOK_PIXEL_ID);
-  window.fbq('track', 'PageView');
+  window.fbq("init", FACEBOOK_PIXEL_ID);
+  window.fbq("track", "PageView");
 }
 
 function loadTikTokPixel() {
-  window.TiktokAnalyticsObject = 'ttq';
-  const ttq = window.ttq = window.ttq || [];
+  window.TiktokAnalyticsObject = "ttq";
+  const ttq = (window.ttq = window.ttq || []);
   const methods = [
-    'page',
-    'track',
-    'identify',
-    'instances',
-    'debug',
-    'on',
-    'off',
-    'once',
-    'ready',
-    'alias',
-    'group',
-    'enableCookie',
-    'disableCookie',
+    "page",
+    "track",
+    "identify",
+    "instances",
+    "debug",
+    "on",
+    "off",
+    "once",
+    "ready",
+    "alias",
+    "group",
+    "enableCookie",
+    "disableCookie",
   ];
 
   function setAndDefer(target, method) {
@@ -80,7 +80,7 @@ function loadTikTokPixel() {
   };
 
   ttq.load = function load(pixelId, options) {
-    const source = 'https://analytics.tiktok.com/i18n/pixel/events.js';
+    const source = "https://analytics.tiktok.com/i18n/pixel/events.js";
     ttq._i = ttq._i || {};
     ttq._i[pixelId] = [];
     ttq._i[pixelId]._u = source;
@@ -89,7 +89,7 @@ function loadTikTokPixel() {
     ttq._o = ttq._o || {};
     ttq._o[pixelId] = options || {};
 
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.async = true;
     script.src = `${source}?sdkid=${pixelId}&lib=ttq`;
     document.head.appendChild(script);
@@ -100,11 +100,11 @@ function loadTikTokPixel() {
 }
 
 async function loadPostHog() {
-  const { default: posthog } = await import('posthog-js');
+  const { default: posthog } = await import("posthog-js");
 
   posthog.init(POSTHOG_API_KEY, {
-    api_host: 'https://us.i.posthog.com',
-    defaults: '2026-05-30',
+    api_host: "https://us.i.posthog.com",
+    defaults: "2026-05-30",
     disable_product_tours: true,
     disable_session_recording: true,
     disable_surveys: true,
@@ -124,9 +124,12 @@ function startAnalytics() {
   loadPostHog();
 }
 
-const interactionEvents = ['keydown', 'pointerdown', 'scroll', 'touchstart'];
+const interactionEvents = ["keydown", "pointerdown", "scroll", "touchstart"];
 interactionEvents.forEach((eventName) => {
-  window.addEventListener(eventName, startAnalytics, { once: true, passive: true });
+  window.addEventListener(eventName, startAnalytics, {
+    once: true,
+    passive: true,
+  });
 });
 
 window.setTimeout(startAnalytics, 12_000);
