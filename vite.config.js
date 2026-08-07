@@ -7,13 +7,16 @@ import { LANDING_TRANSLATIONS } from '#landing-translations';
 const page = (pathname) => fileURLToPath(new URL(pathname, import.meta.url));
 const homePage = page('index.html');
 
+// htmlLanguage uses BCP 47 for HTML/SEO. appLanguage uses the app's
+// ISO 3166-1 alpha-2 convention.
 const LOCALES = [
-  { route: 'ph', language: 'fil-PH', appLanguage: 'ph', name: 'Filipino' },
-  { route: 'th', language: 'th-TH', appLanguage: 'th', name: 'ไทย' },
-  { route: 'vn', language: 'vi-VN', appLanguage: 'vi', name: 'Tiếng Việt' },
-  { route: 'my', language: 'ms-MY', appLanguage: 'ms', name: 'Bahasa Melayu' },
-  { route: 'cn', language: 'zh-CN', appLanguage: 'cn', name: '简体中文' },
-  { route: 'id', language: 'id-ID', appLanguage: 'id', name: 'Bahasa Indonesia' },
+  { route: 'ph', htmlLanguage: 'fil-PH', appLanguage: 'ph', name: 'Filipino' },
+  { route: 'th', htmlLanguage: 'th-TH', appLanguage: 'th', name: 'ไทย' },
+  { route: 'vn', htmlLanguage: 'vi-VN', appLanguage: 'vi', name: 'Tiếng Việt' },
+  { route: 'my', htmlLanguage: 'ms-MY', appLanguage: 'my', name: 'Bahasa Melayu' },
+  { route: 'cn', htmlLanguage: 'zh-CN', appLanguage: 'cn', name: '简体中文' },
+  { route: 'hk', htmlLanguage: 'zh-HK', appLanguage: 'hk', name: '繁體中文（香港）' },
+  { route: 'id', htmlLanguage: 'id-ID', appLanguage: 'id', name: 'Bahasa Indonesia' },
 ];
 
 const LANGUAGE_SUGGESTION_PATTERN =
@@ -35,6 +38,7 @@ const LANGUAGE_OPTIONS = [
   { route: 'vn', name: 'Tiếng Việt' },
   { route: 'my', name: 'Bahasa Melayu' },
   { route: 'cn', name: '简体中文' },
+  { route: 'hk', name: '繁體中文（香港）' },
   { route: 'id', name: 'Bahasa Indonesia' },
 ];
 
@@ -95,7 +99,7 @@ function localizeHomePage(englishHtml, locale) {
   html = html.replace(DEMO_DATA_TOKEN, localizedDemoData);
 
   html = html
-    .replace('<html lang="en">', `<html lang="${locale.language}">`)
+    .replace('<html lang="en">', `<html lang="${locale.htmlLanguage}">`)
     .replace(
       '<link rel="canonical" href="https://ecomblade.com/" />',
       `<link rel="canonical" href="${localizedUrl}" />`,
@@ -124,7 +128,7 @@ function localizeHomePage(englishHtml, locale) {
       /("@type": "WebSite",[\s\S]*?"url": )"https:\/\/ecomblade\.com\/"/,
       `$1"${localizedUrl}"`,
     )
-    .replace('"inLanguage": "en"', `"inLanguage": "${locale.language}"`);
+    .replace('"inLanguage": "en"', `"inLanguage": "${locale.htmlLanguage}"`);
 
   html = html
     .replaceAll(

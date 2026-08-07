@@ -17,6 +17,7 @@
     <link rel="alternate" hreflang="vi-VN" href="https://ecomblade.com/vn/" />
     <link rel="alternate" hreflang="ms-MY" href="https://ecomblade.com/my/" />
     <link rel="alternate" hreflang="zh-CN" href="https://ecomblade.com/cn/" />
+    <link rel="alternate" hreflang="zh-HK" href="https://ecomblade.com/hk/" />
     <link rel="alternate" hreflang="id-ID" href="https://ecomblade.com/id/" />
     <link rel="alternate" hreflang="x-default" href="https://ecomblade.com/" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -1821,6 +1822,9 @@
               <a href="/vn/" hreflang="vi-VN" lang="vi">Tiếng Việt</a>
               <a href="/my/" hreflang="ms-MY" lang="ms">Bahasa Melayu</a>
               <a href="/cn/" hreflang="zh-CN" lang="zh-CN">简体中文</a>
+              <a href="/hk/" hreflang="zh-HK" lang="zh-HK"
+                >繁體中文（香港）</a
+              >
               <a href="/id/" hreflang="id-ID" lang="id">Bahasa Indonesia</a>
             </div>
           </details>
@@ -3013,10 +3017,15 @@
             name: "Tiếng Việt",
             message: "Trang này có phiên bản tiếng Việt.",
           },
-          ms: {
+          my: {
             route: "/my/",
             name: "Bahasa Melayu",
             message: "Halaman ini tersedia dalam Bahasa Melayu.",
+          },
+          hk: {
+            route: "/hk/",
+            name: "繁體中文（香港）",
+            message: "此頁面提供繁體中文（香港）版本。",
           },
           zh: {
             route: "/cn/",
@@ -3034,8 +3043,9 @@
           "Asia/Bangkok": localeByLanguage.th,
           "Asia/Ho_Chi_Minh": localeByLanguage.vi,
           "Asia/Saigon": localeByLanguage.vi,
-          "Asia/Kuala_Lumpur": localeByLanguage.ms,
-          "Asia/Kuching": localeByLanguage.ms,
+          "Asia/Kuala_Lumpur": localeByLanguage.my,
+          "Asia/Kuching": localeByLanguage.my,
+          "Asia/Hong_Kong": localeByLanguage.hk,
           "Asia/Shanghai": localeByLanguage.zh,
           "Asia/Chongqing": localeByLanguage.zh,
           "Asia/Harbin": localeByLanguage.zh,
@@ -3049,8 +3059,9 @@
           "/ph/": localeByLanguage.fil,
           "/th/": localeByLanguage.th,
           "/vn/": localeByLanguage.vi,
-          "/my/": localeByLanguage.ms,
+          "/my/": localeByLanguage.my,
           "/cn/": localeByLanguage.zh,
+          "/hk/": localeByLanguage.hk,
           "/id/": localeByLanguage.id,
         };
 
@@ -3097,6 +3108,10 @@
             var normalized = languages[index].toLowerCase();
             var language = normalized.split("-")[0];
             if (normalized === "en-ph") return localeByLanguage.fil;
+            if (language === "ms") return localeByLanguage.my;
+            if (normalized === "zh-hk" || normalized.endsWith("-hk")) {
+              return localeByLanguage.hk;
+            }
             var locale = localeByLanguage[language];
             if (locale) return locale;
           }

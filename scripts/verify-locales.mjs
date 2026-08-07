@@ -6,14 +6,29 @@ import { LANDING_TRANSLATIONS } from '#landing-translations';
 
 const root = resolve(import.meta.dirname, '..');
 const locales = [
-  { route: '', language: 'en', appLanguage: 'en', name: 'English', canonical: 'https://ecomblade.com/' },
-  { route: 'ph', language: 'fil-PH', appLanguage: 'ph', name: 'Filipino', canonical: 'https://ecomblade.com/ph/' },
-  { route: 'th', language: 'th-TH', appLanguage: 'th', name: 'ไทย', canonical: 'https://ecomblade.com/th/' },
-  { route: 'vn', language: 'vi-VN', appLanguage: 'vi', name: 'Tiếng Việt', canonical: 'https://ecomblade.com/vn/' },
-  { route: 'my', language: 'ms-MY', appLanguage: 'ms', name: 'Bahasa Melayu', canonical: 'https://ecomblade.com/my/' },
-  { route: 'cn', language: 'zh-CN', appLanguage: 'cn', name: '简体中文', canonical: 'https://ecomblade.com/cn/' },
-  { route: 'id', language: 'id-ID', appLanguage: 'id', name: 'Bahasa Indonesia', canonical: 'https://ecomblade.com/id/' },
+  { route: '', htmlLanguage: 'en', appLanguage: 'en', name: 'English', canonical: 'https://ecomblade.com/' },
+  { route: 'ph', htmlLanguage: 'fil-PH', appLanguage: 'ph', name: 'Filipino', canonical: 'https://ecomblade.com/ph/' },
+  { route: 'th', htmlLanguage: 'th-TH', appLanguage: 'th', name: 'ไทย', canonical: 'https://ecomblade.com/th/' },
+  { route: 'vn', htmlLanguage: 'vi-VN', appLanguage: 'vi', name: 'Tiếng Việt', canonical: 'https://ecomblade.com/vn/' },
+  { route: 'my', htmlLanguage: 'ms-MY', appLanguage: 'my', name: 'Bahasa Melayu', canonical: 'https://ecomblade.com/my/' },
+  { route: 'cn', htmlLanguage: 'zh-CN', appLanguage: 'cn', name: '简体中文', canonical: 'https://ecomblade.com/cn/' },
+  { route: 'hk', htmlLanguage: 'zh-HK', appLanguage: 'hk', name: '繁體中文（香港）', canonical: 'https://ecomblade.com/hk/' },
+  { route: 'id', htmlLanguage: 'id-ID', appLanguage: 'id', name: 'Bahasa Indonesia', canonical: 'https://ecomblade.com/id/' },
 ];
+
+const translationLocaleKeys = locales
+  .map((locale) => locale.route || 'en')
+  .sort();
+Object.entries(LANDING_TRANSLATIONS).forEach(([key, translations]) => {
+  assert.deepEqual(
+    Object.keys(translations).sort(),
+    translationLocaleKeys,
+    `${key} must contain every landing-page locale`,
+  );
+  translationLocaleKeys.forEach((locale) => {
+    assert.ok(translations[locale].trim(), `${key}.${locale} must not be empty`);
+  });
+});
 
 locales.forEach((locale) => {
   const pathname = locale.route
@@ -21,14 +36,14 @@ locales.forEach((locale) => {
     : resolve(root, 'dist', 'index.html');
   const html = readFileSync(pathname, 'utf8');
 
-  assert.match(html, new RegExp(`<html lang="${locale.language}">`));
+  assert.match(html, new RegExp(`<html lang="${locale.htmlLanguage}">`));
   assert.ok(
     html.includes(`<link rel="canonical" href="${locale.canonical}" />`),
     `${locale.route || 'en'} has the wrong canonical URL`,
   );
   assert.equal(
     (html.match(/rel="alternate"/g) ?? []).length,
-    8,
+    9,
     `${locale.route || 'en'} must expose all hreflang alternatives`,
   );
   assert.ok(html.includes('/assets/EB-logo-nav.png'));
@@ -57,7 +72,7 @@ locales.forEach((locale) => {
   );
   assert.ok(structuredDataMatch);
   const structuredData = JSON.parse(structuredDataMatch[1]);
-  assert.equal(structuredData['@graph'][1].inLanguage, locale.language);
+  assert.equal(structuredData['@graph'][1].inLanguage, locale.htmlLanguage);
 
   const inlineScripts = [...html.matchAll(/<script(?![^>]*type="application\/ld\+json")[^>]*>([\s\S]*?)<\/script>/g)]
     .map((match) => match[1])
@@ -185,6 +200,31 @@ assert.equal(
   thaiSuggestion.getStoredValue('ecomblade-language-suggestion:v1'),
   null,
 );
+
+const hongKongSuggestion = runLanguageSuggestion({
+  languages: ['zh-HK', 'zh-CN'],
+});
+assert.equal(hongKongSuggestion.elements['language-suggestion'].hidden, false);
+assert.equal(
+  hongKongSuggestion.elements['language-suggestion-accept'].textContent,
+  'View in 繁體中文（香港）',
+);
+hongKongSuggestion.listeners['accept:click']();
+assert.equal(hongKongSuggestion.getAssignedRoute(), '/hk/');
+
+const hongKongTimeZoneSuggestion = runLanguageSuggestion({
+  languages: ['en-US', 'en'],
+  timeZone: 'Asia/Hong_Kong',
+});
+assert.equal(
+  hongKongTimeZoneSuggestion.elements['language-suggestion-accept'].textContent,
+  'View in 繁體中文（香港）',
+);
+
+const malaySuggestion = runLanguageSuggestion({ languages: ['ms-MY', 'en'] });
+assert.equal(malaySuggestion.elements['language-suggestion'].hidden, false);
+malaySuggestion.listeners['accept:click']();
+assert.equal(malaySuggestion.getAssignedRoute(), '/my/');
 
 const dismissedSuggestion = runLanguageSuggestion({ languages: ['vi-VN'] });
 dismissedSuggestion.listeners['dismiss:click']();
