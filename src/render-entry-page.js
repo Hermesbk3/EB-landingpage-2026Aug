@@ -157,8 +157,9 @@ function renderBreadcrumbs(page, locale, copy) {
     .join('')}</ol></nav>`;
 }
 
-function renderCard({ path, title, description, image }, locale, copy) {
-  return `<article class="card"><div class="card-image">${image ? `<img src="/assets/${image}" alt="" width="1000" height="625" loading="lazy" decoding="async" />` : ''}</div><div class="card-body"><h2>${escapeHtml(title)}</h2><p>${escapeHtml(description)}</p><a class="text-link" href="${getLocalizedPath(path, locale)}">${escapeHtml(copy.common.explore)} <span aria-hidden="true">→</span></a></div></article>`;
+function renderCard({ path, title, description, image, imageWidth = 1000, imageHeight = 625, linkLabel }, locale, copy) {
+  const resolvedLinkLabel = linkLabel ?? copy.common.explore;
+  return `<article class="card"><div class="card-image">${image ? `<img src="/assets/${image}" alt="" width="${imageWidth}" height="${imageHeight}" loading="lazy" decoding="async" />` : ''}</div><div class="card-body"><h2>${escapeHtml(title)}</h2><p>${escapeHtml(description)}</p><a class="text-link" href="${getLocalizedPath(path, locale)}">${escapeHtml(resolvedLinkLabel)} <span aria-hidden="true">→</span></a></div></article>`;
 }
 
 function renderHub(page, locale, copy) {
@@ -173,6 +174,8 @@ function renderHub(page, locale, copy) {
               marketplace: copy.marketplaceNames[key],
             }),
             image: marketplace.asset,
+            imageWidth: marketplace.assetWidth,
+            imageHeight: marketplace.assetHeight,
           },
           locale,
           copy,
@@ -194,7 +197,17 @@ function renderHub(page, locale, copy) {
           copy,
         ),
       )
-      .join('')}</div></div></section>`;
+      .join('')}${renderCard(
+        {
+          path: '/api/',
+          title: copy.nav.api,
+          description: copy.hubs.api.description,
+          image: 'c7-api.webp',
+          linkLabel: copy.common.learnMore,
+        },
+        locale,
+        copy,
+      )}</div></div></section>`;
   }
   return `<section class="section"><div class="container"><div class="card-grid">${Object.entries(MARKETPLACES)
     .map(([key, marketplace]) =>
@@ -204,6 +217,8 @@ function renderHub(page, locale, copy) {
           title: format(copy.api.title, { marketplace: copy.marketplaceNames[key] }),
           description: format(copy.api.description, { marketplace: copy.marketplaceNames[key] }),
           image: marketplace.asset,
+          imageWidth: marketplace.assetWidth,
+          imageHeight: marketplace.assetHeight,
         },
         locale,
         copy,
@@ -244,7 +259,7 @@ function renderMarketplacePage(page, locale, copy) {
     .join('');
 
   const regional = page.kind === 'marketplace-region';
-  return `<section class="section"><div class="container split"><div><span class="eyebrow">${escapeHtml(copy.common.whatYouCanResearch)}</span><h2>${escapeHtml(copy.common.supportedWorkflows)}</h2><p>${escapeHtml(format(copy.marketplace.decisionText, variables))}</p><ul class="check-list">${renderWorkflowList(marketplace, copy)}</ul></div><div class="visual-panel"><img src="/assets/${marketplace.asset}" alt="${escapeHtml(`${variables.marketplace} ${copy.common.overview}`)}" width="1000" height="625" loading="eager" decoding="async" /></div></div></section>
+  return `<section class="section"><div class="container split"><div><span class="eyebrow">${escapeHtml(copy.common.whatYouCanResearch)}</span><h2>${escapeHtml(copy.common.supportedWorkflows)}</h2><p>${escapeHtml(format(copy.marketplace.decisionText, variables))}</p><ul class="check-list">${renderWorkflowList(marketplace, copy)}</ul></div><div class="visual-panel"><img src="/assets/${marketplace.asset}" alt="${escapeHtml(`${variables.marketplace} ${copy.common.overview}`)}" width="${marketplace.assetWidth}" height="${marketplace.assetHeight}" loading="eager" decoding="async" /></div></div></section>
   ${regional ? `<section class="section tinted"><div class="container narrow"><span class="eyebrow">${escapeHtml(copy.common.regionCoverage)}</span><h2>${escapeHtml(`${variables.region} · ${variables.currency}`)}</h2><p>${escapeHtml(format(copy.marketplace.regionText, variables))}</p><p>${escapeHtml(copy.regionContexts[page.regionKey])}</p></div></section>` : `<section class="section tinted"><div class="container"><span class="eyebrow">${escapeHtml(copy.common.availableRegions)}</span><div class="card-grid compact">${regionCards}</div></div></section>`}
   <section class="section"><div class="container narrow"><span class="eyebrow">${escapeHtml(copy.common.faq)}</span><div class="faq-list"><details open><summary>${escapeHtml(format(regional ? copy.marketplace.regionFaqQ : copy.marketplace.faqOneQ, variables))}</summary><p>${escapeHtml(format(regional ? copy.marketplace.regionFaqA : copy.marketplace.faqOneA, variables))}</p></details><details><summary>${escapeHtml(format(copy.marketplace.faqTwoQ, variables))}</summary><p>${escapeHtml(format(copy.marketplace.faqTwoA, variables))}</p></details></div></div></section>`;
 }

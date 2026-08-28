@@ -33,7 +33,9 @@ const southeastAsiaRegions = [
 export const MARKETPLACES = {
   alibaba: {
     slug: 'alibaba',
-    asset: 'alibaba.webp',
+    asset: 'thumbnails/alibaba-full.webp',
+    assetWidth: 400,
+    assetHeight: 180,
     productRegions: ['united-states'],
     apiRegions: ['united-states'],
     modes: ['product', 'category'],
@@ -41,7 +43,9 @@ export const MARKETPLACES = {
   },
   amazon: {
     slug: 'amazon',
-    asset: 'amazon.webp',
+    asset: 'thumbnails/amazon-full.webp',
+    assetWidth: 400,
+    assetHeight: 180,
     productRegions: ['united-states'],
     apiRegions: ['united-states'],
     modes: ['product', 'category'],
@@ -49,7 +53,9 @@ export const MARKETPLACES = {
   },
   lazada: {
     slug: 'lazada',
-    asset: 'lazada.webp',
+    asset: 'thumbnails/lazada-full.webp',
+    assetWidth: 400,
+    assetHeight: 180,
     productRegions: [...southeastAsiaRegions],
     apiRegions: [...southeastAsiaRegions],
     modes: ['product', 'category', 'store'],
@@ -57,7 +63,9 @@ export const MARKETPLACES = {
   },
   shopee: {
     slug: 'shopee',
-    asset: 'shopee.webp',
+    asset: 'thumbnails/shopee-full.webp',
+    assetWidth: 400,
+    assetHeight: 180,
     productRegions: [...southeastAsiaRegions],
     apiRegions: [...southeastAsiaRegions],
     modes: ['product', 'category', 'store'],
@@ -65,7 +73,9 @@ export const MARKETPLACES = {
   },
   temu: {
     slug: 'temu',
-    asset: 'temu.webp',
+    asset: 'thumbnails/temu-full.webp',
+    assetWidth: 400,
+    assetHeight: 180,
     productRegions: ['united-states'],
     apiRegions: ['united-states'],
     modes: ['product', 'category', 'store'],
@@ -73,7 +83,9 @@ export const MARKETPLACES = {
   },
   tiktok: {
     slug: 'tiktok-shop',
-    asset: 'c1-marketplace.webp',
+    asset: 'thumbnails/tiktok-full.webp',
+    assetWidth: 400,
+    assetHeight: 180,
     productRegions: [...southeastAsiaRegions, 'united-states'],
     apiRegions: [...southeastAsiaRegions],
     modes: ['product', 'category', 'store'],
@@ -82,10 +94,10 @@ export const MARKETPLACES = {
 };
 
 export const FEATURES = {
-  'market-radar': { slug: 'market-radar', asset: 'c1-marketplace.webp' },
+  'market-radar': { slug: 'market-radar', asset: 'c5-radar.webp' },
   'product-research': { slug: 'product-research', asset: 'c1-marketplace.webp' },
-  'category-research': { slug: 'category-research', asset: 'c2-filter.webp' },
-  'store-research': { slug: 'store-research', asset: 'c2-filter.webp' },
+  'category-research': { slug: 'category-research', asset: 'c8-category.webp' },
+  'store-research': { slug: 'store-research', asset: 'c6-store.webp' },
   'advanced-filters': { slug: 'advanced-filters', asset: 'c2-filter.webp' },
   'data-exports': { slug: 'data-exports', asset: 'c3-export.webp' },
   'ai-connectors': { slug: 'ai-connectors', asset: 'c4-ai.webp' },

@@ -174,6 +174,34 @@ ENTRY_PAGES.forEach((page) => {
 
 assert.equal(generatedPageCount, 520);
 
+LOCALES.forEach((locale) => {
+  const featuresHubPath = getLocalizedPath('/features/', locale);
+  const featuresHubHtml = readFileSync(
+    resolve(root, 'dist', featuresHubPath.slice(1), 'index.html'),
+    'utf8',
+  );
+  assert.equal((featuresHubHtml.match(/<article class="card">/g) ?? []).length, 8);
+  assert.ok(featuresHubHtml.includes('src="/assets/c7-api.webp"'));
+  assert.ok(
+    featuresHubHtml.includes(
+      `href="${getLocalizedPath('/api/', locale)}">${ENTRY_PAGE_TRANSLATIONS['common.learnMore'][locale.key]}`,
+    ),
+  );
+
+  [
+    ['market-radar', 'c5-radar.webp'],
+    ['store-research', 'c6-store.webp'],
+    ['category-research', 'c8-category.webp'],
+  ].forEach(([featureSlug, asset]) => {
+    const featurePath = getLocalizedPath(`/features/${featureSlug}/`, locale);
+    const featureHtml = readFileSync(
+      resolve(root, 'dist', featurePath.slice(1), 'index.html'),
+      'utf8',
+    );
+    assert.ok(featureHtml.includes(`src="/assets/${asset}"`));
+  });
+});
+
 const sitemap = readFileSync(resolve(root, 'dist', 'sitemap.xml'), 'utf8');
 const sitemapLocations = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(
   (match) => match[1],
