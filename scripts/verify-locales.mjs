@@ -47,6 +47,25 @@ locales.forEach((locale) => {
     `${locale.route || 'en'} must expose all hreflang alternatives`,
   );
   assert.ok(html.includes('/assets/EB-logo-nav.png'));
+  assert.equal((html.match(/class="val-card"/g) ?? []).length, 8);
+  assert.ok(html.includes('class="mobile-menu"'));
+  const localizedPrefix = locale.route ? `/${locale.route}` : '';
+  [
+    '/features/product-research/',
+    '/features/advanced-filters/',
+    '/features/data-exports/',
+    '/features/ai-connectors/',
+    '/features/market-radar/',
+    '/features/store-research/',
+    '/features/category-research/',
+    '/api/',
+    '/pricing/',
+  ].forEach((target) => {
+    assert.ok(
+      html.includes(`href="${localizedPrefix}${target}"`),
+      `${locale.route || 'en'} homepage is missing ${target}`,
+    );
+  });
   assert.ok(!html.includes('__ECOMBLADE_'));
   const appLanguageLinks = [
     ...html.matchAll(
@@ -377,7 +396,7 @@ const menuDocument = {
   },
   querySelectorAll(selector) {
     if (selector === '.language-options a') return [languageOption];
-    assert.equal(selector, '.language-menu[open]');
+    assert.equal(selector, '.language-menu[open], .mobile-menu[open]');
     return [menu];
   },
 };

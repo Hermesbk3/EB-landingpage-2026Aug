@@ -251,12 +251,84 @@
         background: var(--surf);
         color: var(--ink);
       }
+      .mobile-menu {
+        position: relative;
+        display: none;
+      }
+      .mobile-menu summary {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border: 1px solid var(--bdr-med);
+        border-radius: var(--r);
+        background: #fff;
+        color: var(--ink);
+        cursor: pointer;
+        list-style: none;
+      }
+      .mobile-menu summary::-webkit-details-marker {
+        display: none;
+      }
+      .mobile-menu summary:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      .mobile-menu-panel {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        display: grid;
+        width: min(260px, calc(100vw - 32px));
+        padding: 8px;
+        border: 1px solid var(--bdr-med);
+        border-radius: var(--r);
+        background: #fff;
+        box-shadow: 0 12px 34px rgba(7, 17, 15, 0.14);
+      }
+      .mobile-menu-panel a {
+        padding: 11px 12px;
+        border-radius: 7px;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .mobile-menu-panel a:hover,
+      .mobile-menu-panel a:focus-visible {
+        background: var(--surf);
+        color: var(--ink);
+      }
       @media (max-width: 640px) {
+        .nav-inner {
+          gap: 8px;
+        }
+        .logo-img {
+          height: 22px;
+        }
         .nav-links {
           display: none;
         }
+        .nav-ctas {
+          gap: 5px;
+        }
+        .nav-ctas > .btn-secondary {
+          display: none;
+        }
+        .nav-ctas > .btn-primary {
+          padding: 8px 10px;
+          font-size: 12px;
+        }
+        .language-menu summary {
+          min-height: 34px;
+          width: 34px;
+          justify-content: center;
+          padding: 5px;
+        }
         .language-current {
           display: none;
+        }
+        .mobile-menu {
+          display: block;
         }
       }
       @media (max-width: 480px) {
@@ -1276,6 +1348,19 @@
         line-height: 1.55;
         color: var(--muted);
       }
+      .val-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 16px;
+        color: var(--acc-ink);
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .val-link:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
       @media (max-width: 600px) {
         #value {
           padding: 64px 0 56px;
@@ -1804,7 +1889,7 @@
           <a href="/marketplaces/">Marketplaces</a>
           <a href="/features/">Features</a>
           <a href="/api/">API</a>
-          <a href="#pricing">Pricing</a>
+          <a href="/pricing/">Pricing</a>
         </div>
         <div class="nav-ctas">
           <details class="language-menu">
@@ -1839,6 +1924,30 @@
             class="btn btn-primary"
             >Start free</a
           >
+          <details class="mobile-menu">
+            <summary aria-label="Navigation menu">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3 5H15M3 9H15M3 13H15"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </summary>
+            <div class="mobile-menu-panel">
+              <a href="/marketplaces/">Marketplaces</a>
+              <a href="/features/">Features</a>
+              <a href="/api/">API</a>
+              <a href="/pricing/">Pricing</a>
+            </div>
+          </details>
         </div>
       </div>
     </nav>
@@ -2302,11 +2411,14 @@
                 </div>
               </div>
               <div class="val-body">
-                <p class="val-title">Research any market, from one place</p>
+                <h3 class="val-title">Research any market, from one place</h3>
                 <p class="val-desc">
                   Search demand across 6 marketplaces and 7 countries — no
                   juggling tabs.
                 </p>
+                <a class="val-link" href="/features/product-research/"
+                  >Learn more <span aria-hidden="true">→</span></a
+                >
               </div>
             </div>
 
@@ -2352,11 +2464,14 @@
                 </div>
               </div>
               <div class="val-body">
-                <p class="val-title">Filter to the exact opportunity</p>
+                <h3 class="val-title">Filter to the exact opportunity</h3>
                 <p class="val-desc">
                   Sort and filter by revenue, sales, price, rating — turn noise
                   into a shortlist.
                 </p>
+                <a class="val-link" href="/features/advanced-filters/"
+                  >Learn more <span aria-hidden="true">→</span></a
+                >
               </div>
             </div>
 
@@ -2402,11 +2517,14 @@
                 </div>
               </div>
               <div class="val-body">
-                <p class="val-title">Take the data anywhere</p>
+                <h3 class="val-title">Take the data anywhere</h3>
                 <p class="val-desc">
                   Export any result set to work with it your way. The data is
                   yours.
                 </p>
+                <a class="val-link" href="/features/data-exports/"
+                  >Learn more <span aria-hidden="true">→</span></a
+                >
               </div>
             </div>
 
@@ -2452,13 +2570,116 @@
                 </div>
               </div>
               <div class="val-body">
-                <p class="val-title">Pipe results into AI</p>
+                <h3 class="val-title">Pipe results into AI</h3>
                 <p class="val-desc">
                   Send research straight into ChatGPT or Claude for instant
                   analysis.
                 </p>
+                <a class="val-link" href="/features/ai-connectors/"
+                  >Learn more <span aria-hidden="true">→</span></a
+                >
               </div>
             </div>
+
+            <!-- Card 5: Market Radar ─────────────────────────────── -->
+            <article class="val-card">
+              <div class="val-img-wrap">
+                <img
+                  class="val-img"
+                  src="/assets/c5-radar.webp"
+                  alt="Market Radar leaderboard"
+                  width="1000"
+                  height="625"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="val-body">
+                <h3 class="val-title">Spot cross-market opportunities early</h3>
+                <p class="val-desc">
+                  Compare proven products across Lazada, Shopee, and TikTok Shop
+                  in six Southeast Asian markets.
+                </p>
+                <a class="val-link" href="/features/market-radar/"
+                  >Learn more <span aria-hidden="true">→</span></a
+                >
+              </div>
+            </article>
+
+            <!-- Card 6: Store Research ───────────────────────────── -->
+            <article class="val-card">
+              <div class="val-img-wrap">
+                <img
+                  class="val-img"
+                  src="/assets/c6-store.webp"
+                  alt="Store Research results"
+                  width="1000"
+                  height="625"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="val-body">
+                <h3 class="val-title">Study the stores driving demand</h3>
+                <p class="val-desc">
+                  Find stores worth studying, then uncover the products and
+                  signals behind their momentum.
+                </p>
+                <a class="val-link" href="/features/store-research/"
+                  >Learn more <span aria-hidden="true">→</span></a
+                >
+              </div>
+            </article>
+
+            <!-- Card 7: API ──────────────────────────────────────── -->
+            <article class="val-card">
+              <div class="val-img-wrap">
+                <img
+                  class="val-img"
+                  src="/assets/c7-api.webp"
+                  alt="Marketplace API quickstart"
+                  width="1000"
+                  height="625"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="val-body">
+                <h3 class="val-title">Build with marketplace product data</h3>
+                <p class="val-desc">
+                  Use authenticated search and category endpoints across six
+                  supported marketplaces.
+                </p>
+                <a class="val-link" href="/api/"
+                  >Learn more <span aria-hidden="true">→</span></a
+                >
+              </div>
+            </article>
+
+            <!-- Card 8: Category Research ───────────────────────── -->
+            <article class="val-card">
+              <div class="val-img-wrap">
+                <img
+                  class="val-img"
+                  src="/assets/c8-category.webp"
+                  alt="Category Research filters"
+                  width="1000"
+                  height="625"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="val-body">
+                <h3 class="val-title">Find opportunity inside any category</h3>
+                <p class="val-desc">
+                  Compare sales, revenue, pricing, and demand inside marketplace
+                  categories and subcategories.
+                </p>
+                <a class="val-link" href="/features/category-research/"
+                  >Learn more <span aria-hidden="true">→</span></a
+                >
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -2962,7 +3183,7 @@
                 <li><a href="/marketplaces/">Marketplaces</a></li>
                 <li><a href="/features/">Features</a></li>
                 <li><a href="/api/">API</a></li>
-                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="/pricing/">Pricing</a></li>
               </ul>
             </div>
 
@@ -3226,7 +3447,7 @@
 
         document.addEventListener("pointerdown", function (event) {
           document
-            .querySelectorAll(".language-menu[open]")
+            .querySelectorAll(".language-menu[open], .mobile-menu[open]")
             .forEach(function (menu) {
               if (!menu.contains(event.target)) menu.removeAttribute("open");
             });

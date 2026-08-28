@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { getApiResponseExample } from '#api-response-examples';
 import { ENTRY_PAGE_TRANSLATIONS } from '#entry-page-translations';
 import { ENTRY_PAGES } from '#entry-pages';
 import {
@@ -11,6 +12,14 @@ import {
 } from '#site-config';
 
 const root = resolve(import.meta.dirname, '..');
+
+const escapeHtml = (value) =>
+  value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
 
 Object.entries(ENTRY_PAGE_TRANSLATIONS).forEach(([key, translations]) => {
   assert.deepEqual(
@@ -65,6 +74,7 @@ const expectedConceptPaths = [
   '/marketplaces/',
   '/features/',
   '/api/',
+  '/pricing/',
   ...Object.entries(expectedMarketplaces).flatMap(([marketplace, regions]) => [
     `/marketplaces/${marketplace}/`,
     ...regions.map((region) => `/marketplaces/${marketplace}/${region}/`),
@@ -76,7 +86,7 @@ const expectedConceptPaths = [
   ]),
 ].sort();
 
-assert.equal(expectedConceptPaths.length, 65);
+assert.equal(expectedConceptPaths.length, 66);
 assert.deepEqual(
   ENTRY_PAGES.map(({ path }) => path).sort(),
   expectedConceptPaths,
@@ -121,6 +131,16 @@ ENTRY_PAGES.forEach((page) => {
     assert.ok(!html.includes('__ECOMBLADE_'));
     assert.ok(!html.includes('undefined'));
     assert.ok(!html.includes("\n+  --header"));
+
+    if (page.kind.startsWith('api')) {
+      const marketplace = MARKETPLACES[page.marketplaceKey];
+      const regionKey = page.regionKey ?? marketplace.apiRegions[0];
+      const responseExample = getApiResponseExample(page.marketplaceKey, regionKey);
+      assert.ok(
+        html.includes(escapeHtml(responseExample)),
+        `${localizedPath} is missing its marketplace response example.`,
+      );
+    }
 
     LOCALES.forEach((alternateLocale) => {
       assert.ok(
@@ -172,7 +192,20 @@ ENTRY_PAGES.forEach((page) => {
   });
 });
 
-assert.equal(generatedPageCount, 520);
+assert.equal(generatedPageCount, 528);
+
+LOCALES.forEach((locale) => {
+  const pricingPath = getLocalizedPath('/pricing/', locale);
+  const pricingHtml = readFileSync(
+    resolve(root, 'dist', pricingPath.slice(1), 'index.html'),
+    'utf8',
+  );
+  assert.ok(pricingHtml.includes('id="plans"'));
+  assert.equal((pricingHtml.match(/<article class="pricing-card/g) ?? []).length, 2);
+  assert.ok(pricingHtml.includes('$0'));
+  assert.ok(pricingHtml.includes('$19'));
+  assert.ok(pricingHtml.includes('class="mobile-menu"'));
+});
 
 LOCALES.forEach((locale) => {
   const featuresHubPath = getLocalizedPath('/features/', locale);
@@ -206,9 +239,9 @@ const sitemap = readFileSync(resolve(root, 'dist', 'sitemap.xml'), 'utf8');
 const sitemapLocations = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(
   (match) => match[1],
 );
-assert.equal(sitemapLocations.length, 533);
-assert.equal(new Set(sitemapLocations).size, 533);
-assert.equal((sitemap.match(/<xhtml:link /g) ?? []).length, 4752);
+assert.equal(sitemapLocations.length, 541);
+assert.equal(new Set(sitemapLocations).size, 541);
+assert.equal((sitemap.match(/<xhtml:link /g) ?? []).length, 4824);
 assert.ok(!sitemap.includes('/api/tiktok-shop/united-states/'));
 ENTRY_PAGES.forEach((page) => {
   LOCALES.forEach((locale) => {
@@ -267,4 +300,4 @@ Object.entries(expectedApiParameters).forEach(([marketplaceSlug, parameters]) =>
   });
 });
 
-console.log('Verified 65 concepts, 520 localized entry pages, 533 sitemap URLs, SEO metadata, structured data, assets, and internal links.');
+console.log('Verified 66 concepts, 528 localized entry pages, 541 sitemap URLs, SEO metadata, structured data, assets, and internal links.');

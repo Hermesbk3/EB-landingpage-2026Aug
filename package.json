@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "imports": {
+    "#api-response-examples": "./src/api-response-examples.js",
     "#entry-page-translations": "./src/entry-page-translations.js",
     "#entry-pages": "./src/entry-pages.js",
     "#landing-translations": "./src/landing-translations.js",

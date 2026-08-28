@@ -147,9 +147,10 @@ function localizeHomePage(englishHtml, locale) {
       'https://app.ecomblade.com/register?language=en',
       `https://app.ecomblade.com/register?language=${locale.appLanguage}`,
     )
-    .replaceAll('href="/marketplaces/"', `href="/${locale.route}/marketplaces/"`)
-    .replaceAll('href="/features/"', `href="/${locale.route}/features/"`)
-    .replaceAll('href="/api/"', `href="/${locale.route}/api/"`);
+    .replaceAll('href="/marketplaces/', `href="/${locale.route}/marketplaces/`)
+    .replaceAll('href="/features/', `href="/${locale.route}/features/`)
+    .replaceAll('href="/api/', `href="/${locale.route}/api/`)
+    .replaceAll('href="/pricing/', `href="/${locale.route}/pricing/`);
 
   LANGUAGE_OPTIONS.forEach((option) => {
     const href = option.route ? `/${option.route}/` : '/';

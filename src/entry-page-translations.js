@@ -119,6 +119,16 @@ export const ENTRY_PAGE_TRANSLATIONS = {
     hk: "了解更多",
     id: "Pelajari",
   },
+  "common.navigationMenu": {
+    en: "Navigation menu",
+    ph: "Navigation menu",
+    th: "เมนูนำทาง",
+    vn: "Menu điều hướng",
+    my: "Menu navigasi",
+    cn: "导航菜单",
+    hk: "導覽選單",
+    id: "Menu navigasi",
+  },
   "common.related": {
     en: "Keep exploring",
     ph: "Patuloy na mag-explore",
@@ -348,6 +358,16 @@ export const ENTRY_PAGE_TRANSLATIONS = {
     cn: "请求示例",
     hk: "請求範例",
     id: "Contoh permintaan",
+  },
+  "common.responseExample": {
+    en: "Example response",
+    ph: "Halimbawang response",
+    th: "ตัวอย่างการตอบกลับ",
+    vn: "Phản hồi mẫu",
+    my: "Contoh respons",
+    cn: "响应示例",
+    hk: "回應範例",
+    id: "Contoh respons",
   },
   "common.authentication": {
     en: "Authentication and access",
@@ -598,6 +618,16 @@ export const ENTRY_PAGE_TRANSLATIONS = {
     cn: "创建限定范围的 API 密钥，使用一致的端点，无需维护单独的平台数据管道。",
     hk: "建立限定範圍的 API 金鑰，使用一致端點，無需維護獨立的平台數據管道。",
     id: "Buat kunci API terbatas dan gunakan endpoint konsisten tanpa memelihara pipeline data marketplace sendiri.",
+  },
+  "pricing.metaDescription": {
+    en: "Compare Ecomblade Free and Pro plans for marketplace research, daily searches, product results, AI access, data exports, and API access.",
+    ph: "Ikumpara ang Ecomblade Free at Pro plans para sa marketplace research, daily searches, product results, AI access, data exports, at API access.",
+    th: "เปรียบเทียบแผน Free และ Pro ของ Ecomblade สำหรับการวิจัยมาร์เก็ตเพลส จำนวนการค้นหา ผลลัพธ์สินค้า AI การส่งออก และ API",
+    vn: "So sánh gói Free và Pro của Ecomblade về nghiên cứu sàn, lượt tìm kiếm, kết quả sản phẩm, quyền truy cập AI, xuất dữ liệu và API.",
+    my: "Bandingkan pelan Free dan Pro Ecomblade untuk penyelidikan pasaran, carian harian, hasil produk, akses AI, eksport data dan akses API.",
+    cn: "比较 Ecomblade Free 和 Pro 套餐的平台研究、每日搜索、商品结果、AI、数据导出和 API 权限。",
+    hk: "比較 Ecomblade Free 和 Pro 套餐的平台研究、每日搜尋、商品結果、AI、數據匯出和 API 權限。",
+    id: "Bandingkan paket Free dan Pro Ecomblade untuk riset marketplace, pencarian harian, hasil produk, akses AI, ekspor data, dan akses API.",
   },
   "marketplace.eyebrow": {
     en: "Marketplace research",
@@ -1402,4 +1432,3 @@ export function fillTemplate(value, variables) {
     value,
   );
 }
-

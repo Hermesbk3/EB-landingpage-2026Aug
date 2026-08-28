@@ -4,6 +4,7 @@ const pages = [
   { kind: 'hub', section: 'marketplaces', path: '/marketplaces/' },
   { kind: 'hub', section: 'features', path: '/features/' },
   { kind: 'hub', section: 'api', path: '/api/' },
+  { kind: 'pricing', path: '/pricing/' },
 ];
 
 Object.entries(MARKETPLACES).forEach(([marketplaceKey, marketplace]) => {
@@ -48,8 +49,8 @@ Object.entries(MARKETPLACES).forEach(([marketplaceKey, marketplace]) => {
   });
 });
 
-if (pages.length !== 65) {
-  throw new Error(`Expected 65 entry-page concepts, received ${pages.length}.`);
+if (pages.length !== 66) {
+  throw new Error(`Expected 66 entry-page concepts, received ${pages.length}.`);
 }
 
 export const ENTRY_PAGES = pages;
