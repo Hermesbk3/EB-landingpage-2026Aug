@@ -2,7 +2,15 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 import { defineConfig } from 'vite';
+import { ENTRY_PAGES, findEntryPage } from '#entry-pages';
 import { LANDING_TRANSLATIONS } from '#landing-translations';
+import { renderEntryPage } from '#render-entry-page';
+import {
+  getCanonicalUrl,
+  INFORMATIONAL_PAGES,
+  LOCALES as SITE_LOCALES,
+  SITE_URL,
+} from '#site-config';
 
 const page = (pathname) => fileURLToPath(new URL(pathname, import.meta.url));
 const homePage = page('index.html');
@@ -138,7 +146,10 @@ function localizeHomePage(englishHtml, locale) {
     .replaceAll(
       'https://app.ecomblade.com/register?language=en',
       `https://app.ecomblade.com/register?language=${locale.appLanguage}`,
-    );
+    )
+    .replaceAll('href="/marketplaces/"', `href="/${locale.route}/marketplaces/"`)
+    .replaceAll('href="/features/"', `href="/${locale.route}/features/"`)
+    .replaceAll('href="/api/"', `href="/${locale.route}/api/"`);
 
   LANGUAGE_OPTIONS.forEach((option) => {
     const href = option.route ? `/${option.route}/` : '/';
@@ -205,8 +216,152 @@ function staticLocalePages() {
   };
 }
 
+function resolveEntryRequest(pathname) {
+  const locale =
+    SITE_LOCALES.find(
+      (candidate) =>
+        candidate.route &&
+        (pathname === `/${candidate.route}` ||
+          pathname.startsWith(`/${candidate.route}/`)),
+    ) ?? SITE_LOCALES[0];
+  const conceptPath = locale.route
+    ? pathname.slice(locale.route.length + 1) || '/'
+    : pathname;
+  return { locale, page: findEntryPage(conceptPath) };
+}
+
+function staticEntryPages() {
+  return {
+    name: 'static-entry-pages',
+    enforce: 'post',
+    configureServer(server) {
+      server.middlewares.use(async (request, response, next) => {
+        const pathname = new URL(
+          request.url ?? '/',
+          'http://localhost',
+        ).pathname;
+        const { locale, page: entryPage } = resolveEntryRequest(pathname);
+
+        if (!entryPage) {
+          next();
+          return;
+        }
+
+        try {
+          const html = renderEntryPage(entryPage, locale);
+          const transformedHtml = await server.transformIndexHtml(
+            pathname,
+            html,
+          );
+          response.statusCode = 200;
+          response.setHeader('Content-Type', 'text/html; charset=utf-8');
+          response.end(transformedHtml);
+        } catch (error) {
+          next(error);
+        }
+      });
+    },
+    generateBundle: {
+      order: 'post',
+      handler(_options, bundle) {
+        const analyticsChunk = Object.values(bundle).find(
+          (output) =>
+            output.type === 'chunk' &&
+            (output.facadeModuleId?.endsWith('/src/analytics.js') ||
+              output.name === 'analytics' ||
+              output.fileName.includes('/analytics-')),
+        );
+        const analyticsPath = analyticsChunk
+          ? `/${analyticsChunk.fileName}`
+          : null;
+
+        if (!analyticsPath) {
+          throw new Error('Could not find the emitted analytics entry chunk.');
+        }
+
+        ENTRY_PAGES.forEach((entryPage) => {
+          SITE_LOCALES.forEach((locale) => {
+            const localizedPath = locale.route
+              ? `${locale.route}${entryPage.path}`
+              : entryPage.path.slice(1);
+            this.emitFile({
+              type: 'asset',
+              fileName: `${localizedPath}index.html`,
+              source: renderEntryPage(entryPage, locale, analyticsPath),
+            });
+          });
+        });
+
+        this.emitFile({
+          type: 'asset',
+          fileName: 'sitemap.xml',
+          source: generateSitemap(),
+        });
+      },
+    },
+  };
+}
+
+function escapeXml(value) {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&apos;');
+}
+
+function sitemapUrl(url, lastModified, alternates = []) {
+  const alternateLinks = alternates
+    .map(
+      ({ language, href }) =>
+        `    <xhtml:link rel="alternate" hreflang="${language}" href="${escapeXml(href)}" />`,
+    )
+    .join('\n');
+  return `  <url>\n    <loc>${escapeXml(url)}</loc>${alternateLinks ? `\n${alternateLinks}` : ''}\n    <lastmod>${lastModified}</lastmod>\n  </url>`;
+}
+
+function localizedAlternates(path) {
+  return [
+    ...SITE_LOCALES.map((locale) => ({
+      language: locale.htmlLanguage,
+      href: getCanonicalUrl(path, locale),
+    })),
+    { language: 'x-default', href: `${SITE_URL}${path}` },
+  ];
+}
+
+function generateSitemap() {
+  const urls = [];
+  SITE_LOCALES.forEach((locale) => {
+    urls.push(
+      sitemapUrl(
+        getCanonicalUrl('/', locale),
+        '2026-08-05',
+        localizedAlternates('/'),
+      ),
+    );
+  });
+  INFORMATIONAL_PAGES.forEach(({ path, lastModified }) => {
+    urls.push(sitemapUrl(`${SITE_URL}${path}`, lastModified));
+  });
+  ENTRY_PAGES.forEach((entryPage) => {
+    const alternates = localizedAlternates(entryPage.path);
+    SITE_LOCALES.forEach((locale) => {
+      urls.push(
+        sitemapUrl(
+          getCanonicalUrl(entryPage.path, locale),
+          '2026-08-28',
+          alternates,
+        ),
+      );
+    });
+  });
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.join('\n')}\n</urlset>\n`;
+}
+
 export default defineConfig({
-  plugins: [staticLocalePages()],
+  plugins: [staticLocalePages(), staticEntryPages()],
   build: {
     rollupOptions: {
       input: {

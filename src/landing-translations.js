@@ -38,6 +38,7 @@ export const LANDING_TRANSLATIONS = {
   select_language: { en: "Select language", ph: "Pumili ng wika", th: "เลือกภาษา", vn: "Chọn ngôn ngữ", my: "Pilih bahasa", cn: "选择语言", hk: "選擇語言", id: "Pilih bahasa" },
   screenshot: { en: "Screenshot", ph: "Screenshot", th: "ภาพหน้าจอ", vn: "Ảnh chụp màn hình", my: "Tangkapan skrin", cn: "截图", hk: "截圖", id: "Tangkapan layar" },
   features: { en: "Features", ph: "Mga Feature", th: "ฟีเจอร์", vn: "Tính năng", my: "Ciri-ciri", cn: "功能", hk: "功能", id: "Fitur" },
+  marketplaces_nav: { en: "Marketplaces", ph: "Mga Marketplace", th: "มาร์เก็ตเพลส", vn: "Sàn thương mại", my: "Platform", cn: "平台", hk: "平台", id: "Marketplace" },
   pricing: { en: "Pricing", ph: "Presyo", th: "ราคา", vn: "Bảng giá", my: "Harga", cn: "价格", hk: "價格", id: "Harga" },
   login: { en: "Log in", ph: "Mag-log in", th: "เข้าสู่ระบบ", vn: "Đăng nhập", my: "Log masuk", cn: "登录", hk: "登錄", id: "Masuk" },
   start_free: { en: "Start free", ph: "Magsimula nang libre", th: "เริ่มใช้ฟรี", vn: "Bắt đầu miễn phí", my: "Mula percuma", cn: "免费开始", hk: "免費開始", id: "Mulai gratis" },

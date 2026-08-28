@@ -404,4 +404,4 @@ assert.equal(menuWasClosed, true);
 linkClickHandler();
 assert.equal(JSON.parse(storedMenuPreference).route, '/id/');
 
-console.log('Verified 7 static locale pages, sitemap entries, and language suggestions.');
+console.log('Verified all 8 homepage locales, sitemap entries, and language suggestions.');

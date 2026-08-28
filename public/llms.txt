@@ -5,6 +5,9 @@ Ecomblade is a global product-research platform for ecommerce sellers. It helps 
 ## Main pages
 
 - [Homepage](https://ecomblade.com/): Product features, workflow, pricing, and frequently asked questions.
+- [Marketplaces](https://ecomblade.com/marketplaces/): Product research coverage by marketplace and supported region.
+- [Features](https://ecomblade.com/features/): Market Radar, product, category and store research, filters, exports, and AI connectors.
+- [API Platform](https://ecomblade.com/api/): Authenticated product search and category data across supported marketplaces.
 - [About](https://ecomblade.com/about/): The company mission and product principles.
 - [Contact](https://ecomblade.com/contact/): Support, billing, data, and partnership contact options.
 - [Privacy Policy](https://ecomblade.com/privacy/): Information collection, use, and protection practices.

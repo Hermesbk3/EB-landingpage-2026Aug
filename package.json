@@ -4,13 +4,17 @@
   "version": "1.0.0",
   "type": "module",
   "imports": {
-    "#landing-translations": "./src/landing-translations.js"
+    "#entry-page-translations": "./src/entry-page-translations.js",
+    "#entry-pages": "./src/entry-pages.js",
+    "#landing-translations": "./src/landing-translations.js",
+    "#render-entry-page": "./src/render-entry-page.js",
+    "#site-config": "./src/site-config.js"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test:locales": "node scripts/verify-locales.mjs",
+    "test:locales": "node scripts/verify-locales.mjs && node scripts/verify-entry-pages.mjs",
     "deploy-production": "git push --force deploy main:main"
   },
   "devDependencies": {
