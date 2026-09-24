@@ -1,7 +1,27 @@
 const FACEBOOK_PIXEL_ID = "1647266143173474";
 const GOOGLE_ANALYTICS_ID = "G-D3V9KWW4E5";
+const OPENAI_PIXEL_ID = "VmXSgfWZ4P9kxZ3uiBbVRA";
 const POSTHOG_API_KEY = "phc_yiBBMJPczJbKvPR7KWj7sT294Rh3Rj5GpzbVZ3efHcBw";
 const TIKTOK_PIXEL_ID = "D88L833C77UEB8QVUR50";
+
+function loadOpenAIPixel() {
+  if (!window.oaiq) {
+    const oaiq = function oaiq() {
+      oaiq.q.push(arguments);
+    };
+    oaiq.q = [];
+    window.oaiq = oaiq;
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://bzrcdn.openai.com/sdk/oaiq.min.js";
+
+    const firstScript = document.getElementsByTagName("script")[0];
+    firstScript.parentNode.insertBefore(script, firstScript);
+  }
+
+  window.oaiq("init", { pixelId: OPENAI_PIXEL_ID });
+}
 
 function loadGoogleAnalytics() {
   window.dataLayer = window.dataLayer || [];
@@ -112,6 +132,8 @@ async function loadPostHog() {
 }
 
 let hasStarted = false;
+
+loadOpenAIPixel();
 
 function startAnalytics() {
   if (hasStarted) return;
