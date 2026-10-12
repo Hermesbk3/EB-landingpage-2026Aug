@@ -4,6 +4,7 @@ import { resolve } from 'node:path';
 import { getApiResponseExample } from '#api-response-examples';
 import { ENTRY_PAGE_TRANSLATIONS } from '#entry-page-translations';
 import { ENTRY_PAGES } from '#entry-pages';
+import { LANDING_TRANSLATIONS } from '#landing-translations';
 import {
   getCanonicalUrl,
   getLocalizedPath,
@@ -203,7 +204,7 @@ LOCALES.forEach((locale) => {
   assert.ok(pricingHtml.includes('id="plans"'));
   assert.equal((pricingHtml.match(/<article class="pricing-card/g) ?? []).length, 2);
   assert.ok(pricingHtml.includes('$0'));
-  assert.ok(pricingHtml.includes('$19'));
+  assert.ok(pricingHtml.includes(`<strong>${LANDING_TRANSLATIONS.pro_price[locale.key]}</strong>`));
   assert.ok(pricingHtml.includes('class="mobile-menu"'));
 });
 

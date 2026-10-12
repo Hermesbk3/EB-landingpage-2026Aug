@@ -384,7 +384,7 @@ function renderPricingPage(locale, copy) {
       planFeature(landing('exports_not'), 'excluded'),
       planFeature(landing('api_platform_not'), 'excluded'),
     ].join('')}</ul><a class="button secondary large" href="https://app.ecomblade.com/register?language=${locale.appLanguage}">${escapeHtml(copy.nav.start)}</a></article>
-    <article class="pricing-card featured"><span class="pricing-tag">${escapeHtml(landing('popular'))}</span><h2>Pro</h2><div class="pricing-price"><strong>$19</strong><span>${escapeHtml(landing('month'))}</span></div><ul>${[
+    <article class="pricing-card featured"><span class="pricing-tag">${escapeHtml(landing('popular'))}</span><h2>Pro</h2><div class="pricing-price"><strong>${escapeHtml(landing('pro_price'))}</strong><span>${escapeHtml(landing('month'))}</span></div><ul>${[
       planFeature(landing('marketplaces_countries')),
       planFeature(landing('unlimited_searches')),
       planFeature(landing('full_results')),
